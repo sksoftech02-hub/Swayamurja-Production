@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Gaurav Pavtekar",
+    "phone": "8888306724",
+    "email": "gauravpavtekar24@gmail.com",
+    "service": "Residential Rooftop Solar",
+    "monthlyBill": "123123",
+    "city": "Pune",
+    "notes": "123123wdsqd",
+    "id": "lead-1794060200027",
+    "status": "New",
+    "createdAt": "2026-11-07T14:03:20.027Z"
+  },
+  {
+    "name": "Santosh Kulkarni",
+    "phone": "9822199887",
+    "service": "Residential Rooftop Solar",
+    "monthlyBill": "? 6,000",
+    "city": "Solapur",
+    "notes": "Inquiry for 5 kW on-grid solar plant",
+    "id": "lead-1794059555529",
+    "status": "New",
+    "createdAt": "2026-11-07T13:52:35.529Z"
+  },
+  {
+    "id": "lead-1",
+    "name": "Rajesh Deshmukh",
+    "phone": "9822014589",
+    "email": "rajesh.d@gmail.com",
+    "service": "Residential Rooftop Solar",
+    "monthlyBill": "₹ 4,500",
+    "recommendedKw": "3.5 kW",
+    "subsidyAmount": "₹ 78,000",
+    "city": "Pune (Kothrud)",
+    "notes": "Interested in PM Surya Ghar subsidy; 800 sq ft concrete roof available.",
+    "status": "Site Survey Scheduled",
+    "createdAt": "2026-11-06T10:30:00.000Z"
+  },
+  {
+    "id": "lead-2",
+    "name": "Mahindra Auto Components (Mr. Atul Shinde)",
+    "phone": "9422031120",
+    "email": "ashinde@autocomp.co.in",
+    "service": "Commercial & Industrial (C&I)",
+    "monthlyBill": "₹ 1,80,000",
+    "recommendedKw": "150 kW",
+    "subsidyAmount": "40% Tax Depreciation",
+    "city": "Chakan MIDC, Pune",
+    "notes": "Looking to displace diesel generator power and reduce high peak tariffs.",
+    "status": "New",
+    "createdAt": "2026-11-07T08:15:00.000Z"
+  },
+  {
+    "id": "lead-3",
+    "name": "Suresh Patil",
+    "phone": "9158012390",
+    "email": "spatil.agri@rediffmail.com",
+    "service": "Agri-Solar & Pumping",
+    "monthlyBill": "₹ 8,500",
+    "recommendedKw": "7.5 kW",
+    "subsidyAmount": "PM-KUSUM Subsidy",
+    "city": "Satara",
+    "notes": "Requires 7.5 HP solar pump for drip sugarcane irrigation.",
+    "status": "Contacted",
+    "createdAt": "2026-11-05T14:20:00.000Z"
+  }
+]

@@ -1,0 +1,301 @@
+// ============================================================================
+// SWAYAMURJA RENEWABLE ENERGY PVT. LTD.
+// PRISMA ORM SCHEMA (POSTGRESQL RELATIONAL ENGINE)
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------------------------------------------
+// MODULE 1: ROLES, PERMISSIONS & USERS
+// ----------------------------------------------------------------------------
+
+model Role {
+  id              Int              @id @default(autoincrement())
+  roleCode        String           @unique @map("role_code") @db.VarChar(50)
+  roleName        String           @map("role_name") @db.VarChar(100)
+  description     String?          @db.Text
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  users           User[]
+  rolePermissions RolePermission[]
+  auditLogs       AuditLog[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id              Int              @id @default(autoincrement())
+  permissionCode  String           @unique @map("permission_code") @db.VarChar(100)
+  module          String           @db.VarChar(50)
+  description     String?          @db.Text
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       Int        @map("role_id")
+  permissionId Int        @map("permission_id")
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model User {
+  id           String     @id @default(uuid()) @db.Uuid
+  roleId       Int        @map("role_id")
+  username     String     @unique @db.VarChar(100)
+  email        String     @unique @db.VarChar(255)
+  passwordHash String     @map("password_hash") @db.VarChar(255)
+  fullName     String     @map("full_name") @db.VarChar(150)
+  phone        String?    @db.VarChar(20)
+  isActive     Boolean    @default(true) @map("is_active")
+  lastLoginAt  DateTime?  @map("last_login_at") @db.Timestamptz
+  lastLoginIp  String?    @map("last_login_ip") @db.VarChar(45)
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  leads        Lead[]     @relation("AssignedLeads")
+  leadNotes    LeadNote[]
+  auditLogs    AuditLog[]
+
+  @@map("users")
+}
+
+// ----------------------------------------------------------------------------
+// MODULE 2: CRM & SOLAR LEADS
+// ----------------------------------------------------------------------------
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  SITE_SURVEY_SCHEDULED
+  PROPOSAL_SENT
+  WON_CLOSED
+  LOST
+
+  @@map("lead_status_enum")
+}
+
+model Lead {
+  id            String              @id @default(uuid()) @db.Uuid
+  fullName      String              @map("full_name") @db.VarChar(150)
+  phone         String              @db.VarChar(20)
+  email         String?             @db.VarChar(255)
+  serviceType   String              @map("service_type") @db.VarChar(100)
+  monthlyBill   Decimal             @map("monthly_bill") @db.Decimal(12, 2)
+  city          String              @db.VarChar(100)
+  roofAreaSqft  Decimal?            @map("roof_area_sqft") @db.Decimal(10, 2)
+  notes         String?             @db.Text
+  status        LeadStatus          @default(NEW)
+  assignedTo    String?             @map("assigned_to") @db.Uuid
+  createdAt     DateTime            @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime            @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  assignedUser  User?               @relation("AssignedLeads", fields: [assignedTo], references: [id], onDelete: SetNull)
+  statusHistory LeadStatusHistory[]
+  leadNotes     LeadNote[]
+  proposals     SolarProposal[]
+
+  @@index([phone])
+  @@index([status])
+  @@index([createdAt(sort: Desc)])
+  @@map("leads")
+}
+
+model LeadStatusHistory {
+  id        Int         @id @default(autoincrement())
+  leadId    String      @map("lead_id") @db.Uuid
+  oldStatus LeadStatus? @map("old_status")
+  newStatus LeadStatus  @map("new_status")
+  changedBy String?     @map("changed_by") @db.Uuid
+  comment   String?     @db.Text
+  changedAt DateTime    @default(now()) @map("changed_at") @db.Timestamptz
+
+  lead      Lead        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@map("lead_status_history")
+}
+
+model LeadNote {
+  id        String   @id @default(uuid()) @db.Uuid
+  leadId    String   @map("lead_id") @db.Uuid
+  authorId  String   @map("author_id") @db.Uuid
+  noteText  String   @map("note_text") @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@map("lead_notes")
+}
+
+// ----------------------------------------------------------------------------
+// MODULE 3: CMS WEBSITE CONTENT & LIVE ASSETS
+// ----------------------------------------------------------------------------
+
+model Project {
+  id           String   @id @db.VarChar(50)
+  category     String   @db.VarChar(50)
+  titleEn      String   @map("title_en") @db.VarChar(255)
+  titleMr      String   @map("title_mr") @db.VarChar(255)
+  capacity     String   @db.VarChar(100)
+  locationEn   String   @map("location_en") @db.VarChar(150)
+  locationMr   String   @map("location_mr") @db.VarChar(150)
+  highlightEn  String?  @map("highlight_en") @db.Text
+  highlightMr  String?  @map("highlight_mr") @db.Text
+  imageUrl     String   @map("image_url") @db.Text
+  displayOrder Int      @default(0) @map("display_order")
+  isPublished  Boolean  @default(true) @map("is_published")
+  createdBy    String?  @map("created_by") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("projects")
+}
+
+model Testimonial {
+  id          String   @id @db.VarChar(50)
+  clientName  String   @map("client_name") @db.VarChar(150)
+  roleOrg     String?  @map("role_org") @db.VarChar(200)
+  city        String?  @db.VarChar(100)
+  rating      Int      @default(5)
+  systemSize  String?  @map("system_size") @db.VarChar(100)
+  savingsText String?  @map("savings_text") @db.VarChar(150)
+  commentEn   String   @map("comment_en") @db.Text
+  commentMr   String   @map("comment_mr") @db.Text
+  isPublished Boolean  @default(true) @map("is_published")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("testimonials")
+}
+
+model Article {
+  id          String   @id @db.VarChar(50)
+  titleEn     String   @map("title_en") @db.VarChar(255)
+  titleMr     String   @map("title_mr") @db.VarChar(255)
+  category    String   @db.VarChar(100)
+  readTime    String   @default("4 min read") @map("read_time") @db.VarChar(50)
+  publishDate String?  @map("publish_date") @db.VarChar(50)
+  imageUrl    String   @map("image_url") @db.Text
+  excerptEn   String?  @map("excerpt_en") @db.Text
+  excerptMr   String?  @map("excerpt_mr") @db.Text
+  contentEn   String   @map("content_en") @db.Text
+  contentMr   String   @map("content_mr") @db.Text
+  isPublished Boolean  @default(true) @map("is_published")
+  authorId    String?  @map("author_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("articles")
+}
+
+model JobPosting {
+  id           String   @id @db.VarChar(50)
+  titleEn      String   @map("title_en") @db.VarChar(200)
+  titleMr      String   @map("title_mr") @db.VarChar(200)
+  department   String   @db.VarChar(100)
+  experienceEn String?  @map("experience_en") @db.VarChar(100)
+  experienceMr String?  @map("experience_mr") @db.VarChar(100)
+  locationEn   String?  @map("location_en") @db.VarChar(100)
+  locationMr   String?  @map("location_mr") @db.VarChar(100)
+  skills       String?  @db.Text
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("job_postings")
+}
+
+model SolarTariff {
+  id                  Int      @id @default(autoincrement())
+  residentialUnitRate Decimal  @default(8.50) @map("residential_unit_rate") @db.Decimal(6, 2)
+  commercialUnitRate  Decimal  @default(11.50) @map("commercial_unit_rate") @db.Decimal(6, 2)
+  housingSocietyRate  Decimal  @default(9.20) @map("housing_society_rate") @db.Decimal(6, 2)
+  pmSuryaGhar1kw      Decimal  @default(30000.00) @map("pm_surya_ghar_1kw") @db.Decimal(10, 2)
+  pmSuryaGhar2kw      Decimal  @default(60000.00) @map("pm_surya_ghar_2kw") @db.Decimal(10, 2)
+  pmSuryaGhar3kwMax   Decimal  @default(78000.00) @map("pm_surya_ghar_3kw_max") @db.Decimal(10, 2)
+  updatedBy           String?  @map("updated_by") @db.Uuid
+  updatedAt           DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("solar_tariffs")
+}
+
+model ThemeSetting {
+  id              Int      @id @default(autoincrement())
+  themeId         String   @map("theme_id") @db.VarChar(50)
+  name            String   @db.VarChar(100)
+  primaryColor    String   @map("primary_color") @db.VarChar(20)
+  secondaryColor  String   @map("secondary_color") @db.VarChar(20)
+  accentColor     String   @map("accent_color") @db.VarChar(20)
+  backgroundColor String   @map("background_color") @db.VarChar(20)
+  cardBgColor     String   @map("card_bg_color") @db.VarChar(20)
+  textColor       String   @map("text_color") @db.VarChar(20)
+  fontFamily      String   @map("font_family") @db.VarChar(100)
+  isActive        Boolean  @default(true) @map("is_active")
+  updatedBy       String?  @map("updated_by") @db.Uuid
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("theme_settings")
+}
+
+// ----------------------------------------------------------------------------
+// MODULE 4: SOLAR PROPOSALS
+// ----------------------------------------------------------------------------
+
+model SolarProposal {
+  id                     String   @id @default(uuid()) @db.Uuid
+  leadId                 String?  @map("lead_id") @db.Uuid
+  customerName           String?  @map("customer_name") @db.VarChar(150)
+  customerPhone          String?  @map("customer_phone") @db.VarChar(20)
+  monthlyBill            Decimal  @map("monthly_bill") @db.Decimal(12, 2)
+  recommendedKw          Decimal  @map("recommended_kw") @db.Decimal(8, 2)
+  estimatedGrossCost     Decimal  @map("estimated_gross_cost") @db.Decimal(12, 2)
+  dbtSubsidyAmount       Decimal  @map("dbt_subsidy_amount") @db.Decimal(12, 2)
+  netCustomerInvestment  Decimal  @map("net_customer_investment") @db.Decimal(12, 2)
+  annualGenerationUnits  Decimal  @map("annual_generation_units") @db.Decimal(12, 2)
+  annualFinancialSavings Decimal  @map("annual_financial_savings") @db.Decimal(12, 2)
+  paybackPeriodYears     Decimal  @map("payback_period_years") @db.Decimal(4, 1)
+  pdfFilename            String?  @map("pdf_filename") @db.VarChar(255)
+  generatedIp            String?  @map("generated_ip") @db.VarChar(45)
+  generatedAt            DateTime @default(now()) @map("generated_at") @db.Timestamptz
+
+  lead                   Lead?    @relation(fields: [leadId], references: [id], onDelete: SetNull)
+
+  @@index([customerPhone])
+  @@map("solar_proposals")
+}
+
+// ----------------------------------------------------------------------------
+// MODULE 5: AUDIT LOGS
+// ----------------------------------------------------------------------------
+
+model AuditLog {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String?  @map("user_id") @db.Uuid
+  roleId      Int?     @map("role_id")
+  username    String?  @db.VarChar(100)
+  action      String   @db.VarChar(50)
+  targetTable String   @map("target_table") @db.VarChar(50)
+  targetId    String?  @map("target_id") @db.VarChar(100)
+  oldValues   Json?    @map("old_values")
+  newValues   Json?    @map("new_values")
+  ipAddress   String   @map("ip_address") @db.VarChar(45)
+  userAgent   String?  @map("user_agent") @db.Text
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  role        Role?    @relation(fields: [roleId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([targetTable])
+  @@index([createdAt(sort: Desc)])
+  @@map("audit_logs")
+}

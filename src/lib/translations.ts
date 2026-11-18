@@ -1,0 +1,190 @@
+import { Language } from './types';
+
+export const translations: Record<Language, Record<string, string>> = {
+  en: {
+    nav_home: 'Home',
+    nav_about: 'About',
+    nav_services: 'Services',
+    nav_utility: '13 MW Utility',
+    nav_calc: 'Solar Calculator',
+    nav_schemes: 'PM Surya Ghar',
+    nav_projects: 'Projects',
+    nav_careers: 'Careers',
+    nav_contact: 'Contact',
+    cta_call: 'Call Us',
+    cta_whatsapp: 'WhatsApp',
+    cta_survey: 'Book Free Survey',
+    
+    // Hero
+    hero_badge: '⚡ Maharashtra’s Trusted Renewable Energy Partner',
+    hero_title_1: 'Empowering India With',
+    hero_title_accent: 'Clean Solar & Wind Energy',
+    hero_subtitle: 'From PM Surya Ghar residential rooftops to our landmark 13 MW utility-scale plant in Solapur. Engineering turnkey clean power for homes, industries, and farms.',
+    hero_btn_calc: 'Calculate Solar Savings →',
+    hero_btn_explore: 'Explore 13 MW Solapur Plant',
+    hero_stat_mw: '50+ MW',
+    hero_stat_mw_lbl: 'Total EPC Commissioned',
+    hero_stat_clients: '1,200+',
+    hero_stat_clients_lbl: 'Satisfied Solar Clients',
+    hero_stat_co2: '45,000+ T',
+    hero_stat_co2_lbl: 'Annual CO₂ Offset',
+    hero_stat_uptime: '99.2%',
+    hero_stat_uptime_lbl: 'Plant Performance Uptime',
+
+    // Calculator
+    calc_tag: 'INSTANT ROI & SUBSIDY ESTIMATOR',
+    calc_title: 'Calculate Your Solar Savings & PM Surya Ghar Subsidy',
+    calc_subtitle: 'Adjust your current monthly electricity bill to calculate required kW, roof area, government subsidy, and 25-year financial savings.',
+    calc_tab_res: 'Residential Rooftop',
+    calc_tab_com: 'Commercial & Industrial (C&I)',
+    calc_tab_soc: 'Housing Society / Common Area',
+    calc_bill_lbl: 'Your Average Monthly Electricity Bill:',
+    calc_metric_kw: 'Recommended Capacity',
+    calc_metric_roof: 'Required Roof Area',
+    calc_metric_subsidy: 'PM Surya Ghar Subsidy',
+    calc_metric_mo_save: 'Monthly Savings',
+    calc_metric_yr_save: 'Annual Savings',
+    calc_metric_lifetime: '25-Year Lifetime Savings',
+    calc_metric_payback: 'Estimated Payback Period',
+    calc_metric_co2: 'CO₂ Reduction Per Year',
+    calc_cta_claim: 'Claim Free Site Survey & Subsidy Assistance →',
+
+    // Map & Solapur
+    map_tag: 'PROJECT FOOTPRINT ACROSS MAHARASHTRA',
+    map_title: 'Interactive Project Map & 13 MW Utility Showcase',
+    map_subtitle: 'Click any district node to inspect technical specifications, grid connectivity, and annual yield figures.',
+
+    // Services
+    services_tag: 'END-TO-END EPC CAPABILITIES',
+    services_title: 'Engineered For Maximum Performance & 25-Year Durability',
+    services_subtitle: 'Custom solar and green energy solutions customized for Maharashtra’s electricity tariffs and climatic conditions.',
+    srv_1_title: 'Residential Rooftop Solar',
+    srv_1_desc: 'Turnkey on-grid rooftop solar under PM Surya Ghar Yojana. Direct DBT bank subsidy up to ₹78,000 with hassle-free MSEDCL net-metering approvals.',
+    srv_2_title: 'Commercial & Industrial (C&I)',
+    srv_2_desc: 'Rooftop and ground-mount solutions for manufacturing units, factories, and warehouses. Slash power tariffs from ₹11+/unit with 40% accelerated tax depreciation.',
+    srv_3_title: '13 MW+ Utility Scale Solar',
+    srv_3_desc: 'Land acquisition, high-voltage HT substation integration, PPA coordination, and turnkey EPC for mega utility solar power plants.',
+    srv_4_title: 'Wind & Hybrid Renewable Plants',
+    srv_4_desc: 'Harness high wind-velocity zones in Satara, Sangli, and Dhule with hybrid solar-wind installations for uninterrupted day-night generation.',
+    srv_5_title: 'BESS Battery Energy Storage',
+    srv_5_desc: 'Industrial lithium-ion battery energy storage systems (BESS) for peak shaving, DG displacement, and 24/7 uninterrupted green power.',
+    srv_6_title: 'Comprehensive O&M & SCADA',
+    srv_6_desc: '24/7 cloud SCADA monitoring, robotic dry-cleaning options, drone thermography diagnostics, and guaranteed 99%+ plant uptime.',
+
+    // Schemes
+    schemes_tag: 'GOVERNMENT POLICIES & FINANCIAL INCENTIVES',
+    schemes_title: 'PM Surya Ghar & PM-KUSUM Subsidy Guide',
+    schemes_subtitle: 'Transparent government subsidy guidelines ensuring maximum financial ROI for homeowners and farmers.',
+
+    // Contact
+    contact_tag: 'GET IN TOUCH WITH SOLAR ENGINEERS',
+    contact_title: 'Schedule Your Free Technical Site Feasibility Survey',
+    contact_subtitle: 'Our certified engineers will analyze your shadow patterns, roof structural integrity, and MSEDCL sanction load.',
+    f_name: 'Your Full Name',
+    f_phone: 'WhatsApp / Mobile Number',
+    f_email: 'Email Address (Optional)',
+    f_service: 'Select Service Required',
+    f_bill: 'Average Monthly Bill (₹)',
+    f_city: 'City / District in Maharashtra',
+    f_msg: 'Project Details / Queries',
+    f_submit: 'Submit & Request Free Site Survey →',
+    f_submit_wa: 'Quick Inquire via WhatsApp',
+    f_success: '✓ Thank you! Your inquiry has been securely recorded in our database. Our technical team will reach out shortly.',
+
+    // Footer
+    ft_desc: 'SwayamUrja Renewable Energy Pvt. Ltd. is Maharashtra’s leading clean-tech EPC company delivering residential rooftop solar, 13 MW+ utility-scale solar plants, wind hybrid installations, and battery energy storage.'
+  },
+  mr: {
+    nav_home: 'मुख्यपृष्ठ',
+    nav_about: 'आमच्याबद्दल',
+    nav_services: 'सेवा',
+    nav_utility: '१३ MW युटिलिटी',
+    nav_calc: 'सोलर कॅल्क्युलेटर',
+    nav_schemes: 'पीएम सूर्य घर',
+    nav_projects: 'प्रकल्प',
+    nav_careers: 'करिअर',
+    nav_contact: 'संपर्क',
+    cta_call: 'कॉल करा',
+    cta_whatsapp: 'व्हॉट्सअ‍ॅप',
+    cta_survey: 'मोफत सर्व्हे बुक करा',
+
+    // Hero
+    hero_badge: '⚡ महाराष्ट्राचा विश्वासार्ह स्वच्छ ऊर्जा भागीदार',
+    hero_title_1: 'भारताला सक्षम करत आहोत',
+    hero_title_accent: 'स्वच्छ सौर व पवन ऊर्जेने',
+    hero_subtitle: 'पीएम सूर्य घर योजनेपासून ते सोलापूरमधील आमच्या १३ मेगावॅट भव्य युटिलिटी प्रकल्पापर्यंत. घरे, कारखाने आणि शेतकऱ्यांसाठी दर्जेदार टर्नकी सोलर उपाय.',
+    hero_btn_calc: 'सोलर बचत तपासा →',
+    hero_btn_explore: '१३ मेगावॅट सोलापूर प्रकल्प पहा',
+    hero_stat_mw: '५०+ MW',
+    hero_stat_mw_lbl: 'एकूण कार्यान्वित क्षमता',
+    hero_stat_clients: '१,२००+',
+    hero_stat_clients_lbl: 'समाधानी सोलर ग्राहक',
+    hero_stat_co2: '४५,०००+ टन',
+    hero_stat_co2_lbl: 'वार्षिक कार्बन बचत',
+    hero_stat_uptime: '९९.२%',
+    hero_stat_uptime_lbl: 'अपटाइम गुणवत्ता हमी',
+
+    // Calculator
+    calc_tag: 'झटपट बचत व सबसिडी गणक',
+    calc_title: 'तुमची सोलर बचत आणि पीएम सूर्य घर सबसिडी तपासा',
+    calc_subtitle: 'तुमचे मासिक वीजबिल निवडा आणि आवश्यक किलोवॅट, छताची जागा, थेट बँक सबसिडी व २५ वर्षांची रोख बचत जाणून घ्या.',
+    calc_tab_res: 'निवासी रूफटॉप (घरे)',
+    calc_tab_com: 'औद्योगिक व व्यावसायिक (C&I)',
+    calc_tab_soc: 'गृहनिर्माण संस्था / सोसायटी',
+    calc_bill_lbl: 'तुमचे सरासरी मासिक वीजबिल:',
+    calc_metric_kw: 'शिफारस केलेली क्षमता',
+    calc_metric_roof: 'आवश्यक छताची जागा',
+    calc_metric_subsidy: 'पीएम सूर्य घर सबसिडी',
+    calc_metric_mo_save: 'मासिक बचत',
+    calc_metric_yr_save: 'वार्षिक बचत',
+    calc_metric_lifetime: '२५ वर्षांची एकूण बचत',
+    calc_metric_payback: 'गुंतवणूक परतफेडीचा कालावधी',
+    calc_metric_co2: 'वार्षिक कार्बन डायऑक्साइड घट',
+    calc_cta_claim: 'मोफत साइट सर्व्हे व सबसिडी लाभ मिळवा →',
+
+    // Map & Solapur
+    map_tag: 'महाराष्ट्रातील आमचे प्रमुख प्रकल्प',
+    map_title: 'परस्परसंवादी नकाशा व १३ MW प्रकल्प प्रदर्शन',
+    map_subtitle: 'तांत्रिक माहिती, वीज ग्रिड जोडणी आणि वार्षिक वीजनिर्मिती पाहण्यासाठी कोणत्याही जिल्ह्यावर क्लिक करा.',
+
+    // Services
+    services_tag: 'संपूर्ण टर्नकी EPC सेवा',
+    services_title: 'उच्च कार्यक्षमता आणि २५ वर्षांच्या टिकाऊपणासाठी इंजिनिअरिंग',
+    services_subtitle: 'महाराष्ट्रातील वीज दर आणि हवामानानुसार खास तयार केलेले उच्च दर्जाचे सोलर उपाय.',
+    srv_1_title: 'निवासी रूफटॉप सोलर',
+    srv_1_desc: 'पीएम सूर्य घर योजनेअंतर्गत टर्नकी ऑन-ग्रिड सोलर. ₹७८,००० पर्यंत थेट बँक सबसिडी आणि महावितरण नेट-मीटरिंगची संपूर्ण सुविधा.',
+    srv_2_title: 'औद्योगिक व व्यावसायिक (C&I)',
+    srv_2_desc: 'कारखाने, गोदामांसाठी रूफटॉप व ग्राउंड-माऊंट उपाय. ₹११+/युनिट वीज खर्च कमी करा आणि ४०% प्राप्तिकर घसारा लाभ मिळवा.',
+    srv_3_title: '१३ MW+ युटिलिटी स्केल प्रकल्प',
+    srv_3_desc: 'जमीन संपादन, हाय-व्होल्टेज HT सबस्टेशन जोडणी, PPA करार आणि टर्नकी मेगा सोलर पॉवर प्लांट्सची उभारणी.',
+    srv_4_title: 'पवन व हायब्रिड ऊर्जा प्रकल्प',
+    srv_4_desc: 'सातारा, सांगली आणि धुळे भागातील वाऱ्याचा वेग वापरून रात्रंदिवस वीजनिर्मितीसाठी सोलर-पवन हायब्रिड प्रकल्प.',
+    srv_5_title: 'BESS बॅटरी एनर्जी स्टोरेज',
+    srv_5_desc: 'औद्योगिक लिथियम-आयन बॅटरी स्टोरेज सिस्टीम, डिझेल जनरेटरवरील खर्च बंद करून २४/७ अखंडित वीजपुरवठा.',
+    srv_6_title: 'देखभाल, O&M व SCADA',
+    srv_6_desc: '२४/७ क्लाउड SCADA मॉनिटरिंग, रोबोटिक ड्राय-क्लिनिंग, ड्रोन थर्मोग्राफी तपासणी आणि ९९%+ अपटाइमची हमी.',
+
+    // Schemes
+    schemes_tag: 'शासकीय योजना व सबसिडी मार्गदर्शन',
+    schemes_title: 'पीएम सूर्य घर व पीएम-कुसुम सबसिडी माहिती',
+    schemes_subtitle: 'घरमालक आणि शेतकऱ्यांसाठी जास्तीत जास्त आर्थिक नफा मिळवून देणाऱ्या अधिकृत योजनांची संपूर्ण माहिती.',
+
+    // Contact
+    contact_tag: 'सोलर अभियंत्यांशी थेट संपर्क साधा',
+    contact_title: 'तुमचा मोफत तांत्रिक साइट सर्व्हे आजच बुक करा',
+    contact_subtitle: 'आमचे तज्ज्ञ इंजिनिअर्स तुमच्या छताची क्षमता, सावलीचे विश्लेषण आणि महावितरण मंजूर भार तपासून अहवाल देतील.',
+    f_name: 'तुमचे पूर्ण नाव',
+    f_phone: 'व्हॉट्सअ‍ॅप / मोबाईल नंबर',
+    f_email: 'ईमेल पत्ता (ऐच्छिक)',
+    f_service: 'हवी असलेली सेवा निवडा',
+    f_bill: 'सरासरी मासिक वीजबिल (₹)',
+    f_city: 'गाव / शहर / जिल्हा',
+    f_msg: 'प्रकल्पाची माहिती किंवा प्रश्न',
+    f_submit: 'माहिती पाठवा व मोफत सर्व्हे मिळवा →',
+    f_submit_wa: 'व्हॉट्सअ‍ॅपवर त्वरित संपर्क करा',
+    f_success: '✓ धन्यवाद! तुमची माहिती सुरक्षितपणे नोंदवली गेली आहे. आमची टीम लवकरच संपर्क करेल.',
+
+    // Footer
+    ft_desc: 'स्वयमऊर्जा ही महाराष्ट्रातील अग्रगण्य स्वच्छ ऊर्जा EPC कंपनी असून रूफटॉप, १३ मेगावॅट युटिलिटी सोलर, पवन आणि बॅटरी स्टोरेज प्रकल्पांमध्ये कार्यरत आहे.'
+  }
+};
