@@ -104,7 +104,7 @@ export const AboutUsSection: React.FC = () => {
         designationMr: "संचालक - प्रकल्प व अभियांत्रिकी",
         bioEn: "Electrical Engineer with 20+ years of distinguished execution leadership across high-voltage electrical infrastructure and multi-megawatt solar grid integration.",
         bioMr: "इलेक्ट्रिकल इंजिनिअर व उच्च-दाब वीज पायाभूत सुविधा तसेच बहु-मेगावॅट सोलर प्रकल्पांच्या प्रत्यक्ष उभारणीतील २०+ वर्षांचा समृद्ध अनुभव.",
-        photo: "/uploads/team/our-team.png",
+        photo: "/uploads/team/swayamurja-mitra-team.jpg",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 2
       },
@@ -115,18 +115,18 @@ export const AboutUsSection: React.FC = () => {
         designationMr: "संचालक - पुरवठा साखळी व वित्त व्यवस्थापन",
         bioEn: "Specialist in strategic Tier-1 procurement, vendor contract administration, and project financial modeling for CAPEX and OPEX renewable energy developments.",
         bioMr: "टियर-१ दर्जाच्या उपकरणांची खरेदी, पुरवठा साखळी व्यवस्थापन आणि सौर ऊर्जा प्रकल्पांचे आर्थिक नियोजन यातील तज्ज्ञ.",
-        photo: "/uploads/team/our-team.png",
+        photo: "/uploads/team/swayamurja-mitra-team.jpg",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 3
       },
       {
         id: "tm-4",
         name: "SwayamUrja EPC Engineering Team",
-        designationEn: "Technical Operations, Design & O&M (70+ Professionals)",
-        designationMr: "तांत्रिक ऑपरेशन्स, डिझाईन आणि ओ अँड एम (७०+ तज्ज्ञ)",
-        bioEn: "Cross-functional team of 70+ certified electrical engineers, PVsyst solar designers, and MSEDCL grid-connectivity specialists.",
-        bioMr: "७०+ प्रमाणित इलेक्ट्रिकल इंजिनिअर्स, सोलर डिझाइन आणि महावितरण ग्रीड जोडणी तज्ज्ञांची समर्पित टीम.",
-        photo: "/uploads/team/our-team.png",
+        designationEn: "Technical Operations, Design & O&M (60+ Professionals)",
+        designationMr: "तांत्रिक ऑपरेशन्स, डिझाईन आणि ओ अँड एम (६०+ तज्ज्ञ)",
+        bioEn: "Cross-functional team of 60+ certified electrical engineers, PVsyst solar designers, and MSEDCL grid-connectivity specialists.",
+        bioMr: "६०+ प्रमाणित इलेक्ट्रिकल इंजिनिअर्स, सोलर डिझाइन आणि महावितरण ग्रीड जोडणी तज्ज्ञांची समर्पित टीम.",
+        photo: "/uploads/team/swayamurja-mitra-team.jpg",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 4
       }
@@ -368,7 +368,7 @@ export const AboutUsSection: React.FC = () => {
         {/* ══════════════════════════════════════════════
             6. OUR TEAM & KEY DESIGNATIONS (Dynamic Profiles)
         ══════════════════════════════════════════════ */}
-        <div id="about-team" className="scroll-mt-24 space-y-6">
+        <div id="about-team" className="scroll-mt-32 space-y-6">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
               <Users className="w-3.5 h-3.5 text-emerald-600" />
@@ -382,6 +382,43 @@ export const AboutUsSection: React.FC = () => {
                 ? 'सौर अभियांत्रिकी, स्ट्रक्चरल डिझाइन आणि महावितरण ग्रिड जोडणीतील अग्रगण्य तज्ज्ञ'
                 : 'Certified solar photovoltaic designers, electrical engineers, and regulatory specialists'}
             </p>
+          </div>
+
+          {/* ── Genuine SwayamUrja-MITRA 60+ Team Photo Showcase ── */}
+          <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white max-w-5xl mx-auto group">
+            <div className="relative w-full aspect-[16/9] sm:aspect-[2.2/1] overflow-hidden">
+              <Image
+                src="/uploads/team/swayamurja-mitra-team.jpg"
+                alt={isMr ? "स्वयम्ऊर्जा-मित्र टीम (६०+ तज्ज्ञ)" : "SwayamUrja-MITRA EPC Team (60+ Professionals)"}
+                fill
+                className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                unoptimized
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
+              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    {isMr ? "आमचा सर्वात मोठा ठेवा (Our Asset)" : "Our Asset – Our Driving Force"}
+                  </span>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-white font-['Outfit']">
+                    {isMr ? "स्वयम्ऊर्जा-मित्र (SwayamUrja-MITRA) ६०+ तज्ज्ञांची समर्पित टीम" : "Team of 60+ SwayamUrja-MITRA Solar EPC Specialists"}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                    {isMr
+                      ? "सौर डिझाईन, स्ट्रक्चरल इंजिनिअरिंग, महावितरण नेट-मीटरिंग, सीईआयजी मंजुरी आणि २५ वर्षांची सातत्यपूर्ण ओ अँड एम (O&M) सेवा सांभाळणारे आमचे ६०+ अभियंते व तंत्रज्ञ."
+                      : "Certified PVsyst solar designers, electrical engineers, MSEDCL net-metering liaison specialists, and dedicated 24/7 O&M technicians delivering engineering excellence."}
+                  </p>
+                </div>
+                <div className="shrink-0 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20">
+                  <div className="text-2xl sm:text-3xl font-black text-amber-400 font-['Outfit']">60+</div>
+                  <div className="text-xs text-slate-200 leading-tight">
+                    {isMr ? <>सौर ऊर्जा<br/>अभियंते व मित्र</> : <>Solar EPC<br/>Specialists</>}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
