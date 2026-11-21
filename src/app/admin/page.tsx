@@ -1619,7 +1619,7 @@ export default function AdminPage() {
                         <img
                           src={client.logo}
                           alt={client.name}
-                          className="max-h-16 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all"
+                          className="max-h-16 max-w-full object-contain transition-all"
                         />
                       ) : (
                         <Building2 className="w-8 h-8 text-slate-400" />

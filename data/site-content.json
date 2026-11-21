@@ -483,5 +483,170 @@
         "order": 2
       }
     ]
-  }
+  },
+  "videoSection": {
+    "enabled": true,
+    "videoUrl": "/uploads/video/13mw-solar-plant.mp4",
+    "badgeEn": "13 MW SOLAR PLANT INSTALL",
+    "badgeMr": "१३ मेगावॅट सोलर प्लांट स्थापना",
+    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Plants",
+    "titleMr": "महाराष्ट्राला सौर ऊर्जेने समृद्ध करणारी मेगा-प्रकल्प उभारणी",
+    "subtitleEn": "Watch our high-voltage 13 MW ground-mounted utility solar power plant in full operation.",
+    "subtitleMr": "आमच्या १३ मेगावॅट उच्च क्षमतेच्या सौर ऊर्जा प्रकल्पाची प्रत्यक्ष दृश्ये.",
+    "locationEn": "Maharashtra, India",
+    "locationMr": "महाराष्ट्र, भारत",
+    "plantCapacity": "13 MW"
+  },
+  "layoutSections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "name": "Hero Welcome Banner",
+      "titleEn": "Hero Header",
+      "titleMr": "मुख्य हेडर",
+      "enabled": true,
+      "order": 1,
+      "isSystem": true
+    },
+    {
+      "id": "video",
+      "type": "video",
+      "name": "13 MW Solar Plant Aerial Video",
+      "titleEn": "13 MW Solar Plant Installation",
+      "titleMr": "१३ मेगावॅट सोलर प्लांट प्रकल्प",
+      "enabled": true,
+      "order": 2,
+      "isSystem": true
+    },
+    {
+      "id": "clients",
+      "type": "clients",
+      "name": "Our Clients Logo Slideshow",
+      "titleEn": "Trusted Clients",
+      "titleMr": "आमचे ग्राहक",
+      "enabled": true,
+      "order": 3,
+      "isSystem": true
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About Us & Leadership Gratitude",
+      "titleEn": "About SwayamUrja & MD Message",
+      "titleMr": "आमच्याबद्दल आणि व्यवस्थापकीय संचालक संदेश",
+      "enabled": true,
+      "order": 4,
+      "isSystem": true
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "name": "Solar Services & Solutions",
+      "titleEn": "End-to-End Solar EPC Services",
+      "titleMr": "सौर ऊर्जा सेवा",
+      "enabled": true,
+      "order": 5,
+      "isSystem": true
+    },
+    {
+      "id": "process",
+      "type": "process",
+      "name": "Solar EPC 5-Step Process",
+      "titleEn": "Turnkey Commissioning Roadmap",
+      "titleMr": "प्रकल्प उभारणी प्रक्रिया",
+      "enabled": true,
+      "order": 6,
+      "isSystem": true
+    },
+    {
+      "id": "showcase",
+      "type": "showcase",
+      "name": "Interactive Solar Showcase",
+      "titleEn": "Engineering Excellence Showcase",
+      "titleMr": "सौर तंत्रज्ञान प्रात्यक्षिक",
+      "enabled": true,
+      "order": 7,
+      "isSystem": true
+    },
+    {
+      "id": "projects",
+      "type": "projects",
+      "name": "Portfolio Projects Gallery",
+      "titleEn": "Flagship Commissioned Plants",
+      "titleMr": "पूर्ण झालेले प्रकल्प",
+      "enabled": true,
+      "order": 8,
+      "isSystem": true
+    },
+    {
+      "id": "map",
+      "type": "map",
+      "name": "Maharashtra Presence Map",
+      "titleEn": "District Footprint & Capacity",
+      "titleMr": "महाराष्ट्र राज्य व्याप्ती",
+      "enabled": true,
+      "order": 9,
+      "isSystem": true
+    },
+    {
+      "id": "schemes",
+      "type": "schemes",
+      "name": "Government Subsidies & Schemes",
+      "titleEn": "PM Surya Ghar & MSME Subsidies",
+      "titleMr": "शासकीय सौर योजना व अनुदान",
+      "enabled": true,
+      "order": 10,
+      "isSystem": true
+    },
+    {
+      "id": "calculator",
+      "type": "calculator",
+      "name": "Solar Savings ROI Calculator",
+      "titleEn": "Net Metering & Solar Savings Calculator",
+      "titleMr": "सौर बचत कॅल्क्युलेटर",
+      "enabled": true,
+      "order": 11,
+      "isSystem": true
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "name": "Client Feedback & Reviews",
+      "titleEn": "Verified Client Reviews",
+      "titleMr": "ग्राहकांचे अभिप्राय",
+      "enabled": true,
+      "order": 12,
+      "isSystem": true
+    },
+    {
+      "id": "blogs",
+      "type": "blogs",
+      "name": "Solar Knowledge & Blog Articles",
+      "titleEn": "Solar Policy & Technology Insights",
+      "titleMr": "सौर ऊर्जा लेख व माहिती",
+      "enabled": true,
+      "order": 13,
+      "isSystem": true
+    },
+    {
+      "id": "careers",
+      "type": "careers",
+      "name": "Careers & Open Vacancies",
+      "titleEn": "Join SwayamUrja Renewable Energy",
+      "titleMr": "करिअर संधी",
+      "enabled": true,
+      "order": 14,
+      "isSystem": true
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact Us & Site Survey Form",
+      "titleEn": "Get In Touch & Site Survey",
+      "titleMr": "संपर्क व साईट सर्वेक्षण",
+      "enabled": true,
+      "order": 15,
+      "isSystem": true
+    }
+  ]
 }

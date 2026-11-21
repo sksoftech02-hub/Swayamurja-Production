@@ -60,7 +60,7 @@ export const ClientsSlider: React.FC = () => {
                     alt={client.name}
                     width={180}
                     height={80}
-                    className="max-h-16 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                    className="max-h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
                     unoptimized
                     onError={(e) => {
                       // Fallback if image path fails

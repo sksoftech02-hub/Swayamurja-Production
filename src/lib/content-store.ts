@@ -6,7 +6,9 @@ import {
   CMSArticle, 
   CMSJob, 
   SiteTheme, 
-  SiteContent 
+  SiteContent,
+  DEFAULT_LAYOUT_SECTIONS,
+  DEFAULT_VIDEO_SECTION
 } from './types';
 import { THEME_PRESETS, DEFAULT_THEME } from './theme-presets';
 
@@ -300,6 +302,8 @@ export function getSiteContent(): SiteContent {
       blogLinkedInUrl: parsed.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/',
       clients: Array.isArray(parsed.clients) ? parsed.clients : [],
       aboutUs: parsed.aboutUs || undefined,
+      videoSection: parsed.videoSection || DEFAULT_VIDEO_SECTION,
+      layoutSections: Array.isArray(parsed.layoutSections) && parsed.layoutSections.length > 0 ? parsed.layoutSections : DEFAULT_LAYOUT_SECTIONS,
     };
     return cachedContent;
   } catch (err) {
@@ -326,6 +330,8 @@ export function updateSiteContent(updated: Partial<SiteContent>): SiteContent {
     blogLinkedInUrl: updated.blogLinkedInUrl !== undefined ? updated.blogLinkedInUrl : (current.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/'),
     clients: updated.clients !== undefined ? updated.clients : current.clients,
     aboutUs: updated.aboutUs !== undefined ? updated.aboutUs : current.aboutUs,
+    videoSection: updated.videoSection !== undefined ? updated.videoSection : current.videoSection,
+    layoutSections: updated.layoutSections !== undefined ? updated.layoutSections : current.layoutSections,
   };
   
   // Update in-memory cache instantly

@@ -33,9 +33,27 @@ import {
   Upload,
   UserPlus,
   Image as ImageIcon,
-  Award
+  Award,
+  ArrowUp,
+  ArrowDown,
+  Eye,
+  EyeOff,
+  Layers,
+  Video,
+  RotateCcw,
+  Edit
 } from 'lucide-react';
-import { THEME_PRESETS, SiteTheme, CMSClient, CMSTeamMember, AboutUsContent } from '@/lib/types';
+import {
+  THEME_PRESETS,
+  SiteTheme,
+  CMSClient,
+  CMSTeamMember,
+  AboutUsContent,
+  HomepageSection,
+  DEFAULT_LAYOUT_SECTIONS,
+  VideoSectionContent,
+  DEFAULT_VIDEO_SECTION
+} from '@/lib/types';
 
 interface UserRecord {
   id: string;
@@ -96,7 +114,7 @@ export default function SuperAdminPage() {
   const [authError, setAuthError] = useState('');
 
   // Active Tab
-  const [activeTab, setActiveTab] = useState<'users' | 'leads' | 'clients' | 'about' | 'content' | 'tariffs' | 'theme' | 'audit' | 'database'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'leads' | 'layout' | 'clients' | 'about' | 'content' | 'tariffs' | 'theme' | 'audit' | 'database'>('users');
 
   // Data states
   const [users, setUsers] = useState<UserRecord[]>([]);
@@ -129,6 +147,14 @@ export default function SuperAdminPage() {
 
   // Blog LinkedIn URL
   const [linkedInUrl, setLinkedInUrl] = useState<string>('https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/');
+
+  // Homepage Containers & Video Layout State
+  const [layoutSections, setLayoutSections] = useState<HomepageSection[]>(DEFAULT_LAYOUT_SECTIONS);
+  const [videoConfigForm, setVideoConfigForm] = useState<VideoSectionContent>(DEFAULT_VIDEO_SECTION);
+  const [editingSection, setEditingSection] = useState<HomepageSection | null>(null);
+  const [showNewSectionModal, setShowNewSectionModal] = useState<boolean>(false);
+  const [newSectionForm, setNewSectionForm] = useState({ name: '', titleEn: '', titleMr: '' });
+  const [uploadingVideo, setUploadingVideo] = useState<boolean>(false);
 
   // Form states for tariffs & theme
   const [tariffForm, setTariffForm] = useState({
@@ -243,7 +269,16 @@ export default function SuperAdminPage() {
     }
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (cmsContent?.layoutSections && Array.isArray(cmsContent.layoutSections)) {
+      setLayoutSections(cmsContent.layoutSections);
+    }
+    if (cmsContent?.videoSection) {
+      setVideoConfigForm(cmsContent.videoSection);
+    }
+  }, [cmsContent]);
+
+    const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError('');
     try {
@@ -464,6 +499,101 @@ export default function SuperAdminPage() {
       alert('Upload error');
     } finally {
       setUploadingCeoPhoto(false);
+    }
+  };
+
+  // ── HOMEPAGE LAYOUT & CONTAINER HANDLERS ──
+  const handleMoveSectionUp = (index: number) => {
+    if (index <= 0) return;
+    const updated = [...layoutSections];
+    const temp = updated[index];
+    updated[index] = updated[index - 1];
+    updated[index - 1] = temp;
+    const reordered = updated.map((sec, idx) => ({ ...sec, order: idx + 1 }));
+    setLayoutSections(reordered);
+  };
+
+  const handleMoveSectionDown = (index: number) => {
+    if (index >= layoutSections.length - 1) return;
+    const updated = [...layoutSections];
+    const temp = updated[index];
+    updated[index] = updated[index + 1];
+    updated[index + 1] = temp;
+    const reordered = updated.map((sec, idx) => ({ ...sec, order: idx + 1 }));
+    setLayoutSections(reordered);
+  };
+
+  const handleToggleSection = (id: string) => {
+    const updated = layoutSections.map(sec => 
+      sec.id === id ? { ...sec, enabled: !sec.enabled } : sec
+    );
+    setLayoutSections(updated);
+  };
+
+  const handleSaveLayout = async () => {
+    if (!cmsContent) return;
+    await saveContentUpdate({
+      ...cmsContent,
+      layoutSections,
+      videoSection: videoConfigForm
+    });
+  };
+
+  const handleResetLayout = () => {
+    if (confirm('Reset visitor website containers back to original default sequence?')) {
+      setLayoutSections(DEFAULT_LAYOUT_SECTIONS);
+    }
+  };
+
+  const handleSaveEditSection = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingSection) return;
+    const updated = layoutSections.map(s => s.id === editingSection.id ? editingSection : s);
+    setLayoutSections(updated);
+    setEditingSection(null);
+  };
+
+  const handleAddCustomSection = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newSectionForm.name) return;
+    const newSec: HomepageSection = {
+      id: `custom-${Date.now()}`,
+      type: 'custom',
+      name: newSectionForm.name,
+      titleEn: newSectionForm.titleEn || newSectionForm.name,
+      titleMr: newSectionForm.titleMr || newSectionForm.name,
+      enabled: true,
+      order: layoutSections.length + 1,
+      isSystem: false
+    };
+    setLayoutSections([...layoutSections, newSec]);
+    setShowNewSectionModal(false);
+    setNewSectionForm({ name: '', titleEn: '', titleMr: '' });
+  };
+
+  const handleDeleteCustomSection = (id: string) => {
+    if (!confirm('Remove this custom container?')) return;
+    const updated = layoutSections.filter(s => s.id !== id).map((s, idx) => ({ ...s, order: idx + 1 }));
+    setLayoutSections(updated);
+  };
+
+  const handleUploadVideo = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setUploadingVideo(true);
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'video');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success && data.url) {
+        setVideoConfigForm(prev => ({ ...prev, videoUrl: data.url }));
+      }
+    } catch (err) {
+      alert('Upload error');
+    } finally {
+      setUploadingVideo(false);
     }
   };
 
@@ -1227,6 +1357,280 @@ export default function SuperAdminPage() {
         )}
 
         
+        {/* TAB: HOMEPAGE CONTAINERS & LAYOUT MANAGER */}
+        {activeTab === 'layout' && (
+          <div className="space-y-8">
+            {/* Header Toolbar */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+              <div>
+                <h2 className="text-base font-bold text-white flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-cyan-400" />
+                  Homepage Container Sequence &amp; Layout Manager
+                </h2>
+                <p className="text-xs text-slate-400 mt-1">
+                  Reorder containers up &amp; down, toggle visibility (show/hide), edit titles, or add custom sections to control the visitor website flow.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <button
+                  type="button"
+                  onClick={handleResetLayout}
+                  className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                  title="Reset to default sequence"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  Reset Defaults
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowNewSectionModal(true)}
+                  className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-cyan-500/30 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add Custom Section
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleSaveLayout}
+                  disabled={actionLoading}
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-cyan-950 transition-all cursor-pointer"
+                >
+                  <Save className="w-4 h-4" />
+                  {actionLoading ? 'Saving...' : 'Apply & Publish Layout Live'}
+                </button>
+              </div>
+            </div>
+
+            {/* 13 MW Video Banner Management Card */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400">
+                    <Video className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                      13 MW Solar Plant Aerial Video Banner
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                        videoConfigForm.enabled ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-rose-950 text-rose-400 border border-rose-800'
+                      }`}>
+                        {videoConfigForm.enabled ? 'ACTIVE' : 'DISABLED'}
+                      </span>
+                    </h3>
+                    <p className="text-xs text-slate-400">Cinematic full-width drone video banner on visitor homepage.</p>
+                  </div>
+                </div>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={videoConfigForm.enabled}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, enabled: e.target.checked })}
+                    className="w-4 h-4 rounded text-cyan-600 focus:ring-cyan-500 bg-slate-950 border-slate-700"
+                  />
+                  <span className="text-xs font-semibold text-slate-300">Show On Website</span>
+                </label>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Video File / URL</label>
+                  <div className="flex gap-2 mb-1.5">
+                    <label className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold cursor-pointer flex items-center gap-1 shrink-0">
+                      <Upload className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>{uploadingVideo ? 'Uploading...' : 'Upload MP4'}</span>
+                      <input
+                        type="file"
+                        accept="video/mp4,video/*"
+                        className="hidden"
+                        onChange={handleUploadVideo}
+                        disabled={uploadingVideo}
+                      />
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    value={videoConfigForm.videoUrl}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, videoUrl: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-[11px]"
+                    placeholder="/uploads/video/13mw-solar-plant.mp4"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Badge Text (English)</label>
+                  <input
+                    type="text"
+                    value={videoConfigForm.badgeEn}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, badgeEn: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Plant Capacity Label</label>
+                  <input
+                    type="text"
+                    value={videoConfigForm.plantCapacity}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, plantCapacity: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Headline (English)</label>
+                  <input
+                    type="text"
+                    value={videoConfigForm.titleEn}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, titleEn: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Headline (Marathi)</label>
+                  <input
+                    type="text"
+                    value={videoConfigForm.titleMr}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, titleMr: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Location Label</label>
+                  <input
+                    type="text"
+                    value={videoConfigForm.locationEn}
+                    onChange={(e) => setVideoConfigForm({ ...videoConfigForm, locationEn: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Containers Ordering Grid / List */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <span>Containers Sequence List</span>
+                  <span className="text-xs text-slate-400 font-normal">
+                    (Click ▲ or ▼ to adjust order. Top item displays first on homepage)
+                  </span>
+                </h3>
+                <span className="text-xs font-mono text-cyan-400">
+                  {layoutSections.length} Total Containers
+                </span>
+              </div>
+
+              <div className="space-y-2.5">
+                {layoutSections.map((section, index) => (
+                  <div
+                    key={section.id}
+                    className={`p-4 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                      section.enabled
+                        ? 'bg-slate-950 border-slate-800 hover:border-slate-700'
+                        : 'bg-slate-950/40 border-slate-900 opacity-60'
+                    }`}
+                  >
+                    {/* Left: Position Badge & Section Info */}
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center font-mono font-bold text-xs text-cyan-400 shrink-0">
+                        #{section.order}
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-bold text-white">
+                            {section.name}
+                          </h4>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-sm bg-slate-800 text-slate-400">
+                            ID: {section.id}
+                          </span>
+                          {!section.isSystem && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-sm bg-purple-950 text-purple-400 border border-purple-800">
+                              CUSTOM
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-slate-400 mt-0.5">
+                          {section.titleEn || section.name}
+                          {section.titleMr ? <span className="text-slate-500 ml-2 font-marathi">({section.titleMr})</span> : null}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right: Actions (Move Up, Move Down, Toggle, Edit, Delete) */}
+                    <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                      {/* Move Up Button */}
+                      <button
+                        type="button"
+                        disabled={index === 0}
+                        onClick={() => handleMoveSectionUp(index)}
+                        className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 transition-colors cursor-pointer"
+                        title="Move Up on Homepage"
+                      >
+                        <ArrowUp className="w-4 h-4 text-cyan-400" />
+                      </button>
+
+                      {/* Move Down Button */}
+                      <button
+                        type="button"
+                        disabled={index === layoutSections.length - 1}
+                        onClick={() => handleMoveSectionDown(index)}
+                        className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-800 transition-colors cursor-pointer"
+                        title="Move Down on Homepage"
+                      >
+                        <ArrowDown className="w-4 h-4 text-cyan-400" />
+                      </button>
+
+                      {/* Toggle Visibility */}
+                      <button
+                        type="button"
+                        onClick={() => handleToggleSection(section.id)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 border transition-colors cursor-pointer ${
+                          section.enabled
+                            ? 'bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-400 border-emerald-800/80'
+                            : 'bg-slate-900 hover:bg-slate-800 text-slate-400 border-slate-800'
+                        }`}
+                        title={section.enabled ? 'Section is visible. Click to hide.' : 'Section is hidden. Click to show.'}
+                      >
+                        {section.enabled ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5 text-slate-500" />}
+                        <span>{section.enabled ? 'Visible' : 'Hidden'}</span>
+                      </button>
+
+                      {/* Edit Button */}
+                      <button
+                        type="button"
+                        onClick={() => setEditingSection(section)}
+                        className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors cursor-pointer"
+                        title="Edit Section Labels"
+                      >
+                        <Edit className="w-3.5 h-3.5" />
+                      </button>
+
+                      {/* Delete (for custom sections) */}
+                      {!section.isSystem && (
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteCustomSection(section.id)}
+                          className="p-2 rounded-lg bg-red-950/40 hover:bg-red-900/40 text-red-400 border border-red-900/60 transition-colors cursor-pointer"
+                          title="Delete Custom Container"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* TAB: OUR CLIENTS SLIDESHOW CRUD */}
         {activeTab === 'clients' && (
           <div className="space-y-6">
