@@ -18,20 +18,20 @@ export const VideoHero: React.FC = () => {
   }
 
   return (
-    <section className="relative w-full bg-slate-950 overflow-hidden border-b border-slate-900 mt-4 sm:mt-6 md:mt-8 scroll-mt-28" id="video-showcase">
-      {/* 16:9 Natural Aspect Ratio Container - Clear, Visible & Perfectly Fitted */}
-      <div className="relative w-full aspect-[16/9] sm:aspect-[16/9] max-h-[75vh] min-h-[300px] overflow-hidden flex items-center justify-center">
+    <section className="relative w-full bg-slate-950 border-b border-slate-900" id="video-showcase">
+      {/* 100% Natural Uncropped Video - Zero cropping on top, bottom or sides */}
+      <div className="relative w-full">
         <video
           src={videoConfig.videoUrl || '/uploads/video/13mw-solar-plant.mp4'}
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-center"
+          className="w-full h-auto block"
         />
 
         {/* Minimal localized bottom gradient for readable text - keeps entire video clear and bright */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
         {/* Medium-Sized Two Lines of Content on Bottom Left (No Extra Badges) */}
         <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-12 max-w-7xl mx-auto">
