@@ -39,11 +39,11 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const aboutSubLinks = [
-    { href: '#about-ceo', label: isMr ? 'व्यवस्थापकीय संचालकांचे मनोगत' : 'Gratitude by our MD & CEO' },
-    { href: '#about-vision', label: isMr ? 'दृष्टिकोन आणि ध्येय' : 'Vision & Mission' },
-    { href: '#about-focus', label: isMr ? 'प्रमुख कार्यक्षेत्र' : 'Core Focus' },
-    { href: '#about-values', label: isMr ? 'मूल्ये (MITRA)' : 'Core Values (MITRA)' },
-    { href: '#about-team', label: isMr ? 'आमची टीम' : 'Our Team' },
+    { href: '/about-us#about-ceo', label: isMr ? 'व्यवस्थापकीय संचालकांचे मनोगत' : 'Gratitude by our MD & CEO' },
+    { href: '/about-us#about-vision', label: isMr ? 'दृष्टिकोन आणि ध्येय' : 'Vision & Mission' },
+    { href: '/about-us#about-focus', label: isMr ? 'प्रमुख कार्यक्षेत्र' : 'Core Focus' },
+    { href: '/about-us#about-values', label: isMr ? 'मूल्ये (MITRA)' : 'Core Values (MITRA)' },
+    { href: '/about-us#about-team', label: isMr ? 'आमची टीम' : 'Our Team' },
   ];
 
   return (
@@ -104,18 +104,33 @@ export const Navbar: React.FC = () => {
               onMouseEnter={() => setAboutDropdownOpen(true)}
               onMouseLeave={() => setAboutDropdownOpen(false)}
             >
-              <button
-                type="button"
-                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-                className="inline-flex items-center gap-1.5 py-2 hover:text-emerald-700 transition-colors duration-200 cursor-pointer"
-              >
-                <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180 text-emerald-600' : 'text-slate-400'}`} />
-              </button>
+              <div className="inline-flex items-center gap-1">
+                <Link
+                  href="/about-us"
+                  className="py-2 hover:text-emerald-700 transition-colors duration-200 cursor-pointer"
+                >
+                  <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                  className="p-1 hover:text-emerald-700 transition-colors duration-200 cursor-pointer"
+                  aria-label="Toggle About Us submenu"
+                >
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180 text-emerald-600' : 'text-slate-400'}`} />
+                </button>
+              </div>
 
               {/* Dropdown Menu matching swayamurja.com */}
               {aboutDropdownOpen && (
                 <div className="absolute left-0 mt-1 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <Link
+                    href="/about-us"
+                    onClick={() => setAboutDropdownOpen(false)}
+                    className="block px-4 py-2 text-xs font-bold text-emerald-700 hover:bg-emerald-50/70 border-b border-slate-100 transition-colors"
+                  >
+                    {isMr ? 'सर्व माहिती पहा (/about-us) →' : 'Overview & Full Story →'}
+                  </Link>
                   {aboutSubLinks.map((sub) => (
                     <Link
                       key={sub.href}
@@ -132,7 +147,7 @@ export const Navbar: React.FC = () => {
 
             {/* 2. Services */}
             <Link
-              href="#services"
+              href="/#services"
               className="py-1 hover:text-emerald-700 transition-colors duration-200"
             >
               {isMr ? 'सेवा' : 'Services'}
@@ -140,7 +155,7 @@ export const Navbar: React.FC = () => {
 
             {/* 3. Projects */}
             <Link
-              href="#projects"
+              href="/#projects"
               className="py-1 hover:text-emerald-700 transition-colors duration-200"
             >
               {isMr ? 'प्रकल्प' : 'Projects'}
@@ -160,7 +175,7 @@ export const Navbar: React.FC = () => {
 
             {/* 5. Careers */}
             <Link
-              href="#careers"
+              href="/#careers"
               className="py-1 hover:text-emerald-700 transition-colors duration-200"
             >
               {isMr ? 'करिअर' : 'Careers'}
@@ -168,7 +183,7 @@ export const Navbar: React.FC = () => {
 
             {/* 6. Contact */}
             <Link
-              href="#contact"
+              href="/#contact"
               className="py-1 hover:text-emerald-700 transition-colors duration-200"
             >
               {isMr ? 'संपर्क' : 'Contact'}
@@ -255,16 +270,32 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile About Us Accordion */}
           <div>
-            <button
-              type="button"
-              onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-              className="flex items-center justify-between w-full py-3 text-[15px] font-semibold text-slate-700 border-b border-slate-50"
-            >
-              <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180' : ''}`} />
-            </button>
+            <div className="flex items-center justify-between w-full py-3 text-[15px] font-semibold text-slate-700 border-b border-slate-50">
+              <Link
+                href="/about-us"
+                onClick={() => setMobileOpen(false)}
+                className="hover:text-emerald-700 flex-1"
+              >
+                {isMr ? 'आमच्याबद्दल' : 'About Us'}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                className="p-1 text-slate-500 hover:text-emerald-600"
+                aria-label="Toggle About Us sublinks"
+              >
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
             {mobileAboutOpen && (
               <div className="pl-4 py-1 space-y-2 bg-slate-50/80 rounded-lg mt-1">
+                <Link
+                  href="/about-us"
+                  onClick={() => { setMobileOpen(false); setMobileAboutOpen(false); }}
+                  className="block py-2 text-xs font-bold text-emerald-700 hover:underline"
+                >
+                  • {isMr ? 'सर्व माहिती पहा (/about-us) →' : 'View Full About Us Page →'}
+                </Link>
                 {aboutSubLinks.map((sub) => (
                   <Link
                     key={sub.href}
@@ -280,7 +311,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           <Link
-            href="#services"
+            href="/#services"
             onClick={() => setMobileOpen(false)}
             className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
           >
@@ -288,7 +319,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            href="#projects"
+            href="/#projects"
             onClick={() => setMobileOpen(false)}
             className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
           >
@@ -307,7 +338,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           <Link
-            href="#careers"
+            href="/#careers"
             onClick={() => setMobileOpen(false)}
             className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
           >
@@ -315,7 +346,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            href="#contact"
+            href="/#contact"
             onClick={() => setMobileOpen(false)}
             className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
           >
@@ -324,7 +355,7 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3">
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setMobileOpen(false)}
               style={{
                 backgroundColor: theme.primaryColor || '#f59e0b',

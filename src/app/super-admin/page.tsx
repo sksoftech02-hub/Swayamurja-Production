@@ -1806,14 +1806,25 @@ export default function SuperAdminPage() {
                     <Award className="w-4 h-4 text-amber-400" />
                     Gratitude by MD & CEO (Rahul Nalawade)
                   </h3>
-                  <button
-                    type="submit"
-                    disabled={actionLoading}
-                    className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
-                  >
-                    <Save className="w-3.5 h-3.5" />
-                    Save Leadership Message
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="/about-us"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs flex items-center gap-1.5 border border-slate-700 transition-colors"
+                    >
+                      <span>Preview /about-us Page</span>
+                      <ExternalLink className="w-3 h-3 text-cyan-400" />
+                    </a>
+                    <button
+                      type="submit"
+                      disabled={actionLoading}
+                      className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                    >
+                      <Save className="w-3.5 h-3.5" />
+                      Save Leadership Message
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -5,7 +5,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/home/Hero';
 import { VideoHero } from '@/components/home/VideoHero';
 import { ClientsSlider } from '@/components/home/ClientsSlider';
-import { AboutUsSection } from '@/components/home/AboutUsSection';
+import { AboutTeaser } from '@/components/home/AboutTeaser';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { SolarBuildProcess } from '@/components/home/SolarBuildProcess';
 import { AnimatedSolarShowcase } from '@/components/home/AnimatedSolarShowcase';
@@ -41,7 +41,7 @@ export default function HomePage() {
       case 'clients':
         return <ClientsSlider key={sec.id} />;
       case 'about':
-        return <AboutUsSection key={sec.id} />;
+        return <AboutTeaser key={sec.id} />;
       case 'services':
         return <ServicesSection key={sec.id} />;
       case 'process':

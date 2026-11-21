@@ -1664,17 +1664,28 @@ export default function AdminPage() {
                         Gratitude by MD &amp; CEO (Rahul Nalawade)
                       </h2>
                       <p className="text-xs text-slate-500 mt-1">
-                        Updates the official CEO message, photo, and leadership quote on the homepage.
+                        Updates the official CEO message, photo, and leadership quote on the dedicated <span className="font-semibold text-emerald-700">/about-us</span> page and Homepage teaser.
                       </p>
                     </div>
-                    <button
-                      type="submit"
-                      disabled={savingCms}
-                      className="px-5 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer shrink-0"
-                    >
-                      <Save className="w-4 h-4" />
-                      {savingCms ? 'Saving...' : 'Save CEO Message'}
-                    </button>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <a
+                        href="/about-us"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center gap-1.5 border border-emerald-200 transition-all"
+                      >
+                        <span>Preview /about-us Page</span>
+                        <ExternalLink className="w-3.5 h-3.5 text-emerald-600" />
+                      </a>
+                      <button
+                        type="submit"
+                        disabled={savingCms}
+                        className="px-5 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+                      >
+                        <Save className="w-4 h-4" />
+                        {savingCms ? 'Saving...' : 'Save CEO Message'}
+                      </button>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
