@@ -243,25 +243,6 @@ export const AboutUsSection: React.FC = () => {
                     </span>
                   </div>
                 </div>
-
-                {/* Real Downloadable Documents (Extracted from official client assets) */}
-                <div className="pt-4 flex flex-wrap gap-3">
-                  <a
-                    href="/downloads/SwayamUrja-Company-Profile.pdf"
-                    download="SwayamUrja-Company-Profile.pdf"
-                    className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:scale-105"
-                  >
-                    <Award className="w-3.5 h-3.5 text-slate-950" />
-                    <span>{isMr ? 'कंपनी प्रोफाईल डाउनलोड करा (PDF) ↓' : 'Download Company Profile (PDF) ↓'}</span>
-                  </a>
-                  <a
-                    href="/downloads/SwayamUrja-Brochure.pdf"
-                    download="SwayamUrja-Brochure.pdf"
-                    className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs inline-flex items-center gap-2 border border-white/20 transition-all"
-                  >
-                    <span>{isMr ? 'अधिकृत माहितीपत्रक (Brochure) ↓' : 'Download Official Brochure (PDF) ↓'}</span>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
