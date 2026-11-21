@@ -86,9 +86,17 @@ export const Navbar: React.FC = () => {
             </span>
           </Link>
 
-          {/* ── Desktop Nav: About Us -> Services -> Projects -> Blogs -> Careers ── */}
+          {/* ── Desktop Nav: Home -> About Us -> Services -> Projects -> Blogs -> Careers ── */}
           <nav className="hidden lg:flex items-center gap-6 text-[14px] font-semibold text-slate-700">
             
+            {/* 0. Home */}
+            <Link
+              href="/"
+              className="py-1 hover:text-emerald-700 transition-colors duration-200"
+            >
+              {isMr ? 'होम' : 'Home'}
+            </Link>
+
             {/* 1. About Us with Dropdown */}
             <div 
               className="relative" 
@@ -236,6 +244,15 @@ export const Navbar: React.FC = () => {
       {/* ── Mobile Drawer ── */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-[550px]' : 'max-h-0'}`}>
         <div className="border-t border-slate-100 bg-white/98 backdrop-blur-xl px-5 py-4 space-y-1 shadow-xl">
+          {/* Mobile Home */}
+          <Link
+            href="/"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            {isMr ? 'होम' : 'Home'}
+          </Link>
+
           {/* Mobile About Us Accordion */}
           <div>
             <button

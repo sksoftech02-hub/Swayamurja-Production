@@ -18,7 +18,7 @@ export const VideoHero: React.FC = () => {
   }
 
   return (
-    <section className="relative w-full bg-slate-950 overflow-hidden border-b border-slate-900" id="video-showcase">
+    <section className="relative w-full bg-slate-950 overflow-hidden border-b border-slate-900 mt-4 sm:mt-6 md:mt-8 scroll-mt-28" id="video-showcase">
       {/* 16:9 Natural Aspect Ratio Container - Clear, Visible & Perfectly Fitted */}
       <div className="relative w-full aspect-[16/9] sm:aspect-[16/9] max-h-[75vh] min-h-[300px] overflow-hidden flex items-center justify-center">
         <video
