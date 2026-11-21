@@ -106,6 +106,17 @@ export const Footer: React.FC = () => {
                 <span className="text-emerald-500 font-bold">HR:</span>
                 <a href="mailto:hr@swayamurja.com" className="hover:text-white">hr@swayamurja.com</a>
               </div>
+
+              {/* Satara Regional Branch */}
+              <div className="pt-2 border-t border-slate-800 text-xs">
+                <span className="text-amber-400 font-bold block mb-1">
+                  {isMr ? 'सातारा / कराड विभागीय कार्यालय:' : 'Satara / Karad Branch:'}
+                </span>
+                <span className="text-slate-400 block leading-tight">
+                  {isMr ? 'कार्यालय क्र. २, वरदराज मंगल कार्यालय, उंब्रज, कराड, सातारा' : 'Office No. 2, Varadraj Mangal Karyalay, Umbraj, Karad, Satara'}
+                </span>
+                <span className="text-slate-400 block mt-0.5">📞 96897-23627 / 99758-73722</span>
+              </div>
             </div>
           </div>
 
@@ -116,7 +127,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-1 text-center sm:text-left">
             <p>© {new Date().getFullYear()} SwayamUrja Renewable Energy Pvt. Ltd. All rights reserved.</p>
             <p className="text-[11px] text-slate-400 font-mono">
-              CIN: U43219PN2023PTC220327 &nbsp;|&nbsp; GSTIN: 27ABKCS7507GIZ2
+              CIN: U43219PN2023PTC220327 &nbsp;|&nbsp; GSTIN: 27ABKCS7507GIZ2 &nbsp;|&nbsp; ISO 9001:2015 by TÜV SÜD
             </p>
           </div>
           <div className="flex items-center gap-4">

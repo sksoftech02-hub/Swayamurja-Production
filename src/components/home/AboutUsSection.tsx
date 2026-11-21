@@ -91,22 +91,44 @@ export const AboutUsSection: React.FC = () => {
         name: "Rahul Nalawade",
         designationEn: "Founder, Managing Director & CEO",
         designationMr: "संस्थापक, व्यवस्थापकीय संचालक आणि मुख्य कार्यकारी अधिकारी",
-        bioEn: "Pioneering India's renewable energy transition with 25+ years of diverse leadership experience, having developed 1,600 MW+ in Wind & Solar projects across India. Honored among Top 40 Most Influential Solar Leaders in India (2022).",
-        bioMr: "२५+ वर्षांचा प्रदीर्घ नेतृत्व अनुभव आणि देशभरात १,६००+ मेगावॅट पवन व सौर ऊर्जा प्रकल्पांची यशस्वी उभारणी. भारतातील सर्वोच्च ४० प्रभावशाली सौर नेत्यांमध्ये सन्मानित (२०२२).",
+        bioEn: "Electrical Engineer with MBA, PG in RE & TQM, Doctorate candidate in Project Mgmt. Former President & CEO at Panama RE, Technical Advisor to MEDA, with 25+ years developing 1,600 MW+ Wind & Solar projects across India.",
+        bioMr: "इलेक्ट्रिकल इंजिनिअर, व्यवस्थापन पदवीधर (MBA) आणि २५+ वर्षांचा प्रदीर्घ अनुभव. 'मेडा' (MEDA) चे माजी तांत्रिक सल्लागार आणि देशभरात १,६००+ मेगावॅट प्रकल्पांचे यशस्वी नेतृत्व.",
         photo: "/uploads/team/rahul-nalawade.jpg",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 1
       },
       {
         id: "tm-2",
-        name: "SwayamUrja EPC Leadership Team",
-        designationEn: "EPC Engineering, Technical Operations & Quality (70+ Team)",
-        designationMr: "प्रकल्प अभियांत्रिकी, तांत्रिक ऑपरेशन्स आणि गुणवत्ता विभाग (७०+ टीम)",
-        bioEn: "Cross-functional team of 70+ certified electrical engineers, solar PV designers, and MSEDCL grid-connectivity specialists.",
-        bioMr: "७०+ प्रमाणित इलेक्ट्रिकल इंजिनिअर्स आणि सोलर डिझाइन तज्ज्ञांची समर्पित टीम.",
+        name: "Mahesh Mane",
+        designationEn: "Director - Projects & Engineering",
+        designationMr: "संचालक - प्रकल्प व अभियांत्रिकी",
+        bioEn: "Electrical Engineer with 20+ years of distinguished execution leadership across high-voltage electrical infrastructure and multi-megawatt solar grid integration.",
+        bioMr: "इलेक्ट्रिकल इंजिनिअर व उच्च-दाब वीज पायाभूत सुविधा तसेच बहु-मेगावॅट सोलर प्रकल्पांच्या प्रत्यक्ष उभारणीतील २०+ वर्षांचा समृद्ध अनुभव.",
         photo: "/uploads/team/our-team.png",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 2
+      },
+      {
+        id: "tm-3",
+        name: "Anil God",
+        designationEn: "Director - SCM & Finance",
+        designationMr: "संचालक - पुरवठा साखळी व वित्त व्यवस्थापन",
+        bioEn: "Specialist in strategic Tier-1 procurement, vendor contract administration, and project financial modeling for CAPEX and OPEX renewable energy developments.",
+        bioMr: "टियर-१ दर्जाच्या उपकरणांची खरेदी, पुरवठा साखळी व्यवस्थापन आणि सौर ऊर्जा प्रकल्पांचे आर्थिक नियोजन यातील तज्ज्ञ.",
+        photo: "/uploads/team/our-team.png",
+        linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
+        order: 3
+      },
+      {
+        id: "tm-4",
+        name: "SwayamUrja EPC Engineering Team",
+        designationEn: "Technical Operations, Design & O&M (70+ Professionals)",
+        designationMr: "तांत्रिक ऑपरेशन्स, डिझाईन आणि ओ अँड एम (७०+ तज्ज्ञ)",
+        bioEn: "Cross-functional team of 70+ certified electrical engineers, PVsyst solar designers, and MSEDCL grid-connectivity specialists.",
+        bioMr: "७०+ प्रमाणित इलेक्ट्रिकल इंजिनिअर्स, सोलर डिझाइन आणि महावितरण ग्रीड जोडणी तज्ज्ञांची समर्पित टीम.",
+        photo: "/uploads/team/our-team.png",
+        linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
+        order: 4
       }
     ]
   };
@@ -220,6 +242,25 @@ export const AboutUsSection: React.FC = () => {
                       🎓 {isMr ? 'पुणे विद्यापीठ अतिथी व्याख्याते व यशदा प्रशिक्षक' : 'SPPU Guest Lecturer & YASHADA Trainer'}
                     </span>
                   </div>
+                </div>
+
+                {/* Real Downloadable Documents (Extracted from official client assets) */}
+                <div className="pt-4 flex flex-wrap gap-3">
+                  <a
+                    href="/downloads/SwayamUrja-Company-Profile.pdf"
+                    download="SwayamUrja-Company-Profile.pdf"
+                    className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:scale-105"
+                  >
+                    <Award className="w-3.5 h-3.5 text-slate-950" />
+                    <span>{isMr ? 'कंपनी प्रोफाईल डाउनलोड करा (PDF) ↓' : 'Download Company Profile (PDF) ↓'}</span>
+                  </a>
+                  <a
+                    href="/downloads/SwayamUrja-Brochure.pdf"
+                    download="SwayamUrja-Brochure.pdf"
+                    className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs inline-flex items-center gap-2 border border-white/20 transition-all"
+                  >
+                    <span>{isMr ? 'अधिकृत माहितीपत्रक (Brochure) ↓' : 'Download Official Brochure (PDF) ↓'}</span>
+                  </a>
                 </div>
               </div>
             </div>
