@@ -204,8 +204,8 @@ export interface HomepageSection {
 }
 
 export const DEFAULT_LAYOUT_SECTIONS: HomepageSection[] = [
-  { id: 'hero', type: 'hero', name: 'Hero Welcome Banner', titleEn: 'Hero Header', titleMr: 'मुख्य हेडर', enabled: true, order: 1, isSystem: true },
-  { id: 'video', type: 'video', name: '13 MW Solar Plant Aerial Video', titleEn: '13 MW Solar Plant Installation', titleMr: '१३ मेगावॅट सोलर प्लांट प्रकल्प', enabled: true, order: 2, isSystem: true },
+  { id: 'video', type: 'video', name: '13 MW Solar Plant Aerial Video', titleEn: '13 MW Solar Plant Installation', titleMr: '१३ मेगावॅट सोलर प्लांट प्रकल्प', enabled: true, order: 1, isSystem: true },
+  { id: 'hero', type: 'hero', name: 'Hero Welcome Banner', titleEn: 'Hero Header', titleMr: 'मुख्य हेडर', enabled: true, order: 2, isSystem: true },
   { id: 'clients', type: 'clients', name: 'Our Clients Logo Slideshow', titleEn: 'Trusted Clients', titleMr: 'आमचे ग्राहक', enabled: true, order: 3, isSystem: true },
   { id: 'about', type: 'about', name: 'About Us & Leadership Gratitude', titleEn: 'About SwayamUrja & MD Message', titleMr: 'आमच्याबद्दल आणि व्यवस्थापकीय संचालक संदेश', enabled: true, order: 4, isSystem: true },
   { id: 'services', type: 'services', name: 'Solar Services & Solutions', titleEn: 'End-to-End Solar EPC Services', titleMr: 'सौर ऊर्जा सेवा', enabled: true, order: 5, isSystem: true },

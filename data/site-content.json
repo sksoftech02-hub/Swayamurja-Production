@@ -1,12 +1,12 @@
 {
   "theme": {
-    "id": "logo-official",
-    "name": "🌟 Official SwayamUrja Logo Theme",
-    "heroBackground": "midnight-slate",
+    "id": "solar-gold-navy",
+    "name": "☀️ Solar Gold & Midnight Navy",
+    "heroBackground": "dark-navy",
     "primaryColor": "#f59e0b",
-    "secondaryColor": "#0284c7",
-    "accentColor": "#16a34a",
-    "tagline": "Warm Solar Gold, Sky Water Blue & Fresh Eco Leaf Green from the official logo. Modern & premium."
+    "secondaryColor": "#2563eb",
+    "accentColor": "#38bdf8",
+    "tagline": "Deep corporate midnight sapphire with radiant solar amber highlights. Clean & enterprise-grade."
   },
   "stats": {
     "totalMw": "50+ MW",
@@ -489,25 +489,15 @@
     "videoUrl": "/uploads/video/13mw-solar-plant.mp4",
     "badgeEn": "13 MW SOLAR PLANT INSTALL",
     "badgeMr": "१३ मेगावॅट सोलर प्लांट स्थापना",
-    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Plants",
+    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Power",
     "titleMr": "महाराष्ट्राला सौर ऊर्जेने समृद्ध करणारी मेगा-प्रकल्प उभारणी",
-    "subtitleEn": "Watch our high-voltage 13 MW ground-mounted utility solar power plant in full operation.",
-    "subtitleMr": "आमच्या १३ मेगावॅट उच्च क्षमतेच्या सौर ऊर्जा प्रकल्पाची प्रत्यक्ष दृश्ये.",
-    "locationEn": "Maharashtra, India",
-    "locationMr": "महाराष्ट्र, भारत",
+    "subtitleEn": "Pioneering utility-scale ground mounted solar EPC & 33kV dedicated substation infrastructure.",
+    "subtitleMr": "महाराष्ट्रात भव्य मेगा-प्रकल्प उभारणी आणि ३३ kV समर्पित सबस्टेशन पायाभूत सुविधा.",
+    "locationEn": "Solapur, Maharashtra",
+    "locationMr": "सोलापूर, महाराष्ट्र",
     "plantCapacity": "13 MW"
   },
   "layoutSections": [
-    {
-      "id": "hero",
-      "type": "hero",
-      "name": "Hero Welcome Banner",
-      "titleEn": "Hero Header",
-      "titleMr": "मुख्य हेडर",
-      "enabled": true,
-      "order": 1,
-      "isSystem": true
-    },
     {
       "id": "video",
       "type": "video",
@@ -515,17 +505,17 @@
       "titleEn": "13 MW Solar Plant Installation",
       "titleMr": "१३ मेगावॅट सोलर प्लांट प्रकल्प",
       "enabled": true,
-      "order": 2,
+      "order": 1,
       "isSystem": true
     },
     {
-      "id": "clients",
-      "type": "clients",
-      "name": "Our Clients Logo Slideshow",
-      "titleEn": "Trusted Clients",
-      "titleMr": "आमचे ग्राहक",
+      "id": "hero",
+      "type": "hero",
+      "name": "Hero Welcome Banner",
+      "titleEn": "Hero Header",
+      "titleMr": "मुख्य हेडर",
       "enabled": true,
-      "order": 3,
+      "order": 2,
       "isSystem": true
     },
     {
@@ -535,7 +525,7 @@
       "titleEn": "About SwayamUrja & MD Message",
       "titleMr": "आमच्याबद्दल आणि व्यवस्थापकीय संचालक संदेश",
       "enabled": true,
-      "order": 4,
+      "order": 3,
       "isSystem": true
     },
     {
@@ -545,7 +535,7 @@
       "titleEn": "End-to-End Solar EPC Services",
       "titleMr": "सौर ऊर्जा सेवा",
       "enabled": true,
-      "order": 5,
+      "order": 4,
       "isSystem": true
     },
     {
@@ -555,7 +545,7 @@
       "titleEn": "Turnkey Commissioning Roadmap",
       "titleMr": "प्रकल्प उभारणी प्रक्रिया",
       "enabled": true,
-      "order": 6,
+      "order": 5,
       "isSystem": true
     },
     {
@@ -565,7 +555,7 @@
       "titleEn": "Engineering Excellence Showcase",
       "titleMr": "सौर तंत्रज्ञान प्रात्यक्षिक",
       "enabled": true,
-      "order": 7,
+      "order": 6,
       "isSystem": true
     },
     {
@@ -575,7 +565,7 @@
       "titleEn": "Flagship Commissioned Plants",
       "titleMr": "पूर्ण झालेले प्रकल्प",
       "enabled": true,
-      "order": 8,
+      "order": 7,
       "isSystem": true
     },
     {
@@ -585,7 +575,7 @@
       "titleEn": "District Footprint & Capacity",
       "titleMr": "महाराष्ट्र राज्य व्याप्ती",
       "enabled": true,
-      "order": 9,
+      "order": 8,
       "isSystem": true
     },
     {
@@ -595,7 +585,7 @@
       "titleEn": "PM Surya Ghar & MSME Subsidies",
       "titleMr": "शासकीय सौर योजना व अनुदान",
       "enabled": true,
-      "order": 10,
+      "order": 9,
       "isSystem": true
     },
     {
@@ -604,6 +594,16 @@
       "name": "Solar Savings ROI Calculator",
       "titleEn": "Net Metering & Solar Savings Calculator",
       "titleMr": "सौर बचत कॅल्क्युलेटर",
+      "enabled": true,
+      "order": 10,
+      "isSystem": true
+    },
+    {
+      "id": "clients",
+      "type": "clients",
+      "name": "Our Clients Logo Slideshow",
+      "titleEn": "Trusted Clients",
+      "titleMr": "आमचे ग्राहक",
       "enabled": true,
       "order": 11,
       "isSystem": true
