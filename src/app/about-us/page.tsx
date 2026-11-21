@@ -67,31 +67,31 @@ export default function AboutUsPage() {
 
             <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-2xl">
               {isMr 
-                ? '५०+ मेगावॅट सोलर कार्यान्वित क्षमता, १२००+ उद्योगांचा अतूट विश्वास आणि महावितरण ग्रीड नियमावलीचे परिपूर्ण पालन.'
-                : 'Over 50 MW commissioned across Maharashtra, trusted by 1,200+ enterprise leaders with Tier-1 engineering excellence, MSEDCL compliance mastery, and guaranteed plant performance.'
+                ? '२५+ वर्षांचा समृद्ध अनुभव, १,६००+ मेगावॅट पवन व सौर ऊर्जा प्रकल्प विकास आणि ५५०+ हून अधिक यशस्वी पूर्ण झालेले प्रकल्प.'
+                : 'Over 25 years of renewable energy leadership, 1,600+ MW developed across India, and 550+ completed clean energy EPC and advisory projects.'
               }
             </p>
 
             {/* Quick Metrics Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6">
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
-                <div className="text-2xl sm:text-3xl font-black text-amber-400 font-['Outfit']">50+ MW</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'एकूण सोलर क्षमता' : 'Commissioned'}</div>
+                <div className="text-2xl sm:text-3xl font-black text-amber-400 font-['Outfit']">1,600+ MW</div>
+                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'विकसित पवन व सौर' : 'Developed India'}</div>
               </div>
 
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
-                <div className="text-2xl sm:text-3xl font-black text-emerald-400 font-['Outfit']">1,200+</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'उद्योजक ग्राहक' : 'Enterprise Clients'}</div>
+                <div className="text-2xl sm:text-3xl font-black text-emerald-400 font-['Outfit']">550+</div>
+                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'पूर्ण झालेले प्रकल्प' : 'Completed Projects'}</div>
               </div>
 
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
                 <div className="text-2xl sm:text-3xl font-black text-white font-['Outfit']">13 MW</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'सोलापूर युटिलिटी पार्क' : 'Solapur Utility Plant'}</div>
+                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'युटिलिटी सोलर पार्क' : 'Utility Solar Plant'}</div>
               </div>
 
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
-                <div className="text-2xl sm:text-3xl font-black text-emerald-300 font-['Outfit']">99.4%</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'SCADA अपटाईम' : 'Plant Availability'}</div>
+                <div className="text-2xl sm:text-3xl font-black text-emerald-300 font-['Outfit']">25+ Yrs</div>
+                <div className="text-xs text-slate-300 font-medium mt-0.5">{isMr ? 'ऊर्जा नेतृत्व अनुभव' : 'Leadership Mastery'}</div>
               </div>
             </div>
 

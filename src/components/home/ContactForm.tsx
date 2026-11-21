@@ -140,19 +140,24 @@ export const ContactForm: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block">{isMr ? 'अधिकृत ईमेल' : 'Official Enquiries'}</span>
-                    <a href="mailto:sales@swayamurja.com" className="font-bold text-white hover:text-emerald-400 transition-colors">
-                      sales@swayamurja.com
+                    <a href="mailto:crm@swayamurja.com" className="font-bold text-white hover:text-emerald-400 transition-colors">
+                      crm@swayamurja.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-900/60 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-700">
+                <div className="flex items-start gap-4 text-sm">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-900/60 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-700 mt-0.5">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-slate-400 block">{isMr ? 'मुख्यालय' : 'Headquarters'}</span>
-                    <span className="font-bold text-white">Baner, Pune, Maharashtra 411045</span>
+                    <span className="text-xs text-slate-400 block">{isMr ? 'पुणे मुख्य कार्यालय' : 'Pune Headquarters'}</span>
+                    <span className="font-semibold text-white text-xs leading-relaxed block">
+                      {isMr 
+                        ? 'टी९, ए-१००१, ब्रह्मा बिझनेस पार्क, न्यू कल्याणी नगर, वडगाव शेरी, पुणे ४११०१४'
+                        : 'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune 411014'
+                      }
+                    </span>
                   </div>
                 </div>
               </div>

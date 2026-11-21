@@ -176,7 +176,7 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
             <span className="font-semibold">{current.spec}</span>
           </div>
           <div className="flex items-center gap-1 font-bold text-[11px]" style={{ color: primaryColor }}>
-            <span>99.2% Uptime</span>
+            <span>99.4% Uptime</span>
           </div>
         </div>
       </div>
@@ -398,9 +398,9 @@ export const Hero: React.FC = () => {
               }`}
             >
               {[
-                { n: 50, s: '+ MW', l: isMr ? 'कमिशन क्षमता' : 'Commissioned' },
-                { n: 1200, s: '+', l: isMr ? 'समाधानी ग्राहक' : 'Happy Clients' },
-                { n: 99, s: '.2%', l: isMr ? 'अपटाइम गुणवत्ता' : 'Plant Uptime' },
+                { n: 1600, s: '+ MW', l: isMr ? 'विकसित पवन व सौर' : 'Developed India' },
+                { n: 550, s: '+', l: isMr ? 'पूर्ण प्रकल्प' : 'Clean Energy Projects' },
+                { n: 25, s: '+ Yrs', l: isMr ? 'क्षेत्रातील अनुभव' : 'Sector Leadership' },
               ].map((stat, i) => (
                 <div key={i} className="text-left min-w-[70px]">
                   <div

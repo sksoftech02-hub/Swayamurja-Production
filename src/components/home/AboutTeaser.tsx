@@ -76,7 +76,7 @@ export const AboutTeaser: React.FC = () => {
                 </p>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-[11px] font-bold text-emerald-300 mt-2.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>{isMr ? '१५+ वर्षे सोलर EPC नेतृत्व' : '15+ Years Solar EPC Pioneer'}</span>
+                  <span>{isMr ? '२५+ वर्षे नवीकरणीय ऊर्जा नेतृत्व' : '25+ Years Renewable Sector Leader'}</span>
                 </div>
               </div>
             </div>
@@ -103,16 +103,16 @@ export const AboutTeaser: React.FC = () => {
               {/* Key Highlights Metrics */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-1 border-t border-slate-800">
                 <div className="text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-black text-amber-400 font-['Outfit']">50+ MW</div>
-                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'कार्यान्वित क्षमता' : 'Commissioned'}</div>
+                  <div className="text-xl sm:text-2xl font-black text-amber-400 font-['Outfit']">1,600+ MW</div>
+                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'विकसित पवन व सौर' : 'Developed India'}</div>
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-black text-emerald-400 font-['Outfit']">1,200+</div>
-                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'संतुष्ट ग्राहक' : 'Enterprises'}</div>
+                  <div className="text-xl sm:text-2xl font-black text-emerald-400 font-['Outfit']">550+</div>
+                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'पूर्ण झालेले प्रकल्प' : 'Completed Projects'}</div>
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-black text-white font-['Outfit']">99.4%</div>
-                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'अपटाईम कार्यक्षमता' : 'Plant Uptime'}</div>
+                  <div className="text-xl sm:text-2xl font-black text-white font-['Outfit']">70+</div>
+                  <div className="text-[11px] text-slate-300 font-medium">{isMr ? 'तज्ज्ञ टीम' : 'MITRA Experts'}</div>
                 </div>
               </div>
 

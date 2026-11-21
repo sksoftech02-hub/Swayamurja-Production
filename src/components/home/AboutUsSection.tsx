@@ -32,17 +32,17 @@ export const AboutUsSection: React.FC = () => {
   const isMr = language === 'mr';
 
   const about: AboutUsContent = content?.aboutUs || {
-    taglineEn: "Empowering Maharashtra's Green Future Through Engineering Excellence",
-    taglineMr: "अभियांत्रिकी उत्कृष्टतेद्वारे महाराष्ट्राच्या हरित भविष्याला सक्षम करणे",
+    taglineEn: "Empowering Maharashtra's Clean Energy Independence Through 25+ Years of Engineering Leadership",
+    taglineMr: "२५+ वर्षांच्या प्रदीर्घ अभियांत्रिकी नेतृत्वाद्वारे महाराष्ट्राला स्वच्छ व स्वयंपूर्ण ऊर्जेकडे नेणे",
     mdCeoMessage: {
       name: "Rahul Nalawade",
       designationEn: "Founder, Managing Director & CEO",
       designationMr: "संस्थापक, व्यवस्थापकीय संचालक आणि मुख्य कार्यकारी अधिकारी",
       photo: "/uploads/team/rahul-nalawade.jpg",
-      quoteEn: "True energy independence begins when every enterprise and household produces their own clean, renewable power.",
-      quoteMr: "प्रत्येक व्यवसाय आणि कुटुंब स्वतःची स्वच्छ, नवीकरणीय ऊर्जा निर्माण करेल तेव्हाच खरी ऊर्जा स्वावलंबता सुरू होईल.",
-      messageEn: "At SwayamUrja, our mission transcends installing solar panels; we engineer long-term energy security for Maharashtra's industrial powerhouses, commercial institutions, and progressive farming communities. With over 50 MW commissioned across Maharashtra, our Tier-1 engineering ethos, MSEDCL compliance mastery, and lifetime performance guarantees have earned the trust of over 1,200 esteemed clients.",
-      messageMr: "स्वयम्ऊर्जा मध्ये, आमचे उद्दिष्ट केवळ सोलर पॅनेल बसवणे एवढेच नाही; तर महाराष्ट्रातील औद्योगिक उद्योग, व्यावसायिक संस्था आणि प्रगतीशील शेतकरी यांच्यासाठी दीर्घकालीन ऊर्जा सुरक्षा निर्माण करणे हे आहे. ५०+ मेगावॅट कार्यान्वित क्षमतेसह, आमची उत्कृष्ट अभियांत्रिकी आणि विश्वासार्हतेने १२००+ ग्राहकांचा विश्वास संपादन केला आहे."
+      quoteEn: "Guided by our organizational purpose of contributing to the Nation's growth through sustainable and affordable clean energy solutions, every initiative undertaken by us is focused towards building a greener, brighter, and energy-secure future for generations to come.",
+      quoteMr: "शाश्वत आणि परवडणाऱ्या स्वच्छ ऊर्जा उपायांद्वारे राष्ट्राच्या प्रगतीत योगदान देण्याच्या आमच्या ध्येयाने प्रेरित होऊन, आमचा प्रत्येक उपक्रम भावी पिढ्यांसाठी अधिक हरित, उज्ज्वल आणि ऊर्जा-सुरक्षित भविष्य घडवण्यासाठी समर्पित आहे.",
+      messageEn: "SwayamUrja Renewable Energy delivers comprehensive end-to-end solutions across Solar Energy, Wind Energy, and Battery Energy Storage Systems (BESS). Guided by our core values of Morality, Integrity, Transparency, Reliability, and Authenticity ('MITRA'), our leadership has developed 1,600 MW+ in Wind & Solar projects across India and completed 550+ clean energy installations. We express our deepest gratitude to our esteemed clients including Manikchand Group, Elpro Group, Lohia Jain Group, The Fern Hotels, Cleanmax, and Bajaj Finserv, along with our dedicated team of 70+ SwayamUrja-MITRA professionals.",
+      messageMr: "स्वयम्ऊर्जा रिन्यूएबल एनर्जी सौर ऊर्जा, पवन ऊर्जा आणि बॅटरी एनर्जी स्टोरेज (BESS) क्षेत्रात संकल्पनेपासून ते प्रत्यक्ष कार्यान्वित होईपर्यंत सर्वसमावेशक सेवा प्रदान करते. नीतिमत्ता (Morality), प्रामाणिकपणा (Integrity), पारदर्शकता (Transparency), विश्वासार्हता (Reliability) आणि सत्यता (Authenticity) या 'मित्र' (MITRA) मूल्यांवर आधारित, आमच्या नेतृत्वाने देशभरात १,६००+ मेगावॅटचे प्रकल्प विकसित केले असून ५५०+ हून अधिक प्रकल्प यशस्वीरीत्या पूर्ण केले आहेत. माणिकचंद ग्रुप, एल्प्रो ग्रुप, लोहिया जैन ग्रुप, द फर्न हॉटेल्स, क्लीनमॅक्स आणि बजाज फिनसर्व्ह यांसारख्या आदरणीय ग्राहकांचा आणि आमच्या ७०+ निष्ठावान कर्मचाऱ्यांचा आम्ही मनापासून आभारी आहोत."
     },
     visionEn: "To lead Maharashtra's transition to 100% clean, decentralized solar power through engineering excellence and customer trust.",
     visionMr: "अभियांत्रिकी उत्कृष्टता आणि ग्राहकांच्या विश्वासाद्वारे महाराष्ट्राला १००% स्वच्छ, विकेंद्रित सौर ऊर्जेकडे नेणे.",
@@ -79,11 +79,11 @@ export const AboutUsSection: React.FC = () => {
       }
     ],
     coreValues: [
-      { letter: "M", titleEn: "Mastery in Engineering", titleMr: "अभियांत्रिकी प्रभुत्व", descEn: "Tier-1 component selection, rigorous structural calculations, and zero-defect installation standards.", descMr: "दर्जेदार उपकरणे, सुरक्षित रचना आणि अचूक कामाचे निकष." },
-      { letter: "I", titleEn: "Integrity & Transparency", titleMr: "प्रामाणिकपणा आणि पारदर्शकता", descEn: "Honest yield forecasts, transparent billing, and reliable post-commissioning warranties.", descMr: "पारदर्शक व्यवहार, अचूक अंदाज आणि विश्वासार्ह सेवा." },
-      { letter: "T", titleEn: "Timely Execution", titleMr: "वेळेवर पूर्तता", descEn: "Strict milestone adherence from civil foundation to MSEDCL net-meter synchronisation.", descMr: "साइट सर्व्हेपासून ते महावितरण नेट-मीटरिंगपर्यंत सर्व कामे वेळेवर." },
-      { letter: "R", titleEn: "Reliability & Uptime", titleMr: "विश्वासार्हता आणि सातत्य", descEn: "Proactive remote SCADA telemetry ensuring >99% plant availability across all weather conditions.", descMr: "अखंड कामगिरी आणि २४/७ रिमोट मॉनिटरिंग हमी." },
-      { letter: "A", titleEn: "Accountability to Customers", titleMr: "ग्राहकांशी बांधिलकी", descEn: "Lifelong operational stewardship and rapid on-ground response for peak kilowatt generation.", descMr: "प्रकल्प उभारणीनंतरही अखंड देखभाल आणि जलद सेवा सहाय्य." }
+      { letter: "M", titleEn: "Morality", titleMr: "नीतिमत्ता", descEn: "Uncompromising ethical standards in all commercial dealings, regulatory compliances, and customer commitments.", descMr: "सर्व व्यावसायिक व्यवहार, शासकीय नियमांचे पालन आणि ग्राहकांशी दिलेल्या शब्दाला जागणारी उच्च नैतिक मूल्ये." },
+      { letter: "I", titleEn: "Integrity", titleMr: "प्रामाणिकपणा", descEn: "Honest generation yield forecasts, transparent billing, and reliable post-commissioning warranties.", descMr: "पारदर्शक व्यवहार, सौर निर्मितीचे अचूक अंदाज आणि प्रकल्प उभारणीनंतर विश्वासार्ह हमी." },
+      { letter: "T", titleEn: "Transparency", titleMr: "पारदर्शकता", descEn: "Clear, upfront technical communication from design, component selection, to MSEDCL grid sync.", descMr: "प्रकल्प आराखडा, उपकरणांची निवड ते महावितरण ग्रीड जोडणीपर्यंत प्रत्येक टप्प्यावर स्पष्ट व पारदर्शक संवाद." },
+      { letter: "R", titleEn: "Reliability", titleMr: "विश्वासार्हता", descEn: "Proactive remote SCADA telemetry ensuring >99.4% plant availability across all weather conditions.", descMr: "सर्व ऋतूंमध्ये ९९.४% पेक्षा जास्त प्लांट अपटाइम देणारी २४/७ रिमोट स्कॅडा मॉनिटरिंग हमी." },
+      { letter: "A", titleEn: "Authenticity", titleMr: "सत्यता आणि अस्सलता", descEn: "Genuine Tier-1 equipment, tested engineering practices, and authentic lifelong stewardship for every client.", descMr: "अस्सल टियर-१ प्रमाणित उपकरणे, दर्जेदार अभियांत्रिकी आणि ग्राहकांसाठी आजन्म सेवा सहाय्य." }
     ],
     teamMembers: [
       {
@@ -91,8 +91,8 @@ export const AboutUsSection: React.FC = () => {
         name: "Rahul Nalawade",
         designationEn: "Founder, Managing Director & CEO",
         designationMr: "संस्थापक, व्यवस्थापकीय संचालक आणि मुख्य कार्यकारी अधिकारी",
-        bioEn: "Pioneering Maharashtra's renewable energy landscape with 15+ years of strategic EPC execution and 50+ MW delivered across C&I and Utility scale.",
-        bioMr: "१५+ वर्षांचा अनुभव आणि ५०+ मेगावॅट सोलर प्रकल्पांची यशस्वी उभारणी.",
+        bioEn: "Pioneering India's renewable energy transition with 25+ years of diverse leadership experience, having developed 1,600 MW+ in Wind & Solar projects across India. Honored among Top 40 Most Influential Solar Leaders in India (2022).",
+        bioMr: "२५+ वर्षांचा प्रदीर्घ नेतृत्व अनुभव आणि देशभरात १,६००+ मेगावॅट पवन व सौर ऊर्जा प्रकल्पांची यशस्वी उभारणी. भारतातील सर्वोच्च ४० प्रभावशाली सौर नेत्यांमध्ये सन्मानित (२०२२).",
         photo: "/uploads/team/rahul-nalawade.jpg",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 1
@@ -100,10 +100,10 @@ export const AboutUsSection: React.FC = () => {
       {
         id: "tm-2",
         name: "SwayamUrja EPC Leadership Team",
-        designationEn: "EPC Engineering, Technical Operations & Quality",
-        designationMr: "प्रकल्प अभियांत्रिकी, तांत्रिक ऑपरेशन्स आणि गुणवत्ता विभाग",
-        bioEn: "Cross-functional team of certified electrical engineers, solar PV designers, and MSEDCL grid-connectivity specialists.",
-        bioMr: "प्रमाणित इलेक्ट्रिकल इंजिनिअर्स आणि सोलर डिझाइन तज्ज्ञांची समर्पित टीम.",
+        designationEn: "EPC Engineering, Technical Operations & Quality (70+ Team)",
+        designationMr: "प्रकल्प अभियांत्रिकी, तांत्रिक ऑपरेशन्स आणि गुणवत्ता विभाग (७०+ टीम)",
+        bioEn: "Cross-functional team of 70+ certified electrical engineers, solar PV designers, and MSEDCL grid-connectivity specialists.",
+        bioMr: "७०+ प्रमाणित इलेक्ट्रिकल इंजिनिअर्स आणि सोलर डिझाइन तज्ज्ञांची समर्पित टीम.",
         photo: "/uploads/team/our-team.png",
         linkedin: "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
         order: 2
@@ -188,16 +188,37 @@ export const AboutUsSection: React.FC = () => {
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
                   <div>
-                    <div className="text-2xl font-black text-amber-400 font-['Outfit']">50+ MW</div>
-                    <div className="text-xs text-slate-400">{isMr ? 'कार्यान्वित क्षमता' : 'Commissioned'}</div>
+                    <div className="text-2xl font-black text-amber-400 font-['Outfit']">1,600+ MW</div>
+                    <div className="text-xs text-slate-400">{isMr ? 'विकसित पवन व सौर प्रकल्प' : 'Developed Across India'}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-black text-emerald-400 font-['Outfit']">1,200+</div>
-                    <div className="text-xs text-slate-400">{isMr ? 'समाधानी ग्राहक' : 'Clients Trust'}</div>
+                    <div className="text-2xl font-black text-emerald-400 font-['Outfit']">550+</div>
+                    <div className="text-xs text-slate-400">{isMr ? 'यशस्वी पूर्ण प्रकल्प' : 'Completed Projects'}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-black text-cyan-400 font-['Outfit']">15+ Yrs</div>
-                    <div className="text-xs text-slate-400">{isMr ? 'अभियांत्रिकी अनुभव' : 'Engineering Mastery'}</div>
+                    <div className="text-2xl font-black text-cyan-400 font-['Outfit']">25+ Yrs</div>
+                    <div className="text-xs text-slate-400">{isMr ? 'नवीकरणीय ऊर्जा नेतृत्व' : 'Renewable Sector Leadership'}</div>
+                  </div>
+                </div>
+
+                {/* Verified Awards & Recognitions */}
+                <div className="pt-3 border-t border-slate-800/80">
+                  <div className="text-[11px] font-bold text-amber-400/90 uppercase tracking-wider mb-2">
+                    {isMr ? 'पुरस्कार आणि सन्मान' : 'Awards & Recognition'}
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-[11px]">
+                    <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">
+                      🏆 {isMr ? 'भारतातील टॉप ४० प्रभावशाली सौर नेते (२०२२)' : 'Top 40 Most Influential Solar Leaders (2022)'}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
+                      🏅 {isMr ? 'मोस्ट प्रॉमिसिंग यंग लीडर (२०२१)' : 'Most Promising Young Leader (2021)'}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
+                      🌟 {isMr ? 'सोलर ईपीसी कंपनी ऑफ द इयर (२०२५)' : 'Solar EPC Company of the Year (2025)'}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
+                      🎓 {isMr ? 'पुणे विद्यापीठ अतिथी व्याख्याते व यशदा प्रशिक्षक' : 'SPPU Guest Lecturer & YASHADA Trainer'}
+                    </span>
                   </div>
                 </div>
               </div>

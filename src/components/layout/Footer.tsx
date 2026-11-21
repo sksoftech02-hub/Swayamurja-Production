@@ -82,12 +82,17 @@ export const Footer: React.FC = () => {
           {/* Contact Details */}
           <div className="space-y-3">
             <h4 className="text-white font-bold text-sm uppercase tracking-wider font-['Outfit']">
-              {isMr ? 'कार्यालय संपर्क' : 'Headquarters'}
+              {isMr ? 'पुणे मुख्य कार्यालय' : 'Pune Headquarters'}
             </h4>
             <div className="space-y-2.5 text-sm text-slate-400">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
-                <span>Baner, Pune, Maharashtra 411045</span>
+                <span className="leading-relaxed">
+                  {isMr 
+                    ? 'टी९, ए-१००१, ब्रह्मा बिझनेस पार्क, न्यू कल्याणी नगर, वडगाव शेरी, पुणे, महाराष्ट्र ४११०१४'
+                    : 'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014'
+                  }
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-emerald-500 shrink-0" />
@@ -95,16 +100,25 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-emerald-500 shrink-0" />
-                <a href="mailto:sales@swayamurja.com" className="hover:text-white">sales@swayamurja.com</a>
+                <a href="mailto:crm@swayamurja.com" className="hover:text-white">crm@swayamurja.com</a>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-slate-500">
+                <span className="text-emerald-500 font-bold">HR:</span>
+                <a href="mailto:hr@swayamurja.com" className="hover:text-white">hr@swayamurja.com</a>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} SwayamUrja Renewable Energy Pvt. Ltd. All rights reserved.</p>
+        {/* Bottom Bar with Real Legal Credentials */}
+        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <p>© {new Date().getFullYear()} SwayamUrja Renewable Energy Pvt. Ltd. All rights reserved.</p>
+            <p className="text-[11px] text-slate-400 font-mono">
+              CIN: U43219PN2023PTC220327 &nbsp;|&nbsp; GSTIN: 27ABKCS7507GIZ2
+            </p>
+          </div>
           <div className="flex items-center gap-4">
             <span>Designed & Engineered by <strong>SK Softech & Digital Marketing</strong></span>
           </div>
