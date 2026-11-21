@@ -28,9 +28,14 @@ import {
   CheckCircle2,
   TrendingUp,
   Save,
-  Check
+  Check,
+  Building2,
+  Upload,
+  UserPlus,
+  Image as ImageIcon,
+  Award
 } from 'lucide-react';
-import { THEME_PRESETS, SiteTheme } from '@/lib/types';
+import { THEME_PRESETS, SiteTheme, CMSClient, CMSTeamMember, AboutUsContent } from '@/lib/types';
 
 interface UserRecord {
   id: string;
@@ -91,7 +96,7 @@ export default function SuperAdminPage() {
   const [authError, setAuthError] = useState('');
 
   // Active Tab
-  const [activeTab, setActiveTab] = useState<'users' | 'leads' | 'content' | 'tariffs' | 'theme' | 'audit' | 'database'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'leads' | 'clients' | 'about' | 'content' | 'tariffs' | 'theme' | 'audit' | 'database'>('users');
 
   // Data states
   const [users, setUsers] = useState<UserRecord[]>([]);
@@ -101,6 +106,29 @@ export default function SuperAdminPage() {
   const [cmsContent, setCmsContent] = useState<any>(null);
   const [actionLoading, setActionLoading] = useState<boolean>(false);
   const [saveSuccess, setSaveSuccess] = useState('');
+
+  // Clients Slider CRUD State
+  const [showClientModal, setShowClientModal] = useState<boolean>(false);
+  const [clientForm, setClientForm] = useState({ name: '', logo: '', website: '' });
+  const [uploadingClientLogo, setUploadingClientLogo] = useState<boolean>(false);
+
+  // About Us & Team CRUD State
+  const [aboutUsForm, setAboutUsForm] = useState<AboutUsContent | null>(null);
+  const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
+  const [teamForm, setTeamForm] = useState({
+    name: '',
+    designationEn: '',
+    designationMr: '',
+    bioEn: '',
+    bioMr: '',
+    photo: '',
+    linkedin: '',
+  });
+  const [uploadingCeoPhoto, setUploadingCeoPhoto] = useState<boolean>(false);
+  const [uploadingTeamPhoto, setUploadingTeamPhoto] = useState<boolean>(false);
+
+  // Blog LinkedIn URL
+  const [linkedInUrl, setLinkedInUrl] = useState<string>('https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/');
 
   // Form states for tariffs & theme
   const [tariffForm, setTariffForm] = useState({
@@ -202,6 +230,12 @@ export default function SuperAdminPage() {
         setCmsContent(data.content);
         if (data.content.tariffs) {
           setTariffForm(data.content.tariffs);
+        }
+        if (data.content.aboutUs) {
+          setAboutUsForm(data.content.aboutUs);
+        }
+        if (data.content.blogLinkedInUrl) {
+          setLinkedInUrl(data.content.blogLinkedInUrl);
         }
       }
     } catch (err) {
@@ -331,6 +365,175 @@ export default function SuperAdminPage() {
     } finally {
       setActionLoading(false);
     }
+  };
+
+  const saveContentUpdate = async (partial: any) => {
+    try {
+      setActionLoading(true);
+      const res = await fetch('/api/content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(partial)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCmsContent(data.content);
+        if (data.content.aboutUs) setAboutUsForm(data.content.aboutUs);
+        if (data.content.blogLinkedInUrl) setLinkedInUrl(data.content.blogLinkedInUrl);
+        try {
+          localStorage.setItem('swayamurja_cms_updated', Date.now().toString());
+        } catch (_) {}
+        setSaveSuccess('✓ Content updated and live on website!');
+        setTimeout(() => setSaveSuccess(''), 4000);
+      } else {
+        alert(data.error || 'Failed to save');
+      }
+    } catch (e) {
+      alert('Network error saving changes');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleUploadClientLogo = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setUploadingClientLogo(true);
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'clients');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success && data.url) {
+        setClientForm(prev => ({ ...prev, logo: data.url }));
+      } else {
+        alert(data.error || 'Upload failed');
+      }
+    } catch (err) {
+      alert('Upload error');
+    } finally {
+      setUploadingClientLogo(false);
+    }
+  };
+
+  const handleSaveClient = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!clientForm.name || !clientForm.logo) {
+      alert('Please enter client name and logo');
+      return;
+    }
+    const currentClients = cmsContent?.clients || [];
+    const newClient: CMSClient = {
+      id: `c-${Date.now()}`,
+      name: clientForm.name,
+      logo: clientForm.logo,
+      website: clientForm.website,
+      order: currentClients.length + 1
+    };
+    const updated = [...currentClients, newClient];
+    await saveContentUpdate({ clients: updated });
+    setShowClientModal(false);
+    setClientForm({ name: '', logo: '', website: '' });
+  };
+
+  const handleDeleteClient = async (id: string) => {
+    if (!confirm('Remove this client from the slideshow?')) return;
+    const currentClients = cmsContent?.clients || [];
+    const updated = currentClients.filter((c: any) => c.id !== id);
+    await saveContentUpdate({ clients: updated });
+  };
+
+  const handleUploadCeoPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setUploadingCeoPhoto(true);
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'team');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success && data.url) {
+        setAboutUsForm((prev: any) => ({
+          ...prev,
+          mdCeoMessage: { ...prev.mdCeoMessage, photo: data.url }
+        }));
+      }
+    } catch (err) {
+      alert('Upload error');
+    } finally {
+      setUploadingCeoPhoto(false);
+    }
+  };
+
+  const handleSaveAboutUs = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!aboutUsForm) return;
+    await saveContentUpdate({ aboutUs: aboutUsForm });
+  };
+
+  const handleUploadTeamPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setUploadingTeamPhoto(true);
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'team');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success && data.url) {
+        setTeamForm(prev => ({ ...prev, photo: data.url }));
+      }
+    } catch (err) {
+      alert('Upload error');
+    } finally {
+      setUploadingTeamPhoto(false);
+    }
+  };
+
+  const handleSaveTeamMember = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!teamForm.name || !teamForm.designationEn) {
+      alert('Please enter member name and designation');
+      return;
+    }
+    const currentTeam = aboutUsForm?.teamMembers || [];
+    const newMember: CMSTeamMember = {
+      id: `tm-${Date.now()}`,
+      name: teamForm.name,
+      designationEn: teamForm.designationEn,
+      designationMr: teamForm.designationMr || teamForm.designationEn,
+      bioEn: teamForm.bioEn,
+      bioMr: teamForm.bioMr || teamForm.bioEn,
+      photo: teamForm.photo || '/uploads/team/rahul-nalawade.jpg',
+      linkedin: teamForm.linkedin,
+      order: currentTeam.length + 1
+    };
+    const updatedAbout = {
+      ...aboutUsForm,
+      teamMembers: [...currentTeam, newMember]
+    };
+    setAboutUsForm(updatedAbout as any);
+    await saveContentUpdate({ aboutUs: updatedAbout });
+    setShowTeamModal(false);
+    setTeamForm({ name: '', designationEn: '', designationMr: '', bioEn: '', bioMr: '', photo: '', linkedin: '' });
+  };
+
+  const handleDeleteTeamMember = async (id: string) => {
+    if (!confirm('Remove this team member / designation?')) return;
+    const currentTeam = aboutUsForm?.teamMembers || [];
+    const updated = currentTeam.filter((m: any) => m.id !== id);
+    const updatedAbout = { ...aboutUsForm, teamMembers: updated };
+    setAboutUsForm(updatedAbout as any);
+    await saveContentUpdate({ aboutUs: updatedAbout });
+  };
+
+  const handleSaveLinkedInUrl = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!linkedInUrl) return;
+    await saveContentUpdate({ blogLinkedInUrl: linkedInUrl });
   };
 
   const handleApplyThemePreset = async (presetTheme: SiteTheme) => {
@@ -587,6 +790,30 @@ export default function SuperAdminPage() {
           >
             <Activity className="w-4 h-4" />
             INBOUND LEADS CRM
+          </button>
+
+          <button
+            onClick={() => setActiveTab('clients')}
+            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
+              activeTab === 'clients'
+                ? 'border-cyan-400 text-cyan-400'
+                : 'border-transparent text-slate-400 hover:text-white'
+            }`}
+          >
+            <Building2 className="w-4 h-4" />
+            OUR CLIENTS SLIDER ({cmsContent?.clients?.length || 0})
+          </button>
+
+          <button
+            onClick={() => setActiveTab('about')}
+            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
+              activeTab === 'about'
+                ? 'border-cyan-400 text-cyan-400'
+                : 'border-transparent text-slate-400 hover:text-white'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            ABOUT US & LEADERSHIP
           </button>
 
           <button
@@ -998,6 +1225,267 @@ export default function SuperAdminPage() {
             </div>
           </div>
         )}
+
+        
+        {/* TAB: OUR CLIENTS SLIDESHOW CRUD */}
+        {activeTab === 'clients' && (
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-base font-bold text-white flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-cyan-400" />
+                  Our Clients Logo Slideshow
+                </h2>
+                <p className="text-xs text-slate-400">
+                  Manage the logos displayed on the homepage client marquee. Files are saved to the server and paths stored in DB.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setClientForm({ name: '', logo: '', website: '' });
+                  setShowClientModal(true);
+                }}
+                className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer shrink-0"
+              >
+                <Plus className="w-4 h-4" />
+                Add New Client Logo
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {(cmsContent?.clients || []).map((client: any) => (
+                <div
+                  key={client.id}
+                  className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between group hover:border-cyan-500/50 transition-all"
+                >
+                  <div className="bg-white rounded-xl p-3 h-24 flex items-center justify-center mb-3 overflow-hidden">
+                    {client.logo ? (
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className="max-h-16 max-w-full object-contain"
+                      />
+                    ) : (
+                      <Building2 className="w-8 h-8 text-slate-400" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white text-xs truncate" title={client.name}>
+                      {client.name}
+                    </h3>
+                    <p className="text-[10px] text-slate-500 font-mono truncate mt-0.5" title={client.logo}>
+                      {client.logo}
+                    </p>
+                  </div>
+                  <div className="pt-3 mt-3 border-t border-slate-800 flex items-center justify-end">
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteClient(client.id)}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-950/40 transition-colors cursor-pointer"
+                      title="Delete Client"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB: ABOUT US & LEADERSHIP CRUD */}
+        {activeTab === 'about' && (
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-base font-bold text-white flex items-center gap-2">
+                <Users className="w-5 h-5 text-cyan-400" />
+                About Us & Leadership Management
+              </h2>
+              <p className="text-xs text-slate-400">
+                Manage the MD & CEO gratitude message, vision, mission, and team designations.
+              </p>
+            </div>
+
+            {/* 1. MD & CEO Message Card */}
+            {aboutUsForm && (
+              <form onSubmit={handleSaveAboutUs} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <Award className="w-4 h-4 text-amber-400" />
+                    Gratitude by MD & CEO (Rahul Nalawade)
+                  </h3>
+                  <button
+                    type="submit"
+                    disabled={actionLoading}
+                    className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Save className="w-3.5 h-3.5" />
+                    Save Leadership Message
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Photo & Upload */}
+                  <div className="space-y-3">
+                    <label className="block text-xs font-semibold text-slate-300">Profile Photo</label>
+                    <div className="w-36 h-36 rounded-2xl overflow-hidden border-2 border-slate-700 relative bg-slate-950">
+                      <img
+                        src={aboutUsForm.mdCeoMessage?.photo || '/uploads/team/rahul-nalawade.jpg'}
+                        alt="MD & CEO"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <label className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold cursor-pointer flex items-center gap-1.5">
+                        <Upload className="w-3 h-3 text-cyan-400" />
+                        <span>{uploadingCeoPhoto ? 'Uploading...' : 'Upload New Photo'}</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleUploadCeoPhoto}
+                          disabled={uploadingCeoPhoto}
+                        />
+                      </label>
+                    </div>
+                    <input
+                      type="text"
+                      value={aboutUsForm.mdCeoMessage?.photo || ''}
+                      onChange={(e) => setAboutUsForm({
+                        ...aboutUsForm,
+                        mdCeoMessage: { ...aboutUsForm.mdCeoMessage, photo: e.target.value }
+                      })}
+                      className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-slate-400"
+                      placeholder="/uploads/team/..."
+                    />
+                  </div>
+
+                  {/* Names & Designations */}
+                  <div className="md:col-span-2 space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
+                        <input
+                          type="text"
+                          value={aboutUsForm.mdCeoMessage?.name || ''}
+                          onChange={(e) => setAboutUsForm({
+                            ...aboutUsForm,
+                            mdCeoMessage: { ...aboutUsForm.mdCeoMessage, name: e.target.value }
+                          })}
+                          className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">Designation (English)</label>
+                        <input
+                          type="text"
+                          value={aboutUsForm.mdCeoMessage?.designationEn || ''}
+                          onChange={(e) => setAboutUsForm({
+                            ...aboutUsForm,
+                            mdCeoMessage: { ...aboutUsForm.mdCeoMessage, designationEn: e.target.value }
+                          })}
+                          className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">Inspirational Quote (English)</label>
+                        <textarea
+                          rows={2}
+                          value={aboutUsForm.mdCeoMessage?.quoteEn || ''}
+                          onChange={(e) => setAboutUsForm({
+                            ...aboutUsForm,
+                            mdCeoMessage: { ...aboutUsForm.mdCeoMessage, quoteEn: e.target.value }
+                          })}
+                          className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">Inspirational Quote (Marathi)</label>
+                        <textarea
+                          rows={2}
+                          value={aboutUsForm.mdCeoMessage?.quoteMr || ''}
+                          onChange={(e) => setAboutUsForm({
+                            ...aboutUsForm,
+                            mdCeoMessage: { ...aboutUsForm.mdCeoMessage, quoteMr: e.target.value }
+                          })}
+                          className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-300 mb-1">Detailed Message / Gratitude (English)</label>
+                      <textarea
+                        rows={3}
+                        value={aboutUsForm.mdCeoMessage?.messageEn || ''}
+                        onChange={(e) => setAboutUsForm({
+                          ...aboutUsForm,
+                          mdCeoMessage: { ...aboutUsForm.mdCeoMessage, messageEn: e.target.value }
+                        })}
+                        className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            )}
+
+            {/* 2. Team Members & Designations CRUD */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                <div>
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <Users className="w-4 h-4 text-cyan-400" />
+                    Key Team Members & Designations
+                  </h3>
+                  <p className="text-xs text-slate-400">Add profile photos, roles, designations and bios.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTeamForm({ name: '', designationEn: '', designationMr: '', bioEn: '', bioMr: '', photo: '', linkedin: '' });
+                    setShowTeamModal(true);
+                  }}
+                  className="px-3.5 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                >
+                  <UserPlus className="w-3.5 h-3.5" />
+                  Add Team Designation
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {(aboutUsForm?.teamMembers || []).map((m: any) => (
+                  <div key={m.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex gap-4 items-start">
+                    <img
+                      src={m.photo || '/uploads/team/rahul-nalawade.jpg'}
+                      alt={m.name}
+                      className="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-white text-xs truncate">{m.name}</h4>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteTeamMember(m.id)}
+                          className="text-slate-500 hover:text-red-400 p-1 cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                      <p className="text-[11px] font-semibold text-emerald-400 truncate">{m.designationEn}</p>
+                      <p className="text-[10px] text-slate-400 line-clamp-2 mt-1">{m.bioEn}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
 
         {/* TAB 5: VISITOR CONTENT OVERVIEW */}
         {activeTab === 'content' && (

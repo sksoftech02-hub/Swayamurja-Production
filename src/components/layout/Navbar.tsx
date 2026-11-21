@@ -1,20 +1,25 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
-import { Menu, X, PhoneCall } from 'lucide-react';
+import { Menu, X, PhoneCall, ChevronDown, ExternalLink } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const { content } = useContent();
   const theme: SiteTheme = content?.theme || DEFAULT_THEME;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const isMr = language === 'mr';
+
+  const blogUrl = content?.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -22,12 +27,23 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const navLinks = [
-    { href: '#services',    label: isMr ? 'सेवा'       : 'Services'   },
-    { href: '#calculator',  label: isMr ? 'कॅल्क्युलेटर' : 'Calculator' },
-    { href: '#projects',    label: isMr ? 'प्रकल्प'    : 'Projects'   },
-    { href: '#blog',        label: isMr ? 'ब्लॉग'       : 'Blog'       },
-    { href: '#contact',     label: isMr ? 'संपर्क'     : 'Contact'    },
+  // Close desktop dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setAboutDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const aboutSubLinks = [
+    { href: '#about-ceo', label: isMr ? 'व्यवस्थापकीय संचालकांचे मनोगत' : 'Gratitude by our MD & CEO' },
+    { href: '#about-vision', label: isMr ? 'दृष्टिकोन आणि ध्येय' : 'Vision & Mission' },
+    { href: '#about-focus', label: isMr ? 'प्रमुख कार्यक्षेत्र' : 'Core Focus' },
+    { href: '#about-values', label: isMr ? 'मूल्ये (MITRA)' : 'Core Values (MITRA)' },
+    { href: '#about-team', label: isMr ? 'आमची टीम' : 'Our Team' },
   ];
 
   return (
@@ -45,7 +61,6 @@ export const Navbar: React.FC = () => {
               className="relative w-44 h-10 overflow-hidden flex items-center"
               style={{ width: '180px', height: '42px', position: 'relative', overflow: 'hidden' }}
             >
-              {/* Real logo with fallback text */}
               <Image
                 src="https://swayamurja.com/wp-content/uploads/2023/08/Logo1.png"
                 alt="SwayamUrja Renewable Energy Pvt. Ltd."
@@ -62,31 +77,94 @@ export const Navbar: React.FC = () => {
                 priority
                 unoptimized
                 onError={(e) => {
-                  // fallback: hide image, show text logo
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
               />
             </div>
-            {/* Fallback text logo shown if image fails */}
             <span className="font-extrabold text-xl tracking-tight text-emerald-950 font-['Outfit'] leading-none hidden [.img-error_&]:inline">
               Swayam<span className="text-amber-500">Urja</span>
             </span>
           </Link>
 
-          {/* ── Desktop Nav ── */}
-          <nav className="hidden lg:flex items-center gap-7 text-[14px] font-semibold text-slate-600">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative py-1 hover:text-emerald-700 transition-colors duration-200
-                           after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0
-                           after:bg-gradient-to-r after:from-emerald-500 after:to-amber-400
-                           after:rounded-full hover:after:w-full after:transition-all after:duration-300"
+          {/* ── Desktop Nav: About Us -> Services -> Projects -> Blogs -> Careers ── */}
+          <nav className="hidden lg:flex items-center gap-6 text-[14px] font-semibold text-slate-700">
+            
+            {/* 1. About Us with Dropdown */}
+            <div 
+              className="relative" 
+              ref={dropdownRef}
+              onMouseEnter={() => setAboutDropdownOpen(true)}
+              onMouseLeave={() => setAboutDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                className="inline-flex items-center gap-1.5 py-2 hover:text-emerald-700 transition-colors duration-200 cursor-pointer"
               >
-                {link.label}
-              </Link>
-            ))}
+                <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180 text-emerald-600' : 'text-slate-400'}`} />
+              </button>
+
+              {/* Dropdown Menu matching swayamurja.com */}
+              {aboutDropdownOpen && (
+                <div className="absolute left-0 mt-1 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  {aboutSubLinks.map((sub) => (
+                    <Link
+                      key={sub.href}
+                      href={sub.href}
+                      onClick={() => setAboutDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-xs font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50/70 transition-colors"
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* 2. Services */}
+            <Link
+              href="#services"
+              className="py-1 hover:text-emerald-700 transition-colors duration-200"
+            >
+              {isMr ? 'सेवा' : 'Services'}
+            </Link>
+
+            {/* 3. Projects */}
+            <Link
+              href="#projects"
+              className="py-1 hover:text-emerald-700 transition-colors duration-200"
+            >
+              {isMr ? 'प्रकल्प' : 'Projects'}
+            </Link>
+
+            {/* 4. Blogs (Redirects dynamically to LinkedIn in a new tab) */}
+            <a
+              href={blogUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 py-1 hover:text-emerald-700 transition-colors duration-200 group"
+              title="Read SwayamUrja Insights & Articles on LinkedIn"
+            >
+              <span>{isMr ? 'ब्लॉग' : 'Blogs'}</span>
+              <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-emerald-600 transition-colors" />
+            </a>
+
+            {/* 5. Careers */}
+            <Link
+              href="#careers"
+              className="py-1 hover:text-emerald-700 transition-colors duration-200"
+            >
+              {isMr ? 'करिअर' : 'Careers'}
+            </Link>
+
+            {/* 6. Contact */}
+            <Link
+              href="#contact"
+              className="py-1 hover:text-emerald-700 transition-colors duration-200"
+            >
+              {isMr ? 'संपर्क' : 'Contact'}
+            </Link>
           </nav>
 
           {/* ── Action strip ── */}
@@ -123,7 +201,7 @@ export const Navbar: React.FC = () => {
                          transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
             >
               <PhoneCall className="w-3.5 h-3.5 text-white" />
-              <span>{isMr ? 'मोफत सल्ला' : 'Free Quote'}</span>
+              <span>{isMr ? 'मोफत सल्ला' : 'Request a Quote'}</span>
             </Link>
           </div>
 
@@ -156,20 +234,77 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* ── Mobile Drawer ── */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-[550px]' : 'max-h-0'}`}>
         <div className="border-t border-slate-100 bg-white/98 backdrop-blur-xl px-5 py-4 space-y-1 shadow-xl">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center py-3 text-[15px] font-semibold text-slate-700
-                         hover:text-amber-600 hover:pl-2 transition-all duration-200
-                         border-b border-slate-50 last:border-0"
+          {/* Mobile About Us Accordion */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+              className="flex items-center justify-between w-full py-3 text-[15px] font-semibold text-slate-700 border-b border-slate-50"
             >
-              {link.label}
-            </Link>
-          ))}
+              <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileAboutOpen && (
+              <div className="pl-4 py-1 space-y-2 bg-slate-50/80 rounded-lg mt-1">
+                {aboutSubLinks.map((sub) => (
+                  <Link
+                    key={sub.href}
+                    href={sub.href}
+                    onClick={() => { setMobileOpen(false); setMobileAboutOpen(false); }}
+                    className="block py-2 text-xs font-semibold text-slate-600 hover:text-emerald-700"
+                  >
+                    • {sub.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="#services"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            {isMr ? 'सेवा' : 'Services'}
+          </Link>
+
+          <Link
+            href="#projects"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            {isMr ? 'प्रकल्प' : 'Projects'}
+          </Link>
+
+          <a
+            href={blogUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center justify-between py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            <span>{isMr ? 'ब्लॉग (LinkedIn)' : 'Blogs (LinkedIn)'}</span>
+            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+          </a>
+
+          <Link
+            href="#careers"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            {isMr ? 'करिअर' : 'Careers'}
+          </Link>
+
+          <Link
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center py-3 text-[15px] font-semibold text-slate-700 hover:text-amber-600 border-b border-slate-50"
+          >
+            {isMr ? 'संपर्क' : 'Contact'}
+          </Link>
+
           <div className="pt-3">
             <Link
               href="#contact"
@@ -183,7 +318,7 @@ export const Navbar: React.FC = () => {
                          font-extrabold rounded-2xl shadow-lg"
             >
               <PhoneCall className="w-4 h-4 text-white" />
-              <span>{isMr ? 'मोफत सल्ला मिळवा' : 'Get Free Quote'}</span>
+              <span>{isMr ? 'मोफत सल्ला मिळवा' : 'Request a Quote'}</span>
             </Link>
           </div>
         </div>

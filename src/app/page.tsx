@@ -3,6 +3,8 @@
 import React from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/home/Hero';
+import { ClientsSlider } from '@/components/home/ClientsSlider';
+import { AboutUsSection } from '@/components/home/AboutUsSection';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { SolarBuildProcess } from '@/components/home/SolarBuildProcess';
 import { AnimatedSolarShowcase } from '@/components/home/AnimatedSolarShowcase';
@@ -21,13 +23,15 @@ export default function HomePage() {
     <main className="min-h-screen flex flex-col">
       <Navbar />
       <Hero />
+      <ClientsSlider />
+      <AboutUsSection />
       <ServicesSection />
       <SolarBuildProcess />
       <AnimatedSolarShowcase />
-      <SolarCalculator />
+      <ProjectsGallery />
       <MaharashtraMap />
       <SchemesSection />
-      <ProjectsGallery />
+      <SolarCalculator />
       <TestimonialsSection />
       <BlogSection />
       <CareersSection />

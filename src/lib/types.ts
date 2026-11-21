@@ -78,11 +78,68 @@ export interface CMSJob {
   isActive: boolean;
 }
 
+export interface CMSClient {
+  id: string;
+  name: string;
+  logo: string; // server path e.g. /uploads/clients/client-1.png
+  website?: string;
+  order?: number;
+}
+
+export interface CMSTeamMember {
+  id: string;
+  name: string;
+  designationEn: string;
+  designationMr: string;
+  bioEn: string;
+  bioMr: string;
+  photo: string; // server path e.g. /uploads/team/rahul-nalawade.jpg
+  linkedin?: string;
+  order?: number;
+}
+
+export interface AboutUsContent {
+  taglineEn: string;
+  taglineMr: string;
+  mdCeoMessage: {
+    name: string;
+    designationEn: string;
+    designationMr: string;
+    photo: string;
+    quoteEn: string;
+    quoteMr: string;
+    messageEn: string;
+    messageMr: string;
+  };
+  visionEn: string;
+  visionMr: string;
+  missionEn: string;
+  missionMr: string;
+  coreFocus: {
+    titleEn: string;
+    titleMr: string;
+    descEn: string;
+    descMr: string;
+    icon?: string;
+  }[];
+  coreValues: {
+    letter: string;
+    titleEn: string;
+    titleMr: string;
+    descEn: string;
+    descMr: string;
+  }[];
+  teamMembers: CMSTeamMember[];
+}
+
 export { type SiteTheme, THEME_PRESETS, DEFAULT_THEME } from './theme-presets';
 import { SiteTheme } from './theme-presets';
 
 export interface SiteContent {
   theme?: SiteTheme;
+  blogLinkedInUrl?: string;
+  clients?: CMSClient[];
+  aboutUs?: AboutUsContent;
   stats: {
     totalMw: string;
     totalMwLabel: { en: string; mr: string };

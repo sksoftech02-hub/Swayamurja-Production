@@ -297,6 +297,9 @@ export function getSiteContent(): SiteContent {
       testimonials: Array.isArray(parsed.testimonials) && parsed.testimonials.length > 0 ? parsed.testimonials : DEFAULT_TESTIMONIALS,
       articles: Array.isArray(parsed.articles) && parsed.articles.length > 0 ? parsed.articles : DEFAULT_ARTICLES,
       openJobs: Array.isArray(parsed.openJobs) && parsed.openJobs.length > 0 ? parsed.openJobs : DEFAULT_JOBS,
+      blogLinkedInUrl: parsed.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/',
+      clients: Array.isArray(parsed.clients) ? parsed.clients : [],
+      aboutUs: parsed.aboutUs || undefined,
     };
     return cachedContent;
   } catch (err) {
@@ -320,6 +323,9 @@ export function updateSiteContent(updated: Partial<SiteContent>): SiteContent {
     testimonials: updated.testimonials !== undefined ? updated.testimonials : current.testimonials,
     articles: updated.articles !== undefined ? updated.articles : current.articles,
     openJobs: updated.openJobs !== undefined ? updated.openJobs : current.openJobs,
+    blogLinkedInUrl: updated.blogLinkedInUrl !== undefined ? updated.blogLinkedInUrl : (current.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/'),
+    clients: updated.clients !== undefined ? updated.clients : current.clients,
+    aboutUs: updated.aboutUs !== undefined ? updated.aboutUs : current.aboutUs,
   };
   
   // Update in-memory cache instantly
