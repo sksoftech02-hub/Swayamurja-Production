@@ -487,14 +487,14 @@
   "videoSection": {
     "enabled": true,
     "videoUrl": "/uploads/video/13mw-solar-plant.mp4",
-    "badgeEn": "13 MW SOLAR PLANT INSTALL",
+    "badgeEn": "",
     "badgeMr": "१३ मेगावॅट सोलर प्लांट स्थापना",
-    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Power",
+    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Plants",
     "titleMr": "महाराष्ट्राला सौर ऊर्जेने समृद्ध करणारी मेगा-प्रकल्प उभारणी",
-    "subtitleEn": "Pioneering utility-scale ground mounted solar EPC & 33kV dedicated substation infrastructure.",
-    "subtitleMr": "महाराष्ट्रात भव्य मेगा-प्रकल्प उभारणी आणि ३३ kV समर्पित सबस्टेशन पायाभूत सुविधा.",
-    "locationEn": "Solapur, Maharashtra",
-    "locationMr": "सोलापूर, महाराष्ट्र",
+    "subtitleEn": "Watch our high-voltage 13 MW ground-mounted utility solar power plant in full operation.",
+    "subtitleMr": "आमच्या १३ मेगावॅट उच्च क्षमतेच्या सौर ऊर्जा प्रकल्पाची प्रत्यक्ष दृश्ये.",
+    "locationEn": "Maharashtra, India",
+    "locationMr": "महाराष्ट्र, भारत",
     "plantCapacity": "13 MW"
   },
   "layoutSections": [
