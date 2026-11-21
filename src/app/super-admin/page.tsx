@@ -896,118 +896,205 @@ export default function SuperAdminPage() {
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="border-b border-slate-800 flex gap-4 overflow-x-auto">
-          <button
-            onClick={() => setActiveTab('users')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'users'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Users className="w-4 h-4" />
-            STAFF ADMINISTRATION
-          </button>
+        {/* 2-Column Sidebar & Workspace Layout */}
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          
+          {/* Left Navigation Sidebar */}
+          <aside className="w-full lg:w-72 shrink-0 bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-5 lg:sticky lg:top-24 shadow-xl">
+            {/* GROUP 1: CORE OPERATIONS */}
+            <div className="space-y-1.5">
+              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-slate-500 px-3 pb-1">
+                Core Operations
+              </div>
 
-          <button
-            onClick={() => setActiveTab('leads')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'leads'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Activity className="w-4 h-4" />
-            INBOUND LEADS CRM
-          </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('users')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'users'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Users className="w-4 h-4 text-cyan-400" />
+                  <span>STAFF ACCOUNTS</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold">
+                  {stats?.usersCount ?? 2}
+                </span>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('clients')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'clients'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Building2 className="w-4 h-4" />
-            OUR CLIENTS SLIDER ({cmsContent?.clients?.length || 0})
-          </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('leads')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'leads'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Activity className="w-4 h-4 text-emerald-400" />
+                  <span>INBOUND LEADS CRM</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-500/40 font-bold">
+                  {stats?.leadsCount ?? 6}
+                </span>
+              </button>
+            </div>
 
-          <button
-            onClick={() => setActiveTab('about')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'about'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Users className="w-4 h-4" />
-            ABOUT US & LEADERSHIP
-          </button>
+            {/* GROUP 2: VISITOR WEBSITE CMS */}
+            <div className="space-y-1.5">
+              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-cyan-400 px-3 pb-1 flex items-center justify-between">
+                <span>Visitor Website CMS</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-cyan-950 border border-cyan-800 rounded font-mono font-bold text-cyan-400">
+                  LIVE
+                </span>
+              </div>
 
-          <button
-            onClick={() => setActiveTab('tariffs')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'tariffs'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Sliders className="w-4 h-4" />
-            TARIFFS & SUBSIDIES
-          </button>
+              {/* HOMEPAGE CONTAINERS & LAYOUT MANAGER (THE REQUESTED TAB) */}
+              <button
+                type="button"
+                onClick={() => setActiveTab('layout')}
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'layout'
+                    ? 'bg-gradient-to-r from-cyan-600/30 to-emerald-600/30 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-950/50'
+                    : 'bg-slate-950 text-cyan-300 hover:text-white hover:bg-slate-850 border border-cyan-500/40'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Layers className="w-4 h-4 text-cyan-400 animate-pulse" />
+                  <span className="tracking-tight">HOMEPAGE CONTAINERS</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-700 font-bold">
+                  {layoutSections.filter(s => s.enabled).length}/{layoutSections.length}
+                </span>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('theme')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'theme'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Palette className="w-4 h-4" />
-            COLOR & THEME STUDIO
-          </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('clients')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'clients'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Building2 className="w-4 h-4 text-emerald-400" />
+                  <span>OUR CLIENTS SLIDER</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold">
+                  {cmsContent?.clients?.length || 0}
+                </span>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('content')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'content'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <FolderGit2 className="w-4 h-4" />
-            VISITOR CONTENT
-          </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('about')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'about'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Users className="w-4 h-4 text-indigo-400" />
+                  <span>ABOUT US &amp; LEADERSHIP</span>
+                </div>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('audit')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'audit'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <ShieldAlert className="w-4 h-4" />
-            SECURITY AUDIT TRAIL
-          </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('content')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'content'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <FolderGit2 className="w-4 h-4 text-amber-400" />
+                  <span>VISITOR CONTENT CRUD</span>
+                </div>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('database')}
-            className={`pb-3 text-xs font-bold font-mono tracking-wider flex items-center gap-2 border-b-2 whitespace-nowrap transition-colors cursor-pointer ${
-              activeTab === 'database'
-                ? 'border-cyan-400 text-cyan-400'
-                : 'border-transparent text-slate-400 hover:text-white'
-            }`}
-          >
-            <Database className="w-4 h-4" />
-            POSTGRESQL INFRASTRUCTURE
-          </button>
-        </div>
+              <button
+                type="button"
+                onClick={() => setActiveTab('tariffs')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'tariffs'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Sliders className="w-4 h-4 text-teal-400" />
+                  <span>TARIFFS &amp; SUBSIDIES</span>
+                </div>
+              </button>
 
-        {/* TAB 1: USERS ADMINISTRATION */}
+              <button
+                type="button"
+                onClick={() => setActiveTab('theme')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'theme'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Palette className="w-4 h-4 text-pink-400" />
+                  <span>COLOR &amp; THEME STUDIO</span>
+                </div>
+              </button>
+            </div>
+
+            {/* GROUP 3: SECURITY & DATABASE */}
+            <div className="space-y-1.5">
+              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-slate-500 px-3 pb-1">
+                Security &amp; Infrastructure
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('audit')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'audit'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <ShieldAlert className="w-4 h-4 text-red-400" />
+                  <span>SECURITY AUDIT TRAIL</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold">
+                  {stats?.auditLogsCount ?? 8}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('database')}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  activeTab === 'database'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Database className="w-4 h-4 text-purple-400" />
+                  <span>POSTGRESQL DATABASE</span>
+                </div>
+              </button>
+            </div>
+          </aside>
+
+          {/* Right Main Panel Content */}
+          <div className="flex-1 min-w-0 w-full space-y-6">
+{/* TAB 1: USERS ADMINISTRATION */}
         {activeTab === 'users' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -2078,6 +2165,8 @@ export default function SuperAdminPage() {
             </div>
           </div>
         )}
+          </div>
+        </div>
       </main>
 
       {/* CREATE NEW ADMIN MODAL */}
