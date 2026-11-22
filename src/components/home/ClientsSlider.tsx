@@ -55,9 +55,9 @@ export const ClientsSlider: React.FC = () => {
                   <Image
                     src={client.logo}
                     alt={client.name}
-                    width={200}
-                    height={90}
-                    className="max-h-14 sm:max-h-16 w-auto max-w-[165px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    width={164}
+                    height={64}
+                    className="w-[144px] h-[56px] sm:w-[164px] sm:h-[64px] object-contain transition-transform duration-300 group-hover:scale-105"
                     unoptimized
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';

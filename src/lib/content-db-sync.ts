@@ -54,6 +54,30 @@ export async function syncContentToDatabase(content: SiteContent): Promise<void>
       });
     }
 
+    if (Array.isArray(content.articles)) {
+      await prisma.$transaction(async (tx) => {
+        await tx.article.deleteMany({});
+        for (const a of content.articles) {
+          await tx.article.create({
+            data: {
+              id: String(a.id).slice(0, 50),
+              titleEn: String(a.titleEn || '').slice(0, 255),
+              titleMr: String(a.titleMr || a.titleEn || '').slice(0, 255),
+              category: String(a.category || 'General').slice(0, 100),
+              readTime: String(a.readTime || '4 min read').slice(0, 50),
+              publishDate: a.publishDate ? String(a.publishDate).slice(0, 50) : null,
+              imageUrl: String(a.image || ''),
+              excerptEn: a.excerptEn || null,
+              excerptMr: a.excerptMr || null,
+              contentEn: String(a.contentEn || ''),
+              contentMr: String(a.contentMr || a.contentEn || ''),
+              isPublished: true,
+            },
+          });
+        }
+      });
+    }
+
     if (Array.isArray(content.openJobs)) {
       await prisma.$transaction(async (tx) => {
         await tx.jobPosting.deleteMany({});

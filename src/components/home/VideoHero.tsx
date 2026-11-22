@@ -19,15 +19,19 @@ export const VideoHero: React.FC = () => {
 
   return (
     <section className="relative w-full bg-slate-950 border-b border-slate-900" id="video-showcase">
-      {/* 100% Natural Uncropped Video - Zero cropping on top, bottom or sides */}
-      <div className="relative w-full">
+      {/* 100% Natural Uncropped Video (1920x816 exact aspect ratio -> zero CLS on load) */}
+      <div className="relative w-full aspect-[1920/816] overflow-hidden bg-slate-950">
         <video
           src={videoConfig.videoUrl || '/uploads/video/13mw-solar-plant.mp4'}
+          poster="/uploads/video/13mw-solar-plant-poster.webp"
+          width={1920}
+          height={816}
+          preload="metadata"
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-auto block"
+          className="w-full h-full object-cover block"
         />
 
         {/* Minimal localized bottom gradient for readable text - keeps entire video clear and bright */}

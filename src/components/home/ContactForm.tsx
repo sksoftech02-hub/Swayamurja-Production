@@ -252,11 +252,14 @@ export const ContactForm: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="contactName" className="block text-xs font-semibold text-slate-300">
                         {t('f_name')} *
                       </label>
                       <input
+                        id="contactName"
+                        name="name"
                         type="text"
+                        autoComplete="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -267,11 +270,14 @@ export const ContactForm: React.FC = () => {
 
                     {/* Phone */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="contactPhone" className="block text-xs font-semibold text-slate-300">
                         {t('f_phone')} *
                       </label>
                       <input
+                        id="contactPhone"
+                        name="phone"
                         type="tel"
+                        autoComplete="tel"
                         required
                         maxLength={10}
                         value={formData.phone}
@@ -285,24 +291,29 @@ export const ContactForm: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Email */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="contactEmail" className="block text-xs font-semibold text-slate-300">
                         {t('f_email')}
                       </label>
                       <input
+                        id="contactEmail"
+                        name="email"
                         type="email"
+                        autoComplete="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder={isMr ? 'उदा. name@example.com' : 'e.g. name@example.com'}
+                        placeholder={isMr ? 'उदा. name@company.in' : 'e.g. name@company.in'}
                         className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-amber-400 transition-colors"
                       />
                     </div>
 
                     {/* Service */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="contactService" className="block text-xs font-semibold text-slate-300">
                         {t('f_service')}
                       </label>
                       <select
+                        id="contactService"
+                        name="service"
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-hidden focus:border-amber-400 transition-colors"
@@ -332,11 +343,12 @@ export const ContactForm: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Monthly Bill */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="clientBill" className="block text-xs font-semibold text-slate-300">
                         {t('f_bill')}
                       </label>
                       <input
                         id="clientBill"
+                        name="monthlyBill"
                         type="text"
                         value={formData.monthlyBill}
                         onChange={(e) => setFormData({ ...formData, monthlyBill: e.target.value })}
@@ -347,11 +359,14 @@ export const ContactForm: React.FC = () => {
 
                     {/* City */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-slate-300">
+                      <label htmlFor="contactCity" className="block text-xs font-semibold text-slate-300">
                         {t('f_city')} *
                       </label>
                       <input
+                        id="contactCity"
+                        name="city"
                         type="text"
+                        autoComplete="address-level2"
                         required
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
@@ -363,11 +378,12 @@ export const ContactForm: React.FC = () => {
 
                   {/* Notes / Details */}
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-slate-300">
+                    <label htmlFor="clientNotes" className="block text-xs font-semibold text-slate-300">
                       {t('f_msg')}
                     </label>
                     <textarea
                       id="clientNotes"
+                      name="notes"
                       rows={3}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}

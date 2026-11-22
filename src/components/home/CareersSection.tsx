@@ -112,14 +112,16 @@ export const CareersSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-2">
-                  <span className="text-xs font-semibold text-slate-500 block mb-1">
-                    {isMr ? 'अपेक्षित कौशल्ये:' : 'Key Skills:'}
-                  </span>
-                  <p className="text-xs text-slate-700 leading-relaxed bg-white p-3 rounded-xl border border-slate-200/60">
-                    {job.skills}
-                  </p>
-                </div>
+                {job.skills && job.skills.trim().length > 0 && (
+                  <div className="pt-2">
+                    <span className="text-xs font-semibold text-slate-500 block mb-1">
+                      {isMr ? 'अपेक्षित कौशल्ये:' : 'Key Skills:'}
+                    </span>
+                    <p className="text-xs text-slate-700 leading-relaxed bg-white p-3 rounded-xl border border-slate-200/60">
+                      {job.skills}
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div className="pt-6">

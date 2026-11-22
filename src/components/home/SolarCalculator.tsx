@@ -121,7 +121,7 @@ export const SolarCalculator: React.FC = () => {
             
             {/* Left: Input Slider */}
             <div className="lg:col-span-5 space-y-6">
-              <label className="block text-emerald-200 text-sm font-semibold">
+              <label htmlFor="calcBillSlider" className="block text-emerald-200 text-sm font-semibold">
                 {t('calc_bill_lbl')}
               </label>
 
@@ -139,6 +139,8 @@ export const SolarCalculator: React.FC = () => {
 
               {/* Slider Input */}
               <input
+                id="calcBillSlider"
+                name="calcMonthlyBill"
                 type="range"
                 min={min}
                 max={max}

@@ -49,6 +49,10 @@ export const BlogSection: React.FC = () => {
                   <img
                     src={art.image}
                     alt={isMr ? art.titleMr : art.titleEn}
+                    width={600}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
@@ -119,7 +123,9 @@ export const BlogSection: React.FC = () => {
               <div className="rounded-2xl overflow-hidden h-64 w-full">
                 <img
                   src={activeArticle.image}
-                  alt="Solar Guide"
+                  alt={isMr ? activeArticle.titleMr : activeArticle.titleEn}
+                  width={800}
+                  height={450}
                   className="w-full h-full object-cover"
                 />
               </div>

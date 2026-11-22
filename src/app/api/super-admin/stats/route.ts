@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
         auditLogsCount,
         database: 'PostgreSQL 18.2 (swayamurja_db)',
         engine: 'Prisma ORM v6.4.1',
-        prismaStudioUrl: 'http://localhost:5555',
+        prismaStudioUrl: process.env.PRISMA_STUDIO_URL || null,
         status: 'HEALTHY',
       },
     });

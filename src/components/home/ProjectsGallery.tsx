@@ -111,6 +111,10 @@ export const ProjectsGallery: React.FC = () => {
                   <img
                     src={item.image || FALLBACK_IMG}
                     alt={title}
+                    width={600}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

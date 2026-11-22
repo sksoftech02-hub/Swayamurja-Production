@@ -145,7 +145,7 @@
       "systemSize": "350 kW C&I Rooftop",
       "savingsText": "Saving ₹4.2 Lakhs monthly",
       "commentEn": "Our factory power cost was exceeding ₹11 per unit. SwayamUrja engineered a 350 kW rooftop plant that recovered its investment in 2.8 years with 40% depreciation.",
-      "commentMr": "कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयम्ऊर्जाच्या ३५० किलोव��ट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत ��सून ४०% ट��क्स बेनिफिट मिळाला."
+      "commentMr": "कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयम्ऊर्जाच्या ३५० किलोवॅट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत असून ४०% टॅक्स बेनिफिट मिळाला."
     },
     {
       "id": "test-3",
@@ -156,7 +156,7 @@
       "systemSize": "7.5 HP Agri Pump",
       "savingsText": "Zero fuel cost, 100% daytime water",
       "commentEn": "Earlier we struggled with midnight load-shedding. Under PM-KUSUM, SwayamUrja installed a 7.5 HP solar pump. Now our sugarcane crop gets water throughout the daytime.",
-      "commentMr": "रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयम्ऊर्जाने पीएम-कुसुम ��ंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते."
+      "commentMr": "रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयम्ऊर्जाने पीएम-कुसुम अंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते."
     },
     {
       "id": "test-4",
@@ -167,7 +167,7 @@
       "systemSize": "30 kW Common Area Solar",
       "savingsText": "Maintenance fee cut by 40%",
       "commentEn": "We installed a 30 kW system for lifts and common pumps. Our monthly common meter bill dropped to zero. Truly professional EPC execution!",
-      "commentMr": "आमच्या सोसायटीच्या लिफ्ट व पंपांसाठी ३० किलोव��ट सोलर बसवले. कॉमन एरियाचे बिल पूर्ण शून्य झाले आणि सर्व सभासदांचा मेंटेनन्स खर्च ४०% कमी झाला."
+      "commentMr": "आमच्या सोसायटीच्या लिफ्ट व पंपांसाठी ३० किलोवॅट सोलर बसवले. कॉमन एरियाचे बिल पूर्ण शून्य झाले आणि सर्व सभासदांचा मेंटेनन्स खर्च ४०% कमी झाला."
     }
   ],
   "articles": [
@@ -182,7 +182,7 @@
       "excerptEn": "Learn how to claim direct bank transfer subsidies up to ₹78,000 for your home rooftop with MSEDCL net-metering.",
       "excerptMr": "घरच्या छतावर सोलर बसवून ₹७८,००० थेट बँक सबसिडी आणि महावितरण नेट-मीटरिंग कसे मिळवायचे ते जाणून घ्या.",
       "contentEn": "The PM Surya Ghar: Muft Bijli Yojana launched by the Government of India provides a historic opportunity for homeowners across Maharashtra. The financial assistance is tiered: 1 kW receives ₹30,000, 2 kW receives ₹60,000, and systems 3 kW or larger receive the maximum subsidy of ₹78,000 disbursed directly into your Aadhaar-linked bank account within 30 days of meter installation.",
-      "contentMr": "पंतप्रधान नरेंद्र मोदी यांच्या नेतृत्वाखाली सुरू झालेली पीएम सूर्य घर: मोफत वीज योजना महाराष्ट्रातील घरमालकांसाठी एक सुवर्णसंधी आहे. या योजने��ंतर्गत १ किलोव��टसाठी ₹३०,०००, २ किलोव��टसाठी ₹६०,००० आणि ३ किलोव��ट किंवा ��धिक क्षमतेसाठी ₹७८,००० कमाल थेट सबसिडी बँक खात्यात जमा केली जाते."
+      "contentMr": "पंतप्रधान नरेंद्र मोदी यांच्या नेतृत्वाखाली सुरू झालेली पीएम सूर्य घर: मोफत वीज योजना महाराष्ट्रातील घरमालकांसाठी एक सुवर्णसंधी आहे. या योजनेअंतर्गत १ किलोवॅटसाठी ₹३०,०००, २ किलोवॅटसाठी ₹६०,००० आणि ३ किलोवॅट किंवा अधिक क्षमतेसाठी ₹७८,००० कमाल थेट सबसिडी बँक खात्यात जमा केली जाते."
     },
     {
       "id": "art-2",
@@ -193,9 +193,9 @@
       "publishDate": "Oct 2026",
       "image": "/uploads/projects/prd-foods-manikchand-990kw.jpg",
       "excerptEn": "Industrial tariffs in Maharashtra exceed ₹11/unit. Solar power reduces this to ₹2.80/unit with substantial tax write-offs in Year 1.",
-      "excerptMr": "महाराष्ट्रातील औद्योगिक वीज दर ₹११+/युनिट झाले आहेत. रूफटॉप सोलरमुळे हा खर्च ₹२.८० वर येतो आणि पहिल्याच वर्षी ४०% ट��क्स सेव्हिंग मिळते.",
+      "excerptMr": "महाराष्ट्रातील औद्योगिक वीज दर ₹११+/युनिट झाले आहेत. रूफटॉप सोलरमुळे हा खर्च ₹२.८० वर येतो आणि पहिल्याच वर्षी ४०% टॅक्स सेव्हिंग मिळते.",
       "contentEn": "Commercial and industrial consumers in Maharashtra face some of the highest power tariffs in the nation. By investing in captive solar rooftop systems, CFOs can write off 40% of the capital expenditure under Section 32 of the Income Tax Act in the very first year, effectively recovering up to 30% of the project cost instantly in tax savings.",
-      "contentMr": "चाकण, तळेगाव, भोसरी आणि रांजणगाव एमआयडीसीतील कारखान्यांसाठी वीज खर्च हा उत्पादन खर्चातील सर्वात मोठा घटक ��सतो. सोलर बसवल्याने आयकर कलम ३२ ��ंतर्गत पहिल्याच वर्षी ४०% घसारा लाभ मिळतो, ज्यामुळे प्रकल्पाचा खर्च ��वघ्या ��डीच ते तीन वर्षांत वसूल होतो."
+      "contentMr": "चाकण, तळेगाव, भोसरी आणि रांजणगाव एमआयडीसीतील कारखान्यांसाठी वीज खर्च हा उत्पादन खर्चातील सर्वात मोठा घटक असतो. सोलर बसवल्याने आयकर कलम ३२ अंतर्गत पहिल्याच वर्षी ४०% घसारा लाभ मिळतो, ज्यामुळे प्रकल्पाचा खर्च अवघ्या अडीच ते तीन वर्षांत वसूल होतो."
     },
     {
       "id": "art-3",
@@ -208,20 +208,21 @@
       "excerptEn": "Understanding how surplus solar energy units generated during peak sunshine are credited against night consumption.",
       "excerptMr": "दुपारी निर्माण झालेली जास्तीची वीज महावितरण ग्रिडला पाठवून रात्री मोफत कशी वापरायची याची संपूर्ण माहिती.",
       "contentEn": "Net metering is a billing mechanism that credits solar energy system owners for the electricity they add to the grid. During daytime hours, your panels produce excess energy exported to MSEDCL. At night, you draw power back from the grid. At the end of the billing cycle, you only pay for the net units consumed.",
-      "contentMr": "नेट-मीटरिंग म्हणजे सोलर सिस्टीममधून निर्माण झालेली ��तिरिक्त वीज महावितरणच्या ग्रिडला निर्यात करणे आणि रात्री ती परत वापरणे. महिन्याच्या शेवटी निव्वळ (Net) युनिट्सचे बिल येते. बहुतांश घरगुती ग्राहकांचे बिल यामुळे शून्य होते."
+      "contentMr": "नेट-मीटरिंग म्हणजे सोलर सिस्टीममधून निर्माण झालेली अतिरिक्त वीज महावितरणच्या ग्रिडला निर्यात करणे आणि रात्री ती परत वापरणे. महिन्याच्या शेवटी निव्वळ (Net) युनिट्सचे बिल येते. बहुतांश घरगुती ग्राहकांचे बिल यामुळे शून्य होते."
     }
   ],
   "openJobs": [
     {
       "id": "job-1",
       "titleEn": "Solar Design & PVsyst Engineer",
-      "titleMr": "सोलर डिझाईन आणि PVsyst इंजिनि��र",
+      "titleMr": "सोलर डिझाईन आणि PVsyst इंजिनिअर",
       "department": "Engineering & Design",
       "experienceEn": "2-4 Years",
-      "experienceMr": "२-४ वर्षे ��नुभव",
+      "experienceMr": "२-४ वर्षे अनुभव",
       "locationEn": "Pune (New Kalyani Nagar HQ)",
       "locationMr": "पुणे (न्यू कल्याणी नगर मुख्यालय)",
-      "isActive": true
+      "isActive": true,
+      "skills": "AutoCAD, PVsyst, 3D SketchUp, Single Line Diagrams (SLD), MSEDCL Net-metering rules."
     },
     {
       "id": "job-2",
@@ -229,21 +230,23 @@
       "titleMr": "सोलर साइट सुपरवायझर / EPC प्रकल्प इनचार्ज",
       "department": "Operations & Execution",
       "experienceEn": "1-3 Years",
-      "experienceMr": "१-३ वर्षे ��नुभव",
+      "experienceMr": "१-३ वर्षे अनुभव",
       "locationEn": "Pune / Solapur Sites",
       "locationMr": "पुणे / सोलापूर प्रकल्प",
-      "isActive": true
+      "isActive": true,
+      "skills": "Civil foundation, module mounting structure (MMS), HT/LT cabling, inverter commissioning."
     },
     {
       "id": "job-3",
       "titleEn": "Business Development Manager (C&I Solar)",
-      "titleMr": "बिझनेस डेव्हलपमेंट म��नेजर (C&I सोलर)",
+      "titleMr": "बिझनेस डेव्हलपमेंट मॅनेजर (C&I सोलर)",
       "department": "Corporate Sales",
       "experienceEn": "3-6 Years",
-      "experienceMr": "३-६ वर्षे ��नुभव",
+      "experienceMr": "३-६ वर्षे अनुभव",
       "locationEn": "Pune (MIDC Belt: Chakan/Talegaon)",
       "locationMr": "पुणे (चाकण व तळेगाव MIDC)",
-      "isActive": true
+      "isActive": true,
+      "skills": "B2B industrial client acquisition, 40% tax depreciation presentations, CAPEX/OPEX models."
     }
   ],
   "blogLinkedInUrl": "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
@@ -385,7 +388,7 @@
       "photo": "/uploads/team/rahul-nalawade.jpg",
       "quoteEn": "True energy independence begins when every enterprise and household produces their own clean, renewable power.",
       "quoteMr": "प्रत्येक व्यवसाय आणि कुटुंब स्वतःची स्वच्छ, नवीकरणीय ऊर्जा निर्माण करेल तेव्हाच खरी ऊर्जा स्वावलंबता सुरू होईल.",
-      "messageEn": "At SwayamUrja, our mission transcends installing solar panels; we engineer long-term energy security for Maharashtra's industrial powerhouses, commercial institutions, and progressive farming communities. With over 50 MW commissioned across Maharashtra, our Tier-1 engineering ethos, MSEDCL compliance mastery, and lifetime performance guarantees have earned the trust of over 1,200 esteemed clients.",
+      "messageEn": "At SwayamUrja, we engineer reliable, high-yield solar power plants for Maharashtra's industrial units, commercial institutions, and farming communities.",
       "messageMr": "स्वयम्ऊर्जा मध्ये, आमचे उद्दिष्ट केवळ सोलर पॅनेल बसवणे एवढेच नाही; तर महाराष्ट्रातील औद्योगिक उद्योग, व्यावसायिक संस्था आणि प्रगतीशील शेतकरी यांच्यासाठी दीर्घकालीन ऊर्जा सुरक्षा निर्माण करणे हे आहे. ५०+ मेगावॅट कार्यान्वित क्षमतेसह, आमची उत्कृष्ट अभियांत्रिकी आणि विश्वासार्हतेने १२००+ ग्राहकांचा विश्वास संपादन केला आहे."
     },
     "visionEn": "To lead Maharashtra's transition to 100% clean, decentralized solar power through engineering excellence and customer trust.",

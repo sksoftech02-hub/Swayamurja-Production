@@ -14,7 +14,6 @@ import {
   Award, 
   Zap, 
   ChevronRight, 
-  Sparkles, 
   SunMedium, 
   Building2, 
   Users, 
@@ -53,7 +52,7 @@ export default function AboutUsPage() {
 
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <Award className="w-3.5 h-3.5 text-emerald-400" />
               <span>{isMr ? 'स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि.' : 'SwayamUrja Renewable Energy Pvt. Ltd.'}</span>
             </div>
 

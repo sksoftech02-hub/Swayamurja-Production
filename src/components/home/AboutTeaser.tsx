@@ -7,12 +7,9 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { 
   ArrowRight, 
-  Sparkles, 
   Quote, 
   Award, 
   ShieldCheck, 
-  Zap, 
-  Users 
 } from 'lucide-react';
 import { AboutUsContent } from '@/lib/types';
 
@@ -31,7 +28,7 @@ export const AboutTeaser: React.FC = () => {
       photo: "/uploads/team/rahul-nalawade.jpg",
       quoteEn: "True energy independence begins when every enterprise and household produces their own clean, renewable power.",
       quoteMr: "प्रत्येक व्यवसाय आणि कुटुंब स्वतःची स्वच्छ, नवीकरणीय ऊर्जा निर्माण करेल तेव्हाच खरी ऊर्जा स्वावलंबता सुरू होईल.",
-      messageEn: "At SwayamUrja, our mission transcends installing solar panels; we engineer long-term energy security for Maharashtra's industrial powerhouses, commercial institutions, and progressive farming communities.",
+      messageEn: "At SwayamUrja, we engineer reliable, high-yield solar power plants for Maharashtra's industrial units, commercial institutions, and farming communities.",
       messageMr: "स्वयम्ऊर्जा मध्ये, आमचे उद्दिष्ट केवळ सोलर पॅनेल बसवणे एवढेच नाही; तर महाराष्ट्रातील औद्योगिक उद्योग, व्यावसायिक संस्था आणि प्रगतीशील शेतकरी यांच्यासाठी दीर्घकालीन ऊर्जा सुरक्षा निर्माण करणे हे आहे."
     },
     visionEn: "To lead Maharashtra's transition to 100% clean, decentralized solar power through engineering excellence and customer trust.",
@@ -84,7 +81,7 @@ export const AboutTeaser: React.FC = () => {
             {/* Right: Vision, Quote & Direct Page Link */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <Award className="w-3.5 h-3.5 text-emerald-400" />
                 <span>{isMr ? 'आमच्याबद्दल आणि नेतृत्व' : 'About SwayamUrja & Leadership'}</span>
               </div>
 

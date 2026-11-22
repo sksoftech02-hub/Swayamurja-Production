@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
-import { Zap, Factory, ArrowRight, CheckCircle, ShieldCheck, Activity } from 'lucide-react';
+import { Zap, Factory, Building2, ArrowRight, CheckCircle, ShieldCheck, Award } from 'lucide-react';
 
-/* ─── Real Solar Engineering Showcase (Authentic Photography + Live Telemetry) ─── */
+/* ─── Real Solar Engineering Showcase (Authentic Photography + Verified EPC Credentials) ─── */
 interface RealSolarShowcaseProps {
   themeType?: string;
   primaryColor?: string;
@@ -23,15 +23,6 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
 }) => {
   const isLight = themeType === 'clean-light';
   const [activeTab, setActiveTab] = React.useState<'industrial' | 'rooftop'>('industrial');
-  const [liveKw, setLiveKw] = React.useState(5.42);
-
-  // Subtle realistic telemetry micro-fluctuation
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveKw(parseFloat((5.35 + Math.random() * 0.18).toFixed(2)));
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
 
   const projects = {
     industrial: {
@@ -56,46 +47,40 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
 
   return (
     <div className="relative w-full max-w-[560px] mx-auto select-none">
-      {/* ── Outer Ambient Glow Halo ── */}
-      <div
-        className="absolute -inset-4 rounded-3xl blur-2xl opacity-60 pointer-events-none transition-all duration-700"
-        style={{
-          background: `radial-gradient(circle at 60% 30%, ${primaryColor}40, ${secondaryColor}25, transparent 70%)`,
-        }}
-      />
-
       {/* ── Main Frame Card ── */}
       <div
-        className={`relative rounded-3xl overflow-hidden border shadow-2xl transition-all duration-300 backdrop-blur-xl ${
-          isLight ? 'border-slate-200/90 bg-white/80 shadow-slate-300/50' : 'border-slate-800/80 bg-slate-950/70 shadow-black/80'
+        className={`relative rounded-3xl overflow-hidden border shadow-2xl transition-all duration-300 ${
+          isLight ? 'border-slate-200/90 bg-white shadow-slate-300/50' : 'border-slate-800 bg-slate-950/90 shadow-black/70'
         }`}
       >
         {/* Top Control Bar: Real Project Selector */}
-        <div className="p-3 sm:p-3.5 flex items-center justify-between border-b border-white/10 bg-slate-900/60 backdrop-blur-md">
-          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950/80 border border-slate-800">
+        <div className="p-3 sm:p-3.5 flex items-center justify-between border-b border-white/10 bg-slate-900/80">
+          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950/90 border border-slate-800">
             <button
               type="button"
               onClick={() => setActiveTab('industrial')}
               style={activeTab === 'industrial' ? { backgroundColor: primaryColor, color: '#ffffff' } : {}}
-              className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
                 activeTab === 'industrial'
                   ? 'shadow-xs font-black'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {isMr ? '🏭 १३ MW युटिलिटी' : '🏭 13 MW Utility Scale'}
+              <Factory className="w-3.5 h-3.5 shrink-0" />
+              <span>{isMr ? '१३ MW युटिलिटी' : '13 MW Utility Scale'}</span>
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('rooftop')}
               style={activeTab === 'rooftop' ? { backgroundColor: primaryColor, color: '#ffffff' } : {}}
-              className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
                 activeTab === 'rooftop'
                   ? 'shadow-xs font-black'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {isMr ? '🏢 रूफटॉप सोलर' : '🏢 Rooftop Solar'}
+              <Building2 className="w-3.5 h-3.5 shrink-0" />
+              <span>{isMr ? 'रूफटॉप सोलर' : 'Rooftop Solar'}</span>
             </button>
           </div>
 
@@ -111,42 +96,33 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
           <img
             src={current.image}
             alt={current.title}
+            width={800}
+            height={500}
+            decoding="async"
             onError={(e) => {
-              e.currentTarget.src = '/images/whatsapp_showcase.jpeg';
+              e.currentTarget.src = '/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg';
             }}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
 
-          {/* Subtle real glass glare sweep across solar panels */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-25"
-            style={{
-              background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.4) 50%, transparent 65%)',
-              backgroundSize: '200% 200%',
-            }}
-          />
+          {/* Subtle gradient vignette for readable caption contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/35 pointer-events-none" />
 
-          {/* Subtle gradient vignette to make telemetry cards stand out crisply */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/40 pointer-events-none" />
-
-          {/* ── Top-Left Floating Live Telemetry Badge ── */}
-          <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white shadow-lg animate-float-gentle">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-            </span>
+          {/* ── Top-Left Verified Quality Certification Badge ── */}
+          <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/90 backdrop-blur-sm border border-white/15 text-white shadow-lg">
+            <Award className="w-4 h-4 text-emerald-400 shrink-0" />
             <div className="text-left leading-tight">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">
-                {isMr ? 'थेट ऊर्जा उत्पादन' : 'Live EPC Output'}
+                {isMr ? 'गुणवत्ता प्रमाणित EPC' : 'ISO 9001:2015 Certified'}
               </span>
-              <span className="text-xs sm:text-sm font-extrabold font-['Outfit']" style={{ color: primaryColor }}>
-                {liveKw} kW <span className="text-[10px] text-emerald-400 font-semibold">(Peak Grid)</span>
+              <span className="text-xs font-extrabold font-['Outfit']" style={{ color: primaryColor }}>
+                TÜV SÜD · 1,600+ MW
               </span>
             </div>
           </div>
 
-          {/* ── Bottom-Right Floating Engineering Spec Badge ── */}
-          <div className="absolute bottom-3 right-3 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white shadow-xl">
+          {/* ── Bottom-Right Engineering Spec Badge ── */}
+          <div className="absolute bottom-3 right-3 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-950/90 backdrop-blur-sm border border-white/15 text-white shadow-xl">
             <Zap className="w-4 h-4 text-amber-400 shrink-0" />
             <div className="text-right leading-tight">
               <span className="text-xs font-extrabold block text-white font-['Outfit']">
@@ -159,7 +135,7 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
           </div>
 
           {/* ── Bottom-Left Caption ── */}
-          <div className="absolute bottom-3 left-3 right-auto sm:right-auto max-w-[240px] text-left leading-tight">
+          <div className="absolute bottom-3 left-3 max-w-[240px] text-left leading-tight">
             <span className="text-xs font-bold text-white block drop-shadow-md">
               {current.location}
             </span>
@@ -170,13 +146,13 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
         </div>
 
         {/* Bottom Technical Spec Bar */}
-        <div className="px-4 py-3 bg-slate-950/90 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+        <div className="px-4 py-3 bg-slate-950/95 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
           <div className="flex items-center gap-2">
-            <Activity className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <span className="font-semibold">{current.spec}</span>
           </div>
           <div className="flex items-center gap-1 font-bold text-[11px]" style={{ color: primaryColor }}>
-            <span>99.4% Uptime</span>
+            <span>99.4% Availability</span>
           </div>
         </div>
       </div>
@@ -247,26 +223,11 @@ export const Hero: React.FC = () => {
 
   return (
     <section className={`relative overflow-hidden min-h-[90vh] flex flex-col transition-colors duration-500 ${getThemeBg()}`}>
-      {/* ── Ambient Lighting Glows (Warm Amber + Sky Blue from Logo) ── */}
+      {/* ── Subtle Background Depth Accent ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute top-[-8%] left-[-4%] w-[550px] h-[550px] rounded-full blur-[110px]"
-          style={{ backgroundColor: `${theme.primaryColor || '#f59e0b'}18` }}
-        />
-        <div
-          className="absolute top-[12%] right-[-6%] w-[500px] h-[500px] rounded-full blur-[100px] animate-pulse-glow"
-          style={{ backgroundColor: `${theme.secondaryColor || '#0284c7'}18` }}
-        />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[750px] h-[250px] bg-blue-900/15 rounded-full blur-[80px]" />
-
-        {/* Subtle grid lines */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(245,158,11,1) 1px, transparent 1px), linear-gradient(90deg, rgba(2,132,199,1) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
+          className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-60"
+          style={{ backgroundColor: `${theme.secondaryColor || '#0284c7'}14` }}
         />
       </div>
 
@@ -279,7 +240,7 @@ export const Hero: React.FC = () => {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-xs sm:text-sm font-bold">
-            <span className="animate-bounce-soft">⚡</span>
+            <Zap className="w-4 h-4 shrink-0 text-white" />
             <span>{isMr ? announcement.textMr : announcement.textEn}</span>
             <a href="#contact" className="underline underline-offset-2 hover:no-underline font-extrabold text-white">
               {isMr ? 'आता संपर्क करा →' : 'Contact Now →'}

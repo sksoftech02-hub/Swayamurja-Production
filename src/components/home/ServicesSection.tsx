@@ -7,74 +7,62 @@ import { Home, Factory, Zap, Wind, BatteryCharging, Wrench, ArrowRight } from 'l
 const SERVICES = [
   {
     icon: Home,
-    emoji: '🏠',
     color: 'emerald',
     titleEn: 'Residential Rooftop Solar',
     titleMr: 'घरगुती रूफटॉप सोलर',
     descEn: 'On-grid rooftop solar for homes with PM Surya Ghar subsidy, MSEDCL net-metering approval, and complete turnkey execution.',
     descMr: 'घरांसाठी ऑन-ग्रिड सोलर. PM सूर्य घर सबसिडी व MSEDCL नेट-मीटरिंग मदतीसह संपूर्ण टर्नकी इंस्टॉलेशन.',
     highlight: '₹78,000 Subsidy',
-    image: '/uploads/projects/24k-kolte-patil-pune-60kw.jpg',
     fallbackBg: 'from-amber-400/20 to-orange-400/10',
   },
   {
     icon: Factory,
-    emoji: '🏭',
     color: 'blue',
     titleEn: 'Commercial & Industrial',
     titleMr: 'व्यावसायिक व औद्योगिक',
     descEn: 'Large-scale C&I solar for factories, MIDC units, and commercial buildings. 40% accelerated tax depreciation available.',
     descMr: 'कारखाने, MIDC युनिट्स व व्यावसायिक इमारतींसाठी मोठे सोलर. ४०% कर घसारा लाभ उपलब्ध.',
     highlight: '40% Tax Depreciation',
-    image: '/uploads/projects/prd-foods-manikchand-990kw.jpg',
     fallbackBg: 'from-blue-400/20 to-indigo-400/10',
   },
   {
     icon: Zap,
-    emoji: '⚡',
     color: 'violet',
     titleEn: 'Utility Scale Projects',
     titleMr: 'युटिलिटी स्केल प्रकल्प',
     descEn: "Ground-mounted multi-MW solar farms like our 13 MW Sangli flagship parks powering Maharashtra's grid.",
     descMr: 'ग्राउंड-माउंटेड मल्टी-MW सोलर फार्म. सांगली येथील आमचे १३ MW प्रकल्प महाराष्ट्राच्या ग्रीडला वीज पुरवतात.',
     highlight: '13 MW Utility Parks',
-    image: '/uploads/projects/13mw-utility-solar.jpg',
     fallbackBg: 'from-violet-400/20 to-purple-400/10',
   },
   {
     icon: Wind,
-    emoji: '💨',
     color: 'teal',
     titleEn: 'Solar-Wind Hybrid',
     titleMr: 'सोलर-विंड हायब्रिड',
     descEn: 'Combined solar + wind energy systems for 24/7 clean power generation even during low-sunlight or monsoon periods.',
     descMr: 'सोलर + विंड एकत्रित प्रणाली. पावसाळ्यातही २४/७ स्वच्छ ऊर्जा निर्मिती.',
     highlight: '24/7 Hybrid Power',
-    image: '',
     fallbackBg: 'from-teal-400/20 to-cyan-400/10',
   },
   {
     icon: BatteryCharging,
-    emoji: '🔋',
     color: 'rose',
     titleEn: 'Battery Energy Storage',
     titleMr: 'बॅटरी स्टोरेज (BESS)',
     descEn: 'Lithium-ion BESS systems for peak shaving, backup power, and maximising solar self-consumption. No power cuts.',
     descMr: 'लिथियम-आयन BESS प्रणाली. पीक शेव्हिंग, बॅकअप पॉवर आणि सोलर स्व-वापर वाढवण्यासाठी.',
     highlight: 'Zero Power Cuts',
-    image: '',
     fallbackBg: 'from-rose-400/20 to-pink-400/10',
   },
   {
     icon: Wrench,
-    emoji: '🛠️',
     color: 'amber',
     titleEn: 'O&M & Asset Management',
     titleMr: 'O&M व मालमत्ता व्यवस्थापन',
     descEn: 'Cloud SCADA monitoring, quarterly preventive maintenance, cleaning schedules, and performance guarantee contracts.',
     descMr: 'क्लाउड SCADA मॉनिटरिंग, त्रैमासिक PM भेटी, सफाई वेळापत्रक आणि परफॉर्मन्स गॅरंटी करार.',
     highlight: '99.2% Uptime SLA',
-    image: '',
     fallbackBg: 'from-amber-400/20 to-yellow-400/10',
   },
 ];
@@ -94,10 +82,6 @@ export const ServicesSection: React.FC = () => {
 
   return (
     <section id="services" className="py-24 bg-[#f8faf9] relative overflow-hidden">
-      {/* Soft background blobs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-100/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}

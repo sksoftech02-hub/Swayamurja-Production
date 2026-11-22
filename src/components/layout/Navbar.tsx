@@ -60,20 +60,17 @@ export const Navbar: React.FC = () => {
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             {!logoError ? (
               <div
-                className="relative w-44 h-10 overflow-hidden flex items-center"
-                style={{ width: '180px', height: '42px', position: 'relative', overflow: 'hidden' }}
+                className="relative w-[182px] h-[36px] overflow-hidden flex items-center"
               >
                 <Image
                   src="/assets/logo.webp"
                   alt="SwayamUrja Renewable Energy Pvt. Ltd."
-                  width={180}
-                  height={42}
+                  width={182}
+                  height={36}
                   style={{
                     objectFit: 'contain',
-                    maxHeight: '40px',
-                    width: 'auto',
-                    height: 'auto',
-                    maxWidth: '180px',
+                    width: '182px',
+                    height: '36px',
                     display: 'block',
                   }}
                   className="group-hover:scale-105 transition-transform duration-300"

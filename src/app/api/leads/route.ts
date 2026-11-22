@@ -96,11 +96,23 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const rows = await prisma.lead.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
+    const { searchParams } = new URL(req.url);
+    const rawLimit = Number(searchParams.get('limit') || 200);
+    const take = Number.isFinite(rawLimit) ? Math.min(Math.max(1, Math.floor(rawLimit)), 500) : 200;
+    const rawOffset = Number(searchParams.get('offset') || 0);
+    const skip = Number.isFinite(rawOffset) ? Math.max(0, Math.floor(rawOffset)) : 0;
+
+    const [rows, total] = await Promise.all([
+      prisma.lead.findMany({
+        orderBy: { createdAt: 'desc' },
+        take,
+        skip,
+      }),
+      prisma.lead.count(),
+    ]);
     return NextResponse.json({
       success: true,
+      total,
       leads: rows.map(mapPrismaLeadToUi),
     });
   } catch (error) {

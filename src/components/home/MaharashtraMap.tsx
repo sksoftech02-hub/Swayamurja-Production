@@ -21,7 +21,7 @@ const PROJECT_NODES: ProjectNode[] = [
     name: { en: '13 MW Utility Scale Solar Plant', mr: '१३ मेगावॅट भव्य युटिलिटी स्केल सोलर प्लांट' },
     badge: { en: 'FLAGSHIP UTILITY EPC', mr: 'प्रमुख युटिलिटी EPC प्रकल्प' },
     capacity: '13,000 kW (13 MW)',
-    location: { en: 'Solapur, Maharashtra', mr: 'सोलापूर, महाराष्ट्र' },
+    location: { en: 'Tasgaon & Jath, Dist Sangli, Maharashtra', mr: 'तासगाव व जत, जि. सांगली, महाराष्ट्र' },
     annualYield: '21.5 GWh / Year',
     gridSubstation: '33 kV Dedicated Substation',
     description: {

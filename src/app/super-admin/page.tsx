@@ -2499,7 +2499,7 @@ export default function SuperAdminPage() {
                 <label className="block text-slate-300 font-semibold mb-1">Client Website (Optional)</label>
                 <input
                   type="url"
-                  placeholder="https://example.com"
+                  placeholder="https://swayamurja.com"
                   value={clientForm.website}
                   onChange={(e) => setClientForm({ ...clientForm, website: e.target.value })}
                   className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
