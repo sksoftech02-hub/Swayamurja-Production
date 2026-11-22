@@ -1,14 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
-import { Sun, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t, language } = useLanguage();
   const { content } = useContent();
+  const [logoError, setLogoError] = useState(false);
   const isMr = language === 'mr';
 
   const blogUrl = content?.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/';
@@ -32,14 +34,35 @@ export const Footer: React.FC = () => {
           
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-amber-400">
-                <Sun className="w-6 h-6" />
-              </div>
-              <span className="font-extrabold text-2xl text-white font-['Outfit']">
-                Swayam<span className="text-amber-400">Urja</span>
-              </span>
-            </div>
+            <Link
+              href="/"
+              className="inline-flex items-center group"
+              aria-label="SwayamUrja Renewable Energy Pvt. Ltd."
+            >
+              {!logoError ? (
+                <div className="bg-white/95 px-3.5 py-2 rounded-xl shadow-md shadow-black/25 border border-white/10 inline-flex items-center">
+                  <Image
+                    src="/assets/logo.webp"
+                    alt="SwayamUrja Renewable Energy Pvt. Ltd."
+                    width={182}
+                    height={36}
+                    style={{
+                      objectFit: 'contain',
+                      width: '182px',
+                      height: '36px',
+                      display: 'block',
+                    }}
+                    className="group-hover:scale-[1.03] transition-transform duration-300"
+                    unoptimized
+                    onError={() => setLogoError(true)}
+                  />
+                </div>
+              ) : (
+                <span className="font-extrabold text-2xl text-white font-['Outfit']">
+                  Swayam<span className="text-amber-400">Urja</span>
+                </span>
+              )}
+            </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               {companyBio}
             </p>
