@@ -59,7 +59,7 @@ import {
   Sparkles
 } from 'lucide-react';
 
-const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80';
+const FALLBACK_IMG = '/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

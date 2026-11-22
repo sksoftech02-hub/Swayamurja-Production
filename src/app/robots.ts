@@ -12,6 +12,9 @@ export default function robots(): MetadataRoute.Robots {
           '/admin',
           '/admin/',
           '/admin/*',
+          '/super-admin',
+          '/super-admin/',
+          '/super-admin/*',
           '/api/',
           '/api/*',
         ],
@@ -22,6 +25,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/admin',
           '/admin/*',
+          '/super-admin',
+          '/super-admin/*',
           '/api/*',
         ],
       },

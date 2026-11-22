@@ -18,40 +18,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/#services`,
+      url: `${baseUrl}/about-us`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
+      alternates: {
+        languages: {
+          'en-IN': `${baseUrl}/about-us?lang=en`,
+          'mr-IN': `${baseUrl}/about-us?lang=mr`,
+        },
+      },
     },
     {
-      url: `${baseUrl}/#calculator`,
+      url: `${baseUrl}/privacy-policy`,
       lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/#schemes`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/#testimonials`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+      alternates: {
+        languages: {
+          'en-IN': `${baseUrl}/privacy-policy?lang=en`,
+          'mr-IN': `${baseUrl}/privacy-policy?lang=mr`,
+        },
+      },
     },
   ];
 }

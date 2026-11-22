@@ -124,7 +124,30 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, phone, email, service, monthlyBill, recommendedKw, subsidyAmount, city, notes } = body;
+    const {
+      name,
+      phone,
+      email,
+      service,
+      monthlyBill,
+      recommendedKw,
+      subsidyAmount,
+      city,
+      notes,
+      dpdpConsent,
+      privacyPolicyVersion,
+    } = body;
+
+    // 0. Enforce DPDP Act, 2023 affirmative consent
+    if (dpdpConsent !== true) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Explicit consent under the DPDP Act, 2023 Privacy Notice is required to submit your inquiry.',
+        },
+        { status: 400 }
+      );
+    }
 
     // 1. Validate & sanitize Name
     const sanitizedName = sanitizeString(name, 100);
@@ -156,11 +179,14 @@ export async function POST(req: NextRequest) {
     const sanitizedService = sanitizeString(service, 100) || 'General Solar Enquiry';
     const sanitizedCity = sanitizeString(city, 80) || 'Maharashtra';
 
+    const consentTimestamp = new Date().toISOString();
+    const policyVer = sanitizeString(privacyPolicyVersion, 40) || 'DPDP-2023-v1.0';
     const noteParts: string[] = [];
     if (recommendedKw) noteParts.push(`Recommended: ${sanitizeString(recommendedKw, 50)}`);
     if (subsidyAmount) noteParts.push(`Subsidy: ${sanitizeString(subsidyAmount, 50)}`);
     if (notes) noteParts.push(sanitizeString(notes, 1000));
-    const combinedNotes = noteParts.join(' | ') || null;
+    noteParts.push(`[DPDP Consent: ${policyVer} @ ${consentTimestamp}]`);
+    const combinedNotes = noteParts.join(' | ');
 
     const created = await prisma.lead.create({
       data: {
@@ -174,6 +200,25 @@ export async function POST(req: NextRequest) {
         status: LeadStatus.NEW,
       },
     });
+
+    // Record verifiable DPDP Section 6 consent proof in audit_logs
+    try {
+      await prisma.auditLog.create({
+        data: {
+          username: 'public_visitor',
+          action: 'LEAD_CONSENT_RECORDED',
+          targetTable: 'leads',
+          targetId: created.id,
+          newValues: {
+            consentGiven: true,
+            privacyPolicyVersion: policyVer,
+            consentTimestamp,
+          },
+          ipAddress: ip,
+          userAgent: req.headers.get('user-agent') || 'Unknown',
+        },
+      });
+    } catch (_) {}
 
     return NextResponse.json({
       success: true,

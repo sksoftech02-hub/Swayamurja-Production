@@ -68,6 +68,7 @@ export const Footer: React.FC = () => {
               </li>
               <li><Link href="/#careers" className="hover:text-amber-400 transition-colors">{t('nav_careers')}</Link></li>
               <li><Link href="/#contact" className="hover:text-amber-400 transition-colors">{t('nav_contact')}</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">{isMr ? 'गोपनीयता धोरण (DPDP)' : 'Privacy Policy (DPDP)'}</Link></li>
             </ul>
           </div>
 
@@ -146,7 +147,15 @@ export const Footer: React.FC = () => {
               CIN: U43219PN2023PTC220327 &nbsp;|&nbsp; GSTIN: 27ABKCS7507GIZ2 &nbsp;|&nbsp; ISO 9001:2015 by TÜV SÜD
             </p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">
+              {isMr ? 'गोपनीयता धोरण' : 'Privacy Policy'}
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/privacy-policy#grievance-officer" className="hover:text-amber-400 transition-colors">
+              {isMr ? 'तक्रार निवारण अधिकारी' : 'Grievance Officer'}
+            </Link>
+            <span className="text-slate-700">|</span>
             <span>Designed & Engineered by <strong>SK Softech & Digital Marketing</strong></span>
           </div>
         </div>

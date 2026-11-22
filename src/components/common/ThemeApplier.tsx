@@ -4,6 +4,15 @@ import { useEffect } from 'react';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
 
+const HEX_COLOR_RE = /^#[0-9a-fA-F]{6}$/;
+
+function sanitizeHexColor(value: string | undefined, fallback: string): string {
+  if (typeof value === 'string' && HEX_COLOR_RE.test(value.trim())) {
+    return value.trim();
+  }
+  return fallback;
+}
+
 export const ThemeApplier: React.FC = () => {
   const { content } = useContent();
   const theme: SiteTheme = content?.theme || DEFAULT_THEME;
@@ -11,18 +20,16 @@ export const ThemeApplier: React.FC = () => {
   useEffect(() => {
     if (!theme) return;
     const root = document.documentElement;
-    const primary = theme.primaryColor || '#f59e0b';
-    const secondary = theme.secondaryColor || '#0284c7';
-    const accent = theme.accentColor || '#16a34a';
+    const primary = sanitizeHexColor(theme.primaryColor, '#f59e0b');
+    const secondary = sanitizeHexColor(theme.secondaryColor, '#0284c7');
+    const accent = sanitizeHexColor(theme.accentColor, '#16a34a');
 
-    // Inject dynamic CSS custom properties
     root.style.setProperty('--primary', primary);
     root.style.setProperty('--secondary', secondary);
     root.style.setProperty('--accent', accent);
-    root.setAttribute('data-theme-id', theme.id || 'logo-official');
-    root.setAttribute('data-hero-bg', theme.heroBackground || 'midnight-slate');
+    root.setAttribute('data-theme-id', (theme.id || 'logo-official').replace(/[^a-zA-Z0-9_-]/g, ''));
+    root.setAttribute('data-hero-bg', (theme.heroBackground || 'midnight-slate').replace(/[^a-zA-Z0-9_-]/g, ''));
 
-    // Dynamic style block injection to guarantee immediate site-wide style updates
     let styleTag = document.getElementById('dynamic-theme-style') as HTMLStyleElement | null;
     if (!styleTag) {
       styleTag = document.createElement('style');
@@ -30,7 +37,7 @@ export const ThemeApplier: React.FC = () => {
       document.head.appendChild(styleTag);
     }
 
-    styleTag.innerHTML = `
+    styleTag.textContent = `
       :root {
         --primary: ${primary} !important;
         --secondary: ${secondary} !important;

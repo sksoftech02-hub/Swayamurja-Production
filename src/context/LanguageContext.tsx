@@ -16,18 +16,34 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
 
+  const applyLanguageDom = (lang: Language) => {
+    document.documentElement.lang = lang === 'mr' ? 'mr' : 'en';
+    document.body.classList.toggle('lang-mr', lang === 'mr');
+  };
+
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (urlLang === 'en' || urlLang === 'mr') {
+      setLanguageState(urlLang);
+      localStorage.setItem('swayamurja_lang', urlLang);
+      applyLanguageDom(urlLang);
+      return;
+    }
+
     const saved = localStorage.getItem('swayamurja_lang') as Language;
     if (saved === 'en' || saved === 'mr') {
       setLanguageState(saved);
-      document.body.classList.toggle('lang-mr', saved === 'mr');
+      applyLanguageDom(saved);
+    } else {
+      applyLanguageDom('en');
     }
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('swayamurja_lang', lang);
-    document.body.classList.toggle('lang-mr', lang === 'mr');
+    applyLanguageDom(lang);
   };
 
   const toggleLanguage = () => {

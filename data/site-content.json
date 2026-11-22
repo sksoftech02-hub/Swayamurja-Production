@@ -178,7 +178,7 @@
       "category": "Government Policy",
       "readTime": "4 min read",
       "publishDate": "Nov 2026",
-      "image": "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+      "image": "/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg",
       "excerptEn": "Learn how to claim direct bank transfer subsidies up to ₹78,000 for your home rooftop with MSEDCL net-metering.",
       "excerptMr": "घरच्या छतावर सोलर बसवून ₹७८,००० थेट बँक सबसिडी आणि महावितरण नेट-मीटरिंग कसे मिळवायचे ते जाणून घ्या.",
       "contentEn": "The PM Surya Ghar: Muft Bijli Yojana launched by the Government of India provides a historic opportunity for homeowners across Maharashtra. The financial assistance is tiered: 1 kW receives ₹30,000, 2 kW receives ₹60,000, and systems 3 kW or larger receive the maximum subsidy of ₹78,000 disbursed directly into your Aadhaar-linked bank account within 30 days of meter installation.",
@@ -191,7 +191,7 @@
       "category": "Industrial Solar (C&I)",
       "readTime": "5 min read",
       "publishDate": "Oct 2026",
-      "image": "https://images.unsplash.com/photo-1508873696983-2df57046475a?auto=format&fit=crop&w=800&q=80",
+      "image": "/uploads/projects/prd-foods-manikchand-990kw.jpg",
       "excerptEn": "Industrial tariffs in Maharashtra exceed ₹11/unit. Solar power reduces this to ₹2.80/unit with substantial tax write-offs in Year 1.",
       "excerptMr": "महाराष्ट्रातील औद्योगिक वीज दर ₹११+/युनिट झाले आहेत. रूफटॉप सोलरमुळे हा खर्च ₹२.८० वर येतो आणि पहिल्याच वर्षी ४०% ट��क्स सेव्हिंग मिळते.",
       "contentEn": "Commercial and industrial consumers in Maharashtra face some of the highest power tariffs in the nation. By investing in captive solar rooftop systems, CFOs can write off 40% of the capital expenditure under Section 32 of the Income Tax Act in the very first year, effectively recovering up to 30% of the project cost instantly in tax savings.",
@@ -204,7 +204,7 @@
       "category": "Technical Guide",
       "readTime": "3 min read",
       "publishDate": "Nov 2026",
-      "image": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=800&q=80",
+      "image": "/uploads/projects/the-fern-residency-karad-350kw.jpg",
       "excerptEn": "Understanding how surplus solar energy units generated during peak sunshine are credited against night consumption.",
       "excerptMr": "दुपारी निर्माण झालेली जास्तीची वीज महावितरण ग्रिडला पाठवून रात्री मोफत कशी वापरायची याची संपूर्ण माहिती.",
       "contentEn": "Net metering is a billing mechanism that credits solar energy system owners for the electricity they add to the grid. During daytime hours, your panels produce excess energy exported to MSEDCL. At night, you draw power back from the grid. At the end of the billing cycle, you only pay for the net units consumed.",
@@ -539,26 +539,6 @@
       "isSystem": true
     },
     {
-      "id": "process",
-      "type": "process",
-      "name": "Solar EPC 5-Step Process",
-      "titleEn": "Turnkey Commissioning Roadmap",
-      "titleMr": "प्रकल्प उभारणी प्रक्रिया",
-      "enabled": true,
-      "order": 5,
-      "isSystem": true
-    },
-    {
-      "id": "showcase",
-      "type": "showcase",
-      "name": "Interactive Solar Showcase",
-      "titleEn": "Engineering Excellence Showcase",
-      "titleMr": "सौर तंत्रज्ञान प्रात्यक्षिक",
-      "enabled": true,
-      "order": 6,
-      "isSystem": true
-    },
-    {
       "id": "projects",
       "type": "projects",
       "name": "Portfolio Projects Gallery",
@@ -616,16 +596,6 @@
       "titleMr": "ग्राहकांचे अभिप्राय",
       "enabled": true,
       "order": 12,
-      "isSystem": true
-    },
-    {
-      "id": "blogs",
-      "type": "blogs",
-      "name": "Solar Knowledge & Blog Articles",
-      "titleEn": "Solar Policy & Technology Insights",
-      "titleMr": "सौर ऊर्जा लेख व माहिती",
-      "enabled": true,
-      "order": 13,
       "isSystem": true
     },
     {

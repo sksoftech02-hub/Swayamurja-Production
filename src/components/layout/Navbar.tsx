@@ -72,6 +72,7 @@ export const Navbar: React.FC = () => {
                     objectFit: 'contain',
                     maxHeight: '40px',
                     width: 'auto',
+                    height: 'auto',
                     maxWidth: '180px',
                     display: 'block',
                   }}

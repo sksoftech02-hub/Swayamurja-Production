@@ -216,9 +216,6 @@ export const DEFAULT_LAYOUT_SECTIONS: HomepageSection[] = [
   { id: 'testimonials', type: 'testimonials', name: 'Client Feedback & Reviews', titleEn: 'Verified Client Reviews', titleMr: 'ग्राहकांचे अभिप्राय', enabled: true, order: 10, isSystem: true },
   { id: 'careers', type: 'careers', name: 'Careers & Open Vacancies', titleEn: 'Join SwayamUrja Renewable Energy', titleMr: 'करिअर संधी', enabled: true, order: 11, isSystem: true },
   { id: 'contact', type: 'contact', name: 'Contact Us & Site Survey Form', titleEn: 'Get In Touch & Site Survey', titleMr: 'संपर्क व साईट सर्वेक्षण', enabled: true, order: 12, isSystem: true },
-  { id: 'process', type: 'process', name: 'Solar EPC 5-Step Process (Removed)', titleEn: 'Turnkey Commissioning Roadmap', titleMr: 'प्रकल्प उभारणी प्रक्रिया', enabled: false, order: 13, isSystem: false },
-  { id: 'showcase', type: 'showcase', name: 'Interactive Solar Showcase (Removed)', titleEn: 'Engineering Excellence Showcase', titleMr: 'सौर तंत्रज्ञान प्रात्यक्षिक', enabled: false, order: 14, isSystem: false },
-  { id: 'blogs', type: 'blogs', name: 'Solar Knowledge & Blog Articles (Removed)', titleEn: 'Solar Policy & Technology Insights', titleMr: 'सौर ऊर्जा लेख व माहिती', enabled: false, order: 15, isSystem: false },
 ];
 
 export const DEFAULT_VIDEO_SECTION: VideoSectionContent = {

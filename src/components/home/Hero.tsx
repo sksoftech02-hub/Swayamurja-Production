@@ -310,9 +310,9 @@ export const Hero: React.FC = () => {
               ))}
             </div>
 
-            {/* Headline */}
+            {/* Headline (H2 to preserve single semantic H1 above-the-fold in VideoHero) */}
             <div className="space-y-2 animate-slide-up delay-200">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-['Outfit'] leading-[1.12]">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-['Outfit'] leading-[1.12]">
                 {isMr ? (
                   <>
                     सौरऊर्जेने <span className="text-shimmer" style={{ color: theme.primaryColor }}>भविष्य</span> घडवा
@@ -324,7 +324,7 @@ export const Hero: React.FC = () => {
                     with <span className="text-shimmer" style={{ color: theme.primaryColor }}>Clean Solar</span>
                   </>
                 )}
-              </h1>
+              </h2>
               <p className={`text-base sm:text-lg leading-relaxed max-w-lg ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                 {isMr
                   ? 'स्वयमऊर्जा — महाराष्ट्रातील अग्रगण्य सोलर EPC कंपनी. घर, कारखाना किंवा शेती — संपूर्ण सोलर उपाय.'

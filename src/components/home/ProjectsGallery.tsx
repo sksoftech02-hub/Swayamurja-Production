@@ -6,7 +6,7 @@ import { useContent } from '@/context/ContentContext';
 import { FolderGit2, MapPin, ExternalLink, Zap } from 'lucide-react';
 import { CMSProject } from '@/lib/content-store';
 
-const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80';
+const FALLBACK_IMG = '/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg';
 
 export const ProjectsGallery: React.FC = () => {
   const { language } = useLanguage();

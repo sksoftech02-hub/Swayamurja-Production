@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
@@ -47,6 +48,7 @@ export const ContactForm: React.FC = () => {
     return () => window.removeEventListener('swayamurja:prefill-contact', handlePrefill);
   }, []);
 
+  const [dpdpConsent, setDpdpConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -54,6 +56,15 @@ export const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
+
+    if (!dpdpConsent) {
+      setErrorMsg(
+        isMr
+          ? 'कृपया पुढे जाण्यापूर्वी गोपनीयता धोरण (DPDP कायदा २०२३) अंतर्गत संमती चौकटीवर टिक (✓) करा.'
+          : 'Please check the consent box under the DPDP Act, 2023 Privacy Notice before submitting.'
+      );
+      return;
+    }
 
     // Phone validation
     const cleanPhone = formData.phone.replace(/[^0-9]/g, '');
@@ -80,12 +91,17 @@ export const ContactForm: React.FC = () => {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          dpdpConsent: true,
+          privacyPolicyVersion: 'DPDP-2023-v1.0',
+        }),
       });
 
       const data = await res.json();
       if (data.success) {
         setSuccess(true);
+        setDpdpConsent(false);
         setFormData({
           name: '',
           phone: '',
@@ -350,6 +366,38 @@ export const ContactForm: React.FC = () => {
                       }
                       className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-amber-400 transition-colors resize-none"
                     />
+                  </div>
+
+                  {/* DPDP Act, 2023 Mandatory Unchecked Affirmative Consent Checkbox */}
+                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-700/80">
+                    <label className="flex items-start gap-3 cursor-pointer text-xs text-slate-300 leading-relaxed">
+                      <input
+                        id="dpdpConsentCheckbox"
+                        type="checkbox"
+                        checked={dpdpConsent}
+                        onChange={(e) => setDpdpConsent(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-950 text-emerald-500 focus:ring-amber-400 shrink-0 cursor-pointer"
+                      />
+                      <span>
+                        {isMr ? (
+                          <>
+                            मी{' '}
+                            <Link href="/privacy-policy" target="_blank" className="text-amber-400 underline hover:text-amber-300 font-semibold">
+                              गोपनीयता धोरण (DPDP कायदा, २०२३)
+                            </Link>{' '}
+                            वाचले असून, सौर ऊर्जा कोटेशन व मोफत साईट सर्वेक्षणासाठी स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि. ला माझी संपर्क व वीजबिल माहिती वापरण्यास स्पष्ट संमती देतो/देते. *
+                          </>
+                        ) : (
+                          <>
+                            I consent to SwayamUrja Renewable Energy Pvt. Ltd. collecting and processing my contact and electricity bill details strictly to provide a solar EPC quotation and site survey, in accordance with the{' '}
+                            <Link href="/privacy-policy" target="_blank" className="text-amber-400 underline hover:text-amber-300 font-semibold">
+                              Privacy Policy (DPDP Act, 2023)
+                            </Link>
+                            . I understand I may withdraw consent or request erasure at any time. *
+                          </>
+                        )}
+                      </span>
+                    </label>
                   </div>
 
                   {/* Submit Button */}

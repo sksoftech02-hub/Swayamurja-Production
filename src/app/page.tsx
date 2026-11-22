@@ -16,10 +16,13 @@ import { CareersSection } from '@/components/home/CareersSection';
 import { ContactForm } from '@/components/home/ContactForm';
 import { Footer } from '@/components/layout/Footer';
 import { useContent } from '@/context/ContentContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { DEFAULT_LAYOUT_SECTIONS, HomepageSection } from '@/lib/types';
 
 export default function HomePage() {
   const { content } = useContent();
+  const { language } = useLanguage();
+  const isMr = language === 'mr';
 
   const sections: HomepageSection[] = (content?.layoutSections && content.layoutSections.length > 0)
     ? content.layoutSections
@@ -58,7 +61,19 @@ export default function HomePage() {
       case 'process':
       case 'showcase':
       case 'blogs':
+        return null;
       default:
+        if (sec.type === 'custom') {
+          return (
+            <section key={sec.id} id={sec.id} className="py-16 bg-slate-50 border-y border-slate-200/80">
+              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-['Outfit']">
+                  {isMr ? (sec.titleMr || sec.titleEn || sec.name) : (sec.titleEn || sec.name)}
+                </h2>
+              </div>
+            </section>
+          );
+        }
         return null;
     }
   };

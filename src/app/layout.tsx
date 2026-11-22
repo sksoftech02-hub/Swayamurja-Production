@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     template: '%s | SwayamUrja Solar EPC',
   },
   description:
-    'Top Tier-1 Solar EPC Contractor in Pune & Maharashtra. Specializing in 13MW+ Utility Scale Plants, Commercial & Industrial Rooftops (MIDC Chakan/Talegaon), and PM Surya Ghar ₹78,000 DBT Subsidies.',
+    'ISO 9001:2015 Certified Solar EPC Company in Pune & Maharashtra. 25+ years leadership, 1,600+ MW Wind & Solar advisory, 13 MW Utility Solar Parks, C&I Rooftops, BESS & PM Surya Ghar ₹78,000 DBT Subsidies.',
   keywords: [
     'Solar EPC Pune',
     'Commercial Solar Rooftop Pune',
     'Industrial Solar MIDC Chakan',
-    '13 MW Utility Solar Plant Solapur',
+    '13 MW Utility Solar Plant Sangli Maharashtra',
     'PM Surya Ghar Maharashtra Subsidy',
     'Solar Panel Installation Pune',
     'MSEDCL Net Metering Approval',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SwayamUrja Renewable Energy Pvt. Ltd. | Premier Solar EPC',
     description:
-      'Empowering Maharashtra with Clean Energy: 50+ MW Commissioned, 13 MW Utility Plant in Solapur, and ₹78,000 PM Surya Ghar Subsidies.',
+      'Empowering Maharashtra with Clean Energy: 1,600+ MW Wind & Solar Advisory, 550+ Completed Projects, 13 MW Utility Solar Parks & ₹78,000 PM Surya Ghar Subsidies.',
     url: 'https://swayamurja.com',
     siteName: 'SwayamUrja Renewable Energy',
     locale: 'en_IN',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'SwayamUrja Renewable Energy | Solar EPC Pune',
-    description: '50+ MW Commissioned, 13 MW Solapur Plant & PM Surya Ghar ₹78,000 Subsidies.',
+    description: '1,600+ MW Developed, 550+ Projects, 13 MW Utility Parks & PM Surya Ghar ₹78,000 Subsidies.',
     images: ['/images/whatsapp_showcase.jpeg'],
   },
   robots: {
@@ -102,35 +102,35 @@ export const metadata: Metadata = {
   other: {
     'geo.region': 'IN-MH',
     'geo.placename': 'Pune, Maharashtra',
-    'geo.position': '18.5590;73.7868',
-    ICBM: '18.5590, 73.7868',
+    'geo.position': '18.5515;73.9218',
+    ICBM: '18.5515, 73.9218',
   },
 };
 
 const businessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SolarEnergyCompany',
+  '@type': 'LocalBusiness',
   name: 'SwayamUrja Renewable Energy Pvt. Ltd.',
-  alternateName: 'स्वयमऊर्जा रिन्युएबल एनर्जी',
+  alternateName: 'स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि.',
   image: 'https://swayamurja.com/images/whatsapp_showcase.jpeg',
   logo: 'https://swayamurja.com/assets/logo.webp',
   '@id': 'https://swayamurja.com/#organization',
   url: 'https://swayamurja.com',
   telephone: '+919272100623',
-  email: 'sales@swayamurja.com',
+  email: 'crm@swayamurja.com',
   priceRange: '₹₹₹',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Baner',
+    streetAddress: 'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri',
     addressLocality: 'Pune',
     addressRegion: 'Maharashtra',
-    postalCode: '411045',
+    postalCode: '411014',
     addressCountry: 'IN',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 18.559,
-    longitude: 73.7868,
+    latitude: 18.5515,
+    longitude: 73.9218,
   },
   openingHoursSpecification: [
     {
@@ -140,18 +140,13 @@ const businessJsonLd = {
       closes: '18:30',
     },
   ],
-  sameAs: ['https://swayamurja.com'],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '1200',
-    bestRating: '5',
-  },
+  sameAs: ['https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/'],
   areaServed: [
     { '@type': 'City', name: 'Pune' },
-    { '@type': 'City', name: 'Solapur' },
+    { '@type': 'City', name: 'Sangli' },
     { '@type': 'City', name: 'Satara' },
-    { '@type': 'City', name: 'Kolhapur' },
+    { '@type': 'City', name: 'Karad' },
+    { '@type': 'City', name: 'Hyderabad' },
     { '@type': 'AdministrativeArea', name: 'Maharashtra' },
   ],
 };
@@ -195,10 +190,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
