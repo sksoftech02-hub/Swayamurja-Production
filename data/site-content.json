@@ -134,7 +134,7 @@
       "systemSize": "8 kW Rooftop",
       "savingsText": "Bill reduced from ₹9,500 to ₹180/mo",
       "commentEn": "SwayamUrja handled everything from MSEDCL net-metering to the ₹78,000 PM Surya Ghar bank subsidy. Generation is fantastic even during cloudy days!",
-      "commentMr": "स्वयमऊर्जाच्या टीमने महावितरण नेट-मीटरिंगपासून ₹७८,००० सबसिडी खात्यात येईपर्यंत सर्व कामे उत्तमरित्या केली. माझे मासिक बिल ₹९,५०० वरून थेट ₹१८० वर आले!"
+      "commentMr": "स्वयम्ऊर्जाच्या टीमने महावितरण नेट-मीटरिंगपासून ₹७८,००० सबसिडी खात्यात येईपर्यंत सर्व कामे उत्तमरित्या केली. माझे मासिक बिल ₹९,५०० वरून थेट ₹१८० वर आले!"
     },
     {
       "id": "test-2",
@@ -145,7 +145,7 @@
       "systemSize": "350 kW C&I Rooftop",
       "savingsText": "Saving ₹4.2 Lakhs monthly",
       "commentEn": "Our factory power cost was exceeding ₹11 per unit. SwayamUrja engineered a 350 kW rooftop plant that recovered its investment in 2.8 years with 40% depreciation.",
-      "commentMr": "कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयमऊर्जाच्या ३५० किलोव��ट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत ��सून ४०% ट��क्स बेनिफिट मिळाला."
+      "commentMr": "कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयम्ऊर्जाच्या ३५० किलोव��ट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत ��सून ४०% ट��क्स बेनिफिट मिळाला."
     },
     {
       "id": "test-3",
@@ -156,7 +156,7 @@
       "systemSize": "7.5 HP Agri Pump",
       "savingsText": "Zero fuel cost, 100% daytime water",
       "commentEn": "Earlier we struggled with midnight load-shedding. Under PM-KUSUM, SwayamUrja installed a 7.5 HP solar pump. Now our sugarcane crop gets water throughout the daytime.",
-      "commentMr": "रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयमऊर्जाने पीएम-कुसुम ��ंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते."
+      "commentMr": "रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयम्ऊर्जाने पीएम-कुसुम ��ंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते."
     },
     {
       "id": "test-4",
@@ -219,8 +219,8 @@
       "department": "Engineering & Design",
       "experienceEn": "2-4 Years",
       "experienceMr": "२-४ वर्षे ��नुभव",
-      "locationEn": "Pune (Baner HQ)",
-      "locationMr": "पुणे (बाणेर मुख्यालय)",
+      "locationEn": "Pune (New Kalyani Nagar HQ)",
+      "locationMr": "पुणे (न्यू कल्याणी नगर मुख्यालय)",
       "isActive": true
     },
     {
@@ -251,127 +251,127 @@
     {
       "id": "c-1",
       "name": "Ajanta Universal Fabrics Ltd",
-      "logo": "/uploads/clients/client-1.png",
+      "logo": "/uploads/clients/client-1.webp",
       "order": 1
     },
     {
       "id": "c-2",
       "name": "Sun Ut Tech",
-      "logo": "/uploads/clients/client-2.png",
+      "logo": "/uploads/clients/client-2.webp",
       "order": 2
     },
     {
       "id": "c-3",
       "name": "Fluorotech Group (FTG)",
-      "logo": "/uploads/clients/client-3.png",
+      "logo": "/uploads/clients/client-3.webp",
       "order": 3
     },
     {
       "id": "c-4",
       "name": "Shri K. R. Ramdasi Sansthan",
-      "logo": "/uploads/clients/client-4.png",
+      "logo": "/uploads/clients/client-4.webp",
       "order": 4
     },
     {
       "id": "c-5",
       "name": "BAPS Swaminarayan Sansthan",
-      "logo": "/uploads/clients/client-5.png",
+      "logo": "/uploads/clients/client-5.webp",
       "order": 5
     },
     {
       "id": "c-6",
       "name": "Spark Engineers",
-      "logo": "/uploads/clients/spark-engineers.png",
+      "logo": "/uploads/clients/spark-engineers.webp",
       "order": 6
     },
     {
       "id": "c-7",
       "name": "Unique Tools",
-      "logo": "/uploads/clients/unique-tools.png",
+      "logo": "/uploads/clients/unique-tools.webp",
       "order": 7
     },
     {
       "id": "c-8",
-      "name": "Industrial Partner 8",
-      "logo": "/uploads/clients/client-8.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-8.webp",
       "order": 8
     },
     {
       "id": "c-9",
-      "name": "MIDC Manufacturing 9",
-      "logo": "/uploads/clients/client-9.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-9.webp",
       "order": 9
     },
     {
       "id": "c-10",
-      "name": "Solar Agro Power 10",
-      "logo": "/uploads/clients/client-10.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-10.webp",
       "order": 10
     },
     {
       "id": "c-11",
-      "name": "Textile Mills 11",
-      "logo": "/uploads/clients/client-11.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-11.webp",
       "order": 11
     },
     {
       "id": "c-12",
-      "name": "Commercial Hub 12",
-      "logo": "/uploads/clients/client-12.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-12.webp",
       "order": 12
     },
     {
       "id": "c-13",
-      "name": "Steel Works 13",
-      "logo": "/uploads/clients/client-13.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-13.webp",
       "order": 13
     },
     {
       "id": "c-14",
-      "name": "Food Processing 14",
-      "logo": "/uploads/clients/client-14.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-14.webp",
       "order": 14
     },
     {
       "id": "c-15",
-      "name": "Automotive Ancillary 15",
-      "logo": "/uploads/clients/client-15.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-15.webp",
       "order": 15
     },
     {
       "id": "c-16",
-      "name": "Pharma Packaging 16",
-      "logo": "/uploads/clients/client-16.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-16.webp",
       "order": 16
     },
     {
       "id": "c-17",
-      "name": "Polymer Industries 17",
-      "logo": "/uploads/clients/client-17.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-17.webp",
       "order": 17
     },
     {
       "id": "c-18",
-      "name": "Foundry & Forging 18",
-      "logo": "/uploads/clients/client-18.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-18.webp",
       "order": 18
     },
     {
       "id": "c-19",
-      "name": "Cold Storage Complex 19",
-      "logo": "/uploads/clients/client-19.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-19.webp",
       "order": 19
     },
     {
       "id": "c-20",
-      "name": "Sugar Allied Works 20",
-      "logo": "/uploads/clients/client-20.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-20.webp",
       "order": 20
     },
     {
       "id": "c-21",
-      "name": "Precision Machining 21",
-      "logo": "/uploads/clients/client-21.png",
+      "name": "Verified Solar EPC Client",
+      "logo": "/uploads/clients/client-21.webp",
       "order": 21
     }
   ],

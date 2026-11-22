@@ -327,7 +327,7 @@ export const Hero: React.FC = () => {
               </h2>
               <p className={`text-base sm:text-lg leading-relaxed max-w-lg ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                 {isMr
-                  ? 'स्वयमऊर्जा — महाराष्ट्रातील अग्रगण्य सोलर EPC कंपनी. घर, कारखाना किंवा शेती — संपूर्ण सोलर उपाय.'
+                  ? 'स्वयम्ऊर्जा — महाराष्ट्रातील अग्रगण्य सोलर EPC कंपनी. घर, कारखाना किंवा शेती — संपूर्ण सोलर उपाय.'
                   : "SwayamUrja — Maharashtra's leading Solar EPC enterprise. Concept-to-commissioning solutions for homes, industries & farms."}
               </p>
             </div>

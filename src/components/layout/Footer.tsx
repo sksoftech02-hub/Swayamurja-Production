@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
     'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014';
 
   const defaultDesc = isMr 
-    ? 'स्वयमऊर्जा ही महाराष्ट्रातील अग्रगण्य स्वच्छ ऊर्जा EPC कंपनी असून रूफटॉप, १३ मेगावॅट युटिलिटी सोलर, पवन आणि बॅटरी स्टोरेज प्रकल्पांमध्ये कार्यरत आहे.'
+    ? 'स्वयम्ऊर्जा ही महाराष्ट्रातील अग्रगण्य स्वच्छ ऊर्जा EPC कंपनी असून रूफटॉप, १३ मेगावॅट युटिलिटी सोलर, पवन आणि बॅटरी स्टोरेज प्रकल्पांमध्ये कार्यरत आहे.'
     : 'SwayamUrja Renewable Energy Pvt. Ltd. is Maharashtra’s leading clean-tech EPC company delivering residential rooftop solar, 13 MW+ utility-scale solar plants, wind hybrid installations, and battery energy storage.';
 
   const companyBio = t('ft_desc') !== 'ft_desc' ? t('ft_desc') : defaultDesc;

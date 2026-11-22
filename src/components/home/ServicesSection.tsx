@@ -114,7 +114,7 @@ export const ServicesSection: React.FC = () => {
           </h2>
           <p className="text-slate-500 text-base sm:text-lg">
             {isMr
-              ? 'घरांपासून मेगावॅट प्रकल्पांपर्यंत — स्वयमऊर्जा प्रत्येक गरजेसाठी सोलर उपाय देते.'
+              ? 'घरांपासून मेगावॅट प्रकल्पांपर्यंत — स्वयम्ऊर्जा प्रत्येक गरजेसाठी सोलर उपाय देते.'
               : 'From homes to megawatt-scale projects — SwayamUrja delivers solar solutions for every need.'}
           </p>
         </div>
@@ -167,8 +167,8 @@ export const ServicesSection: React.FC = () => {
         {/* Bottom trust row */}
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { n: '50+ MW', l: isMr ? 'कमिशन क्षमता' : 'Commissioned' },
-            { n: '8 Yrs', l: isMr ? 'उद्योगातील अनुभव' : 'Industry Experience' },
+            { n: '1,600+ MW', l: isMr ? 'विकसित पवन व सौर' : 'Wind & Solar Developed' },
+            { n: '25+ Yrs', l: isMr ? 'ऊर्जा नेतृत्व अनुभव' : 'Sector Leadership' },
             { n: '100%', l: isMr ? 'MSEDCL मान्यता' : 'MSEDCL Approvals' },
             { n: '25 Yrs', l: isMr ? 'पॅनेल वॉरंटी' : 'Panel Warranty' },
           ].map((s, i) => (

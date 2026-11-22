@@ -163,8 +163,8 @@ export default function AdminPage() {
     department: 'Engineering & Design',
     experienceEn: '2-4 Years',
     experienceMr: '२-४ वर्षे अनुभव',
-    locationEn: 'Pune (Baner HQ)',
-    locationMr: 'पुणे (बाणेर मुख्यालय)',
+    locationEn: 'Pune (New Kalyani Nagar HQ)',
+    locationMr: 'पुणे (न्यू कल्याणी नगर मुख्यालय)',
     skills: '',
     isActive: true
   });
@@ -688,8 +688,8 @@ export default function AdminPage() {
       department: 'Engineering & Design',
       experienceEn: '2-4 Years',
       experienceMr: '२-४ वर्षे अनुभव',
-      locationEn: 'Pune (Baner HQ)',
-      locationMr: 'पुणे (बाणेर मुख्यालय)',
+      locationEn: 'Pune (New Kalyani Nagar HQ)',
+      locationMr: 'पुणे (न्यू कल्याणी नगर मुख्यालय)',
       skills: '',
       isActive: true
     });
@@ -1247,27 +1247,27 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                {/* 4 Core KPI Highlights */}
+                {/* 4 Core KPI Highlights (Live CRM & CMS Metrics) */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
                   <div>
-                    <span className="text-xs text-emerald-300 font-semibold block mb-1">Total Clean Inquiries</span>
+                    <span className="text-xs text-emerald-300 font-semibold block mb-1">Total Inbound Leads</span>
                     <span className="text-3xl sm:text-4xl font-extrabold text-white font-['Outfit']">{totalLeads}</span>
-                    <span className="text-[11px] text-emerald-400 mt-1 block">↑ 18% from last month</span>
+                    <span className="text-[11px] text-emerald-400 mt-1 block">{newLeads} new inquiries pending</span>
                   </div>
                   <div>
-                    <span className="text-xs text-emerald-300 font-semibold block mb-1">Commissioned Capacity</span>
-                    <span className="text-3xl sm:text-4xl font-extrabold text-amber-300 font-['Outfit']">{cmsContent?.stats?.totalMw || '50+ MW'}</span>
-                    <span className="text-[11px] text-amber-200 mt-1 block">Flagship 13 MW Solapur</span>
+                    <span className="text-xs text-emerald-300 font-semibold block mb-1">Developed Portfolio</span>
+                    <span className="text-3xl sm:text-4xl font-extrabold text-amber-300 font-['Outfit']">{cmsContent?.stats?.totalMw || '1,600+ MW'}</span>
+                    <span className="text-[11px] text-amber-200 mt-1 block">{cmsContent?.projects?.length || 0} showcase projects live</span>
                   </div>
                   <div>
                     <span className="text-xs text-emerald-300 font-semibold block mb-1">Surveys Scheduled</span>
                     <span className="text-3xl sm:text-4xl font-extrabold text-white font-['Outfit']">{surveyLeads}</span>
-                    <span className="text-[11px] text-emerald-300 mt-1 block">Feasibility queue active</span>
+                    <span className="text-[11px] text-emerald-300 mt-1 block">{contactedLeads} leads contacted</span>
                   </div>
                   <div>
                     <span className="text-xs text-emerald-300 font-semibold block mb-1">Conversion Ratio</span>
                     <span className="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-['Outfit']">{conversionRate}%</span>
-                    <span className="text-[11px] text-emerald-300 mt-1 block">{closedDeals} Deals closed</span>
+                    <span className="text-[11px] text-emerald-300 mt-1 block">{closedDeals} deals closed</span>
                   </div>
                 </div>
               </div>
@@ -1411,28 +1411,28 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                {/* Live Platform Health & Speed */}
+                {/* Live Platform Health & Compliance */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
                   <h4 className="font-extrabold text-slate-900 text-sm font-['Outfit'] flex items-center gap-2">
                     <Activity className="w-4 h-4 text-emerald-600" />
-                    <span>Platform Performance & Security</span>
+                    <span>Platform Architecture & Compliance</span>
                   </h4>
                   <div className="space-y-2.5 text-xs">
                     <div className="flex justify-between items-center p-2 rounded-lg bg-emerald-50 text-emerald-900">
-                      <span className="font-semibold">Server Response Time</span>
-                      <strong>0.42s (Sub-1s SLA)</strong>
+                      <span className="font-semibold">CRM Storage Engine</span>
+                      <strong>PostgreSQL Unified ✓</strong>
                     </div>
                     <div className="flex justify-between items-center p-2 rounded-lg bg-emerald-50 text-emerald-900">
-                      <span className="font-semibold">SSL Encryption</span>
-                      <strong>TLS 1.3 Active ✓</strong>
+                      <span className="font-semibold">DPDP Act, 2023 Consent</span>
+                      <strong>Active & Audited ✓</strong>
                     </div>
                     <div className="flex justify-between items-center p-2 rounded-lg bg-emerald-50 text-emerald-900">
                       <span className="font-semibold">Bilingual Sync</span>
                       <strong>English & मराठी Active</strong>
                     </div>
                     <div className="flex justify-between items-center p-2 rounded-lg bg-emerald-50 text-emerald-900">
-                      <span className="font-semibold">Lead Captures</span>
-                      <strong>100% Delivery SLA</strong>
+                      <span className="font-semibold">Published Showcase</span>
+                      <strong>{cmsContent?.projects?.length || 0} Plants · {cmsContent?.clients?.length || 0} Clients</strong>
                     </div>
                   </div>
                 </div>
@@ -3714,7 +3714,7 @@ export default function AdminPage() {
                 <label className="block text-xs font-bold text-slate-700 mb-1">Location (English)</label>
                 <input
                   type="text"
-                  placeholder="e.g. Pune (Baner HQ)"
+                  placeholder="e.g. Pune (New Kalyani Nagar HQ)"
                   value={jobForm.locationEn}
                   onChange={(e) => setJobForm({ ...jobForm, locationEn: e.target.value })}
                   className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white"

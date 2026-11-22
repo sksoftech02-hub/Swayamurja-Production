@@ -62,7 +62,39 @@ export const ProjectsGallery: React.FC = () => {
           ))}
         </div>
 
-        {/* Cards Grid with Real Imagery & Animations */}
+        {/* Cards Grid with Real Imagery & Animations (plus graceful empty state) */}
+        {filtered.length === 0 ? (
+          <div className="bg-white rounded-3xl border border-slate-200 p-10 sm:p-14 text-center max-w-2xl mx-auto shadow-xs space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto border border-emerald-200">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-extrabold text-slate-900 font-['Outfit']">
+              {isMr
+                ? 'या श्रेणीतील नवीन प्रकल्प लवकरच अद्ययावत केले जातील'
+                : 'New Installations in This Category Coming Soon'}
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              {isMr
+                ? 'पीएम-कुसुम कृषी सौर पंप किंवा सानुकूल सौर प्रकल्पांच्या तपशीलांसाठी आमच्या अभियांत्रिकी टीमशी थेट संपर्क साधा.'
+                : 'Contact our EPC engineering team for custom PM-KUSUM agri-solar feasibility, case studies, or turnkey quotations.'}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <a
+                href="#contact"
+                className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-colors"
+              >
+                {isMr ? 'प्रकल्पासाठी चौकशी करा →' : 'Request Category Case Study →'}
+              </a>
+              <button
+                type="button"
+                onClick={() => setFilter('all')}
+                className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                {isMr ? 'सर्व प्रकल्प पहा' : 'View All Projects'}
+              </button>
+            </div>
+          </div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((item: CMSProject) => {
             const title = isMr ? (item.titleMr || item.titleEn) : item.titleEn;
@@ -124,6 +156,7 @@ export const ProjectsGallery: React.FC = () => {
             );
           })}
         </div>
+        )}
 
       </div>
     </section>

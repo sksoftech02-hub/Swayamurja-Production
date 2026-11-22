@@ -307,12 +307,24 @@ export const ContactForm: React.FC = () => {
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-hidden focus:border-amber-400 transition-colors"
                       >
-                        <option value="Residential Rooftop Solar">Residential Rooftop (PM Surya Ghar)</option>
-                        <option value="Commercial & Industrial (C&I)">Commercial & Industrial (C&I)</option>
-                        <option value="13 MW+ Utility Scale Solar">13 MW+ Utility Scale Plant</option>
-                        <option value="Agri-Solar (PM-KUSUM)">Agri-Solar (PM-KUSUM)</option>
-                        <option value="BESS Battery Storage">BESS Energy Storage</option>
-                        <option value="Solar Maintenance & O&M">Solar Maintenance & O&M</option>
+                        <option value="Residential Rooftop Solar">
+                          {isMr ? 'घरगुती रूफटॉप सोलर (पीएम सूर्य घर)' : 'Residential Rooftop (PM Surya Ghar)'}
+                        </option>
+                        <option value="Commercial & Industrial (C&I)">
+                          {isMr ? 'व्यावसायिक आणि औद्योगिक (C&I)' : 'Commercial & Industrial (C&I)'}
+                        </option>
+                        <option value="13 MW+ Utility Scale Solar">
+                          {isMr ? '१३ MW+ युटिलिटी स्केल सोलर प्लांट' : '13 MW+ Utility Scale Plant'}
+                        </option>
+                        <option value="Agri-Solar (PM-KUSUM)">
+                          {isMr ? 'कृषी-सोलर पंप (पीएम-कुसुम)' : 'Agri-Solar (PM-KUSUM)'}
+                        </option>
+                        <option value="BESS Battery Storage">
+                          {isMr ? 'बॅटरी एनर्जी स्टोरेज (BESS)' : 'BESS Energy Storage'}
+                        </option>
+                        <option value="Solar Maintenance & O&M">
+                          {isMr ? 'सोलर देखभाल व दुरुस्ती (O&M)' : 'Solar Maintenance & O&M'}
+                        </option>
                       </select>
                     </div>
                   </div>

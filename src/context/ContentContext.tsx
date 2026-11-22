@@ -17,7 +17,6 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const refreshContent = useCallback(async () => {
     try {
-      // Use cache: 'no-store' to guarantee fresh data from disk/database
       const res = await fetch('/api/content', { cache: 'no-store' });
       const data = await res.json();
       if (data.success && data.content) {
@@ -33,13 +32,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     refreshContent();
 
-    // Auto-refresh when tab gains focus
-    const handleFocus = () => {
-      refreshContent();
-    };
-    window.addEventListener('focus', handleFocus);
-
-    // Instant sync when CMS is saved from another tab in the same browser
+    // Instant cross-tab sync when CMS is saved from Admin / Super Admin in the same browser
     const handleStorage = (e: StorageEvent) => {
       if (e.key === 'swayamurja_cms_updated') {
         refreshContent();
@@ -47,13 +40,8 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
     window.addEventListener('storage', handleStorage);
 
-    // Lightweight background heartbeat poll every 30 seconds
-    const interval = setInterval(refreshContent, 30000);
-
     return () => {
-      window.removeEventListener('focus', handleFocus);
       window.removeEventListener('storage', handleStorage);
-      clearInterval(interval);
     };
   }, [refreshContent]);
 

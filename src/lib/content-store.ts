@@ -108,7 +108,7 @@ export const DEFAULT_TESTIMONIALS: CMSTestimonial[] = [
     systemSize: '8 kW Rooftop',
     savingsText: 'Bill reduced from ₹9,500 to ₹180/mo',
     commentEn: 'SwayamUrja handled everything from MSEDCL net-metering to the ₹78,000 PM Surya Ghar bank subsidy. Generation is fantastic even during cloudy days!',
-    commentMr: 'स्वयमऊर्जाच्या टीमने महावितरण नेट-मीटरिंगपासून ₹७८,००० सबसिडी खात्यात येईपर्यंत सर्व कामे उत्तमरित्या केली. माझे मासिक बिल ₹९,५०० वरून थेट ₹१८० वर आले!'
+    commentMr: 'स्वयम्ऊर्जाच्या टीमने महावितरण नेट-मीटरिंगपासून ₹७८,००० सबसिडी खात्यात येईपर्यंत सर्व कामे उत्तमरित्या केली. माझे मासिक बिल ₹९,५०० वरून थेट ₹१८० वर आले!'
   },
   {
     id: 'test-2',
@@ -119,7 +119,7 @@ export const DEFAULT_TESTIMONIALS: CMSTestimonial[] = [
     systemSize: '350 kW C&I Rooftop',
     savingsText: 'Saving ₹4.2 Lakhs monthly',
     commentEn: 'Our factory power cost was exceeding ₹11 per unit. SwayamUrja engineered a 350 kW rooftop plant that recovered its investment in 2.8 years with 40% depreciation.',
-    commentMr: 'कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयमऊर्जाच्या ३५० किलोवॅट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत असून ४०% टॅक्स बेनिफिट मिळाला.'
+    commentMr: 'कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयम्ऊर्जाच्या ३५० किलोवॅट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत असून ४०% टॅक्स बेनिफिट मिळाला.'
   },
   {
     id: 'test-3',
@@ -130,7 +130,7 @@ export const DEFAULT_TESTIMONIALS: CMSTestimonial[] = [
     systemSize: '7.5 HP Agri Pump',
     savingsText: 'Zero fuel cost, 100% daytime water',
     commentEn: 'Earlier we struggled with midnight load-shedding. Under PM-KUSUM, SwayamUrja installed a 7.5 HP solar pump. Now our sugarcane crop gets water throughout the daytime.',
-    commentMr: 'रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयमऊर्जाने पीएम-कुसुम अंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते.'
+    commentMr: 'रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयम्ऊर्जाने पीएम-कुसुम अंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते.'
   },
   {
     id: 'test-4',
@@ -195,8 +195,8 @@ export const DEFAULT_JOBS: CMSJob[] = [
     department: 'Engineering & Design',
     experienceEn: '2-4 Years',
     experienceMr: '२-४ वर्षे अनुभव',
-    locationEn: 'Pune (Baner HQ)',
-    locationMr: 'पुणे (बाणेर मुख्यालय)',
+    locationEn: 'Pune (New Kalyani Nagar HQ)',
+    locationMr: 'पुणे (न्यू कल्याणी नगर मुख्यालय)',
     skills: 'AutoCAD, PVsyst, 3D SketchUp, Single Line Diagrams (SLD), MSEDCL Net-metering rules.',
     isActive: true
   },

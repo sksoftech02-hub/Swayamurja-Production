@@ -15,13 +15,13 @@ export const ClientsSlider: React.FC = () => {
   const clients: CMSClient[] = (content?.clients && content.clients.length > 0)
     ? content.clients
     : [
-        { id: 'c-1', name: 'Ajanta Universal Fabrics Ltd', logo: '/uploads/clients/client-1.png' },
-        { id: 'c-2', name: 'Sun Ut Tech', logo: '/uploads/clients/client-2.png' },
-        { id: 'c-3', name: 'Fluorotech Group (FTG)', logo: '/uploads/clients/client-3.png' },
-        { id: 'c-4', name: 'Shri K. R. Ramdasi Sansthan', logo: '/uploads/clients/client-4.png' },
-        { id: 'c-5', name: 'BAPS Swaminarayan Sansthan', logo: '/uploads/clients/client-5.png' },
-        { id: 'c-6', name: 'Spark Engineers', logo: '/uploads/clients/spark-engineers.png' },
-        { id: 'c-7', name: 'Unique Tools', logo: '/uploads/clients/unique-tools.png' },
+        { id: 'c-1', name: 'Ajanta Universal Fabrics Ltd', logo: '/uploads/clients/client-1.webp' },
+        { id: 'c-2', name: 'Sun Ut Tech', logo: '/uploads/clients/client-2.webp' },
+        { id: 'c-3', name: 'Fluorotech Group (FTG)', logo: '/uploads/clients/client-3.webp' },
+        { id: 'c-4', name: 'Shri K. R. Ramdasi Sansthan', logo: '/uploads/clients/client-4.webp' },
+        { id: 'c-5', name: 'BAPS Swaminarayan Sansthan', logo: '/uploads/clients/client-5.webp' },
+        { id: 'c-6', name: 'Spark Engineers', logo: '/uploads/clients/spark-engineers.webp' },
+        { id: 'c-7', name: 'Unique Tools', logo: '/uploads/clients/unique-tools.webp' },
       ];
 
   // Duplicate for seamless infinite marquee loop

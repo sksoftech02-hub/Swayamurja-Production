@@ -14,8 +14,8 @@ const DEFAULT_JOBS: CMSJob[] = [
     department: 'Engineering & Design',
     experienceEn: '2-4 Years',
     experienceMr: '२-४ वर्षे अनुभव',
-    locationEn: 'Pune (Baner HQ)',
-    locationMr: 'पुणे (बाणेर मुख्यालय)',
+    locationEn: 'Pune (New Kalyani Nagar HQ)',
+    locationMr: 'पुणे (न्यू कल्याणी नगर मुख्यालय)',
     skills: 'AutoCAD, PVsyst, 3D SketchUp, Single Line Diagrams (SLD), MSEDCL Net-metering rules.',
     isActive: true,
   },
@@ -76,7 +76,7 @@ export const CareersSection: React.FC = () => {
             <span>{isMr ? 'करिअर संधी' : 'Career Opportunities'}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-['Outfit']">
-            {isMr ? 'स्वयमऊर्जा परिवारात सामील व्हा' : 'Build India’s Clean Energy Future'}
+            {isMr ? 'स्वयम्ऊर्जा परिवारात सामील व्हा' : 'Build India’s Clean Energy Future'}
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
             {isMr
