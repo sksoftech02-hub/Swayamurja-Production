@@ -119,6 +119,9 @@ export default function SuperAdminPage() {
   // Data states
   const [users, setUsers] = useState<UserRecord[]>([]);
   const [leads, setLeads] = useState<LeadRecord[]>([]);
+  const [leadSearch, setLeadSearch] = useState<string>('');
+  const [leadStatusFilter, setLeadStatusFilter] = useState<string>('All');
+  const [leadUpdatingId, setLeadUpdatingId] = useState<string | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditRecord[]>([]);
   const [stats, setStats] = useState<SystemStats | null>(null);
   const [cmsContent, setCmsContent] = useState<any>(null);
@@ -377,6 +380,76 @@ export default function SuperAdminPage() {
     } catch (e) {
       alert('Delete failed.');
     }
+  };
+
+  const handleLeadStatusChange = async (id: string, status: string) => {
+    setLeadUpdatingId(id);
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status } : l)));
+        fetchAuditLogs();
+      } else {
+        alert(data.error || 'Failed to update lead status.');
+      }
+    } catch {
+      alert('Network error updating lead status.');
+    } finally {
+      setLeadUpdatingId(null);
+    }
+  };
+
+  const handleDeleteLead = async (lead: LeadRecord) => {
+    if (!confirm(`Permanently erase lead "${lead.name}" from PostgreSQL? (Audit-logged)`)) return;
+    try {
+      const res = await fetch(`/api/leads?id=${encodeURIComponent(lead.id)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLeads((prev) => prev.filter((l) => l.id !== lead.id));
+        fetchStats();
+        fetchAuditLogs();
+      } else {
+        alert(data.error || 'Failed to delete lead.');
+      }
+    } catch {
+      alert('Network error deleting lead.');
+    }
+  };
+
+  const exportLeadsToCSV = () => {
+    if (leads.length === 0) return;
+    const safeCell = (raw: string | undefined | null) => {
+      const str = String(raw ?? '').replace(/\r?\n/g, ' ');
+      const neutralized = /^[=+\-@\t\r]/.test(str) ? `'${str}` : str;
+      return `"${neutralized.replace(/"/g, '""')}"`;
+    };
+    const headers = ['ID', 'Date', 'Name', 'Phone', 'Email', 'Service', 'Monthly Bill', 'City', 'Status'];
+    const rows = leads.map((l) => [
+      safeCell(l.id),
+      safeCell(new Date(l.createdAt).toLocaleDateString('en-IN')),
+      safeCell(l.name),
+      safeCell(l.phone),
+      safeCell(l.email || ''),
+      safeCell(l.service),
+      safeCell(l.monthlyBill || ''),
+      safeCell(l.city || 'Maharashtra'),
+      safeCell(l.status),
+    ]);
+    const csv = '\uFEFF' + [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `SwayamUrja_Root_Leads_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const handleSaveTariffs = async () => {
@@ -1206,20 +1279,65 @@ export default function SuperAdminPage() {
           </div>
         )}
 
-        {/* TAB 2: INBOUND LEADS CRM (SUPER ADMIN VISIBILITY) */}
-        {activeTab === 'leads' && (
+        {/* TAB 2: INBOUND LEADS CRM (SUPER ADMIN FULL CONTROL) */}
+        {activeTab === 'leads' && (() => {
+          const filteredSaLeads = leads.filter((l) => {
+            const q = leadSearch.trim().toLowerCase();
+            const matchesSearch =
+              !q ||
+              l.name.toLowerCase().includes(q) ||
+              l.phone.includes(q) ||
+              (l.city || '').toLowerCase().includes(q) ||
+              l.service.toLowerCase().includes(q);
+            const matchesStatus = leadStatusFilter === 'All' || l.status === leadStatusFilter;
+            return matchesSearch && matchesStatus;
+          });
+
+          return (
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h2 className="text-base font-bold text-white">Inbound Customer Leads CRM</h2>
+                <h2 className="text-base font-bold text-white">Inbound Customer Leads CRM (PostgreSQL Unified)</h2>
                 <p className="text-xs text-slate-400">
-                  Full visibility over prospective inquiries submitted by homeowners and factory owners.
+                  Live PostgreSQL CRM pipeline — search, update lead stages, export safe CSV, or erase leads under DPDP Act.
                 </p>
               </div>
 
-              <div className="text-xs font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-800 px-3 py-1.5 rounded-lg">
-                Total Leads: {leads.length}
+              <div className="flex items-center gap-2">
+                <div className="text-xs font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-800 px-3 py-1.5 rounded-lg">
+                  Showing {filteredSaLeads.length} / {leads.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={exportLeadsToCSV}
+                  className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs cursor-pointer transition-colors"
+                >
+                  Export Safe CSV
+                </button>
               </div>
+            </div>
+
+            {/* Search & Status Filter */}
+            <div className="flex flex-col sm:flex-row gap-3 bg-slate-900 border border-slate-800 rounded-xl p-3">
+              <input
+                type="text"
+                value={leadSearch}
+                onChange={(e) => setLeadSearch(e.target.value)}
+                placeholder="Search by client name, phone, city, service..."
+                className="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-cyan-400"
+              />
+              <select
+                value={leadStatusFilter}
+                onChange={(e) => setLeadStatusFilter(e.target.value)}
+                className="px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-200 font-semibold"
+              >
+                <option value="All">All Statuses ({leads.length})</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Site Survey Scheduled">Site Survey Scheduled</option>
+                <option value="Deal Closed">Deal Closed</option>
+                <option value="Dropped">Dropped</option>
+              </select>
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
@@ -1230,17 +1348,24 @@ export default function SuperAdminPage() {
                       <th className="px-4 py-3">Client Name</th>
                       <th className="px-4 py-3">Service & City</th>
                       <th className="px-4 py-3">Monthly Bill</th>
-                      <th className="px-4 py-3">Status</th>
-                      <th className="px-4 py-3">Contact Actions</th>
+                      <th className="px-4 py-3">Stage</th>
+                      <th className="px-4 py-3">Actions</th>
                       <th className="px-4 py-3">Date</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
-                    {leads.map((l) => (
+                    {filteredSaLeads.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="px-4 py-10 text-center text-slate-500">
+                          No matching leads found.
+                        </td>
+                      </tr>
+                    ) : filteredSaLeads.map((l) => (
                       <tr key={l.id} className="hover:bg-slate-800/40 transition-colors">
                         <td className="px-4 py-3.5 font-medium text-white">
                           <div className="font-bold">{l.name}</div>
                           <div className="text-[11px] text-slate-400 font-mono">{l.phone}</div>
+                          {l.email && <div className="text-[10px] text-slate-500">{l.email}</div>}
                         </td>
                         <td className="px-4 py-3.5 text-slate-300">
                           <div>{l.service}</div>
@@ -1250,14 +1375,23 @@ export default function SuperAdminPage() {
                           {l.monthlyBill || 'N/A'}
                         </td>
                         <td className="px-4 py-3.5">
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">
-                            {l.status}
-                          </span>
+                          <select
+                            value={l.status}
+                            disabled={leadUpdatingId === l.id}
+                            onChange={(e) => handleLeadStatusChange(l.id, e.target.value)}
+                            className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950 border border-slate-700 text-slate-200 focus:border-cyan-400"
+                          >
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Site Survey Scheduled">Site Survey Scheduled</option>
+                            <option value="Deal Closed">Deal Closed</option>
+                            <option value="Dropped">Dropped</option>
+                          </select>
                         </td>
                         <td className="px-4 py-3.5">
                           <div className="flex items-center gap-2">
                             <a
-                              href={`tel:${l.phone}`}
+                              href={`tel:+91${l.phone.replace(/[^0-9]/g, '')}`}
                               className="p-1.5 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-400 hover:bg-emerald-900"
                               title="Direct Phone Call"
                             >
@@ -1272,10 +1406,18 @@ export default function SuperAdminPage() {
                             >
                               <MessageSquare className="w-3.5 h-3.5" />
                             </a>
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteLead(l)}
+                              className="p-1.5 rounded-lg bg-red-950/50 border border-red-800 text-red-400 hover:bg-red-900 cursor-pointer"
+                              title="Erase Lead (DPDP Right to Erasure)"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                         </td>
                         <td className="px-4 py-3.5 text-slate-500 font-mono text-[11px]">
-                          {new Date(l.createdAt).toLocaleDateString()}
+                          {new Date(l.createdAt).toLocaleDateString('en-IN')}
                         </td>
                       </tr>
                     ))}
@@ -1284,7 +1426,8 @@ export default function SuperAdminPage() {
               </div>
             </div>
           </div>
-        )}
+          );
+        })()}
 
         {/* TAB 3: TARIFFS & SUBSIDIES (MOVED TO SUPER ADMIN) */}
         {activeTab === 'tariffs' && (

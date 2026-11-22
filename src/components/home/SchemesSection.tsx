@@ -2,11 +2,17 @@
 
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useContent } from '@/context/ContentContext';
 import { Award, CheckCircle, IndianRupee, ArrowRight, FileCheck, Layers } from 'lucide-react';
 
 export const SchemesSection: React.FC = () => {
   const { t, language } = useLanguage();
+  const { content } = useContent();
   const isMr = language === 'mr';
+
+  const sub1Kw = content?.tariffs?.pmSuryaGhar1Kw ?? 30000;
+  const sub2Kw = content?.tariffs?.pmSuryaGhar2Kw ?? 60000;
+  const sub3KwMax = content?.tariffs?.pmSuryaGhar3KwMax ?? 78000;
 
   return (
     <section id="schemes" className="py-24 bg-white relative">
@@ -48,15 +54,15 @@ export const SchemesSection: React.FC = () => {
               <div className="pt-4 space-y-3">
                 <div className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-800/60 border border-emerald-700/60">
                   <span className="text-sm font-semibold">{isMr ? '१ किलोवॅट सिस्टीम' : '1 kW System'}</span>
-                  <span className="text-base font-extrabold text-amber-300">₹ 30,000 {isMr ? 'सबसिडी' : 'Subsidy'}</span>
+                  <span className="text-base font-extrabold text-amber-300">₹ {sub1Kw.toLocaleString('en-IN')} {isMr ? 'सबसिडी' : 'Subsidy'}</span>
                 </div>
                 <div className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-800/60 border border-emerald-700/60">
                   <span className="text-sm font-semibold">{isMr ? '२ किलोवॅट सिस्टीम' : '2 kW System'}</span>
-                  <span className="text-base font-extrabold text-amber-300">₹ 60,000 {isMr ? 'सबसिडी' : 'Subsidy'}</span>
+                  <span className="text-base font-extrabold text-amber-300">₹ {sub2Kw.toLocaleString('en-IN')} {isMr ? 'सबसिडी' : 'Subsidy'}</span>
                 </div>
                 <div className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-800/60 border border-emerald-700/60">
                   <span className="text-sm font-semibold">{isMr ? '३ किलोवॅट किंवा अधिक' : '3 kW or higher'}</span>
-                  <span className="text-base font-extrabold text-amber-300">₹ 78,000 {isMr ? 'कमाल सबसिडी' : 'Max Subsidy'}</span>
+                  <span className="text-base font-extrabold text-amber-300">₹ {sub3KwMax.toLocaleString('en-IN')} {isMr ? 'कमाल सबसिडी' : 'Max Subsidy'}</span>
                 </div>
                 <div className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-800/60 border border-emerald-700/60">
                   <span className="text-sm font-semibold">{isMr ? 'सोसायटी (Common Facilities)' : 'Housing Societies (GHS)'}</span>

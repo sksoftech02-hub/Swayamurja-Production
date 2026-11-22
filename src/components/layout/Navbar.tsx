@@ -15,6 +15,7 @@ export const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isMr = language === 'mr';
@@ -55,35 +56,36 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
 
-          {/* ── REAL Logo from swayamurja.com ── */}
+          {/* ── Official Local Logo Asset (Zero External WP Hotlink Dependency) ── */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div
-              className="relative w-44 h-10 overflow-hidden flex items-center"
-              style={{ width: '180px', height: '42px', position: 'relative', overflow: 'hidden' }}
-            >
-              <Image
-                src="https://swayamurja.com/wp-content/uploads/2023/08/Logo1.png"
-                alt="SwayamUrja Renewable Energy Pvt. Ltd."
-                width={180}
-                height={42}
-                style={{
-                  objectFit: 'contain',
-                  maxHeight: '40px',
-                  width: 'auto',
-                  maxWidth: '180px',
-                  display: 'block',
-                }}
-                className="group-hover:scale-105 transition-transform duration-300"
-                priority
-                unoptimized
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
-            </div>
-            <span className="font-extrabold text-xl tracking-tight text-emerald-950 font-['Outfit'] leading-none hidden [.img-error_&]:inline">
-              Swayam<span className="text-amber-500">Urja</span>
-            </span>
+            {!logoError ? (
+              <div
+                className="relative w-44 h-10 overflow-hidden flex items-center"
+                style={{ width: '180px', height: '42px', position: 'relative', overflow: 'hidden' }}
+              >
+                <Image
+                  src="/assets/logo.webp"
+                  alt="SwayamUrja Renewable Energy Pvt. Ltd."
+                  width={180}
+                  height={42}
+                  style={{
+                    objectFit: 'contain',
+                    maxHeight: '40px',
+                    width: 'auto',
+                    maxWidth: '180px',
+                    display: 'block',
+                  }}
+                  className="group-hover:scale-105 transition-transform duration-300"
+                  priority
+                  unoptimized
+                  onError={() => setLogoError(true)}
+                />
+              </div>
+            ) : (
+              <span className="font-extrabold text-xl tracking-tight text-emerald-950 font-['Outfit'] leading-none">
+                Swayam<span className="text-amber-500">Urja</span>
+              </span>
+            )}
           </Link>
 
           {/* ── Desktop Nav: Home -> About Us -> Services -> Projects -> Blogs -> Careers ── */}

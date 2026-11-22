@@ -2,6 +2,7 @@ export interface ProposalData {
   clientName?: string;
   category: 'residential' | 'commercial' | 'housing';
   monthlyBill: number;
+  tariffRate?: number;
   kw: number;
   roofSqft: number;
   subsidy: number;
@@ -12,6 +13,11 @@ export interface ProposalData {
   paybackYears: string;
   co2Tons: string;
   isMarathi?: boolean;
+  companyContact?: {
+    phone?: string;
+    email?: string;
+    address?: string;
+  };
 }
 
 export function generateSolarProposalPDF(data: ProposalData): void {
@@ -22,22 +28,38 @@ export function generateSolarProposalPDF(data: ProposalData): void {
     year: 'numeric',
   });
 
+  const isMr = Boolean(data.isMarathi);
   const categoryLabel =
     data.category === 'commercial'
-      ? 'Commercial & Industrial (C&I MIDC)'
+      ? isMr ? 'व्यावसायिक आणि औद्योगिक (C&I MIDC)' : 'Commercial & Industrial (C&I MIDC)'
       : data.category === 'housing'
-      ? 'Co-operative Housing Society'
-      : 'Residential Rooftop (PM Surya Ghar)';
+      ? isMr ? 'सहकारी गृहनिर्माण संस्था (CHS)' : 'Co-operative Housing Society'
+      : isMr ? 'घरगुती रूफटॉप (पीएम सूर्य घर)' : 'Residential Rooftop (PM Surya Ghar)';
 
-  const tariffRate = data.category === 'commercial' ? 11.5 : data.category === 'housing' ? 9.2 : 8.5;
+  const tariffRate =
+    data.tariffRate && data.tariffRate > 0
+      ? data.tariffRate
+      : data.category === 'commercial'
+      ? 11.5
+      : data.category === 'housing'
+      ? 9.2
+      : 8.5;
   const estimatedUnits = Math.round(data.monthlyBill / tariffRate);
   const annualUnits = Math.round(data.kw * 1500);
   const grossEstimatedCost = Math.round(data.kw * (data.category === 'commercial' ? 44000 : 56000));
   const netEstimatedCost = Math.max(0, grossEstimatedCost - data.subsidy);
-  const fiveYearSavings = data.annualSavings * 5;
-  const tenYearSavings = data.annualSavings * 10;
+  const fiveYearSavings = Math.round(data.annualSavings * 5);
+  const tenYearSavings = Math.round(data.annualSavings * 10);
+  const yr5AnnualSavings = Math.round(data.annualSavings * 1.08);
+  const yr10AnnualSavings = Math.round(data.annualSavings * 1.18);
   const co2Lifetime = (parseFloat(data.co2Tons) * 25).toFixed(0);
   const treesEquivalent = Math.round(data.kw * 42);
+
+  const officeAddress =
+    data.companyContact?.address ||
+    'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014';
+  const contactPhone = data.companyContact?.phone || '+91 92721 00623';
+  const contactEmail = data.companyContact?.email || 'crm@swayamurja.com';
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -263,20 +285,20 @@ export function generateSolarProposalPDF(data: ProposalData): void {
   <div class="header">
     <div>
       <div class="brand-title">Swayam<span>Urja</span></div>
-      <div class="brand-sub">SwayamUrja Renewable Energy Pvt. Ltd. | EPC Solutions</div>
-      <div class="brand-sub">CIN: U40106PN2020PTC195234 | GSTIN: 27AAMCS8921N1ZM | MNRE Channel Partner</div>
+      <div class="brand-sub">SwayamUrja Renewable Energy Pvt. Ltd. | ISO 9001:2015 Certified by TÜV SÜD</div>
+      <div class="brand-sub">CIN: U43219PN2023PTC220327 | GSTIN: 27ABKCS7507GIZ2 | PM Surya Ghar Empaneled Vendor</div>
     </div>
     <div class="meta-box">
       <div>Reference: <span class="meta-ref">${proposalId}</span></div>
       <div>Date: <strong>${dateStr}</strong></div>
-      <div>Location: Baner, Pune, Maharashtra 411045</div>
+      <div>Location: New Kalyani Nagar, Wadgaon Sheri, Pune 411014</div>
     </div>
   </div>
 
   <div class="doc-banner">
     <div>
-      <h2>PRELIMINARY SOLAR EPC FEASIBILITY &amp; ROI REPORT</h2>
-      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">Prepared for: ${data.clientName ? data.clientName : 'Prospective Solar Client'}</div>
+      <h2>${isMr ? 'प्राथमिक सौर ऊर्जा EPC व्यवहार्यता व बचत अहवाल' : 'PRELIMINARY SOLAR EPC FEASIBILITY &amp; ROI REPORT'}</h2>
+      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">${isMr ? 'तयार केलेला ग्राहक:' : 'Prepared for:'} ${data.clientName ? data.clientName : (isMr ? 'संभाव्य सौर ग्राहक' : 'Prospective Solar Client')}</div>
     </div>
     <div class="badge">${categoryLabel}</div>
   </div>
@@ -362,13 +384,13 @@ export function generateSolarProposalPDF(data: ProposalData): void {
         </tr>
         <tr>
           <td><strong>Year 5</strong></td>
-          <td>₹ ${(data.annualSavings * 1.08).toLocaleString('en-IN')} (assuming 2% tariff hike)</td>
+          <td>₹ ${yr5AnnualSavings.toLocaleString('en-IN')} (assuming 2% tariff hike)</td>
           <td>₹ ${fiveYearSavings.toLocaleString('en-IN')}</td>
           <td><strong>Full Payback Achieved</strong></td>
         </tr>
         <tr>
           <td><strong>Year 10</strong></td>
-          <td>₹ ${(data.annualSavings * 1.18).toLocaleString('en-IN')}</td>
+          <td>₹ ${yr10AnnualSavings.toLocaleString('en-IN')}</td>
           <td>₹ ${tenYearSavings.toLocaleString('en-IN')}</td>
           <td>Pure Profit &amp; Free Clean Energy</td>
         </tr>
@@ -411,8 +433,8 @@ export function generateSolarProposalPDF(data: ProposalData): void {
 
   <div class="footer">
     <div>
-      <strong>SwayamUrja Renewable Energy Pvt. Ltd.</strong> | Head Office: Baner, Pune, MH 411045
-      <br>Contact: +91 92721 00623 | sales@swayamurja.com | www.swayamurja.com
+      <strong>SwayamUrja Renewable Energy Pvt. Ltd.</strong> | ${officeAddress}
+      <br>Contact: ${contactPhone} | ${contactEmail} | www.swayamurja.com
     </div>
     <div style="text-align: right;">
       Generated via SwayamUrja Engineering Portal
@@ -435,6 +457,9 @@ export function generateSolarProposalPDF(data: ProposalData): void {
   const url = URL.createObjectURL(blob);
   const printWindow = window.open(url, '_blank');
   if (!printWindow) {
+    URL.revokeObjectURL(url);
     alert('Please allow popups for this site to view and download your PDF Solar Feasibility Report.');
+  } else {
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
   }
 }

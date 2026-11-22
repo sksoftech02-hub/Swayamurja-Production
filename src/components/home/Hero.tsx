@@ -36,16 +36,16 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
   const projects = {
     industrial: {
       title: isMr ? '१३ MW युटिलिटी व MIDC औद्योगिक प्रकल्प' : '13 MW Utility & MIDC Industrial EPC',
-      location: isMr ? 'सोलापूर व चाकण MIDC, महाराष्ट्र' : 'Solapur & Chakan MIDC, Maharashtra',
-      image: 'https://swayamurja.com/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-07-at-9.27.46-PM-scaled.jpeg',
+      location: isMr ? 'सांगली, कराड व हैदराबाद, भारत' : 'Sangli, Karad & Hyderabad, India',
+      image: '/uploads/projects/prd-foods-manikchand-990kw.jpg',
       badge: isMr ? '५०+ एकर प्रत्यक्ष प्रकल्प' : 'Flagship 50+ Acres EPC',
       spec: isMr ? '३३ kV समर्पित सबस्टेशन जोडणी' : '33 kV Dedicated Substation Integration',
       efficiency: '22.8% Bifacial TOPCon',
     },
     rooftop: {
       title: isMr ? 'व्यावसायिक व निवासी रूफटॉप सोलर' : 'Commercial & Turnkey Rooftop Solar',
-      location: isMr ? 'पुणे, नाशिक व पश्चिम महाराष्ट्र' : 'Pune, Nashik & Western Maharashtra',
-      image: 'https://swayamurja.com/wp-content/uploads/2024/11/SAVE_20241117_130600-scaled.jpg',
+      location: isMr ? 'पुणे, कराड व पश्चिम महाराष्ट्र' : 'Pune, Karad & Western Maharashtra',
+      image: '/uploads/projects/the-fern-residency-karad-350kw.jpg',
       badge: isMr ? '१००% नेट-मीटरिंग हमी' : '100% Net-Metering Approved',
       spec: isMr ? 'शून्य वीजबिल + ४०% प्राप्तिकर घसारा' : 'Zero Electricity Bill + 40% Tax Write-off',
       efficiency: 'Tier-1 Mono PERC High-Yield',
@@ -391,27 +391,51 @@ export const Hero: React.FC = () => {
               </Link>
             </div>
 
-            {/* Social proof strip */}
+            {/* Social proof strip (CMS-driven from content.stats with safe fallbacks) */}
             <div
               className={`flex flex-wrap items-center gap-6 pt-3 border-t animate-slide-up delay-500 ${
                 isLight ? 'border-slate-200' : 'border-slate-800/80'
               }`}
             >
               {[
-                { n: 1600, s: '+ MW', l: isMr ? 'विकसित पवन व सौर' : 'Developed India' },
-                { n: 550, s: '+', l: isMr ? 'पूर्ण प्रकल्प' : 'Clean Energy Projects' },
-                { n: 25, s: '+ Yrs', l: isMr ? 'क्षेत्रातील अनुभव' : 'Sector Leadership' },
-              ].map((stat, i) => (
-                <div key={i} className="text-left min-w-[70px]">
-                  <div
-                    className="text-2xl font-extrabold font-['Outfit'] leading-none"
-                    style={{ color: theme.primaryColor || '#f59e0b' }}
-                  >
-                    {mounted ? <Counter end={stat.n} suffix={stat.s} duration={2000} /> : `${stat.n}${stat.s}`}
+                {
+                  val: content?.stats?.totalMw || '1,600+ MW',
+                  l: isMr
+                    ? content?.stats?.totalMwLabel?.mr || 'विकसित पवन व सौर'
+                    : content?.stats?.totalMwLabel?.en || 'Developed India',
+                },
+                {
+                  val: content?.stats?.clients || '550+',
+                  l: isMr
+                    ? content?.stats?.clientsLabel?.mr || 'पूर्ण प्रकल्प'
+                    : content?.stats?.clientsLabel?.en || 'Clean Energy Projects',
+                },
+                {
+                  val: content?.stats?.uptime || '99.4%',
+                  l: isMr
+                    ? content?.stats?.uptimeLabel?.mr || 'अपटाइम गुणवत्ता हमी'
+                    : content?.stats?.uptimeLabel?.en || 'SCADA Plant Availability',
+                },
+              ].map((stat, i) => {
+                const match = String(stat.val).match(/^([0-9,]+)(.*)$/);
+                const parsedNum = match ? parseInt(match[1].replace(/,/g, ''), 10) : NaN;
+                const suffix = match ? match[2] : '';
+                return (
+                  <div key={i} className="text-left min-w-[70px]">
+                    <div
+                      className="text-2xl font-extrabold font-['Outfit'] leading-none"
+                      style={{ color: theme.primaryColor || '#f59e0b' }}
+                    >
+                      {mounted && !isNaN(parsedNum) && !stat.val.includes('.') ? (
+                        <Counter end={parsedNum} suffix={suffix} duration={2000} />
+                      ) : (
+                        stat.val
+                      )}
+                    </div>
+                    <div className={`text-[11px] font-medium mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{stat.l}</div>
                   </div>
-                  <div className={`text-[11px] font-medium mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{stat.l}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

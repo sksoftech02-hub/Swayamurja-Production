@@ -54,11 +54,15 @@ export const CareersSection: React.FC = () => {
     ? content.openJobs.filter(j => j.isActive !== false)
     : DEFAULT_JOBS;
 
+  const whatsappDigits =
+    (content?.companyContact?.whatsapp || content?.companyContact?.phone || '919272100623').replace(/[^0-9]/g, '') ||
+    '919272100623';
+
   const applyViaWhatsApp = (jobTitle: string) => {
     const text = encodeURIComponent(
       `Hello SwayamUrja HR Team, I am interested in applying for the position of "${jobTitle}". Please let me know how to share my CV / resume.`
     );
-    window.open(`https://wa.me/919272100623?text=${text}`, '_blank');
+    window.open(`https://wa.me/${whatsappDigits}?text=${text}`, '_blank');
   };
 
   return (

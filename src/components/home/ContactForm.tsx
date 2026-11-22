@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
@@ -12,6 +12,14 @@ export const ContactForm: React.FC = () => {
   const theme: SiteTheme = content?.theme || DEFAULT_THEME;
   const isMr = language === 'mr';
 
+  const contactPhone = content?.companyContact?.phone || '+91 92721 00623';
+  const contactTelHref = contactPhone.replace(/[^+0-9]/g, '');
+  const contactWaDigits = (content?.companyContact?.whatsapp || contactPhone).replace(/[^0-9]/g, '') || '919272100623';
+  const contactEmail = content?.companyContact?.email || 'crm@swayamurja.com';
+  const contactAddressEn =
+    content?.companyContact?.address ||
+    'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune 411014';
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -21,6 +29,23 @@ export const ContactForm: React.FC = () => {
     city: '',
     notes: '',
   });
+
+  // Receive Solar Calculator estimates cleanly via React state (fixes controlled-input wipe)
+  useEffect(() => {
+    const handlePrefill = (event: Event) => {
+      const detail = (event as CustomEvent<{ monthlyBill?: string; notes?: string; service?: string }>).detail;
+      if (!detail) return;
+      setSuccess(false);
+      setFormData((prev) => ({
+        ...prev,
+        monthlyBill: detail.monthlyBill ?? prev.monthlyBill,
+        notes: detail.notes ?? prev.notes,
+        service: detail.service ?? prev.service,
+      }));
+    };
+    window.addEventListener('swayamurja:prefill-contact', handlePrefill);
+    return () => window.removeEventListener('swayamurja:prefill-contact', handlePrefill);
+  }, []);
 
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -86,7 +111,7 @@ export const ContactForm: React.FC = () => {
     const msg = encodeURIComponent(
       `Hi SwayamUrja Team, my name is ${name} from ${city}. I am interested in ${formData.service} with monthly electricity bill of ${formData.monthlyBill || 'N/A'}. Please share technical proposal and quotation.`
     );
-    window.open(`https://wa.me/919272100623?text=${msg}`, '_blank');
+    window.open(`https://wa.me/${contactWaDigits}?text=${msg}`, '_blank');
   };
 
   return (
@@ -128,8 +153,8 @@ export const ContactForm: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block">{isMr ? 'थेट फोन' : 'Direct Helpline'}</span>
-                    <a href="tel:+919272100623" className="font-bold text-white hover:text-emerald-400 transition-colors">
-                      +91 92721 00623
+                    <a href={`tel:${contactTelHref}`} className="font-bold text-white hover:text-emerald-400 transition-colors">
+                      {contactPhone}
                     </a>
                   </div>
                 </div>
@@ -140,8 +165,8 @@ export const ContactForm: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block">{isMr ? 'अधिकृत ईमेल' : 'Official Enquiries'}</span>
-                    <a href="mailto:crm@swayamurja.com" className="font-bold text-white hover:text-emerald-400 transition-colors">
-                      crm@swayamurja.com
+                    <a href={`mailto:${contactEmail}`} className="font-bold text-white hover:text-emerald-400 transition-colors">
+                      {contactEmail}
                     </a>
                   </div>
                 </div>
@@ -155,7 +180,7 @@ export const ContactForm: React.FC = () => {
                     <span className="font-semibold text-white text-xs leading-relaxed block">
                       {isMr 
                         ? 'टी९, ए-१००१, ब्रह्मा बिझनेस पार्क, न्यू कल्याणी नगर, वडगाव शेरी, पुणे ४११०१४'
-                        : 'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune 411014'
+                        : contactAddressEn
                       }
                     </span>
                   </div>

@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSiteContent, updateSiteContent, SiteContent } from '@/lib/content-store';
-import { isAuthenticatedAdmin, isAuthenticatedSuperAdmin } from '@/lib/auth';
+import { syncContentToDatabase } from '@/lib/content-db-sync';
+import {
+  isAuthenticatedAdmin,
+  isAuthenticatedSuperAdmin,
+  getAuthenticatedActor,
+  getClientIp,
+} from '@/lib/auth';
+import { prisma } from '@/lib/db';
 
 // Root-only keys that regular Staff Admins are forbidden from mutating
 const SUPER_ADMIN_ONLY_KEYS: Array<keyof SiteContent> = [
@@ -43,8 +50,8 @@ export async function PUT(req: NextRequest) {
 
     // 2. Enforce server-side field-level RBAC for Root-only settings
     const isSuper = isAuthenticatedSuperAdmin(req);
+    const current = getSiteContent();
     if (!isSuper) {
-      const current = getSiteContent();
       const forbiddenChanges: string[] = [];
 
       for (const key of SUPER_ADMIN_ONLY_KEYS) {
@@ -65,6 +72,30 @@ export async function PUT(req: NextRequest) {
     }
 
     const updated = updateSiteContent(body);
+
+    // 3. Mirror CMS tables cleanly into PostgreSQL so Super Admin stats & Prisma Studio stay in sync
+    await syncContentToDatabase(updated);
+
+    // 4. Write audit log for content update
+    try {
+      const actor = getAuthenticatedActor(req);
+      const changedKeys = Object.keys(body).filter(
+        (k) => !stableEquals((body as Record<string, unknown>)[k], (current as unknown as Record<string, unknown>)[k])
+      );
+      if (changedKeys.length > 0) {
+        await prisma.auditLog.create({
+          data: {
+            username: actor?.username || (isSuper ? 'sksoftech_master' : 'admin'),
+            action: 'UPDATE_CMS_CONTENT',
+            targetTable: 'site_content',
+            targetId: 'global',
+            newValues: { updatedSections: changedKeys },
+            ipAddress: getClientIp(req),
+          },
+        });
+      }
+    } catch (_) {}
+
     return NextResponse.json({ success: true, content: updated });
   } catch (error) {
     console.error('Failed to update content:', error);

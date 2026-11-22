@@ -14,7 +14,7 @@ const SERVICES = [
     descEn: 'On-grid rooftop solar for homes with PM Surya Ghar subsidy, MSEDCL net-metering approval, and complete turnkey execution.',
     descMr: 'घरांसाठी ऑन-ग्रिड सोलर. PM सूर्य घर सबसिडी व MSEDCL नेट-मीटरिंग मदतीसह संपूर्ण टर्नकी इंस्टॉलेशन.',
     highlight: '₹78,000 Subsidy',
-    image: 'https://swayamurja.com/wp-content/uploads/2024/01/residential-solar.jpg',
+    image: '/uploads/projects/24k-kolte-patil-pune-60kw.jpg',
     fallbackBg: 'from-amber-400/20 to-orange-400/10',
   },
   {
@@ -26,7 +26,7 @@ const SERVICES = [
     descEn: 'Large-scale C&I solar for factories, MIDC units, and commercial buildings. 40% accelerated tax depreciation available.',
     descMr: 'कारखाने, MIDC युनिट्स व व्यावसायिक इमारतींसाठी मोठे सोलर. ४०% कर घसारा लाभ उपलब्ध.',
     highlight: '40% Tax Depreciation',
-    image: 'https://swayamurja.com/wp-content/uploads/2024/01/industrial-solar.jpg',
+    image: '/uploads/projects/prd-foods-manikchand-990kw.jpg',
     fallbackBg: 'from-blue-400/20 to-indigo-400/10',
   },
   {
@@ -35,10 +35,10 @@ const SERVICES = [
     color: 'violet',
     titleEn: 'Utility Scale Projects',
     titleMr: 'युटिलिटी स्केल प्रकल्प',
-    descEn: "Ground-mounted multi-MW solar farms like our 13 MW Solapur flagship project powering Maharashtra's grid.",
-    descMr: 'ग्राउंड-माउंटेड मल्टी-MW सोलर फार्म. सोलापूर येथील आमचा १३ MW प्रकल्प महाराष्ट्राच्या ग्रिडला वीज पुरवतो.',
-    highlight: '13 MW Solapur Plant',
-    image: 'https://swayamurja.com/wp-content/uploads/2024/01/utility-solar.jpg',
+    descEn: "Ground-mounted multi-MW solar farms like our 13 MW Sangli flagship parks powering Maharashtra's grid.",
+    descMr: 'ग्राउंड-माउंटेड मल्टी-MW सोलर फार्म. सांगली येथील आमचे १३ MW प्रकल्प महाराष्ट्राच्या ग्रीडला वीज पुरवतात.',
+    highlight: '13 MW Utility Parks',
+    image: '/uploads/projects/13mw-utility-solar.jpg',
     fallbackBg: 'from-violet-400/20 to-purple-400/10',
   },
   {

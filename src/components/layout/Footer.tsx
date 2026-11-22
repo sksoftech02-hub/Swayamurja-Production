@@ -3,11 +3,21 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { useContent } from '@/context/ContentContext';
 import { Sun, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t, language } = useLanguage();
+  const { content } = useContent();
   const isMr = language === 'mr';
+
+  const blogUrl = content?.blogLinkedInUrl || 'https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/';
+  const contactPhone = content?.companyContact?.phone || '+91 92721 00623';
+  const contactTelHref = contactPhone.replace(/[^+0-9]/g, '');
+  const contactEmail = content?.companyContact?.email || 'crm@swayamurja.com';
+  const contactAddressEn =
+    content?.companyContact?.address ||
+    'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014';
 
   const defaultDesc = isMr 
     ? 'स्वयमऊर्जा ही महाराष्ट्रातील अग्रगण्य स्वच्छ ऊर्जा EPC कंपनी असून रूफटॉप, १३ मेगावॅट युटिलिटी सोलर, पवन आणि बॅटरी स्टोरेज प्रकल्पांमध्ये कार्यरत आहे.'
@@ -33,9 +43,9 @@ export const Footer: React.FC = () => {
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               {companyBio}
             </p>
-            <div className="pt-2 text-xs text-slate-500 space-y-1">
-              <p>CIN: U40106PN2020PTC195234 (Registered in Pune, Maharashtra)</p>
-              <p>GSTIN: 27AAMCS8921N1ZM | MNRE Channel Partner</p>
+            <div className="pt-2 text-xs text-slate-400 space-y-1">
+              <p>PM Surya Ghar Empaneled Vendor | ISO 9001:2015 by TÜV SÜD</p>
+              <p className="text-slate-500">Registered Office: Pune, Maharashtra</p>
             </div>
           </div>
 
@@ -45,13 +55,19 @@ export const Footer: React.FC = () => {
               {isMr ? 'जलद दुवे' : 'Quick Navigation'}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link href="#calculator" className="hover:text-amber-400 transition-colors">{t('nav_calc')}</Link></li>
-              <li><Link href="#solapur-map" className="hover:text-amber-400 transition-colors">{t('nav_utility')}</Link></li>
-              <li><Link href="#services" className="hover:text-amber-400 transition-colors">{t('nav_services')}</Link></li>
-              <li><Link href="#projects" className="hover:text-amber-400 transition-colors">{t('nav_projects')}</Link></li>
-              <li><Link href="#blog" className="hover:text-amber-400 transition-colors">{isMr ? 'ब्लॉग व माहिती' : 'Solar Blog'}</Link></li>
-              <li><Link href="#careers" className="hover:text-amber-400 transition-colors">{t('nav_careers')}</Link></li>
-              <li><Link href="#contact" className="hover:text-amber-400 transition-colors">{t('nav_contact')}</Link></li>
+              <li><Link href="/about-us" className="hover:text-amber-400 transition-colors">{isMr ? 'आमच्याबद्दल' : 'About Us'}</Link></li>
+              <li><Link href="/#calculator" className="hover:text-amber-400 transition-colors">{t('nav_calc')}</Link></li>
+              <li><Link href="/#solapur-map" className="hover:text-amber-400 transition-colors">{t('nav_utility')}</Link></li>
+              <li><Link href="/#services" className="hover:text-amber-400 transition-colors">{t('nav_services')}</Link></li>
+              <li><Link href="/#projects" className="hover:text-amber-400 transition-colors">{t('nav_projects')}</Link></li>
+              <li>
+                <a href={blogUrl} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1">
+                  <span>{isMr ? 'ब्लॉग व माहिती' : 'Solar Blog (LinkedIn)'}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </li>
+              <li><Link href="/#careers" className="hover:text-amber-400 transition-colors">{t('nav_careers')}</Link></li>
+              <li><Link href="/#contact" className="hover:text-amber-400 transition-colors">{t('nav_contact')}</Link></li>
             </ul>
           </div>
 
@@ -90,17 +106,17 @@ export const Footer: React.FC = () => {
                 <span className="leading-relaxed">
                   {isMr 
                     ? 'टी९, ए-१००१, ब्रह्मा बिझनेस पार्क, न्यू कल्याणी नगर, वडगाव शेरी, पुणे, महाराष्ट्र ४११०१४'
-                    : 'T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014'
+                    : contactAddressEn
                   }
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-emerald-500 shrink-0" />
-                <a href="tel:+919272100623" className="hover:text-white">+91 92721 00623</a>
+                <a href={`tel:${contactTelHref}`} className="hover:text-white">{contactPhone}</a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-emerald-500 shrink-0" />
-                <a href="mailto:crm@swayamurja.com" className="hover:text-white">crm@swayamurja.com</a>
+                <a href={`mailto:${contactEmail}`} className="hover:text-white">{contactEmail}</a>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-slate-500">
                 <span className="text-emerald-500 font-bold">HR:</span>

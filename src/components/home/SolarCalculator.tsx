@@ -17,12 +17,8 @@ export const SolarCalculator: React.FC = () => {
   const [category, setCategory] = useState<'residential' | 'commercial' | 'housing'>('residential');
   const [bill, setBill] = useState<number>(4500);
 
-  // Dynamic tariffs from CMS if available
-  const resTariff = content?.tariffs?.residentialUnitRate || 8.5;
-  const comTariff = content?.tariffs?.commercialUnitRate || 11.5;
-  const socTariff = content?.tariffs?.housingUnitRate || 9.2;
-
-  const estimate = calculateSolar(bill, category, isMr);
+  // Dynamic tariffs & subsidy slabs from CMS if available
+  const estimate = calculateSolar(bill, category, isMr, content?.tariffs);
 
   const handleCategoryChange = (cat: 'residential' | 'commercial' | 'housing') => {
     setCategory(cat);
@@ -255,12 +251,19 @@ export const SolarCalculator: React.FC = () => {
                 <a
                   href={`#contact`}
                   onClick={() => {
-                    const billInput = document.getElementById('clientBill') as HTMLInputElement;
-                    const msgInput = document.getElementById('clientNotes') as HTMLTextAreaElement;
-                    if (billInput) billInput.value = `₹ ${bill.toLocaleString('en-IN')}`;
-                    if (msgInput) {
-                      msgInput.value = `Calculated Estimate: ${estimate.kw} kW solar system required for average monthly bill of ₹ ${bill.toLocaleString('en-IN')}. Roof area: ~${estimate.roofSqft} sq.ft.`;
-                    }
+                    const mappedService =
+                      category === 'commercial'
+                        ? 'Commercial & Industrial (C&I)'
+                        : 'Residential Rooftop Solar';
+                    window.dispatchEvent(
+                      new CustomEvent('swayamurja:prefill-contact', {
+                        detail: {
+                          monthlyBill: `₹ ${bill.toLocaleString('en-IN')}`,
+                          service: mappedService,
+                          notes: `Calculated Estimate: ${estimate.kw} kW solar system required for average monthly bill of ₹ ${bill.toLocaleString('en-IN')}. Roof area: ~${estimate.roofSqft} sq.ft. Estimated subsidy/incentive: ${estimate.subsidyText}.`,
+                        },
+                      })
+                    );
                   }}
                   style={{
                     backgroundColor: theme.primaryColor || '#f59e0b',
@@ -280,6 +283,7 @@ export const SolarCalculator: React.FC = () => {
                     generateSolarProposalPDF({
                       category,
                       monthlyBill: bill,
+                      tariffRate: estimate.tariffRate,
                       kw: estimate.kw,
                       roofSqft: estimate.roofSqft,
                       subsidy: estimate.subsidy,
@@ -290,6 +294,7 @@ export const SolarCalculator: React.FC = () => {
                       paybackYears: estimate.paybackYears,
                       co2Tons: estimate.co2Tons,
                       isMarathi: isMr,
+                      companyContact: content?.companyContact,
                     });
                   }}
                   className="w-full mt-3 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold text-sm shadow-md transition-all cursor-pointer hover:border-emerald-400 group"

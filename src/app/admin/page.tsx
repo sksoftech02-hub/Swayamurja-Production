@@ -782,31 +782,55 @@ export default function AdminPage() {
     }
   };
 
+  const handleDeleteLead = async (id: string, name: string) => {
+    if (!confirm(`Permanently delete lead "${name}"? This action is audit-logged.`)) return;
+    try {
+      const res = await fetch(`/api/leads?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLeads((prev) => prev.filter((lead) => lead.id !== id));
+      } else {
+        alert(data.error || 'Failed to delete lead.');
+      }
+    } catch (err) {
+      console.error('Failed to delete lead:', err);
+    }
+  };
+
+  // Safe CSV cell serializer (neutralizes Excel/DDE formula injection)
+  const csvSafeCell = (raw: string | undefined | null): string => {
+    const str = String(raw ?? '').replace(/\r?\n/g, ' ');
+    const neutralized = /^[=+\-@\t\r]/.test(str) ? `'${str}` : str;
+    return `"${neutralized.replace(/"/g, '""')}"`;
+  };
+
   const exportToCSV = () => {
     if (leads.length === 0) return;
     const headers = ['ID', 'Date', 'Name', 'Phone', 'Email', 'Service', 'Monthly Bill', 'Recommended kW', 'Subsidy', 'City', 'Status', 'Notes'];
     const rows = leads.map((l) => [
-      l.id,
-      new Date(l.createdAt).toLocaleDateString('en-IN'),
-      `"${l.name.replace(/"/g, '""')}"`,
-      l.phone,
-      l.email || '',
-      `"${l.service.replace(/"/g, '""')}"`,
-      l.monthlyBill || '',
-      l.recommendedKw || '',
-      l.subsidyAmount || '',
-      `"${l.city.replace(/"/g, '""')}"`,
-      l.status,
-      `"${(l.notes || '').replace(/"/g, '""')}"`,
+      csvSafeCell(l.id),
+      csvSafeCell(new Date(l.createdAt).toLocaleDateString('en-IN')),
+      csvSafeCell(l.name),
+      csvSafeCell(l.phone),
+      csvSafeCell(l.email || ''),
+      csvSafeCell(l.service),
+      csvSafeCell(l.monthlyBill || ''),
+      csvSafeCell(l.recommendedKw || ''),
+      csvSafeCell(l.subsidyAmount || ''),
+      csvSafeCell(l.city),
+      csvSafeCell(l.status),
+      csvSafeCell(l.notes || ''),
     ]);
-    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
+    link.setAttribute('href', url);
     link.setAttribute('download', `SwayamUrja_Leads_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const filteredLeads = leads.filter((lead) => {
@@ -1587,6 +1611,14 @@ export default function AdminPage() {
                                 >
                                   <Phone className="w-4 h-4" />
                                 </a>
+                                <button
+                                  type="button"
+                                  onClick={() => handleDeleteLead(lead.id, lead.name)}
+                                  className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 cursor-pointer"
+                                  title="Delete Lead (DPDP Erasure)"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
                               </div>
                             </td>
                           </tr>
