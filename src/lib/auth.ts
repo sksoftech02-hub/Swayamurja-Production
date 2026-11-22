@@ -1,145 +1,243 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import crypto from 'crypto';
 
 export const SESSION_COOKIE_NAME = 'swayamurja_admin_session';
 export const SUPER_ADMIN_COOKIE_NAME = 'swayamurja_super_admin_session';
 
-// Secret key for HMAC signature (use environment variable in production)
-const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'swayamurja-secret-key-pune-2026-secure-session-salt-98271';
+const SESSION_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const SCRYPT_KEY_LEN = 64;
+const SCRYPT_PARAMS = { N: 16384, r: 8, p: 1 };
 
-// Supported admin passwords
-const VALID_PASSWORDS = [
-  process.env.ADMIN_PASSWORD || 'swayamurja@2026',
-  'admin123',
-  'swayamurja@epc2026'
-];
+// Per-IP sliding-window brute-force limiter for login endpoints
+const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const MAX_FAILED_LOGINS = 5;
+const failedLoginMap = new Map<string, number[]>();
 
-// Super Admin master credentials for SK Softech
-const VALID_SUPER_ADMIN_PASSWORDS = [
-  process.env.SUPER_ADMIN_PASSWORD || 'sksoftech@2026',
-  'sksoftech#master',
-  'superadmin2026'
-];
-
-export function validateSuperAdminPassword(password: string): boolean {
-  if (!password || typeof password !== 'string') return false;
-  return VALID_SUPER_ADMIN_PASSWORDS.includes(password.trim());
+/**
+ * Retrieves HMAC session signing secret strictly from environment variables.
+ * Fails closed if no strong secret is configured.
+ */
+function getSessionSecret(): string {
+  const secret = (process.env.SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || '').trim();
+  if (!secret || secret.length < 16) {
+    throw new Error('CRITICAL SECURITY CONFIG: SESSION_SECRET environment variable (min 16 chars) is required.');
+  }
+  return secret;
 }
 
 /**
- * Validates an entered admin password against authorized credentials
+ * Extracts client IP address cleanly from incoming request headers.
  */
-export function validateAdminPassword(password: string): boolean {
-  if (!password || typeof password !== 'string') return false;
-  return VALID_PASSWORDS.includes(password.trim());
+export function getClientIp(req: NextRequest): string {
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    const first = forwardedFor.split(',')[0]?.trim();
+    if (first) return first;
+  }
+  const realIp = req.headers.get('x-real-ip')?.trim();
+  if (realIp) return realIp;
+  return '127.0.0.1';
 }
 
 /**
- * Generates an HMAC-signed session token for Super Admin (sksoftech)
+ * Checks whether an IP + scope (admin / super_admin) is currently rate-limited.
  */
-export function generateSuperAdminSessionToken(username = 'sksoftech_master'): string {
+export function checkLoginRateLimit(scope: 'admin' | 'super_admin', ip: string): {
+  limited: boolean;
+  retryAfterSec: number;
+} {
+  const key = `${scope}:${ip}`;
+  const now = Date.now();
+  const timestamps = (failedLoginMap.get(key) || []).filter((ts) => now - ts < LOGIN_WINDOW_MS);
+
+  if (timestamps.length === 0) {
+    failedLoginMap.delete(key);
+    return { limited: false, retryAfterSec: 0 };
+  }
+
+  failedLoginMap.set(key, timestamps);
+  if (timestamps.length >= MAX_FAILED_LOGINS) {
+    const oldest = timestamps[0];
+    const retryAfterSec = Math.max(1, Math.ceil((LOGIN_WINDOW_MS - (now - oldest)) / 1000));
+    return { limited: true, retryAfterSec };
+  }
+
+  return { limited: false, retryAfterSec: 0 };
+}
+
+export function recordFailedLogin(scope: 'admin' | 'super_admin', ip: string): void {
+  const key = `${scope}:${ip}`;
+  const now = Date.now();
+  const timestamps = (failedLoginMap.get(key) || []).filter((ts) => now - ts < LOGIN_WINDOW_MS);
+  timestamps.push(now);
+  failedLoginMap.set(key, timestamps);
+}
+
+export function clearLoginAttempts(scope: 'admin' | 'super_admin', ip: string): void {
+  failedLoginMap.delete(`${scope}:${ip}`);
+}
+
+/**
+ * Cryptographically hashes a password using Node's native scrypt KDF + 16-byte random salt.
+ * Stored format: scrypt$<saltHex>$<derivedKeyHex>
+ */
+export function hashPassword(plainPassword: string): string {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const derived = crypto.scryptSync(plainPassword, salt, SCRYPT_KEY_LEN, SCRYPT_PARAMS).toString('hex');
+  return `scrypt$${salt}$${derived}`;
+}
+
+/**
+ * Verifies a plaintext password against a stored scrypt hash using constant-time comparison.
+ */
+export function verifyPassword(plainPassword: string, storedHash: string): boolean {
+  if (!plainPassword || !storedHash || typeof plainPassword !== 'string' || typeof storedHash !== 'string') {
+    return false;
+  }
+
+  if (!storedHash.startsWith('scrypt$')) {
+    return false;
+  }
+
+  const parts = storedHash.split('$');
+  if (parts.length !== 3) return false;
+
+  const [, salt, expectedHex] = parts;
+  if (!salt || !expectedHex) return false;
+
+  try {
+    const derived = crypto.scryptSync(plainPassword, salt, SCRYPT_KEY_LEN, SCRYPT_PARAMS);
+    const expected = Buffer.from(expectedHex, 'hex');
+    if (derived.length !== expected.length) return false;
+    return crypto.timingSafeEqual(derived, expected);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Constant-time string comparison for optional env-configured credentials.
+ */
+export function timingSafeStringEqual(a: string, b: string): boolean {
+  const bufA = Buffer.from(a, 'utf-8');
+  const bufB = Buffer.from(b, 'utf-8');
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
+/**
+ * Generates an HMAC-SHA256 signed session token for Super Admin.
+ */
+export function generateSuperAdminSessionToken(username: string): string {
+  const safeUser = username.replace(/[^a-zA-Z0-9_.-]/g, '');
   const timestamp = Date.now();
-  const payload = `super_admin:${username}:${timestamp}`;
-  const signature = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
+  const payload = `super_admin:${safeUser}:${timestamp}`;
+  const signature = crypto.createHmac('sha256', getSessionSecret()).update(payload).digest('hex');
   return `${payload}.${signature}`;
 }
 
 /**
- * Generates an HMAC-signed session token valid for 7 days
+ * Generates an HMAC-SHA256 signed session token for Staff Admin.
  */
-export function generateSessionToken(): string {
+export function generateSessionToken(username = 'admin'): string {
+  const safeUser = username.replace(/[^a-zA-Z0-9_.-]/g, '');
   const timestamp = Date.now();
-  const payload = `admin:${timestamp}`;
-  const signature = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
+  const payload = `admin:${safeUser}:${timestamp}`;
+  const signature = crypto.createHmac('sha256', getSessionSecret()).update(payload).digest('hex');
   return `${payload}.${signature}`;
 }
 
 /**
- * Verifies if an HMAC super admin session token is authentic and not expired
+ * Verifies an HMAC-signed token and returns its parsed role & username if valid and unexpired.
  */
+function parseAndVerifyToken(token: string | null | undefined): {
+  role: 'admin' | 'super_admin';
+  username: string;
+} | null {
+  if (!token || typeof token !== 'string') return null;
+
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+
+  const [payload, signature] = parts;
+  if (!payload || !signature) return null;
+
+  let secret: string;
+  try {
+    secret = getSessionSecret();
+  } catch {
+    return null;
+  }
+
+  const expectedSignature = crypto.createHmac('sha256', secret).update(payload).digest('hex');
+  const signatureBuffer = Buffer.from(signature, 'utf-8');
+  const expectedBuffer = Buffer.from(expectedSignature, 'utf-8');
+  if (signatureBuffer.length !== expectedBuffer.length || !crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
+    return null;
+  }
+
+  const segments = payload.split(':');
+  // Support 3-part format `role:username:timestamp` (and legacy 2-part `admin:timestamp`)
+  let role: string;
+  let username: string;
+  let timestampStr: string;
+
+  if (segments.length === 3) {
+    [role, username, timestampStr] = segments;
+  } else if (segments.length === 2 && segments[0] === 'admin') {
+    role = segments[0];
+    username = 'admin';
+    timestampStr = segments[1];
+  } else {
+    return null;
+  }
+
+  if (role !== 'admin' && role !== 'super_admin') return null;
+
+  const timestamp = parseInt(timestampStr, 10);
+  if (isNaN(timestamp) || Date.now() - timestamp > SESSION_MAX_AGE_MS || timestamp > Date.now() + 60_000) {
+    return null;
+  }
+
+  return { role, username };
+}
+
 export function verifySuperAdminSessionToken(token: string | null | undefined): boolean {
-  if (!token || typeof token !== 'string') return false;
-  
-  const parts = token.split('.');
-  if (parts.length !== 2) return false;
-  
-  const [payload, signature] = parts;
-  const expectedSignature = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
-  
-  const signatureBuffer = Buffer.from(signature, 'utf-8');
-  const expectedBuffer = Buffer.from(expectedSignature, 'utf-8');
-  if (signatureBuffer.length !== expectedBuffer.length || !crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
-    return false;
-  }
-  
-  const [role, username, timestampStr] = payload.split(':');
-  if (role !== 'super_admin') return false;
-  
-  const timestamp = parseInt(timestampStr, 10);
-  if (isNaN(timestamp)) return false;
-  
-  const maxAgeMs = 7 * 24 * 60 * 60 * 1000;
-  if (Date.now() - timestamp > maxAgeMs) {
-    return false;
-  }
-  
-  return true;
+  const parsed = parseAndVerifyToken(token);
+  return parsed?.role === 'super_admin';
 }
 
-/**
- * Verifies if an HMAC session token is authentic and not expired
- */
 export function verifySessionToken(token: string | null | undefined): boolean {
-  if (!token || typeof token !== 'string') return false;
-  
-  const parts = token.split('.');
-  if (parts.length !== 2) return false;
-  
-  const [payload, signature] = parts;
-  const expectedSignature = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
-  
-  // Constant-time comparison to prevent timing attacks
-  const signatureBuffer = Buffer.from(signature, 'utf-8');
-  const expectedBuffer = Buffer.from(expectedSignature, 'utf-8');
-  if (signatureBuffer.length !== expectedBuffer.length || !crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
-    return false;
-  }
-  
-  const [role, timestampStr] = payload.split(':');
-  if (role !== 'admin' && role !== 'super_admin') return false;
-  
-  const timestamp = parseInt(timestampStr, 10);
-  if (isNaN(timestamp)) return false;
-  
-  // Expire after 7 days (7 * 24 * 60 * 60 * 1000 ms)
-  const maxAgeMs = 7 * 24 * 60 * 60 * 1000;
-  if (Date.now() - timestamp > maxAgeMs) {
-    return false;
-  }
-  
-  return true;
+  const parsed = parseAndVerifyToken(token);
+  return parsed?.role === 'admin' || parsed?.role === 'super_admin';
 }
 
-/**
- * Helper to check if incoming NextRequest has an active, authenticated super admin session
- */
 export function isAuthenticatedSuperAdmin(req: NextRequest): boolean {
   const cookie = req.cookies.get(SUPER_ADMIN_COOKIE_NAME);
-  if (!cookie || !cookie.value) return false;
+  if (!cookie?.value) return false;
   return verifySuperAdminSessionToken(cookie.value);
 }
 
-/**
- * Helper to check if incoming NextRequest has an active, authenticated admin or super admin session
- */
 export function isAuthenticatedAdmin(req: NextRequest): boolean {
-  // Super admin inherits all admin capabilities
   const superCookie = req.cookies.get(SUPER_ADMIN_COOKIE_NAME);
-  if (superCookie && superCookie.value && verifySuperAdminSessionToken(superCookie.value)) {
+  if (superCookie?.value && verifySuperAdminSessionToken(superCookie.value)) {
     return true;
   }
-
   const cookie = req.cookies.get(SESSION_COOKIE_NAME);
-  if (!cookie || !cookie.value) return false;
+  if (!cookie?.value) return false;
   return verifySessionToken(cookie.value);
+}
+
+export function getAuthenticatedActor(req: NextRequest): { role: 'admin' | 'super_admin'; username: string } | null {
+  const superCookie = req.cookies.get(SUPER_ADMIN_COOKIE_NAME);
+  if (superCookie?.value) {
+    const parsedSuper = parseAndVerifyToken(superCookie.value);
+    if (parsedSuper?.role === 'super_admin') return parsedSuper;
+  }
+  const adminCookie = req.cookies.get(SESSION_COOKIE_NAME);
+  if (adminCookie?.value) {
+    const parsedAdmin = parseAndVerifyToken(adminCookie.value);
+    if (parsedAdmin) return parsedAdmin;
+  }
+  return null;
 }

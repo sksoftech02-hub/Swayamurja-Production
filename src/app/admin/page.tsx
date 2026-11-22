@@ -64,6 +64,7 @@ const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509391365360-2e959784a2
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isSuperAdmin, setIsSuperAdmin] = useState<boolean>(false);
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
 
@@ -196,11 +197,12 @@ export default function AdminPage() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username: username.trim(), password }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
         setIsAuthenticated(true);
+        setIsSuperAdmin(false);
         setPassword('');
         setAuthError('');
         fetchLeads();
@@ -273,7 +275,7 @@ export default function AdminPage() {
         body: JSON.stringify(toSave),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setCmsContent(data.content);
         // Signal visitor tabs in the same browser to refresh instantly
         try {
@@ -281,6 +283,8 @@ export default function AdminPage() {
         } catch (_) {}
         setCmsSaveMessage('✓ Content saved! Updates are now LIVE on the visitor website.');
         setTimeout(() => setCmsSaveMessage(''), 4500);
+      } else {
+        setCmsSaveMessage(data.error || 'Failed to save changes. Please verify permissions.');
       }
     } catch (err) {
       console.error('Failed to save CMS:', err);
@@ -847,14 +851,30 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                Staff Master Password
+                Staff Username or Email
+              </label>
+              <input
+                type="text"
+                required
+                autoComplete="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter staff username or email"
+                className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-amber-400"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                Staff Password
               </label>
               <input
                 type="password"
                 required
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter staff security password"
+                placeholder="Enter staff password"
                 className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-amber-400"
               />
             </div>

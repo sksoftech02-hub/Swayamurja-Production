@@ -109,7 +109,7 @@ interface SystemStats {
 export default function SuperAdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [username, setUsername] = useState('sksoftech_master');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
 
@@ -250,7 +250,7 @@ export default function SuperAdminPage() {
 
   const fetchCms = async () => {
     try {
-      const res = await fetch('/api/content');
+      const res = await fetch('/api/content', { cache: 'no-store' });
       const data = await res.json();
       if (data.success && data.content) {
         setCmsContent(data.content);
@@ -392,6 +392,9 @@ export default function SuperAdminPage() {
       const data = await res.json();
       if (data.success) {
         setCmsContent(data.content);
+        try {
+          localStorage.setItem('swayamurja_cms_updated', Date.now().toString());
+        } catch (_) {}
         setSaveSuccess('✓ Solar tariffs and subsidies updated live!');
         setTimeout(() => setSaveSuccess(''), 4000);
       }
@@ -739,9 +742,10 @@ export default function SuperAdminPage() {
               <input
                 type="text"
                 required
+                autoComplete="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="sksoftech_master"
+                placeholder="Enter operator username"
                 className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 text-sm focus:outline-hidden focus:border-cyan-400 font-mono"
               />
             </div>
@@ -753,9 +757,10 @@ export default function SuperAdminPage() {
               <input
                 type="password"
                 required
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter master password (e.g. sksoftech@2026)"
+                placeholder="Enter master security password"
                 className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 text-sm focus:outline-hidden focus:border-cyan-400"
               />
             </div>
@@ -2278,6 +2283,388 @@ export default function SuperAdminPage() {
                 >
                   {actionLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : null}
                   Create Account
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ADD NEW CLIENT LOGO MODAL */}
+      {showClientModal && (
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-cyan-400" />
+                Add New Client Logo
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowClientModal(false)}
+                className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveClient} className="space-y-3.5 text-xs">
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Client / Organization Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Krishna Vishwa Vidyapeeth"
+                  value={clientForm.name}
+                  onChange={(e) => setClientForm({ ...clientForm, name: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Client Logo (Upload PNG/JPG/WebP) *</label>
+                <div className="flex items-center gap-2 mb-2">
+                  <label className="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold cursor-pointer inline-flex items-center gap-1.5">
+                    <Upload className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>{uploadingClientLogo ? 'Uploading...' : 'Upload Logo'}</span>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      className="hidden"
+                      onChange={handleUploadClientLogo}
+                      disabled={uploadingClientLogo}
+                    />
+                  </label>
+                  {clientForm.logo && (
+                    <div className="h-10 w-20 rounded-lg bg-white p-1 flex items-center justify-center overflow-hidden">
+                      <img src={clientForm.logo} alt="Logo preview" className="max-h-full max-w-full object-contain" />
+                    </div>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  required
+                  placeholder="/uploads/clients/..."
+                  value={clientForm.logo}
+                  onChange={(e) => setClientForm({ ...clientForm, logo: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 font-mono text-[11px] focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Client Website (Optional)</label>
+                <input
+                  type="url"
+                  placeholder="https://example.com"
+                  value={clientForm.website}
+                  onChange={(e) => setClientForm({ ...clientForm, website: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="pt-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowClientModal(false)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={actionLoading || uploadingClientLogo}
+                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  Save Client Logo
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ADD TEAM DESIGNATION MODAL */}
+      {showTeamModal && (
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-lg w-full shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <UserPlus className="w-4 h-4 text-cyan-400" />
+                Add Key Team Member / Designation
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowTeamModal(false)}
+                className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveTeamMember} className="space-y-3.5 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Mahesh Mane"
+                    value={teamForm.name}
+                    onChange={(e) => setTeamForm({ ...teamForm, name: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">LinkedIn URL (Optional)</label>
+                  <input
+                    type="url"
+                    placeholder="https://linkedin.com/in/..."
+                    value={teamForm.linkedin}
+                    onChange={(e) => setTeamForm({ ...teamForm, linkedin: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Designation (English) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Director - Projects"
+                    value={teamForm.designationEn}
+                    onChange={(e) => setTeamForm({ ...teamForm, designationEn: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Designation (Marathi)</label>
+                  <input
+                    type="text"
+                    placeholder="उदा. संचालक - प्रकल्प"
+                    value={teamForm.designationMr}
+                    onChange={(e) => setTeamForm({ ...teamForm, designationMr: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Profile Photo</label>
+                <div className="flex items-center gap-3 mb-2">
+                  <label className="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-semibold cursor-pointer inline-flex items-center gap-1.5">
+                    <Upload className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>{uploadingTeamPhoto ? 'Uploading...' : 'Upload Photo'}</span>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      className="hidden"
+                      onChange={handleUploadTeamPhoto}
+                      disabled={uploadingTeamPhoto}
+                    />
+                  </label>
+                  {teamForm.photo && (
+                    <img src={teamForm.photo} alt="Team preview" className="w-10 h-10 rounded-lg object-cover border border-slate-700" />
+                  )}
+                </div>
+                <input
+                  type="text"
+                  placeholder="/uploads/team/..."
+                  value={teamForm.photo}
+                  onChange={(e) => setTeamForm({ ...teamForm, photo: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 font-mono text-[11px] focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Short Bio (English)</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Experience & domain credentials..."
+                    value={teamForm.bioEn}
+                    onChange={(e) => setTeamForm({ ...teamForm, bioEn: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Short Bio (Marathi)</label>
+                  <textarea
+                    rows={3}
+                    placeholder="अनुभव आणि कार्यक्षेत्र माहिती..."
+                    value={teamForm.bioMr}
+                    onChange={(e) => setTeamForm({ ...teamForm, bioMr: e.target.value })}
+                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowTeamModal(false)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={actionLoading || uploadingTeamPhoto}
+                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  Save Team Member
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* EDIT HOMEPAGE SECTION LABELS MODAL */}
+      {editingSection && (
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Edit className="w-4 h-4 text-cyan-400" />
+                Edit Container Labels ({editingSection.id})
+              </h3>
+              <button
+                type="button"
+                onClick={() => setEditingSection(null)}
+                className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveEditSection} className="space-y-3.5 text-xs">
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Internal Container Name *</label>
+                <input
+                  type="text"
+                  required
+                  value={editingSection.name}
+                  onChange={(e) => setEditingSection({ ...editingSection, name: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Display Title (English)</label>
+                <input
+                  type="text"
+                  value={editingSection.titleEn || ''}
+                  onChange={(e) => setEditingSection({ ...editingSection, titleEn: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Display Title (Marathi)</label>
+                <input
+                  type="text"
+                  value={editingSection.titleMr || ''}
+                  onChange={(e) => setEditingSection({ ...editingSection, titleMr: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="pt-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setEditingSection(null)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold cursor-pointer flex items-center gap-1.5"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  Apply Label Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ADD CUSTOM HOMEPAGE SECTION MODAL */}
+      {showNewSectionModal && (
+        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Layers className="w-4 h-4 text-cyan-400" />
+                Add Custom Homepage Section
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowNewSectionModal(false)}
+                className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleAddCustomSection} className="space-y-3.5 text-xs">
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Container Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Solar Financing Partners"
+                  value={newSectionForm.name}
+                  onChange={(e) => setNewSectionForm({ ...newSectionForm, name: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Title (English)</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Solar Financing & Zero-Down EMI"
+                  value={newSectionForm.titleEn}
+                  onChange={(e) => setNewSectionForm({ ...newSectionForm, titleEn: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-semibold mb-1">Title (Marathi)</label>
+                <input
+                  type="text"
+                  placeholder="उदा. सोलर कर्ज व हप्ते सुविधा"
+                  value={newSectionForm.titleMr}
+                  onChange={(e) => setNewSectionForm({ ...newSectionForm, titleMr: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-hidden focus:border-cyan-400"
+                />
+              </div>
+
+              <div className="pt-2 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowNewSectionModal(false)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold cursor-pointer flex items-center gap-1.5"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add Section
                 </button>
               </div>
             </form>
