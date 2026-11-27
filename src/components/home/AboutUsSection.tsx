@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
@@ -15,9 +15,34 @@ import {
   SunMedium, 
   Home, 
   Users, 
-  CheckCircle2, 
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { AboutUsContent, CMSTeamMember } from '@/lib/types';
+
+const TEAM_PHOTO_SLIDES = [
+  {
+    src: '/uploads/team/swayamurja-mitra-team.jpg',
+    captionEn: 'SwayamUrja-MITRA 70+ Solar EPC Specialists — Engineering & Field Operations',
+    captionMr: 'स्वयम्ऊर्जा-मित्र ७०+ सोलर EPC तज्ज्ञ — अभियांत्रिकी व फिल्ड ऑपरेशन्स टीम',
+  },
+  {
+    src: '/uploads/team/team-slide-1.webp',
+    captionEn: 'SwayamUrja Team Outing — United by Our MITRA Core Values',
+    captionMr: 'स्वयम्ऊर्जा टीम — आमच्या MITRA मूल्यांनी एकत्र बांधलेला परिवार',
+  },
+  {
+    src: '/uploads/team/team-slide-2.webp',
+    captionEn: 'Annual SwayamUrja-MITRA Celebration & Team Gathering',
+    captionMr: 'वार्षिक स्वयम्ऊर्जा-मित्र स्नेहसंमेलन व टीम सोहळा',
+  },
+  {
+    src: '/uploads/team/team-slide-3.webp',
+    captionEn: 'Festive Celebration with Our Growing 70+ Professional Family',
+    captionMr: '७०+ निष्ठावान सदस्यांसह आनंददायी सण व टीम सेलिब्रेशन',
+  },
+];
 
 const LinkedInIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -29,6 +54,23 @@ export const AboutUsSection: React.FC = () => {
   const { language } = useLanguage();
   const { content } = useContent();
   const isMr = language === 'mr';
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    const timer = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % TEAM_PHOTO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [paused]);
+
+  const prevSlide = () => setSlideIdx((prev) => (prev - 1 + TEAM_PHOTO_SLIDES.length) % TEAM_PHOTO_SLIDES.length);
+  const nextSlide = () => setSlideIdx((prev) => (prev + 1) % TEAM_PHOTO_SLIDES.length);
+  const activeSlide = TEAM_PHOTO_SLIDES[slideIdx];
 
   const about: AboutUsContent = content?.aboutUs || {
     taglineEn: "Empowering Maharashtra's Clean Energy Independence Through 25+ Years of Engineering Leadership",
@@ -205,7 +247,7 @@ export const AboutUsSection: React.FC = () => {
                     <div className="text-xs text-slate-400">{isMr ? 'विकसित पवन व सौर प्रकल्प' : 'Developed Across India'}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-emerald-400 font-['Outfit']">550+</div>
+                    <div className="text-2xl font-bold text-emerald-400 font-['Outfit']">610+</div>
                     <div className="text-xs text-slate-400">{isMr ? 'यशस्वी पूर्ण प्रकल्प' : 'Completed Projects'}</div>
                   </div>
                   <div>
@@ -379,40 +421,84 @@ export const AboutUsSection: React.FC = () => {
             </p>
           </div>
 
-          {/* ── Genuine SwayamUrja-MITRA 60+ Team Photo Showcase ── */}
-          <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white max-w-5xl mx-auto group">
-            <div className="relative w-full aspect-[16/9] sm:aspect-[2.2/1] overflow-hidden">
+          {/* ── Genuine SwayamUrja-MITRA 70+ Team Photo Carousel (4 Real Slides) ── */}
+          <div
+            className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 text-white max-w-5xl mx-auto"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-slate-950">
               <Image
-                src="/uploads/team/swayamurja-mitra-team.jpg"
-                alt={isMr ? "स्वयम्ऊर्जा-मित्र टीम (६०+ तज्ज्ञ)" : "SwayamUrja-MITRA EPC Team (60+ Professionals)"}
+                key={activeSlide.src}
+                src={activeSlide.src}
+                alt={isMr ? activeSlide.captionMr : activeSlide.captionEn}
                 fill
-                className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                className="object-cover object-center"
                 unoptimized
-                priority
+                priority={slideIdx === 0}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
-              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent pointer-events-none" />
+
+              {/* Prev / Next Controls */}
+              <button
+                type="button"
+                onClick={prevSlide}
+                aria-label={isMr ? 'मागील टीम फोटो' : 'Previous team photo'}
+                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/75 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                aria-label={isMr ? 'पुढील टीम फोटो' : 'Next team photo'}
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/75 hover:bg-slate-900 border border-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Top-Right Slide Counter */}
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 px-3 py-1 rounded-lg bg-slate-950/80 border border-white/15 text-xs font-medium text-slate-200 tabular-nums">
+                {slideIdx + 1} / {TEAM_PHOTO_SLIDES.length}
+              </div>
+
+              {/* Bottom Caption & 70+ Badge */}
+              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 z-10">
                 <div className="space-y-1.5">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800/90 text-emerald-300 border border-emerald-400/30 text-xs font-medium tracking-normal">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800/90 text-emerald-300 border border-emerald-400/30 text-xs font-medium">
                     <Users className="w-3.5 h-3.5" />
                     {isMr ? "आमचा सर्वात मोठा ठेवा (Our Asset)" : "Our Asset – Our Driving Force"}
                   </span>
                   <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-white font-['Outfit']">
-                    {isMr ? "स्वयम्ऊर्जा-मित्र (SwayamUrja-MITRA) ६०+ तज्ज्ञांची समर्पित टीम" : "Team of 60+ SwayamUrja-MITRA Solar EPC Specialists"}
+                    {isMr ? "स्वयम्ऊर्जा-मित्र (SwayamUrja-MITRA) ७०+ तज्ज्ञांची समर्पित टीम" : "Team of 70+ SwayamUrja-MITRA Solar EPC Specialists"}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-                    {isMr
-                      ? "सौर डिझाईन, स्ट्रक्चरल इंजिनिअरिंग, महावितरण नेट-मीटरिंग, सीईआयजी मंजुरी आणि २५ वर्षांची सातत्यपूर्ण ओ अँड एम (O&M) सेवा सांभाळणारे आमचे ६०+ अभियंते व तंत्रज्ञ."
-                      : "Certified PVsyst solar designers, electrical engineers, MSEDCL net-metering liaison specialists, and dedicated 24/7 O&M technicians delivering engineering excellence."}
+                  <p className="text-xs sm:text-sm text-slate-200 max-w-2xl leading-relaxed">
+                    {isMr ? activeSlide.captionMr : activeSlide.captionEn}
                   </p>
                 </div>
-                <div className="shrink-0 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20">
-                  <div className="text-2xl sm:text-3xl font-bold text-amber-400 font-['Outfit']">60+</div>
+                <div className="shrink-0 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/20 tabular-nums">
+                  <div className="text-2xl sm:text-3xl font-bold text-amber-400 font-['Outfit']">70+</div>
                   <div className="text-xs text-slate-200 leading-tight">
                     {isMr ? <>सौर ऊर्जा<br/>अभियंते व मित्र</> : <>Solar EPC<br/>Specialists</>}
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Slide Dot Indicators Strip */}
+            <div className="bg-slate-950 px-4 py-3 flex items-center justify-center gap-2 border-t border-slate-800">
+              {TEAM_PHOTO_SLIDES.map((sl, i) => (
+                <button
+                  key={sl.src}
+                  type="button"
+                  onClick={() => setSlideIdx(i)}
+                  aria-label={`View team photo ${i + 1}`}
+                  aria-current={i === slideIdx ? 'true' : undefined}
+                  className={`h-2 rounded-full transition-colors cursor-pointer ${
+                    i === slideIdx ? 'w-8 bg-amber-400' : 'w-2.5 bg-slate-600 hover:bg-slate-400'
+                  }`}
+                />
+              ))}
             </div>
           </div>
 

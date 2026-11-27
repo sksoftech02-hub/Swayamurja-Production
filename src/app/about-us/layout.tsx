@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About Us — Leadership & Solar EPC Team',
   description:
-    'Meet SwayamUrja Renewable Energy Pvt. Ltd. — led by MD & CEO Rahul Nalawade with 25+ years leadership, 1,600+ MW advisory, 550+ projects & 60+ EPC experts.',
+    'Meet SwayamUrja Renewable Energy Pvt. Ltd. — led by MD & CEO Rahul Nalawade with 25+ years leadership, 1,600+ MW advisory, 610+ projects & 70+ EPC experts.',
   alternates: {
     canonical: 'https://swayamurja.com/about-us',
     languages: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About SwayamUrja Renewable Energy Pvt. Ltd. | Pune, Maharashtra',
     description:
-      '25+ years of clean energy leadership, ISO 9001:2015 certified by TÜV SÜD, 1,600+ MW developed, and 60+ SwayamUrja-MITRA solar EPC engineers.',
+      '25+ years of clean energy leadership, ISO 9001:2015 certified by TÜV SÜD, 1,600+ MW developed, 610+ completed projects, and 70+ SwayamUrja-MITRA engineers.',
     url: 'https://swayamurja.com/about-us',
     type: 'website',
     images: [

@@ -27,8 +27,8 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
   const projects = {
     industrial: {
       title: isMr ? '१३ MW युटिलिटी व MIDC औद्योगिक प्रकल्प' : '13 MW Utility & MIDC Industrial EPC',
-      location: isMr ? 'सांगली, कराड व हैदराबाद, भारत' : 'Sangli, Karad & Hyderabad, India',
-      image: '/uploads/projects/prd-foods-manikchand-990kw.jpg',
+      location: isMr ? 'महाराष्ट्र व ७ भारतीय राज्ये' : 'Maharashtra & 7 Indian States',
+      image: '/uploads/projects/prd-foods-industrial-sunset.webp',
       badge: isMr ? '५०+ एकर प्रत्यक्ष प्रकल्प' : 'Flagship 50+ Acres EPC',
       spec: isMr ? '३३ kV समर्पित सबस्टेशन जोडणी' : '33 kV Dedicated Substation Integration',
       efficiency: '22.8% Bifacial TOPCon',
@@ -36,7 +36,7 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
     rooftop: {
       title: isMr ? 'व्यावसायिक व निवासी रूफटॉप सोलर' : 'Commercial & Turnkey Rooftop Solar',
       location: isMr ? 'पुणे, कराड व पश्चिम महाराष्ट्र' : 'Pune, Karad & Western Maharashtra',
-      image: '/uploads/projects/the-fern-residency-karad-350kw.jpg',
+      image: '/uploads/projects/the-fern-residency-karad-350kw.webp',
       badge: isMr ? '१००% नेट-मीटरिंग हमी' : '100% Net-Metering Approved',
       spec: isMr ? 'शून्य वीजबिल + ४०% प्राप्तिकर घसारा' : 'Zero Electricity Bill + 40% Tax Write-off',
       efficiency: 'Tier-1 Mono PERC High-Yield',
@@ -354,7 +354,7 @@ export const Hero: React.FC = () => {
                     : content?.stats?.totalMwLabel?.en || 'Developed India',
                 },
                 {
-                  val: content?.stats?.clients || '550+',
+                  val: content?.stats?.clients || '610+',
                   l: isMr
                     ? content?.stats?.clientsLabel?.mr || 'पूर्ण प्रकल्प'
                     : content?.stats?.clientsLabel?.en || 'Clean Energy Projects',

@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SwayamUrja Renewable Energy Pvt. Ltd. | Premier Solar EPC',
     description:
-      'Empowering Maharashtra with Clean Energy: 1,600+ MW Wind & Solar Advisory, 550+ Completed Projects, 13 MW Utility Solar Parks & ₹78,000 PM Surya Ghar Subsidies.',
+      'Empowering India across 7 states: 1,600+ MW Wind & Solar Advisory, 610+ Completed Projects, 13 MW Utility Solar Parks & ₹78,000 PM Surya Ghar Subsidies.',
     url: 'https://swayamurja.com',
     siteName: 'SwayamUrja Renewable Energy',
     locale: 'en_IN',
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'SwayamUrja Renewable Energy | Solar EPC Pune',
-    description: '1,600+ MW Developed, 550+ Projects, 13 MW Utility Parks & PM Surya Ghar ₹78,000 Subsidies.',
+    description: '1,600+ MW Developed, 610+ Projects across 7 Indian States, 13 MW Utility Parks & PM Surya Ghar ₹78,000 Subsidies.',
     images: ['/images/whatsapp_showcase.jpeg'],
   },
   robots: {

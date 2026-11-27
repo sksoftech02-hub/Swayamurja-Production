@@ -133,10 +133,12 @@ export const ProjectsGallery: React.FC = () => {
                     {title}
                   </h3>
 
-                  <p className="text-xs text-slate-500 flex items-center gap-1.5 mb-4">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>{location}</span>
-                  </p>
+                  {location && location.trim().length > 0 && (
+                    <p className="text-xs text-slate-500 flex items-center gap-1.5 mb-4">
+                      <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>{location}</span>
+                    </p>
+                  )}
 
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-100">
                     {highlight || 'Commissioned with high-performance Tier-1 modules.'}

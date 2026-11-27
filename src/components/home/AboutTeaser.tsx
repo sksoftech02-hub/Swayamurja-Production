@@ -100,11 +100,11 @@ export const AboutTeaser: React.FC = () => {
                   <div className="text-xs text-slate-300 font-medium">{isMr ? 'विकसित पवन व सौर' : 'Developed India'}</div>
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-['Outfit']">550+</div>
+                  <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-['Outfit']">610+</div>
                   <div className="text-xs text-slate-300 font-medium">{isMr ? 'पूर्ण झालेले प्रकल्प' : 'Completed Projects'}</div>
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-xl sm:text-2xl font-bold text-white font-['Outfit']">60+</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white font-['Outfit']">70+</div>
                   <div className="text-xs text-slate-300 font-medium">{isMr ? 'स्वयम्ऊर्जा-मित्र टीम' : 'MITRA Experts'}</div>
                 </div>
               </div>

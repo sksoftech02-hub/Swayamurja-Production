@@ -42,9 +42,9 @@ export const DEFAULT_PROJECTS: CMSProject[] = [
     titleEn: 'PRD Foods (Manikchand Group) Industrial Solar Plant',
     titleMr: 'पीआरडी फूड्स (माणिकचंद ग्रुप) औद्योगिक सोलर प्रकल्प',
     capacity: '990 kWp',
-    locationEn: 'Hyderabad, Telangana',
-    locationMr: 'हैदराबाद, तेलंगणा',
-    image: '/uploads/projects/prd-foods-manikchand-990kw.jpg',
+    locationEn: '',
+    locationMr: '',
+    image: '/uploads/projects/prd-foods-manikchand-990kw.webp',
     highlightEn: 'Turnkey industrial manufacturing solar EPC offsetting over 65% of plant grid electricity demand',
     highlightMr: 'औद्योगिक उत्पादन युनिटचा ६५%+ वीज वापर सौर ऊर्जेवर आणून वीज बिलात लक्षणीय कपात करणारा प्रकल्प'
   },
@@ -56,9 +56,21 @@ export const DEFAULT_PROJECTS: CMSProject[] = [
     capacity: '350 kWp',
     locationEn: 'Karad, Dist Satara, Maharashtra',
     locationMr: 'कराड, जि. सातारा, महाराष्ट्र',
-    image: '/uploads/projects/the-fern-residency-karad-350kw.jpg',
+    image: '/uploads/projects/the-fern-residency-karad-350kw.webp',
     highlightEn: 'Hospitality commercial rooftop installation powering central HVAC and luxury amenities with zero downtime',
     highlightMr: 'हॉस्पिटॅलिटी व हॉटेल उद्योगासाठी ३५० किलोवॅट उच्च कार्यक्षम रूफटॉप सोलर — अखंड वीज व खर्चात बचत'
+  },
+  {
+    id: 'proj-elpro-school',
+    category: 'commercial',
+    titleEn: 'Elpro International School Rooftop Solar',
+    titleMr: 'एल्प्रो इंटरनॅशनल स्कूल रूफटॉप सोलर',
+    capacity: 'Institutional Rooftop',
+    locationEn: 'Hinjewadi, Pune, Maharashtra',
+    locationMr: 'हिंजवडी, पुणे, महाराष्ट्र',
+    image: '/uploads/projects/elpro-school-hinjewadi.webp',
+    highlightEn: 'Elevated institutional rooftop solar installation delivering clean, reliable daytime power across the school campus',
+    highlightMr: 'शैक्षणिक संकुलासाठी दिवसा अखंड व स्वच्छ सौर ऊर्जा पुरवणारा उच्च-कार्यक्षम इन्स्टिट्यूशनल रूफटॉप प्रकल्प'
   },
   {
     id: 'proj-kolte-patil',
@@ -231,7 +243,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   stats: {
     totalMw: '1,600+ MW',
     totalMwLabel: { en: 'Wind & Solar Developed', mr: 'विकसित पवन व सौर प्रकल्प' },
-    clients: '550+',
+    clients: '610+',
     clientsLabel: { en: 'Completed Clean Energy Projects', mr: 'यशस्वी पूर्ण प्रकल्प' },
     co2Offset: '45,000+ T',
     co2Label: { en: 'Annual CO₂ Offset', mr: 'वार्षिक कार्बन उत्सर्जन कपात' },

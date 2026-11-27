@@ -23,7 +23,7 @@ export const TestimonialsSection: React.FC = () => {
             <span>{isMr ? 'समाधानी ग्राहक अभिप्राय' : 'Verified Client Testimonials'}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 font-['Outfit']">
-            {isMr ? 'ग्राहकांचा स्वयम्ऊर्जेवरील दृढ विश्वास' : 'Trusted by 550+ Homes, Factories & Institutions'}
+            {isMr ? 'ग्राहकांचा स्वयम्ऊर्जेवरील दृढ विश्वास' : 'Trusted by 610+ Homes, Factories & Institutions'}
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
             {isMr
