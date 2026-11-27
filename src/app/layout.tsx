@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     template: '%s | SwayamUrja Solar EPC',
   },
   description:
-    'ISO 9001:2015 Certified Solar EPC Company in Pune & Maharashtra. 25+ years leadership, 1,600+ MW Wind & Solar advisory, 13 MW Utility Solar Parks, C&I Rooftops, BESS & PM Surya Ghar ₹78,000 DBT Subsidies.',
+    'ISO 9001:2015 Certified Solar EPC Company in Pune & Maharashtra. 1,600+ MW advisory, 13 MW utility parks, C&I rooftops & PM Surya Ghar ₹78,000 subsidies.',
   keywords: [
     'Solar EPC Pune',
     'Commercial Solar Rooftop Pune',
@@ -173,37 +173,6 @@ const businessJsonLd = {
   ],
 };
 
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What is the maximum subsidy under PM Surya Ghar Muft Bijli Yojana in Maharashtra?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Under the PM Surya Ghar: Muft Bijli Yojana in Maharashtra, residential homeowners can receive up to ₹78,000 as a direct bank transfer (DBT) subsidy for systems 3 kW and above. A 1 kW system receives ₹30,000, and a 2 kW system receives ₹60,000.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does 40% accelerated tax depreciation benefit commercial and industrial factories installing solar in Maharashtra?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Under Section 32 of the Indian Income Tax Act, commercial and industrial companies in Maharashtra can claim 40% accelerated depreciation on solar power plant capital investments in the very first year, effectively recovering up to 30% of their project cost in corporate tax savings.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does SwayamUrja handle MSEDCL bi-directional net-metering approvals?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, SwayamUrja provides 100% turnkey solar EPC execution, including site feasibility, PVsyst engineering design, MSEDCL liaisoning, DISCOM net-metering installation, CEIG approvals, and commissioning.',
-      },
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -216,11 +185,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
-        />
-        {/* Schema.org FAQPage Rich Snippet JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
       <body className="antialiased min-h-screen bg-[#f8faf9] text-[#0f172a]">

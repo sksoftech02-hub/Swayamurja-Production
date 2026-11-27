@@ -19,6 +19,37 @@ import { useContent } from '@/context/ContentContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { DEFAULT_LAYOUT_SECTIONS, HomepageSection } from '@/lib/types';
 
+const HOME_FAQ_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the maximum subsidy under PM Surya Ghar Muft Bijli Yojana in Maharashtra?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Under the PM Surya Ghar: Muft Bijli Yojana in Maharashtra, residential homeowners can receive up to ₹78,000 as a direct bank transfer (DBT) subsidy for systems 3 kW and above. A 1 kW system receives ₹30,000, and a 2 kW system receives ₹60,000.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does 40% accelerated tax depreciation benefit commercial and industrial factories installing solar in Maharashtra?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Under Section 32 of the Indian Income Tax Act, commercial and industrial companies in Maharashtra can claim 40% accelerated depreciation on solar power plant capital investments in the very first year, effectively recovering up to 30% of their project cost in corporate tax savings.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does SwayamUrja handle MSEDCL bi-directional net-metering approvals?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, SwayamUrja provides 100% turnkey solar EPC execution, including site feasibility, PVsyst engineering design, MSEDCL liaisoning, DISCOM net-metering installation, CEIG approvals, and commissioning.',
+      },
+    },
+  ],
+};
+
 export default function HomePage() {
   const { content } = useContent();
   const { language } = useLanguage();
@@ -80,6 +111,10 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_FAQ_JSON_LD) }}
+      />
       <Navbar />
       {activeSections.map(renderSectionComponent)}
       <Footer />

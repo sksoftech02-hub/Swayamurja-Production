@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Root Super Admin | SwayamUrja Platform',
+  title: { absolute: 'Root Super Admin | SwayamUrja Platform' },
   robots: {
     index: false,
     follow: false,

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us — Leadership, Vision, MITRA Values & EPC Team',
+  title: 'About Us — Leadership & Solar EPC Team',
   description:
-    'Discover SwayamUrja Renewable Energy Pvt. Ltd. — led by MD & CEO Mr. Rahul Nalawade with 25+ years of renewable leadership, 1,600+ MW Wind & Solar advisory, 550+ completed projects, and 60+ SwayamUrja-MITRA specialists.',
+    'Meet SwayamUrja Renewable Energy Pvt. Ltd. — led by MD & CEO Rahul Nalawade with 25+ years leadership, 1,600+ MW advisory, 550+ projects & 60+ EPC experts.',
   alternates: {
     canonical: 'https://swayamurja.com/about-us',
     languages: {
@@ -28,6 +28,23 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://swayamurja.com' },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://swayamurja.com/about-us' },
+  ],
+};
+
 export default function AboutUsLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

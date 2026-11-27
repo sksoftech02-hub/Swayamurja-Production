@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin Console | SwayamUrja Renewable Energy',
+  title: { absolute: 'Admin Console | SwayamUrja Renewable Energy' },
   robots: {
     index: false,
     follow: false,
