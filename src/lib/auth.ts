@@ -4,14 +4,24 @@ import crypto from 'crypto';
 export const SESSION_COOKIE_NAME = 'swayamurja_admin_session';
 export const SUPER_ADMIN_COOKIE_NAME = 'swayamurja_super_admin_session';
 
-const SESSION_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const SESSION_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
 const SCRYPT_KEY_LEN = 64;
 const SCRYPT_PARAMS = { N: 16384, r: 8, p: 1 };
 
-// Per-IP sliding-window brute-force limiter for login endpoints
+// Per-IP sliding-window brute-force limiter for login endpoints (bounded to prevent memory exhaustion)
 const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 const MAX_FAILED_LOGINS = 5;
+const MAX_RATE_LIMIT_KEYS = 10_000;
 const failedLoginMap = new Map<string, number[]>();
+
+// Instant session revocation registry: username -> revokedAtMs
+const revokedUsersMap = new Map<string, number>();
+
+export function revokeUserSessions(username: string): void {
+  const safeUser = username.replace(/[^a-zA-Z0-9_.-]/g, '');
+  if (!safeUser) return;
+  revokedUsersMap.set(safeUser, Date.now());
+}
 
 /**
  * Retrieves HMAC session signing secret strictly from environment variables.
@@ -26,16 +36,19 @@ function getSessionSecret(): string {
 }
 
 /**
- * Extracts client IP address cleanly from incoming request headers.
+ * Extracts client IP address cleanly from trusted reverse-proxy headers
+ * (Cloudflare CF-Connecting-IP -> Nginx X-Real-IP -> X-Forwarded-For).
  */
 export function getClientIp(req: NextRequest): string {
+  const cfIp = req.headers.get('cf-connecting-ip')?.trim();
+  if (cfIp) return cfIp;
+  const realIp = req.headers.get('x-real-ip')?.trim();
+  if (realIp) return realIp;
   const forwardedFor = req.headers.get('x-forwarded-for');
   if (forwardedFor) {
     const first = forwardedFor.split(',')[0]?.trim();
     if (first) return first;
   }
-  const realIp = req.headers.get('x-real-ip')?.trim();
-  if (realIp) return realIp;
   return '127.0.0.1';
 }
 
@@ -68,6 +81,16 @@ export function checkLoginRateLimit(scope: 'admin' | 'super_admin', ip: string):
 export function recordFailedLogin(scope: 'admin' | 'super_admin', ip: string): void {
   const key = `${scope}:${ip}`;
   const now = Date.now();
+  if (failedLoginMap.size >= MAX_RATE_LIMIT_KEYS && !failedLoginMap.has(key)) {
+    for (const [k, ts] of failedLoginMap) {
+      if (ts.every((t) => now - t >= LOGIN_WINDOW_MS)) failedLoginMap.delete(k);
+      if (failedLoginMap.size < MAX_RATE_LIMIT_KEYS) break;
+    }
+    if (failedLoginMap.size >= MAX_RATE_LIMIT_KEYS) {
+      const oldestKey = failedLoginMap.keys().next().value;
+      if (oldestKey) failedLoginMap.delete(oldestKey);
+    }
+  }
   const timestamps = (failedLoginMap.get(key) || []).filter((ts) => now - ts < LOGIN_WINDOW_MS);
   timestamps.push(now);
   failedLoginMap.set(key, timestamps);
@@ -196,6 +219,12 @@ function parseAndVerifyToken(token: string | null | undefined): {
 
   const timestamp = parseInt(timestampStr, 10);
   if (isNaN(timestamp) || Date.now() - timestamp > SESSION_MAX_AGE_MS || timestamp > Date.now() + 60_000) {
+    return null;
+  }
+
+  // Enforce instant revocation if user was frozen or deleted after token issuance
+  const revokedAt = revokedUsersMap.get(username);
+  if (revokedAt && timestamp <= revokedAt) {
     return null;
   }
 

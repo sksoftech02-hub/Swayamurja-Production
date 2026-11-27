@@ -49,6 +49,7 @@ export const ContactForm: React.FC = () => {
   }, []);
 
   const [dpdpConsent, setDpdpConsent] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -93,6 +94,7 @@ export const ContactForm: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          website: honeypot,
           dpdpConsent: true,
           privacyPolicyVersion: 'DPDP-2023-v1.0',
         }),
@@ -242,6 +244,19 @@ export const ContactForm: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Hidden anti-bot honeypot field (invisible to humans & screen readers) */}
+                  <div aria-hidden="true" className="hidden">
+                    <label htmlFor="contactWebsite">Website</label>
+                    <input
+                      id="contactWebsite"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
                   {errorMsg && (
                     <div className="p-4 rounded-xl bg-rose-900/60 border border-rose-500 text-rose-200 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />

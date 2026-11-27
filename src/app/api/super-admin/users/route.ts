@@ -4,6 +4,7 @@ import {
   hashPassword,
   getClientIp,
   getAuthenticatedActor,
+  revokeUserSessions,
 } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 
@@ -201,6 +202,11 @@ export async function PATCH(req: NextRequest) {
       select: SAFE_USER_SELECT,
     });
 
+    // Immediately revoke active cookies if the account was frozen
+    if (!isActive) {
+      revokeUserSessions(target.username);
+    }
+
     try {
       const actor = getAuthenticatedActor(req);
       await prisma.auditLog.create({
@@ -264,6 +270,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     await prisma.user.delete({ where: { id } });
+    revokeUserSessions(targetUser.username);
 
     try {
       const actor = getAuthenticatedActor(req);

@@ -8,11 +8,22 @@ import {
   getClientIp,
 } from '@/lib/auth';
 
-// Simple in-memory rate limiter for public lead submissions: IP -> timestamps[]
+// Bounded in-memory rate limiter for public lead submissions: IP -> timestamps[]
+const MAX_LEAD_RATE_KEYS = 10_000;
 const rateLimitMap = new Map<string, number[]>();
 
 function isRateLimited(ip: string, limit = 6, windowMs = 10 * 60 * 1000): boolean {
   const now = Date.now();
+  if (rateLimitMap.size >= MAX_LEAD_RATE_KEYS && !rateLimitMap.has(ip)) {
+    for (const [k, ts] of rateLimitMap) {
+      if (ts.every((t) => now - t >= windowMs)) rateLimitMap.delete(k);
+      if (rateLimitMap.size < MAX_LEAD_RATE_KEYS) break;
+    }
+    if (rateLimitMap.size >= MAX_LEAD_RATE_KEYS) {
+      const oldestKey = rateLimitMap.keys().next().value;
+      if (oldestKey) rateLimitMap.delete(oldestKey);
+    }
+  }
   const timestamps = (rateLimitMap.get(ip) || []).filter((t) => now - t < windowMs);
 
   if (timestamps.length >= limit) {
@@ -136,6 +147,12 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
+
+    // Silent anti-bot honeypot check: bots filling hidden `website` field are silently discarded
+    if (typeof body?.website === 'string' && body.website.trim().length > 0) {
+      return NextResponse.json({ success: true });
+    }
+
     const {
       name,
       phone,
