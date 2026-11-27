@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               aria-label="SwayamUrja Renewable Energy Pvt. Ltd."
             >
               {!logoError ? (
-                <div className="bg-white/95 px-3.5 py-2 rounded-xl shadow-md shadow-black/25 border border-white/10 inline-flex items-center">
+                <div className="bg-white/95 px-3.5 py-2 rounded-xl border border-white/10 inline-flex items-center">
                   <Image
                     src="/assets/logo.webp"
                     alt="SwayamUrja Renewable Energy Pvt. Ltd."
@@ -52,7 +52,6 @@ export const Footer: React.FC = () => {
                       height: '36px',
                       display: 'block',
                     }}
-                    className="group-hover:scale-[1.03] transition-transform duration-300"
                     unoptimized
                     onError={() => setLogoError(true)}
                   />
@@ -74,7 +73,7 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider font-['Outfit']">
+            <h4 className="text-white font-bold text-sm tracking-normal font-['Outfit']">
               {isMr ? 'जलद दुवे' : 'Quick Navigation'}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
@@ -97,7 +96,7 @@ export const Footer: React.FC = () => {
 
           {/* Government Hub */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider font-['Outfit']">
+            <h4 className="text-white font-bold text-sm tracking-normal font-['Outfit']">
               {isMr ? 'सरकारी योजना' : 'Government Portals'}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
@@ -121,7 +120,7 @@ export const Footer: React.FC = () => {
 
           {/* Contact Details */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider font-['Outfit']">
+            <h4 className="text-white font-bold text-sm tracking-normal font-['Outfit']">
               {isMr ? 'पुणे मुख्य कार्यालय' : 'Pune Headquarters'}
             </h4>
             <div className="space-y-2.5 text-sm text-slate-400">
@@ -155,7 +154,10 @@ export const Footer: React.FC = () => {
                 <span className="text-slate-400 block leading-tight">
                   {isMr ? 'कार्यालय क्र. २, वरदराज मंगल कार्यालय, उंब्रज, कराड, सातारा' : 'Office No. 2, Varadraj Mangal Karyalay, Umbraj, Karad, Satara'}
                 </span>
-                <span className="text-slate-400 block mt-0.5">📞 96897-23627 / 99758-73722</span>
+                <span className="text-slate-400 flex items-center gap-1.5 mt-1 tabular-nums">
+                  <Phone className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span>96897-23627 / 99758-73722</span>
+                </span>
               </div>
             </div>
           </div>

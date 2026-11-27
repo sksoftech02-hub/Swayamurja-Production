@@ -3,12 +3,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useContent } from '@/context/ContentContext';
 import { DEFAULT_THEME, SiteTheme } from '@/lib/theme-presets';
 import { Menu, X, PhoneCall, ChevronDown, ExternalLink } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
   const { content } = useContent();
   const theme: SiteTheme = content?.theme || DEFAULT_THEME;
@@ -48,16 +50,16 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${
+    <header className={`sticky top-0 z-50 transition-[background-color,box-shadow] duration-200 ${
       scrolled
-        ? 'bg-white/98 backdrop-blur-xl shadow-lg shadow-emerald-900/8 border-b border-emerald-100'
-        : 'bg-white/95 backdrop-blur-md border-b border-emerald-50'
+        ? 'bg-white/98 backdrop-blur-xl shadow-md shadow-slate-900/6 border-b border-slate-200/80'
+        : 'bg-white/95 backdrop-blur-md border-b border-slate-200/60'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
 
           {/* ── Official Local Logo Asset (Zero External WP Hotlink Dependency) ── */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <Link href="/" className="flex items-center gap-3 shrink-0">
             {!logoError ? (
               <div
                 className="relative w-[182px] h-[36px] overflow-hidden flex items-center"
@@ -73,25 +75,25 @@ export const Navbar: React.FC = () => {
                     height: '36px',
                     display: 'block',
                   }}
-                  className="group-hover:scale-105 transition-transform duration-300"
                   priority
                   unoptimized
                   onError={() => setLogoError(true)}
                 />
               </div>
             ) : (
-              <span className="font-extrabold text-xl tracking-tight text-emerald-950 font-['Outfit'] leading-none">
-                Swayam<span className="text-amber-500">Urja</span>
+              <span className="font-bold text-xl tracking-tight text-emerald-950 font-['Outfit'] leading-none">
+                Swayam<span className="text-amber-600">Urja</span>
               </span>
             )}
           </Link>
 
           {/* ── Desktop Nav: Home -> About Us -> Services -> Projects -> Blogs -> Careers ── */}
-          <nav className="hidden lg:flex items-center gap-6 text-[14px] font-semibold text-slate-700">
+          <nav aria-label="Primary" className="hidden lg:flex items-center gap-6 text-[14px] font-medium text-slate-700">
             
             {/* 0. Home */}
             <Link
               href="/"
+              aria-current={pathname === '/' ? 'page' : undefined}
               className="py-1 hover:text-emerald-700 transition-colors duration-200"
             >
               {isMr ? 'होम' : 'Home'}
@@ -107,6 +109,7 @@ export const Navbar: React.FC = () => {
               <div className="inline-flex items-center gap-1">
                 <Link
                   href="/about-us"
+                  aria-current={pathname === '/about-us' ? 'page' : undefined}
                   className="py-2 hover:text-emerald-700 transition-colors duration-200 cursor-pointer"
                 >
                   <span>{isMr ? 'आमच्याबद्दल' : 'About Us'}</span>
@@ -213,15 +216,14 @@ export const Navbar: React.FC = () => {
 
             {/* Primary CTA (Dynamically Theme-Colored) */}
             <Link
-              href="#contact"
+              href="/#contact"
               style={{
                 backgroundColor: theme.primaryColor || '#f59e0b',
                 color: '#ffffff',
-                boxShadow: `0 4px 14px -2px ${theme.primaryColor || '#f59e0b'}60`,
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-extrabold
-                         rounded-full shadow-md hover:shadow-lg
-                         transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold
+                         rounded-xl shadow-xs hover:opacity-90
+                         transition-[opacity,transform] duration-150 active:scale-[0.98] cursor-pointer"
             >
               <PhoneCall className="w-3.5 h-3.5 text-white" />
               <span>{isMr ? 'मोफत सल्ला' : 'Request a Quote'}</span>
@@ -237,7 +239,7 @@ export const Navbar: React.FC = () => {
                   type="button"
                   onClick={() => setLanguage(lang)}
                   style={language === lang ? { backgroundColor: '#0f172a', color: '#ffffff' } : {}}
-                  className={`px-2.5 py-1 text-xs font-bold rounded-full transition-all ${
+                  className={`px-2.5 py-1 text-xs font-semibold rounded-full transition-colors ${
                     language === lang ? 'shadow-xs' : 'text-slate-500'
                   }`}
                 >
@@ -246,7 +248,10 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav-drawer"
               className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
               aria-label="Toggle menu"
             >
@@ -256,9 +261,10 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Mobile Drawer ── */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-[550px]' : 'max-h-0'}`}>
-        <div className="border-t border-slate-100 bg-white/98 backdrop-blur-xl px-5 py-4 space-y-1 shadow-xl">
+      {/* ── Mobile Drawer (No layout max-height animation per Modern Web Guidance) ── */}
+      {mobileOpen && (
+      <div id="mobile-nav-drawer" className="md:hidden border-t border-slate-100 bg-white shadow-xl">
+        <div className="px-5 py-4 space-y-1">
           {/* Mobile Home */}
           <Link
             href="/"
@@ -360,10 +366,9 @@ export const Navbar: React.FC = () => {
               style={{
                 backgroundColor: theme.primaryColor || '#f59e0b',
                 color: '#ffffff',
-                boxShadow: `0 4px 14px -2px ${theme.primaryColor || '#f59e0b'}60`,
               }}
               className="flex items-center justify-center gap-2 w-full py-3
-                         font-extrabold rounded-2xl shadow-lg"
+                         font-semibold rounded-xl shadow-xs"
             >
               <PhoneCall className="w-4 h-4 text-white" />
               <span>{isMr ? 'मोफत सल्ला मिळवा' : 'Request a Quote'}</span>
@@ -371,6 +376,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
+      )}
     </header>
   );
 };

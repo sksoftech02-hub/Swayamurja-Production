@@ -47,7 +47,7 @@ export const ClientsSlider: React.FC = () => {
           {marqueeList.map((client, idx) => (
             <div
               key={`${client.id}-${idx}`}
-              className="flex-shrink-0 w-44 sm:w-52 h-20 sm:h-24 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all duration-300 flex items-center justify-center p-3 group hover:border-[#386b40]/50"
+              className="flex-shrink-0 w-44 sm:w-52 h-20 sm:h-24 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-colors duration-300 flex items-center justify-center p-3 group hover:border-[#386b40]/50"
               title={client.name}
             >
               {client.logo ? (
@@ -57,7 +57,7 @@ export const ClientsSlider: React.FC = () => {
                     alt={client.name}
                     width={164}
                     height={64}
-                    className="w-[144px] h-[56px] sm:w-[164px] sm:h-[64px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="w-[144px] h-[56px] sm:w-[164px] sm:h-[64px] object-contain transition-transform duration-300 group-"
                     unoptimized
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';

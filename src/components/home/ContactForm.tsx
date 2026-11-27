@@ -136,7 +136,7 @@ export const ContactForm: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-xs font-bold uppercase tracking-wider border border-emerald-800">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-xs font-bold tracking-normal border border-emerald-800">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>{t('contact_tag')}</span>
           </div>
@@ -227,7 +227,7 @@ export const ContactForm: React.FC = () => {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold font-['Outfit'] text-white">
-                    {isMr ? 'माहिती यशस्वीरित्या नोंदवली गेली!' : 'Survey Request Received!'}
+                    {isMr ? 'माहिती यशस्वीरित्या नोंदवली गेली' : 'Survey Request Received'}
                   </h3>
                   <p className="text-slate-300 text-sm max-w-md mx-auto">
                     {t('f_success')}
@@ -438,7 +438,7 @@ export const ContactForm: React.FC = () => {
                         color: '#ffffff',
                         boxShadow: `0 10px 25px -5px ${theme.primaryColor || '#f59e0b'}80`,
                       }}
-                      className="w-full py-4 rounded-2xl hover:opacity-95 font-extrabold text-base shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                      className="w-full py-4 rounded-2xl hover:opacity-95 font-extrabold text-base shadow-xl transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                     >
                       <Send className="w-4 h-4 text-white" />
                       <span>{submitting ? (isMr ? 'नोंदणी करत आहे...' : 'Submitting Request...') : t('f_submit')}</span>

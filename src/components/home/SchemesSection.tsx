@@ -20,7 +20,7 @@ export const SchemesSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-normal border border-emerald-200">
             <Award className="w-3.5 h-3.5 text-emerald-600" />
             <span>{t('schemes_tag')}</span>
           </div>
@@ -38,7 +38,7 @@ export const SchemesSection: React.FC = () => {
           {/* PM Surya Ghar Card */}
           <div className="bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 rounded-3xl p-8 sm:p-10 text-white shadow-xl border border-emerald-800 flex flex-col justify-between">
             <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-amber-400 text-emerald-950 inline-block">
+              <span className="text-xs font-bold tracking-normal px-3 py-1 rounded-full bg-amber-400 text-emerald-950 inline-block">
                 {isMr ? 'केंद्र शासन योजना' : 'Central Government Scheme'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold font-['Outfit']">
@@ -85,7 +85,7 @@ export const SchemesSection: React.FC = () => {
           {/* PM-KUSUM Agri-Solar Card */}
           <div className="bg-slate-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl border border-slate-800 flex flex-col justify-between">
             <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-500 text-slate-950 inline-block">
+              <span className="text-xs font-bold tracking-normal px-3 py-1 rounded-full bg-emerald-500 text-slate-950 inline-block">
                 {isMr ? 'शेतकऱ्यांसाठी योजना' : 'Agricultural Scheme'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold font-['Outfit']">

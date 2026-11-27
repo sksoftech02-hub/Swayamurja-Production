@@ -38,26 +38,26 @@ export default function HomePage() {
         return <Hero key={sec.id} />;
       case 'video':
         return <VideoHero key={sec.id} />;
-      case 'clients':
-        return <ClientsSlider key={sec.id} />;
       case 'about':
         return <AboutTeaser key={sec.id} />;
       case 'services':
         return <ServicesSection key={sec.id} />;
       case 'projects':
-        return <ProjectsGallery key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><ProjectsGallery /></div>;
       case 'map':
-        return <MaharashtraMap key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><MaharashtraMap /></div>;
       case 'schemes':
-        return <SchemesSection key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><SchemesSection /></div>;
       case 'calculator':
-        return <SolarCalculator key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><SolarCalculator /></div>;
+      case 'clients':
+        return <div key={sec.id} className="deferred-section"><ClientsSlider /></div>;
       case 'testimonials':
-        return <TestimonialsSection key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><TestimonialsSection /></div>;
       case 'careers':
-        return <CareersSection key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><CareersSection /></div>;
       case 'contact':
-        return <ContactForm key={sec.id} />;
+        return <div key={sec.id} className="deferred-section"><ContactForm /></div>;
       case 'process':
       case 'showcase':
       case 'blogs':

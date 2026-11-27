@@ -53,12 +53,12 @@ export default function PrivacyPolicyPage() {
             <span className="text-white">{isMr ? 'गोपनीयता धोरण (DPDP कायदा २०२३)' : 'Privacy Policy (DPDP Act, 2023)'}</span>
           </nav>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold tracking-normal">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>{isMr ? 'भारत डिजिटल वैयक्तिक डेटा संरक्षण कायदा, २०२३ नुसार' : 'Compliant with India DPDP Act, 2023'}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black font-['Outfit'] tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-bold font-['Outfit'] tracking-tight">
             {isMr ? 'गोपनीयता धोरण आणि वैयक्तिक डेटा संरक्षण सूचना' : 'Privacy Policy & Personal Data Protection Notice'}
           </h1>
 
@@ -237,7 +237,7 @@ export default function PrivacyPolicyPage() {
           <div id="grievance-officer" className="scroll-mt-28 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-800 space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                <span className="text-xs font-bold tracking-normal text-amber-400">
                   {isMr ? 'कलम ८(९) व ८(१०) — तक्रार निवारण अधिकारी' : 'DPDP Act Sections 8(9) & 8(10) — Designated Contact'}
                 </span>
                 <h2 className="text-2xl font-extrabold font-['Outfit'] mt-1">

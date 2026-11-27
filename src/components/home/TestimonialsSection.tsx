@@ -13,20 +13,16 @@ export const TestimonialsSection: React.FC = () => {
   const testimonials = content?.testimonials || [];
 
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-b from-white to-[#f4f8f6] relative overflow-hidden">
-      {/* Decorative Blur elements */}
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="testimonials" className="py-24 bg-[#f4f8f6] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-medium">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
             <span>{isMr ? 'समाधानी ग्राहक अभिप्राय' : 'Verified Client Testimonials'}</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-['Outfit']">
+          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 font-['Outfit']">
             {isMr ? 'ग्राहकांचा स्वयम्ऊर्जेवरील दृढ विश्वास' : 'Trusted by 550+ Homes, Factories & Institutions'}
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
@@ -41,29 +37,29 @@ export const TestimonialsSection: React.FC = () => {
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between relative group"
+              className="bg-white rounded-2xl p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-[box-shadow,border-color] duration-200 flex flex-col justify-between relative group"
             >
-              <Quote className="w-12 h-12 text-emerald-100 absolute top-6 right-6 pointer-events-none group-hover:text-emerald-200/60 transition-colors" />
+              <Quote className="w-10 h-10 text-emerald-100 absolute top-6 right-6 pointer-events-none" />
 
               <div className="space-y-4">
                 {/* Dynamic Star Rating */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 tabular-nums">
                   {[...Array(Math.min(5, Math.max(1, item.rating || 5)))].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
-                  <span className="text-xs font-bold text-slate-500 ml-2">
+                  <span className="text-xs font-medium text-slate-500 ml-2">
                     {(item.rating || 5).toFixed(1)} / 5.0
                   </span>
                 </div>
 
                 {/* Savings Pill */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-medium border border-emerald-200 tabular-nums">
                   <IndianRupee className="w-3 h-3 text-emerald-700" />
                   <span>{item.savingsText}</span>
                 </div>
 
                 {/* Review Text */}
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic">
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
                   &ldquo;{isMr ? item.commentMr : item.commentEn}&rdquo;
                 </p>
               </div>

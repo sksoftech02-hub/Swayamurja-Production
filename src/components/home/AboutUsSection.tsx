@@ -16,7 +16,6 @@ import {
   Home, 
   Users, 
   CheckCircle2, 
-  Sparkles
 } from 'lucide-react';
 import { AboutUsContent, CMSTeamMember } from '@/lib/types';
 
@@ -139,21 +138,17 @@ export const AboutUsSection: React.FC = () => {
 
   return (
     <section id="about" className="py-20 bg-white relative overflow-hidden">
-      {/* Decorative Background Accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50 rounded-full filter blur-3xl opacity-60 -z-10" />
-      <div className="absolute bottom-10 left-0 w-96 h-96 bg-amber-50 rounded-full filter blur-3xl opacity-60 -z-10" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
 
         {/* ══════════════════════════════════════════════
             1. SECTION INTRO
         ══════════════════════════════════════════════ */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-medium mb-3">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
             <span>{isMr ? 'आमच्याबद्दल' : 'About SwayamUrja'}</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight font-['Outfit']">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight font-['Outfit']">
             {isMr ? 'स्वच्छ ऊर्जा क्रांतीचे अग्रदूत' : 'Pioneers of Maharashtra\'s Solar Revolution'}
           </h2>
           <p className="text-base md:text-lg text-slate-600 mt-4 leading-relaxed">
@@ -165,42 +160,38 @@ export const AboutUsSection: React.FC = () => {
             2. GRATITUDE BY MD & CEO (Matching swayamurja.com)
         ══════════════════════════════════════════════ */}
         <div id="about-ceo" className="scroll-mt-24">
-          <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden border border-slate-800">
-            {/* Glow orb */}
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="bg-slate-900 rounded-2xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden border border-slate-800">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Photo & Badge */}
               <div className="lg:col-span-4 flex flex-col items-center text-center">
-                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden border-4 border-emerald-400/40 shadow-2xl group">
+                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-lg">
                   <Image
                     src={about.mdCeoMessage.photo || '/uploads/team/rahul-nalawade.jpg'}
                     alt={about.mdCeoMessage.name}
                     fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-top"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
-                <h3 className="text-2xl font-black text-white mt-4 font-['Outfit']">
+                <h3 className="text-2xl font-bold text-white mt-4 font-['Outfit']">
                   {about.mdCeoMessage.name}
                 </h3>
-                <p className="text-xs font-semibold text-emerald-400 mt-1 uppercase tracking-wider">
+                <p className="text-xs font-medium text-emerald-400 mt-1">
                   {isMr ? about.mdCeoMessage.designationMr : about.mdCeoMessage.designationEn}
                 </p>
               </div>
 
               {/* Message Content */}
               <div className="lg:col-span-8 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/50 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 text-emerald-300 text-xs font-medium">
                   <Award className="w-3.5 h-3.5 text-amber-400" />
                   <span>{isMr ? 'व्यवस्थापकीय संचालकांचे मनोगत' : 'Gratitude by our MD & CEO'}</span>
                 </div>
 
-                <div className="relative pl-6 border-l-4 border-amber-400">
-                  <Quote className="w-8 h-8 text-amber-400/40 absolute -left-5 -top-3" />
-                  <p className="text-lg md:text-xl font-medium text-slate-200 italic leading-snug">
-                    "{isMr ? about.mdCeoMessage.quoteMr : about.mdCeoMessage.quoteEn}"
+                <div className="relative pl-6 border-l-2 border-amber-400">
+                  <Quote className="w-6 h-6 text-amber-400/40 absolute -left-3.5 -top-2" />
+                  <p className="text-lg md:text-xl font-medium text-slate-200 leading-snug">
+                    &ldquo;{isMr ? about.mdCeoMessage.quoteMr : about.mdCeoMessage.quoteEn}&rdquo;
                   </p>
                 </div>
 
@@ -208,38 +199,42 @@ export const AboutUsSection: React.FC = () => {
                   {isMr ? about.mdCeoMessage.messageMr : about.mdCeoMessage.messageEn}
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800 tabular-nums">
                   <div>
-                    <div className="text-2xl font-black text-amber-400 font-['Outfit']">1,600+ MW</div>
+                    <div className="text-2xl font-bold text-amber-400 font-['Outfit']">1,600+ MW</div>
                     <div className="text-xs text-slate-400">{isMr ? 'विकसित पवन व सौर प्रकल्प' : 'Developed Across India'}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-black text-emerald-400 font-['Outfit']">550+</div>
+                    <div className="text-2xl font-bold text-emerald-400 font-['Outfit']">550+</div>
                     <div className="text-xs text-slate-400">{isMr ? 'यशस्वी पूर्ण प्रकल्प' : 'Completed Projects'}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-black text-cyan-400 font-['Outfit']">25+ Yrs</div>
+                    <div className="text-2xl font-bold text-cyan-400 font-['Outfit']">25+ Yrs</div>
                     <div className="text-xs text-slate-400">{isMr ? 'नवीकरणीय ऊर्जा नेतृत्व' : 'Renewable Sector Leadership'}</div>
                   </div>
                 </div>
 
-                {/* Verified Awards & Recognitions */}
+                {/* Verified Awards & Recognitions (zero emojis) */}
                 <div className="pt-3 border-t border-slate-800/80">
-                  <div className="text-[11px] font-bold text-amber-400/90 uppercase tracking-wider mb-2">
+                  <div className="text-xs font-medium text-amber-400/90 mb-2">
                     {isMr ? 'पुरस्कार आणि सन्मान' : 'Awards & Recognition'}
                   </div>
-                  <div className="flex flex-wrap gap-2 text-[11px]">
-                    <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">
-                      🏆 {isMr ? 'भारतातील टॉप ४० प्रभावशाली सौर नेते (२०२२)' : 'Top 40 Most Influential Solar Leaders (2022)'}
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 border border-emerald-500/30 text-emerald-300">
+                      <Award className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      {isMr ? 'भारतातील टॉप ४० प्रभावशाली सौर नेते (२०२२)' : 'Top 40 Most Influential Solar Leaders (2022)'}
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
-                      🏅 {isMr ? 'मोस्ट प्रॉमिसिंग यंग लीडर (२०२१)' : 'Most Promising Young Leader (2021)'}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
+                      <Award className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      {isMr ? 'मोस्ट प्रॉमिसिंग यंग लीडर (२०२१)' : 'Most Promising Young Leader (2021)'}
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
-                      🌟 {isMr ? 'सोलर ईपीसी कंपनी ऑफ द इयर (२०२५)' : 'Solar EPC Company of the Year (2025)'}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
+                      <Award className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      {isMr ? 'सोलर ईपीसी कंपनी ऑफ द इयर (२०२५)' : 'Solar EPC Company of the Year (2025)'}
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">
-                      🎓 {isMr ? 'पुणे विद्यापीठ अतिथी व्याख्याते व यशदा प्रशिक्षक' : 'SPPU Guest Lecturer & YASHADA Trainer'}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      {isMr ? 'पुणे विद्यापीठ अतिथी व्याख्याते व यशदा प्रशिक्षक' : 'SPPU Guest Lecturer & YASHADA Trainer'}
                     </span>
                   </div>
                 </div>
@@ -309,7 +304,7 @@ export const AboutUsSection: React.FC = () => {
               return (
                 <div 
                   key={idx}
-                  className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1 group"
+                  className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-emerald-300 transition-colors duration-300 group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-slate-100 group-hover:bg-emerald-100 text-slate-700 group-hover:text-emerald-700 flex items-center justify-center mb-4 transition-colors">
                     <IconComp className="w-5 h-5" />
@@ -331,7 +326,7 @@ export const AboutUsSection: React.FC = () => {
         ══════════════════════════════════════════════ */}
         <div id="about-values" className="scroll-mt-24 space-y-6">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-900 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-900 text-xs font-bold tracking-normal mb-2">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
               <span>{isMr ? 'मूल्ये' : 'Foundational Philosophy'}</span>
             </div>
@@ -349,9 +344,9 @@ export const AboutUsSection: React.FC = () => {
             {about.coreValues.map((val) => (
               <div
                 key={val.letter}
-                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:bg-white hover:border-amber-400 hover:shadow-md transition-all duration-300"
+                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 hover:bg-white hover:border-amber-400 hover:shadow-md transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 text-white font-black text-xl flex items-center justify-center mb-3 shadow-md shadow-amber-500/20 font-['Outfit']">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 text-white font-bold text-xl flex items-center justify-center mb-3 shadow-md shadow-amber-500/20 font-['Outfit']">
                   {val.letter}
                 </div>
                 <h4 className="font-bold text-slate-900 text-sm mb-1.5 font-['Outfit']">
@@ -370,7 +365,7 @@ export const AboutUsSection: React.FC = () => {
         ══════════════════════════════════════════════ */}
         <div id="about-team" className="scroll-mt-32 space-y-6">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold tracking-normal mb-2">
               <Users className="w-3.5 h-3.5 text-emerald-600" />
               <span>{isMr ? 'नेतृत्व' : 'Leadership & Expertise'}</span>
             </div>
@@ -398,11 +393,11 @@ export const AboutUsSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
               <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
                 <div className="space-y-1.5">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800/90 text-emerald-300 border border-emerald-400/30 text-xs font-medium tracking-normal">
+                    <Users className="w-3.5 h-3.5" />
                     {isMr ? "आमचा सर्वात मोठा ठेवा (Our Asset)" : "Our Asset – Our Driving Force"}
                   </span>
-                  <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-white font-['Outfit']">
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-white font-['Outfit']">
                     {isMr ? "स्वयम्ऊर्जा-मित्र (SwayamUrja-MITRA) ६०+ तज्ज्ञांची समर्पित टीम" : "Team of 60+ SwayamUrja-MITRA Solar EPC Specialists"}
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
@@ -412,7 +407,7 @@ export const AboutUsSection: React.FC = () => {
                   </p>
                 </div>
                 <div className="shrink-0 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20">
-                  <div className="text-2xl sm:text-3xl font-black text-amber-400 font-['Outfit']">60+</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-amber-400 font-['Outfit']">60+</div>
                   <div className="text-xs text-slate-200 leading-tight">
                     {isMr ? <>सौर ऊर्जा<br/>अभियंते व मित्र</> : <>Solar EPC<br/>Specialists</>}
                   </div>
@@ -425,14 +420,14 @@ export const AboutUsSection: React.FC = () => {
             {team.map((member) => (
               <div 
                 key={member.id}
-                className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-5 items-center sm:items-start group hover:border-emerald-300"
+                className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl transition-colors duration-300 flex flex-col sm:flex-row gap-5 items-center sm:items-start group hover:border-emerald-300"
               >
                 <div className="relative w-32 h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-slate-100 shadow-md">
                   <Image
                     src={member.photo || '/uploads/team/rahul-nalawade.jpg'}
                     alt={member.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group- transition-transform duration-300"
                     unoptimized
                   />
                 </div>

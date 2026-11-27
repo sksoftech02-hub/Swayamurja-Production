@@ -980,14 +980,14 @@ export default function AdminPage() {
         {/* Left Sidebar Navigation */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-3 pb-1">
+          <div className="text-[11px] font-bold tracking-normal text-slate-500 px-3 pb-1">
             Executive Control
           </div>
 
           <button
             type="button"
             onClick={() => setActiveTab('dashboard')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'dashboard'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -997,13 +997,13 @@ export default function AdminPage() {
               <TrendingUp className="w-4 h-4 text-amber-400" />
               <span>Progress Dashboard</span>
             </div>
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('leads')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'leads'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1018,14 +1018,14 @@ export default function AdminPage() {
             </span>
           </button>
 
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-3 pt-5 pb-1">
+          <div className="text-[11px] font-bold tracking-normal text-slate-500 px-3 pt-5 pb-1">
             Visitor Content CRUD
           </div>
 
           <button
             type="button"
             onClick={() => setActiveTab('projects')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'projects'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1043,7 +1043,7 @@ export default function AdminPage() {
           <button
             type="button"
             onClick={() => setActiveTab('articles')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'articles'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1061,7 +1061,7 @@ export default function AdminPage() {
           <button
             type="button"
             onClick={() => setActiveTab('testimonials')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'testimonials'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1079,7 +1079,7 @@ export default function AdminPage() {
           <button
             type="button"
             onClick={() => setActiveTab('jobs')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'jobs'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1097,7 +1097,7 @@ export default function AdminPage() {
                     <button
             type="button"
             onClick={() => setActiveTab('clients')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'clients'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1115,7 +1115,7 @@ export default function AdminPage() {
           <button
             type="button"
             onClick={() => setActiveTab('about')}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
               activeTab === 'about'
                 ? 'bg-emerald-800 text-white shadow-md'
                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1130,7 +1130,7 @@ export default function AdminPage() {
           {/* SITE SETTINGS & THEME STUDIO: Restricted to Super Admin (SK Softech) */}
           {isSuperAdmin ? (
             <>
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-3 pt-5 pb-1 flex items-center justify-between">
+              <div className="text-[11px] font-bold tracking-normal text-slate-500 px-3 pt-5 pb-1 flex items-center justify-between">
                 <span>Site Settings</span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded-sm bg-cyan-950 text-cyan-400 font-mono font-bold">ROOT</span>
               </div>
@@ -1138,7 +1138,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('stats')}
-                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
                   activeTab === 'stats'
                     ? 'bg-emerald-800 text-white shadow-md'
                     : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1151,7 +1151,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('tariffs')}
-                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
                   activeTab === 'tariffs'
                     ? 'bg-emerald-800 text-white shadow-md'
                     : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1164,7 +1164,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('contact')}
-                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
                   activeTab === 'contact'
                     ? 'bg-emerald-800 text-white shadow-md'
                     : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1174,7 +1174,7 @@ export default function AdminPage() {
                 <span>Helpline & Office</span>
               </button>
 
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-3 pt-5 pb-1 flex items-center justify-between">
+              <div className="text-[11px] font-bold tracking-normal text-slate-500 px-3 pt-5 pb-1 flex items-center justify-between">
                 <span>Design & Appearance</span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded-sm bg-cyan-950 text-cyan-400 font-mono font-bold">ROOT</span>
               </div>
@@ -1182,7 +1182,7 @@ export default function AdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('theme')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-colors cursor-pointer ${
                   activeTab === 'theme'
                     ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold'
                     : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
@@ -1228,11 +1228,10 @@ export default function AdminPage() {
               
               {/* Executive Welcome & Key Metrics Strip */}
               <div className="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 rounded-3xl p-8 text-white shadow-xl border border-emerald-800 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-emerald-800/80">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
+                    <span className="text-xs font-bold tracking-normal text-amber-400 flex items-center gap-1.5 mb-1">
                       <Award className="w-4 h-4" />
                       Executive Leadership Progress Tracker
                     </span>
@@ -1440,7 +1439,7 @@ export default function AdminPage() {
                 {/* Quick Shortcuts */}
                 <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 text-white rounded-3xl p-6 border border-emerald-800 flex flex-col justify-between space-y-4">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1">
+                    <span className="text-xs font-bold tracking-normal text-amber-400 block mb-1">
                       Quick Content Manager
                     </span>
                     <h4 className="text-lg font-bold font-['Outfit']">Publish Updates Instantly</h4>
@@ -1533,7 +1532,7 @@ export default function AdminPage() {
               <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
-                    <thead className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-bold">
+                    <thead className="bg-slate-50 border-b border-slate-200 text-xs tracking-normal text-slate-500 font-bold">
                       <tr>
                         <th className="py-4 px-6">Client / Contact</th>
                         <th className="py-4 px-6">Service & Sizing</th>
@@ -1653,7 +1652,7 @@ export default function AdminPage() {
                     setClientForm({ name: '', logo: '', website: '' });
                     setShowClientModal(true);
                   }}
-                  className="px-4 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer shrink-0"
+                  className="px-4 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-colors cursor-pointer shrink-0"
                 >
                   <Plus className="w-4 h-4" />
                   Add New Client
@@ -1664,14 +1663,14 @@ export default function AdminPage() {
                 {(cmsContent?.clients || []).map((client: any) => (
                   <div
                     key={client.id}
-                    className="border border-slate-200 rounded-2xl p-4 flex flex-col justify-between hover:shadow-md hover:border-emerald-300 transition-all group"
+                    className="border border-slate-200 rounded-2xl p-4 flex flex-col justify-between hover:shadow-md hover:border-emerald-300 transition-colors group"
                   >
                     <div className="bg-slate-50 rounded-xl p-3 h-24 flex items-center justify-center mb-2 overflow-hidden">
                       {client.logo ? (
                         <img
                           src={client.logo}
                           alt={client.name}
-                          className="max-h-16 max-w-full object-contain transition-all"
+                          className="max-h-16 max-w-full object-contain transition-colors"
                         />
                       ) : (
                         <Building2 className="w-8 h-8 text-slate-400" />
@@ -1724,7 +1723,7 @@ export default function AdminPage() {
                         href="/about-us"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center gap-1.5 border border-emerald-200 transition-all"
+                        className="px-4 py-2.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center gap-1.5 border border-emerald-200 transition-colors"
                       >
                         <span>Preview /about-us Page</span>
                         <ExternalLink className="w-3.5 h-3.5 text-emerald-600" />
@@ -1732,7 +1731,7 @@ export default function AdminPage() {
                       <button
                         type="submit"
                         disabled={savingCms}
-                        className="px-5 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+                        className="px-5 py-2.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
                       >
                         <Save className="w-4 h-4" />
                         {savingCms ? 'Saving...' : 'Save CEO Message'}
@@ -1861,7 +1860,7 @@ export default function AdminPage() {
                       setTeamForm({ name: '', designationEn: '', designationMr: '', bioEn: '', bioMr: '', photo: '', linkedin: '' });
                       setShowTeamModal(true);
                     }}
-                    className="px-4 py-2 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all cursor-pointer shrink-0"
+                    className="px-4 py-2 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer shrink-0"
                   >
                     <UserPlus className="w-4 h-4" />
                     Add Team Designation
@@ -2595,12 +2594,10 @@ export default function AdminPage() {
               
               {/* Studio Header Banner */}
               <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-950 rounded-3xl p-8 text-white shadow-xl border border-slate-700 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-sky-400/10 rounded-full blur-2xl pointer-events-none" />
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-700">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
+                    <span className="text-xs font-bold tracking-normal text-amber-400 flex items-center gap-1.5 mb-1">
                       <Palette className="w-4 h-4" />
                       Visual Identity & Color Palette Controller
                     </span>
@@ -2621,7 +2618,7 @@ export default function AdminPage() {
                       saveCmsChanges(updated);
                     }}
                     disabled={savingCms}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-md transition-all cursor-pointer shrink-0"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-md transition-colors cursor-pointer shrink-0"
                   >
                     <Save className="w-4 h-4" />
                     <span>{savingCms ? 'Saving...' : 'Apply Theme Live to Website'}</span>
@@ -2638,7 +2635,7 @@ export default function AdminPage() {
                   </div>
                   <div>
                     <span className="text-slate-400 block mb-1">Hero Style:</span>
-                    <span className="font-bold text-sky-300 uppercase tracking-wider bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700 inline-block text-[11px]">
+                    <span className="font-bold text-sky-300 tracking-normal bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700 inline-block text-[11px]">
                       {themeForm.heroBackground}
                     </span>
                   </div>
@@ -2692,7 +2689,7 @@ export default function AdminPage() {
                             saveCmsChanges(updated);
                           }
                         }}
-                        className={`rounded-3xl p-6 transition-all cursor-pointer flex flex-col justify-between border-2 ${
+                        className={`rounded-3xl p-6 transition-colors cursor-pointer flex flex-col justify-between border-2 ${
                           isSelected
                             ? 'bg-white border-amber-500 shadow-xl ring-2 ring-amber-400/30 scale-[1.02]'
                             : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-md'
@@ -2700,7 +2697,7 @@ export default function AdminPage() {
                       >
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                            <span className="text-[11px] font-bold tracking-normal text-slate-500">
                               {preset.heroBackground.replace('-', ' ')}
                             </span>
                             {isSelected ? (
@@ -2793,7 +2790,7 @@ export default function AdminPage() {
 
                 {/* Simulated Mini-Hero Component */}
                 <div
-                  className={`rounded-2xl p-6 border transition-all duration-300 ${
+                  className={`rounded-2xl p-6 border transition-colors duration-300 ${
                     themeForm.heroBackground === 'clean-light'
                       ? 'bg-gradient-to-br from-slate-50 via-amber-50/40 to-white text-slate-900 border-slate-200'
                       : themeForm.heroBackground === 'dark-navy'
@@ -2807,7 +2804,7 @@ export default function AdminPage() {
                     {/* Simulated Badges */}
                     <div className="flex flex-wrap gap-2">
                       <span
-                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border"
+                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-normal border"
                         style={{
                           backgroundColor: `${themeForm.secondaryColor}20`,
                           borderColor: `${themeForm.secondaryColor}60`,
@@ -2817,7 +2814,7 @@ export default function AdminPage() {
                         MNRE Registered
                       </span>
                       <span
-                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border"
+                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-normal border"
                         style={{
                           backgroundColor: `${themeForm.primaryColor}20`,
                           borderColor: `${themeForm.primaryColor}60`,
@@ -2827,7 +2824,7 @@ export default function AdminPage() {
                         25-Year Warranty
                       </span>
                       <span
-                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border"
+                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-normal border"
                         style={{
                           backgroundColor: `${themeForm.accentColor}20`,
                           borderColor: `${themeForm.accentColor}60`,
@@ -2862,7 +2859,7 @@ export default function AdminPage() {
                     <div className="flex flex-wrap items-center gap-3 pt-1">
                       <button
                         type="button"
-                        className="px-5 py-2.5 rounded-xl font-extrabold text-xs shadow-md transition-all"
+                        className="px-5 py-2.5 rounded-xl font-extrabold text-xs shadow-md transition-colors"
                         style={{
                           backgroundColor: themeForm.primaryColor,
                           color: '#0f172a',
@@ -2873,7 +2870,7 @@ export default function AdminPage() {
 
                       <button
                         type="button"
-                        className="px-4 py-2.5 rounded-xl font-bold text-xs border transition-all"
+                        className="px-4 py-2.5 rounded-xl font-bold text-xs border transition-colors"
                         style={{
                           borderColor: `${themeForm.secondaryColor}80`,
                           color: themeForm.secondaryColor,
@@ -3039,7 +3036,7 @@ export default function AdminPage() {
                       alert('Custom theme saved and applied live to the website!');
                     }}
                     disabled={savingCms}
-                    className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-400 font-extrabold text-xs shadow-md transition-all cursor-pointer flex items-center gap-2"
+                    className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-400 font-extrabold text-xs shadow-md transition-colors cursor-pointer flex items-center gap-2"
                   >
                     <Save className="w-4 h-4 text-amber-400" />
                     <span>Save Custom Palette</span>

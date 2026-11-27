@@ -45,7 +45,7 @@ export const SolarCalculator: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-normal border border-emerald-200">
             <Calculator className="w-3.5 h-3.5 text-emerald-600" />
             <span>{t('calc_tag')}</span>
           </div>
@@ -70,7 +70,7 @@ export const SolarCalculator: React.FC = () => {
                   ? { backgroundColor: theme.primaryColor || '#f59e0b', color: '#ffffff' }
                   : {}
               }
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
                 category === 'residential'
                   ? 'shadow-lg scale-105'
                   : 'bg-emerald-800/60 text-emerald-200 hover:bg-emerald-800'
@@ -88,7 +88,7 @@ export const SolarCalculator: React.FC = () => {
                   ? { backgroundColor: theme.primaryColor || '#f59e0b', color: '#ffffff' }
                   : {}
               }
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
                 category === 'commercial'
                   ? 'shadow-lg scale-105'
                   : 'bg-emerald-800/60 text-emerald-200 hover:bg-emerald-800'
@@ -106,7 +106,7 @@ export const SolarCalculator: React.FC = () => {
                   ? { backgroundColor: theme.primaryColor || '#f59e0b', color: '#ffffff' }
                   : {}
               }
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
                 category === 'housing'
                   ? 'shadow-lg scale-105'
                   : 'bg-emerald-800/60 text-emerald-200 hover:bg-emerald-800'
@@ -272,7 +272,7 @@ export const SolarCalculator: React.FC = () => {
                     color: '#ffffff',
                     boxShadow: `0 10px 25px -5px ${theme.primaryColor || '#f59e0b'}80`,
                   }}
-                  className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl hover:opacity-95 font-extrabold text-base shadow-xl transition-all cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl hover:opacity-95 font-extrabold text-base shadow-xl transition-colors cursor-pointer"
                 >
                   <span>{t('calc_cta_claim')}</span>
                   <ArrowRight className="w-5 h-5" />
@@ -299,7 +299,7 @@ export const SolarCalculator: React.FC = () => {
                       companyContact: content?.companyContact,
                     });
                   }}
-                  className="w-full mt-3 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold text-sm shadow-md transition-all cursor-pointer hover:border-emerald-400 group"
+                  className="w-full mt-3 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold text-sm shadow-md transition-colors cursor-pointer hover:border-emerald-400 group"
                 >
                   <FileText className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
                   <span>{isMr ? 'विस्तृत फिजिबिलिटी अहवाल डाउनलोड करा (PDF)' : 'Download Detailed Feasibility Report (PDF)'}</span>

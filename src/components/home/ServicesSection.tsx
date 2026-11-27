@@ -86,17 +86,17 @@ export const ServicesSection: React.FC = () => {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-widest border border-emerald-200">
-            <Zap className="w-3.5 h-3.5 text-emerald-600 animate-lightning" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-medium border border-emerald-200">
+            <Zap className="w-3.5 h-3.5 text-emerald-600" />
             {isMr ? 'आमच्या सेवा' : 'Our Services'}
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-['Outfit'] leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 font-['Outfit'] leading-tight">
             {isMr
               ? <>संपूर्ण सोलर <span className="text-emerald-700">EPC उपाय</span></>
               : <>Complete Solar <span className="text-emerald-700">EPC Solutions</span></>
             }
           </h2>
-          <p className="text-slate-500 text-base sm:text-lg">
+          <p className="text-slate-600 text-base sm:text-lg">
             {isMr
               ? 'घरांपासून मेगावॅट प्रकल्पांपर्यंत — स्वयम्ऊर्जा प्रत्येक गरजेसाठी सोलर उपाय देते.'
               : 'From homes to megawatt-scale projects — SwayamUrja delivers solar solutions for every need.'}
@@ -111,36 +111,34 @@ export const ServicesSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`premium-card group rounded-3xl overflow-hidden flex flex-col ${c.border} transition-all duration-300`}
-                style={{ animationDelay: `${idx * 80}ms` }}
+                className={`premium-card group rounded-2xl overflow-hidden flex flex-col ${c.border}`}
               >
-                {/* Top colour strip with emoji */}
-                <div className={`h-2 bg-gradient-to-r ${item.fallbackBg}`} />
+                <div className={`h-1.5 bg-gradient-to-r ${item.fallbackBg}`} />
 
-                <div className="p-7 flex flex-col flex-1">
+                <div className="p-6 flex flex-col flex-1">
                   {/* Icon + badge row */}
                   <div className="flex items-start justify-between mb-5">
-                    <div className={`w-13 h-13 rounded-2xl ${c.icon} flex items-center justify-center transition-all duration-300 shadow-sm`}>
-                      <Icon className="w-6 h-6" />
+                    <div className={`w-12 h-12 rounded-xl ${c.icon} flex items-center justify-center transition-colors duration-200`}>
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${c.badge}`}>
+                    <span className={`text-xs font-medium px-2.5 py-1 rounded-lg border tabular-nums ${c.badge}`}>
                       {item.highlight}
                     </span>
                   </div>
 
                   {/* Text */}
-                  <h3 className="text-lg font-extrabold text-slate-900 font-['Outfit'] mb-2 group-hover:text-emerald-800 transition-colors">
+                  <h3 className="text-lg font-semibold text-slate-900 font-['Outfit'] mb-2 group-hover:text-emerald-800 transition-colors">
                     {isMr ? item.titleMr : item.titleEn}
                   </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed flex-1 mb-5">
+                  <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-5">
                     {isMr ? item.descMr : item.descEn}
                   </p>
 
                   {/* CTA */}
                   <a href="#contact"
-                    className={`inline-flex items-center gap-2 text-sm font-bold pt-4 border-t border-slate-100 ${c.link} transition-all duration-200`}>
+                    className={`inline-flex items-center gap-2 text-sm font-semibold pt-4 border-t border-slate-100 ${c.link} transition-colors duration-150`}>
                     <span>{isMr ? 'कोटेशन मिळवा' : 'Request Proposal'}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+                    <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -149,16 +147,16 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         {/* Bottom trust row */}
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 tabular-nums">
           {[
             { n: '1,600+ MW', l: isMr ? 'विकसित पवन व सौर' : 'Wind & Solar Developed' },
             { n: '25+ Yrs', l: isMr ? 'ऊर्जा नेतृत्व अनुभव' : 'Sector Leadership' },
             { n: '100%', l: isMr ? 'MSEDCL मान्यता' : 'MSEDCL Approvals' },
             { n: '25 Yrs', l: isMr ? 'पॅनेल वॉरंटी' : 'Panel Warranty' },
           ].map((s, i) => (
-            <div key={i} className="bg-white rounded-2xl p-5 text-center border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-2xl font-extrabold text-emerald-700 font-['Outfit']">{s.n}</div>
-              <div className="text-xs text-slate-500 font-medium mt-1">{s.l}</div>
+            <div key={i} className="bg-white rounded-2xl p-5 text-center border border-slate-200/80 shadow-xs">
+              <div className="text-2xl font-bold text-emerald-700 font-['Outfit']">{s.n}</div>
+              <div className="text-xs text-slate-600 font-medium mt-1">{s.l}</div>
             </div>
           ))}
         </div>

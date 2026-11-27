@@ -49,7 +49,7 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
     <div className="relative w-full max-w-[560px] mx-auto select-none">
       {/* ── Main Frame Card ── */}
       <div
-        className={`relative rounded-3xl overflow-hidden border shadow-2xl transition-all duration-300 ${
+        className={`relative rounded-3xl overflow-hidden border shadow-2xl transition-colors duration-300 ${
           isLight ? 'border-slate-200/90 bg-white shadow-slate-300/50' : 'border-slate-800 bg-slate-950/90 shadow-black/70'
         }`}
       >
@@ -60,9 +60,9 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
               type="button"
               onClick={() => setActiveTab('industrial')}
               style={activeTab === 'industrial' ? { backgroundColor: primaryColor, color: '#ffffff' } : {}}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-colors duration-200 cursor-pointer ${
                 activeTab === 'industrial'
-                  ? 'shadow-xs font-black'
+                  ? 'shadow-xs font-bold'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -73,9 +73,9 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
               type="button"
               onClick={() => setActiveTab('rooftop')}
               style={activeTab === 'rooftop' ? { backgroundColor: primaryColor, color: '#ffffff' } : {}}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold transition-colors duration-200 cursor-pointer ${
                 activeTab === 'rooftop'
-                  ? 'shadow-xs font-black'
+                  ? 'shadow-xs font-bold'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -102,7 +102,7 @@ const RealSolarEngineeringShowcase: React.FC<RealSolarShowcaseProps> = ({
             onError={(e) => {
               e.currentTarget.src = '/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg';
             }}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-"
           />
 
           {/* Subtle gradient vignette for readable caption contrast */}
@@ -222,27 +222,19 @@ export const Hero: React.FC = () => {
   ];
 
   return (
-    <section className={`relative overflow-hidden min-h-[90vh] flex flex-col transition-colors duration-500 ${getThemeBg()}`}>
-      {/* ── Subtle Background Depth Accent ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-60"
-          style={{ backgroundColor: `${theme.secondaryColor || '#0284c7'}14` }}
-        />
-      </div>
-
+    <section className={`relative overflow-hidden py-12 lg:py-16 flex flex-col transition-colors duration-300 ${getThemeBg()}`}>
       {/* ── Top Announcement Banner (CMS driven) ── */}
       {announcement?.enabled && (
         <div
-          className="relative z-10 text-white shadow-xs"
+          className="relative z-10 -mt-12 lg:-mt-16 mb-10 text-white"
           style={{
-            background: `linear-gradient(90deg, ${theme.primaryColor || '#f59e0b'}, ${theme.secondaryColor || '#0284c7'})`,
+            backgroundColor: theme.primaryColor || '#d97706',
           }}
         >
-          <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-xs sm:text-sm font-bold">
+          <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-3 text-xs sm:text-sm font-medium">
             <Zap className="w-4 h-4 shrink-0 text-white" />
             <span>{isMr ? announcement.textMr : announcement.textEn}</span>
-            <a href="#contact" className="underline underline-offset-2 hover:no-underline font-extrabold text-white">
+            <a href="#contact" className="underline underline-offset-2 hover:no-underline font-semibold text-white">
               {isMr ? 'आता संपर्क करा →' : 'Contact Now →'}
             </a>
           </div>
@@ -250,39 +242,39 @@ export const Hero: React.FC = () => {
       )}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 w-full py-12 lg:py-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 w-full py-6 lg:py-10 items-center">
           {/* ── LEFT: Text content ── */}
           <div className="space-y-6 order-2 lg:order-1">
-            {/* Logo-Colored Badges */}
+            {/* Logo-Colored Badges (quiet sentence case, zero pulsing dots) */}
             <div className="flex flex-wrap gap-2">
               {badges.map((b, i) => (
                 <span
                   key={i}
                   style={{
-                    backgroundColor: `${b.color}20`,
-                    borderColor: `${b.color}60`,
+                    backgroundColor: `${b.color}18`,
+                    borderColor: `${b.color}45`,
                     color: b.color,
                   }}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border animate-slide-up delay-${i * 100}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ backgroundColor: b.color }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: b.color }} />
                   {b.label}
                 </span>
               ))}
             </div>
 
             {/* Headline (H2 to preserve single semantic H1 above-the-fold in VideoHero) */}
-            <div className="space-y-2 animate-slide-up delay-200">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-['Outfit'] leading-[1.12]">
+            <div className="space-y-3">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-['Outfit'] leading-[1.12]">
                 {isMr ? (
                   <>
-                    सौरऊर्जेने <span className="text-shimmer" style={{ color: theme.primaryColor }}>भविष्य</span> घडवा
+                    सौरऊर्जेने <span style={{ color: theme.primaryColor }}>भविष्य</span> घडवा
                   </>
                 ) : (
                   <>
                     Power Your Future
                     <br />
-                    with <span className="text-shimmer" style={{ color: theme.primaryColor }}>Clean Solar</span>
+                    with <span style={{ color: theme.primaryColor }}>Clean Solar</span>
                   </>
                 )}
               </h2>
@@ -294,7 +286,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Trust points */}
-            <ul className="space-y-2 animate-slide-up delay-300">
+            <ul className="space-y-2">
               {(isMr
                 ? [
                     '₹७८,०००+ PM सूर्य घर थेट सबसिडी',
@@ -314,33 +306,29 @@ export const Hero: React.FC = () => {
               ))}
             </ul>
 
-            {/* CTA Buttons with Logo Colors */}
-            <div className="flex flex-wrap gap-3 pt-1 animate-slide-up delay-400">
-              {/* Primary Theme CTA */}
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3 pt-1">
               <Link
                 href="#calculator"
                 style={{
                   backgroundColor: theme.primaryColor || '#f59e0b',
                   color: '#ffffff',
-                  boxShadow: `0 10px 25px -5px ${theme.primaryColor || '#f59e0b'}80`,
                 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl
-                           hover:opacity-95 text-white font-extrabold text-[15px]
-                           hover:-translate-y-0.5
-                           transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl
+                           hover:opacity-90 text-white font-semibold text-[15px]
+                           transition-[opacity,transform] duration-150 active:scale-[0.98] cursor-pointer"
               >
                 <Zap className="w-4 h-4 text-white" />
                 <span>{isMr ? 'सोलर कॅल्क्युलेटर' : 'Calculate Savings'}</span>
               </Link>
 
-              {/* Secondary Theme CTA */}
               <Link
                 href="#contact"
                 style={{
                   borderColor: `${theme.secondaryColor || '#0284c7'}80`,
                   color: theme.secondaryColor || '#38bdf8',
                 }}
-                className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl font-bold text-[15px] transition-all duration-200 border cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-[15px] transition-colors duration-150 border cursor-pointer ${
                   isLight
                     ? 'border-slate-300 text-slate-800 hover:bg-slate-100'
                     : 'hover:bg-white/5'
@@ -352,9 +340,9 @@ export const Hero: React.FC = () => {
               </Link>
             </div>
 
-            {/* Social proof strip (CMS-driven from content.stats with safe fallbacks) */}
+            {/* Social proof strip (CMS-driven from content.stats with tabular-nums) */}
             <div
-              className={`flex flex-wrap items-center gap-6 pt-3 border-t animate-slide-up delay-500 ${
+              className={`flex flex-wrap items-center gap-8 pt-4 border-t ${
                 isLight ? 'border-slate-200' : 'border-slate-800/80'
               }`}
             >
@@ -384,7 +372,7 @@ export const Hero: React.FC = () => {
                 return (
                   <div key={i} className="text-left min-w-[70px]">
                     <div
-                      className="text-2xl font-extrabold font-['Outfit'] leading-none"
+                      className="text-2xl font-bold font-['Outfit'] leading-none tabular-nums"
                       style={{ color: theme.primaryColor || '#f59e0b' }}
                     >
                       {mounted && !isNaN(parsedNum) && !stat.val.includes('.') ? (
@@ -393,15 +381,15 @@ export const Hero: React.FC = () => {
                         stat.val
                       )}
                     </div>
-                    <div className={`text-[11px] font-medium mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{stat.l}</div>
+                    <div className={`text-xs font-medium mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{stat.l}</div>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* ── RIGHT: Real Solar Engineering Showcase (Option 1) ── */}
-          <div className="order-1 lg:order-2 flex justify-center items-center animate-slide-right delay-300 w-full">
+          {/* ── RIGHT: Real Solar Engineering Showcase ── */}
+          <div className="order-1 lg:order-2 flex justify-center items-center w-full">
             <RealSolarEngineeringShowcase
               themeType={theme.heroBackground}
               primaryColor={theme.primaryColor}
@@ -410,19 +398,6 @@ export const Hero: React.FC = () => {
             />
           </div>
         </div>
-      </div>
-
-      {/* ── Scroll Explore Indicator ── */}
-      <div className="relative z-10 flex justify-center pb-5">
-        <a
-          href="#services"
-          className={`flex flex-col items-center gap-1 transition-colors group ${isLight ? 'text-slate-400 hover:text-slate-600' : 'text-slate-400 hover:text-amber-400'}`}
-        >
-          <span className="text-[10px] uppercase tracking-widest font-bold">Explore</span>
-          <div className="w-5 h-8 border-2 border-current rounded-full flex justify-center pt-1">
-            <div className="w-1 h-2 bg-current rounded-full animate-bounce" />
-          </div>
-        </a>
       </div>
     </section>
   );

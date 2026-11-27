@@ -83,7 +83,7 @@ export const MaharashtraMap: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-xs font-bold uppercase tracking-wider border border-emerald-800">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-xs font-bold tracking-normal border border-emerald-800">
             <Factory className="w-3.5 h-3.5" />
             <span>{t('map_tag')}</span>
           </div>
@@ -100,7 +100,7 @@ export const MaharashtraMap: React.FC = () => {
           
           {/* Left: District Interactive Selector List */}
           <div className="lg:col-span-5 space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
+            <div className="text-xs font-bold tracking-normal text-emerald-400 mb-2">
               {isMr ? 'प्रमुख प्रकल्प निवडा:' : 'Select Landmark Project:'}
             </div>
 
@@ -111,14 +111,14 @@ export const MaharashtraMap: React.FC = () => {
                   key={node.id}
                   type="button"
                   onClick={() => setSelectedId(node.id)}
-                  className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                  className={`w-full text-left p-4 sm:p-5 rounded-xl border transition-colors cursor-pointer flex items-center justify-between ${
                     isActive
-                      ? 'bg-emerald-900/90 border-amber-400 shadow-lg scale-102'
+                      ? 'bg-emerald-900/80 border-amber-400 shadow-sm'
                       : 'bg-slate-800/60 border-slate-700/60 hover:bg-slate-800 hover:border-slate-600'
                   }`}
                 >
                   <div className="space-y-1">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 block">
+                    <span className="text-[11px] font-bold tracking-normal text-amber-400 block">
                       {node.badge[language]}
                     </span>
                     <h4 className="text-base font-bold text-white font-['Outfit']">
@@ -145,12 +145,11 @@ export const MaharashtraMap: React.FC = () => {
 
           {/* Right: Selected Project Detailed Showcase Card */}
           <div className="lg:col-span-7">
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-emerald-700/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
 
               {/* Tag & Title */}
               <div className="space-y-3 mb-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold tracking-normal">
                   <Sun className="w-3.5 h-3.5" />
                   <span>{selectedNode.badge[language]}</span>
                 </div>

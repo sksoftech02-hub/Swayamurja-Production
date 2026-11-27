@@ -54,7 +54,7 @@ export const VideoHero: React.FC = () => {
             <div className="flex items-center gap-2.5 pt-1.5 flex-wrap">
               <a
                 href="#services"
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-md shadow-black/40 transition-all hover:scale-105"
+                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-md shadow-black/40 transition-colors"
               >
                 <span>{isMr ? 'आमचे प्रकल्प व सेवा' : 'Explore Solar EPC'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -62,7 +62,7 @@ export const VideoHero: React.FC = () => {
 
               <a
                 href="#contact"
-                className="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white backdrop-blur-md border border-white/30 text-xs font-bold inline-flex items-center gap-1.5 transition-all"
+                className="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white backdrop-blur-md border border-white/30 text-xs font-bold inline-flex items-center gap-1.5 transition-colors"
               >
                 <span>{isMr ? 'मोफत साईट सर्वेक्षण' : 'Request Site Survey'}</span>
               </a>

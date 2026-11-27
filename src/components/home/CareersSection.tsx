@@ -71,7 +71,7 @@ export const CareersSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-normal border border-emerald-200">
             <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
             <span>{isMr ? 'करिअर संधी' : 'Career Opportunities'}</span>
           </div>
@@ -90,10 +90,10 @@ export const CareersSection: React.FC = () => {
           {jobsList.map((job) => (
             <div
               key={job.id}
-              className="bg-[#f8faf9] rounded-3xl p-8 border border-slate-200 shadow-xs hover:shadow-xl hover:border-emerald-300 transition-all flex flex-col justify-between"
+              className="bg-[#f8faf9] rounded-3xl p-8 border border-slate-200 shadow-xs hover:shadow-xl hover:border-emerald-300 transition-colors flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 inline-block">
+                <span className="text-[11px] font-bold tracking-normal px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 inline-block">
                   {job.department}
                 </span>
 

@@ -802,7 +802,7 @@ export default function SuperAdminPage() {
 
           {authError && (
             <div className="mb-6 p-3.5 bg-red-950/40 border border-red-800/60 rounded-xl text-red-300 text-xs flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-red-400"></span>
               {authError}
             </div>
           )}
@@ -981,14 +981,14 @@ export default function SuperAdminPage() {
           <aside className="w-full lg:w-72 shrink-0 bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-5 lg:sticky lg:top-24 shadow-xl">
             {/* GROUP 1: CORE OPERATIONS */}
             <div className="space-y-1.5">
-              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-slate-500 px-3 pb-1">
+              <div className="text-[10px] font-bold font-mono tracking-normal text-slate-500 px-3 pb-1">
                 Core Operations
               </div>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('users')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'users'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1006,7 +1006,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('leads')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'leads'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1024,7 +1024,7 @@ export default function SuperAdminPage() {
 
             {/* GROUP 2: VISITOR WEBSITE CMS */}
             <div className="space-y-1.5">
-              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-cyan-400 px-3 pb-1 flex items-center justify-between">
+              <div className="text-[10px] font-bold font-mono tracking-normal text-cyan-400 px-3 pb-1 flex items-center justify-between">
                 <span>Visitor Website CMS</span>
                 <span className="text-[9px] px-1.5 py-0.5 bg-cyan-950 border border-cyan-800 rounded font-mono font-bold text-cyan-400">
                   LIVE
@@ -1035,14 +1035,14 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('layout')}
-                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'layout'
                     ? 'bg-gradient-to-r from-cyan-600/30 to-emerald-600/30 text-white border-2 border-cyan-400 shadow-lg shadow-cyan-950/50'
                     : 'bg-slate-950 text-cyan-300 hover:text-white hover:bg-slate-850 border border-cyan-500/40'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <Layers className="w-4 h-4 text-cyan-400 animate-pulse" />
+                  <Layers className="w-4 h-4 text-cyan-400" />
                   <span className="tracking-tight">HOMEPAGE CONTAINERS</span>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-700 font-bold">
@@ -1053,7 +1053,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('clients')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'clients'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1071,7 +1071,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('about')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'about'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1086,7 +1086,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('content')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'content'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1101,7 +1101,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('tariffs')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'tariffs'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1116,7 +1116,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('theme')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'theme'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1131,14 +1131,14 @@ export default function SuperAdminPage() {
 
             {/* GROUP 3: SECURITY & DATABASE */}
             <div className="space-y-1.5">
-              <div className="text-[10px] font-bold font-mono uppercase tracking-wider text-slate-500 px-3 pb-1">
+              <div className="text-[10px] font-bold font-mono tracking-normal text-slate-500 px-3 pb-1">
                 Security &amp; Infrastructure
               </div>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('audit')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'audit'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1156,7 +1156,7 @@ export default function SuperAdminPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab('database')}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold font-mono transition-colors cursor-pointer ${
                   activeTab === 'database'
                     ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                     : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800/60'
@@ -1230,7 +1230,7 @@ export default function SuperAdminPage() {
                         <td className="px-4 py-3.5">
                           {u.isActive ? (
                             <span className="inline-flex items-center gap-1.5 text-emerald-400 font-medium text-[11px]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                               Active
                             </span>
                           ) : (
@@ -1549,7 +1549,7 @@ export default function SuperAdminPage() {
                 return (
                   <div
                     key={preset.id}
-                    className={`bg-slate-900 border rounded-2xl p-5 flex flex-col justify-between transition-all ${
+                    className={`bg-slate-900 border rounded-2xl p-5 flex flex-col justify-between transition-colors ${
                       isActive ? 'border-amber-400 shadow-xl shadow-amber-950/20' : 'border-slate-800 hover:border-slate-700'
                     }`}
                   >
@@ -1631,7 +1631,7 @@ export default function SuperAdminPage() {
                   type="button"
                   onClick={handleSaveLayout}
                   disabled={actionLoading}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-cyan-950 transition-all cursor-pointer"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-cyan-950 transition-colors cursor-pointer"
                 >
                   <Save className="w-4 h-4" />
                   {actionLoading ? 'Saving...' : 'Apply & Publish Layout Live'}
@@ -1765,7 +1765,7 @@ export default function SuperAdminPage() {
                 {layoutSections.map((section, index) => (
                   <div
                     key={section.id}
-                    className={`p-4 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                    className={`p-4 rounded-xl border transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                       section.enabled
                         ? 'bg-slate-950 border-slate-800 hover:border-slate-700'
                         : 'bg-slate-950/40 border-slate-900 opacity-60'
@@ -1896,7 +1896,7 @@ export default function SuperAdminPage() {
               {(cmsContent?.clients || []).map((client: any) => (
                 <div
                   key={client.id}
-                  className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between group hover:border-cyan-500/50 transition-all"
+                  className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between group hover:border-cyan-500/50 transition-colors"
                 >
                   <div className="bg-white rounded-xl p-3 h-24 flex items-center justify-center mb-3 overflow-hidden">
                     {client.logo ? (
