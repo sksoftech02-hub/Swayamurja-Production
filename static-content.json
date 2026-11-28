@@ -1,0 +1,637 @@
+{
+  "theme": {
+    "id": "solar-gold-navy",
+    "name": "☀️ Solar Gold & Midnight Navy",
+    "heroBackground": "dark-navy",
+    "primaryColor": "#f59e0b",
+    "secondaryColor": "#2563eb",
+    "accentColor": "#38bdf8",
+    "tagline": "Deep corporate midnight sapphire with radiant solar amber highlights. Clean & enterprise-grade."
+  },
+  "stats": {
+    "totalMw": "1,600+ MW",
+    "totalMwLabel": {
+      "en": "Wind & Solar Developed",
+      "mr": "विकसित पवन व सौर प्रकल्प"
+    },
+    "clients": "610+",
+    "clientsLabel": {
+      "en": "Completed Clean Energy Projects",
+      "mr": "यशस्वी पूर्ण प्रकल्प"
+    },
+    "co2Offset": "45,000+ T",
+    "co2Label": {
+      "en": "Annual CO₂ Offset",
+      "mr": "वार्षिक कार्बन उत्सर्जन कपात"
+    },
+    "uptime": "99.4%",
+    "uptimeLabel": {
+      "en": "SCADA Plant Availability",
+      "mr": "अपटाइम गुणवत्ता हमी"
+    }
+  },
+  "announcement": {
+    "enabled": true,
+    "textEn": "⚡ PM Surya Ghar: Direct Bank Subsidy up to ₹78,000 available across Maharashtra! Free site survey available this week.",
+    "textMr": "⚡ पीएम सूर्य घर योजना: महाराष्ट्रात थेट बँक सबसिडी ₹७८,००० पर्यंत उपलब्ध! या आठवड्यात मोफत साइट सर्व्हे सुरू."
+  },
+  "tariffs": {
+    "residentialUnitRate": 8.5,
+    "commercialUnitRate": 11.5,
+    "housingUnitRate": 9.2,
+    "pmSuryaGhar1Kw": 30000,
+    "pmSuryaGhar2Kw": 60000,
+    "pmSuryaGhar3KwMax": 78000
+  },
+  "companyContact": {
+    "phone": "+91 92721 00623",
+    "whatsapp": "+91 92721 00623",
+    "email": "crm@swayamurja.com",
+    "address": "T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri, Pune, Maharashtra 411014",
+    "workingHours": "Mon - Sat: 9:30 AM - 6:30 PM"
+  },
+  "projects": [
+    {
+      "id": "proj-krishna-vishwa",
+      "category": "commercial",
+      "titleEn": "Krishna Vishwa Vidyapeeth (Deemed University) Solar Rooftop",
+      "titleMr": "कृष्णा विश्व विद्यापीठ (अभिमत विद्यापीठ) रूफटॉप सोलर",
+      "capacity": "1,000 kWp (1.0 MW)",
+      "locationEn": "Karad, Dist Satara, Maharashtra",
+      "locationMr": "कराड, जि. सातारा, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg",
+      "highlightEn": "1 MW institutional rooftop installation powering premier medical education & hospital infrastructure",
+      "highlightMr": "वैद्यकीय महाविद्यालय व रुग्णालय कॅम्पसला स्वच्छ सौर ऊर्जा पुरवणारा १,००० किलोवॅट (१ MW) भव्य प्रकल्प"
+    },
+    {
+      "id": "proj-prd-foods",
+      "category": "commercial",
+      "titleEn": "PRD Foods (Manikchand Group) Industrial Solar Plant",
+      "titleMr": "पीआरडी फूड्स (माणिकचंद ग्रुप) औद्योगिक सोलर प्रकल्प",
+      "capacity": "990 kWp",
+      "locationEn": "",
+      "locationMr": "",
+      "image": "/Swayamurja-Production/uploads/projects/prd-foods-manikchand-990kw.webp",
+      "highlightEn": "Turnkey industrial manufacturing solar EPC offsetting over 65% of plant grid electricity demand",
+      "highlightMr": "औद्योगिक उत्पादन युनिटचा ६५%+ वीज वापर सौर ऊर्जेवर आणून वीज बिलात लक्षणीय कपात करणारा प्रकल्प"
+    },
+    {
+      "id": "proj-fern-hotel",
+      "category": "commercial",
+      "titleEn": "The Fern Residency Hotel Commercial Rooftop Solar",
+      "titleMr": "द फर्न रेसिडेन्सी हॉटेल कमर्शियल रूफटॉप सोलर",
+      "capacity": "350 kWp",
+      "locationEn": "Karad, Dist Satara, Maharashtra",
+      "locationMr": "कराड, जि. सातारा, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/the-fern-residency-karad-350kw.webp",
+      "highlightEn": "Hospitality commercial rooftop installation powering central HVAC and luxury amenities with zero downtime",
+      "highlightMr": "हॉस्पिटॅलिटी व हॉटेल उद्योगासाठी ३५० किलोवॅट उच्च कार्यक्षम रूफटॉप सोलर — अखंड वीज व खर्चात बचत"
+    },
+    {
+      "id": "proj-elpro-school",
+      "category": "commercial",
+      "titleEn": "Elpro International School Rooftop Solar",
+      "titleMr": "एल्प्रो इंटरनॅशनल स्कूल रूफटॉप सोलर",
+      "capacity": "Institutional Rooftop",
+      "locationEn": "Hinjewadi, Pune, Maharashtra",
+      "locationMr": "हिंजवडी, पुणे, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/elpro-school-hinjewadi.webp",
+      "highlightEn": "Elevated institutional rooftop solar installation delivering clean, reliable daytime power across the school campus",
+      "highlightMr": "शैक्षणिक संकुलासाठी दिवसा अखंड व स्वच्छ सौर ऊर्जा पुरवणारा उच्च-कार्यक्षम इन्स्टिट्यूशनल रूफटॉप प्रकल्प"
+    },
+    {
+      "id": "proj-kolte-patil",
+      "category": "residential",
+      "titleEn": "24K Kolte Patil Society Rooftop Solar",
+      "titleMr": "२४के कोल्ते पाटील सोसायटी रूफटॉप सोलर",
+      "capacity": "60 kWp",
+      "locationEn": "Pimple Nilakh, Pune, Maharashtra",
+      "locationMr": "पिंपळे निलख, पुणे, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/24k-kolte-patil-pune-60kw.jpg",
+      "highlightEn": "Premium high-rise residential society net-metered solar powering water pumps, lifts, and common areas",
+      "highlightMr": "सोसायटीचे लिफ्ट, पाण्याचे पंप आणि कॉमन दिव्यांचा देखभाल खर्च शून्य करणारा ६० किलोवॅट नेट-मीटर प्रकल्प"
+    },
+    {
+      "id": "proj-jhulelal-temple",
+      "category": "residential",
+      "titleEn": "Jhulelal Temple Community Rooftop Solar",
+      "titleMr": "झुलेलाल मंदिर ट्रस्ट रूफटॉप सोलर",
+      "capacity": "30 kWp",
+      "locationEn": "Pune, Maharashtra",
+      "locationMr": "पुणे, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/jhulelal-temple-pune-30kw.jpg",
+      "highlightEn": "Community trust rooftop solar providing continuous sustainable green energy for temple premises",
+      "highlightMr": "मंदिर परिसर व सामाजिक उपक्रमांसाठी अखंड मोफत स्वच्छ ऊर्जा देणारा ३० किलोवॅट रूफटॉप सौर प्रकल्प"
+    },
+    {
+      "id": "proj-13mw-utility",
+      "category": "utility",
+      "titleEn": "13 MW Utility-Scale Ground-Mounted Solar Park",
+      "titleMr": "१३ मेगावॅट भव्य युटिलिटी ग्राउंड-माउंटेड सोलर पार्क",
+      "capacity": "13 MW (13,000 kW)",
+      "locationEn": "Tasgaon & Jath, Dist Sangli, Maharashtra",
+      "locationMr": "तासगाव व जत, जि. सांगली, महाराष्ट्र",
+      "image": "/Swayamurja-Production/uploads/projects/13mw-utility-solar.jpg",
+      "highlightEn": "Megawatt-scale ground-mounted solar park delivering clean power directly into MSEDCL 33kV grid",
+      "highlightMr": "महावितरण ३३ केव्ही ग्रीडशी थेट जोडलेला १३ मेगावॅट क्षमतेचा भव्य युटिलिटी ग्राउंड-माउंटेड सोलर पार्क"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "clientName": "Shri Dilip Deshpande",
+      "roleOrg": "Homeowner, 8 kW Solar",
+      "city": "Kothrud, Pune",
+      "rating": 5,
+      "systemSize": "8 kW Rooftop",
+      "savingsText": "Bill reduced from ₹9,500 to ₹180/mo",
+      "commentEn": "SwayamUrja handled everything from MSEDCL net-metering to the ₹78,000 PM Surya Ghar bank subsidy. Generation is fantastic even during cloudy days!",
+      "commentMr": "स्वयम्ऊर्जाच्या टीमने महावितरण नेट-मीटरिंगपासून ₹७८,००० सबसिडी खात्यात येईपर्यंत सर्व कामे उत्तमरित्या केली. माझे मासिक बिल ₹९,५०० वरून थेट ₹१८० वर आले!"
+    },
+    {
+      "id": "test-2",
+      "clientName": "Mr. Arvind Shinde",
+      "roleOrg": "Managing Director, Precision Auto Components",
+      "city": "Chakan MIDC, Pune",
+      "rating": 5,
+      "systemSize": "350 kW C&I Rooftop",
+      "savingsText": "Saving ₹4.2 Lakhs monthly",
+      "commentEn": "Our factory power cost was exceeding ₹11 per unit. SwayamUrja engineered a 350 kW rooftop plant that recovered its investment in 2.8 years with 40% depreciation.",
+      "commentMr": "कारखान्याचा वीज खर्च प्रति युनिट ₹११ पेक्षा जास्त होता. स्वयम्ऊर्जाच्या ३५० किलोवॅट सोलरमुळे दरमहा ₹४.२ लाखांची बचत होत असून ४०% टॅक्स बेनिफिट मिळाला."
+    },
+    {
+      "id": "test-3",
+      "clientName": "Babanrao Kadam",
+      "roleOrg": "Progressive Farmer (Sugarcane & Drip)",
+      "city": "Satara District",
+      "rating": 5,
+      "systemSize": "7.5 HP Agri Pump",
+      "savingsText": "Zero fuel cost, 100% daytime water",
+      "commentEn": "Earlier we struggled with midnight load-shedding. Under PM-KUSUM, SwayamUrja installed a 7.5 HP solar pump. Now our sugarcane crop gets water throughout the daytime.",
+      "commentMr": "रात्रीच्या भारनियमनामुळे खूप त्रास व्हायचा. स्वयम्ऊर्जाने पीएम-कुसुम अंतर्गत ७.५ HP सोलर पंप बसवून दिला. आता भरदिवसा संपूर्ण शेतीला पाणी मिळते."
+    },
+    {
+      "id": "test-4",
+      "clientName": "Vikas Sahastrabuddhe",
+      "roleOrg": "Chairman, Mayur Pankh Housing Society",
+      "city": "Baner, Pune",
+      "rating": 5,
+      "systemSize": "30 kW Common Area Solar",
+      "savingsText": "Maintenance fee cut by 40%",
+      "commentEn": "We installed a 30 kW system for lifts and common pumps. Our monthly common meter bill dropped to zero. Truly professional EPC execution!",
+      "commentMr": "आमच्या सोसायटीच्या लिफ्ट व पंपांसाठी ३० किलोवॅट सोलर बसवले. कॉमन एरियाचे बिल पूर्ण शून्य झाले आणि सर्व सभासदांचा मेंटेनन्स खर्च ४०% कमी झाला."
+    }
+  ],
+  "articles": [
+    {
+      "id": "art-1",
+      "titleEn": "PM Surya Ghar 2026: Complete Step-by-Step Subsidy Guide for Maharashtra",
+      "titleMr": "पीएम सूर्य घर योजना २०२६: महाराष्ट्रातील घरमालकांसाठी थेट बँक सबसिडी संपूर्ण माहिती",
+      "category": "Government Policy",
+      "readTime": "4 min read",
+      "publishDate": "Nov 2026",
+      "image": "/Swayamurja-Production/uploads/projects/krishna-vishwa-vidyapeeth-1000kw.jpg",
+      "excerptEn": "Learn how to claim direct bank transfer subsidies up to ₹78,000 for your home rooftop with MSEDCL net-metering.",
+      "excerptMr": "घरच्या छतावर सोलर बसवून ₹७८,००० थेट बँक सबसिडी आणि महावितरण नेट-मीटरिंग कसे मिळवायचे ते जाणून घ्या.",
+      "contentEn": "The PM Surya Ghar: Muft Bijli Yojana launched by the Government of India provides a historic opportunity for homeowners across Maharashtra. The financial assistance is tiered: 1 kW receives ₹30,000, 2 kW receives ₹60,000, and systems 3 kW or larger receive the maximum subsidy of ₹78,000 disbursed directly into your Aadhaar-linked bank account within 30 days of meter installation.",
+      "contentMr": "पंतप्रधान नरेंद्र मोदी यांच्या नेतृत्वाखाली सुरू झालेली पीएम सूर्य घर: मोफत वीज योजना महाराष्ट्रातील घरमालकांसाठी एक सुवर्णसंधी आहे. या योजनेअंतर्गत १ किलोवॅटसाठी ₹३०,०००, २ किलोवॅटसाठी ₹६०,००० आणि ३ किलोवॅट किंवा अधिक क्षमतेसाठी ₹७८,००० कमाल थेट सबसिडी बँक खात्यात जमा केली जाते."
+    },
+    {
+      "id": "art-2",
+      "titleEn": "How Maharashtra Factories Save 70% Power Costs with 40% Tax Depreciation",
+      "titleMr": "चाकण व तळेगावमधील कारखाने सोलर आणि ४०% प्राप्तिकर घसारा लाभाने वीज खर्च ७०% कसा कमी करतात?",
+      "category": "Industrial Solar (C&I)",
+      "readTime": "5 min read",
+      "publishDate": "Oct 2026",
+      "image": "/Swayamurja-Production/uploads/projects/prd-foods-manikchand-990kw.jpg",
+      "excerptEn": "Industrial tariffs in Maharashtra exceed ₹11/unit. Solar power reduces this to ₹2.80/unit with substantial tax write-offs in Year 1.",
+      "excerptMr": "महाराष्ट्रातील औद्योगिक वीज दर ₹११+/युनिट झाले आहेत. रूफटॉप सोलरमुळे हा खर्च ₹२.८० वर येतो आणि पहिल्याच वर्षी ४०% टॅक्स सेव्हिंग मिळते.",
+      "contentEn": "Commercial and industrial consumers in Maharashtra face some of the highest power tariffs in the nation. By investing in captive solar rooftop systems, CFOs can write off 40% of the capital expenditure under Section 32 of the Income Tax Act in the very first year, effectively recovering up to 30% of the project cost instantly in tax savings.",
+      "contentMr": "चाकण, तळेगाव, भोसरी आणि रांजणगाव एमआयडीसीतील कारखान्यांसाठी वीज खर्च हा उत्पादन खर्चातील सर्वात मोठा घटक असतो. सोलर बसवल्याने आयकर कलम ३२ अंतर्गत पहिल्याच वर्षी ४०% घसारा लाभ मिळतो, ज्यामुळे प्रकल्पाचा खर्च अवघ्या अडीच ते तीन वर्षांत वसूल होतो."
+    },
+    {
+      "id": "art-3",
+      "titleEn": "MSEDCL Net-Metering Guidelines & Bi-Directional Meter Process",
+      "titleMr": "महावितरण नेट-मीटरिंग नियम व बाय-डायरेक्शनल मीटर जोडणी प्रक्रिया",
+      "category": "Technical Guide",
+      "readTime": "3 min read",
+      "publishDate": "Nov 2026",
+      "image": "/Swayamurja-Production/uploads/projects/the-fern-residency-karad-350kw.jpg",
+      "excerptEn": "Understanding how surplus solar energy units generated during peak sunshine are credited against night consumption.",
+      "excerptMr": "दुपारी निर्माण झालेली जास्तीची वीज महावितरण ग्रिडला पाठवून रात्री मोफत कशी वापरायची याची संपूर्ण माहिती.",
+      "contentEn": "Net metering is a billing mechanism that credits solar energy system owners for the electricity they add to the grid. During daytime hours, your panels produce excess energy exported to MSEDCL. At night, you draw power back from the grid. At the end of the billing cycle, you only pay for the net units consumed.",
+      "contentMr": "नेट-मीटरिंग म्हणजे सोलर सिस्टीममधून निर्माण झालेली अतिरिक्त वीज महावितरणच्या ग्रिडला निर्यात करणे आणि रात्री ती परत वापरणे. महिन्याच्या शेवटी निव्वळ (Net) युनिट्सचे बिल येते. बहुतांश घरगुती ग्राहकांचे बिल यामुळे शून्य होते."
+    }
+  ],
+  "openJobs": [
+    {
+      "id": "job-1",
+      "titleEn": "Solar Design & PVsyst Engineer",
+      "titleMr": "सोलर डिझाईन आणि PVsyst इंजिनिअर",
+      "department": "Engineering & Design",
+      "experienceEn": "2-4 Years",
+      "experienceMr": "२-४ वर्षे अनुभव",
+      "locationEn": "Pune (New Kalyani Nagar HQ)",
+      "locationMr": "पुणे (न्यू कल्याणी नगर मुख्यालय)",
+      "isActive": true,
+      "skills": "AutoCAD, PVsyst, 3D SketchUp, Single Line Diagrams (SLD), MSEDCL Net-metering rules."
+    },
+    {
+      "id": "job-2",
+      "titleEn": "Solar Site Supervisor / EPC Project Incharge",
+      "titleMr": "सोलर साइट सुपरवायझर / EPC प्रकल्प इनचार्ज",
+      "department": "Operations & Execution",
+      "experienceEn": "1-3 Years",
+      "experienceMr": "१-३ वर्षे अनुभव",
+      "locationEn": "Pune / Solapur Sites",
+      "locationMr": "पुणे / सोलापूर प्रकल्प",
+      "isActive": true,
+      "skills": "Civil foundation, module mounting structure (MMS), HT/LT cabling, inverter commissioning."
+    },
+    {
+      "id": "job-3",
+      "titleEn": "Business Development Manager (C&I Solar)",
+      "titleMr": "बिझनेस डेव्हलपमेंट मॅनेजर (C&I सोलर)",
+      "department": "Corporate Sales",
+      "experienceEn": "3-6 Years",
+      "experienceMr": "३-६ वर्षे अनुभव",
+      "locationEn": "Pune (MIDC Belt: Chakan/Talegaon)",
+      "locationMr": "पुणे (चाकण व तळेगाव MIDC)",
+      "isActive": true,
+      "skills": "B2B industrial client acquisition, 40% tax depreciation presentations, CAPEX/OPEX models."
+    }
+  ],
+  "blogLinkedInUrl": "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
+  "clients": [
+    {
+      "id": "c-1",
+      "name": "Ajanta Universal Fabrics Ltd",
+      "logo": "/Swayamurja-Production/uploads/clients/client-1.webp",
+      "order": 1
+    },
+    {
+      "id": "c-2",
+      "name": "Sun Ut Tech",
+      "logo": "/Swayamurja-Production/uploads/clients/client-2.webp",
+      "order": 2
+    },
+    {
+      "id": "c-3",
+      "name": "Fluorotech Group (FTG)",
+      "logo": "/Swayamurja-Production/uploads/clients/client-3.webp",
+      "order": 3
+    },
+    {
+      "id": "c-4",
+      "name": "Shri K. R. Ramdasi Sansthan",
+      "logo": "/Swayamurja-Production/uploads/clients/client-4.webp",
+      "order": 4
+    },
+    {
+      "id": "c-5",
+      "name": "BAPS Swaminarayan Sansthan",
+      "logo": "/Swayamurja-Production/uploads/clients/client-5.webp",
+      "order": 5
+    },
+    {
+      "id": "c-6",
+      "name": "Spark Engineers",
+      "logo": "/Swayamurja-Production/uploads/clients/spark-engineers.webp",
+      "order": 6
+    },
+    {
+      "id": "c-7",
+      "name": "Unique Tools",
+      "logo": "/Swayamurja-Production/uploads/clients/unique-tools.webp",
+      "order": 7
+    },
+    {
+      "id": "c-8",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-8.webp",
+      "order": 8
+    },
+    {
+      "id": "c-9",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-9.webp",
+      "order": 9
+    },
+    {
+      "id": "c-10",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-10.webp",
+      "order": 10
+    },
+    {
+      "id": "c-11",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-11.webp",
+      "order": 11
+    },
+    {
+      "id": "c-12",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-12.webp",
+      "order": 12
+    },
+    {
+      "id": "c-13",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-13.webp",
+      "order": 13
+    },
+    {
+      "id": "c-14",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-14.webp",
+      "order": 14
+    },
+    {
+      "id": "c-15",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-15.webp",
+      "order": 15
+    },
+    {
+      "id": "c-16",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-16.webp",
+      "order": 16
+    },
+    {
+      "id": "c-17",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-17.webp",
+      "order": 17
+    },
+    {
+      "id": "c-18",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-18.webp",
+      "order": 18
+    },
+    {
+      "id": "c-19",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-19.webp",
+      "order": 19
+    },
+    {
+      "id": "c-20",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-20.webp",
+      "order": 20
+    },
+    {
+      "id": "c-21",
+      "name": "Verified Solar EPC Client",
+      "logo": "/Swayamurja-Production/uploads/clients/client-21.webp",
+      "order": 21
+    }
+  ],
+  "aboutUs": {
+    "taglineEn": "Empowering Maharashtra's Green Future Through Engineering Excellence",
+    "taglineMr": "अभियांत्रिकी उत्कृष्टतेद्वारे महाराष्ट्राच्या हरित भविष्याला सक्षम करणे",
+    "mdCeoMessage": {
+      "name": "Rahul Nalawade",
+      "designationEn": "Founder, Managing Director & CEO",
+      "designationMr": "संस्थापक, व्यवस्थापकीय संचालक आणि मुख्य कार्यकारी अधिकारी",
+      "photo": "/Swayamurja-Production/uploads/team/rahul-nalawade.jpg",
+      "quoteEn": "True energy independence begins when every enterprise and household produces their own clean, renewable power.",
+      "quoteMr": "प्रत्येक व्यवसाय आणि कुटुंब स्वतःची स्वच्छ, नवीकरणीय ऊर्जा निर्माण करेल तेव्हाच खरी ऊर्जा स्वावलंबता सुरू होईल.",
+      "messageEn": "At SwayamUrja, we engineer reliable, high-yield solar power plants for Maharashtra's industrial units, commercial institutions, and farming communities.",
+      "messageMr": "स्वयम्ऊर्जा मध्ये, आमचे उद्दिष्ट केवळ सोलर पॅनेल बसवणे एवढेच नाही; तर महाराष्ट्रातील औद्योगिक उद्योग, व्यावसायिक संस्था आणि प्रगतीशील शेतकरी यांच्यासाठी दीर्घकालीन ऊर्जा सुरक्षा निर्माण करणे हे आहे. ५०+ मेगावॅट कार्यान्वित क्षमतेसह, आमची उत्कृष्ट अभियांत्रिकी आणि विश्वासार्हतेने १२००+ ग्राहकांचा विश्वास संपादन केला आहे."
+    },
+    "visionEn": "To lead Maharashtra's transition to 100% clean, decentralized solar power through engineering excellence and customer trust.",
+    "visionMr": "अभियांत्रिकी उत्कृष्टता आणि ग्राहकांच्या विश्वासाद्वारे महाराष्ट्राला १००% स्वच्छ, विकेंद्रित सौर ऊर्जेकडे नेणे.",
+    "missionEn": "Deliver robust, high-yield solar EPC solutions that maximize return on investment, eliminate power outages, and preserve our environment for future generations.",
+    "missionMr": "गुंतवणुकीवर जास्तीत जास्त परतावा देणारे, अखंड वीज पुरवणारे आणि पर्यावरणाचे रक्षण करणारे मजबूत, उच्च-कार्यक्षम सोलर प्रकल्प उभारणे.",
+    "coreFocus": [
+      {
+        "titleEn": "Industrial & Commercial Solar",
+        "titleMr": "औद्योगिक आणि व्यावसायिक सोलर",
+        "descEn": "Turnkey rooftop and ground-mount plants designed for high-consumption factories and commercial hubs.",
+        "descMr": "कारखाने आणि व्यावसायिक संकुलांसाठी उच्च-कार्यक्षम रूफटॉप व ग्राउंड-माउंट प्रकल्प.",
+        "icon": "Factory"
+      },
+      {
+        "titleEn": "Utility-Scale Solar Parks",
+        "titleMr": "युटिलिटी-स्केल सोलर पार्क",
+        "descEn": "Multi-megawatt grid-tied solar farms powering regional industrial grids and MSEDCL feed-ins.",
+        "descMr": "महावितरण ग्रीडला वीज पुरवणारे बहु-मेगावॅट क्षमतेचे मोठे सोलर पार्क.",
+        "icon": "Zap"
+      },
+      {
+        "titleEn": "Agricultural Solar (PM-KUSUM)",
+        "titleMr": "कृषी सोलर (पीएम-कुसुम)",
+        "descEn": "Daytime uninterrupted irrigation solar pumps empowering Maharashtra farmers.",
+        "descMr": "शेतकऱ्यांसाठी दिवसा अखंड वीज आणि सिंचन देणारे पीएम-कुसुम सोलर पंप.",
+        "icon": "SunMedium"
+      },
+      {
+        "titleEn": "Residential Rooftop Solar",
+        "titleMr": "निवासी रूफटॉप सोलर",
+        "descEn": "PM Surya Ghar subsidy-enabled smart rooftop systems cutting home bills to zero.",
+        "descMr": "घरगुती वीज बिल शून्य करणारी पीएम सूर्य घर अनुदानयुक्त रूफटॉप प्रणाली.",
+        "icon": "Home"
+      }
+    ],
+    "coreValues": [
+      {
+        "letter": "M",
+        "titleEn": "Mastery in Engineering",
+        "titleMr": "अभियांत्रिकी प्रभुत्व",
+        "descEn": "Tier-1 component selection, rigorous structural calculations, and zero-defect installation standards.",
+        "descMr": "दर्जेदार उपकरणे, सुरक्षित रचना आणि अचूक कामाचे निकष."
+      },
+      {
+        "letter": "I",
+        "titleEn": "Integrity & Transparency",
+        "titleMr": "प्रामाणिकपणा आणि पारदर्शकता",
+        "descEn": "Honest yield forecasts, transparent billing, and reliable post-commissioning warranties.",
+        "descMr": "पारदर्शक व्यवहार, अचूक अंदाज आणि विश्वासार्ह सेवा."
+      },
+      {
+        "letter": "T",
+        "titleEn": "Timely Execution",
+        "titleMr": "वेळेवर पूर्तता",
+        "descEn": "Strict milestone adherence from civil foundation to MSEDCL net-meter synchronisation.",
+        "descMr": "साइट सर्व्हेपासून ते महावितरण नेट-मीटरिंगपर्यंत सर्व कामे वेळेवर."
+      },
+      {
+        "letter": "R",
+        "titleEn": "Reliability & Uptime",
+        "titleMr": "विश्वासार्हता आणि सातत्य",
+        "descEn": "Proactive remote SCADA telemetry ensuring >99% plant availability across all weather conditions.",
+        "descMr": "अखंड कामगिरी आणि २४/७ रिमोट मॉनिटरिंग हमी."
+      },
+      {
+        "letter": "A",
+        "titleEn": "Accountability to Customers",
+        "titleMr": "ग्राहकांशी बांधिलकी",
+        "descEn": "Lifelong operational stewardship and rapid on-ground response for peak kilowatt generation.",
+        "descMr": "प्रकल्प उभारणीनंतरही अखंड देखभाल आणि जलद सेवा सहाय्य."
+      }
+    ],
+    "teamMembers": [
+      {
+        "id": "tm-1",
+        "name": "Rahul Nalawade",
+        "designationEn": "Founder, Managing Director & CEO",
+        "designationMr": "संस्थापक, व्यवस्थापकीय संचालक आणि मुख्य कार्यकारी अधिकारी",
+        "bioEn": "Pioneering Maharashtra's renewable energy landscape with 15+ years of strategic EPC execution and 50+ MW delivered across C&I and Utility scale.",
+        "bioMr": "१५+ वर्षांचा अनुभव आणि ५०+ मेगावॅट सोलर प्रकल्पांची यशस्वी उभारणी.",
+        "photo": "/Swayamurja-Production/uploads/team/rahul-nalawade.jpg",
+        "linkedin": "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
+        "order": 1
+      },
+      {
+        "id": "tm-2",
+        "name": "SwayamUrja-MITRA Team (60+ Specialists)",
+        "designationEn": "Solar Engineering, Design, Liaison & 24/7 O&M",
+        "designationMr": "सौर अभियांत्रिकी, डिझाईन, समन्वय आणि २४/७ ओ अँड एम",
+        "bioEn": "A dedicated powerhouse of 70+ certified solar engineers, PVsyst designers, electrical technicians, and MSEDCL net-metering specialists.",
+        "bioMr": "सौर डिझाईन, स्ट्रक्चरल इंजिनिअरिंग, महावितरण समन्वय आणि २५ वर्षे अखंड देखभालीसाठी कार्यरत ७०+ तज्ज्ञांची समर्पित टीम.",
+        "photo": "/Swayamurja-Production/uploads/team/swayamurja-mitra-team.jpg",
+        "linkedin": "https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/",
+        "order": 2
+      }
+    ]
+  },
+  "videoSection": {
+    "enabled": true,
+    "videoUrl": "/Swayamurja-Production/uploads/video/13mw-solar-plant.mp4",
+    "badgeEn": "",
+    "badgeMr": "१३ मेगावॅट सोलर प्लांट स्थापना",
+    "titleEn": "Empowering Maharashtra With Megawatt-Scale Solar Plants",
+    "titleMr": "महाराष्ट्राला सौर ऊर्जेने समृद्ध करणारी मेगा-प्रकल्प उभारणी",
+    "subtitleEn": "Watch our high-voltage 13 MW ground-mounted utility solar power plant in full operation.",
+    "subtitleMr": "आमच्या १३ मेगावॅट उच्च क्षमतेच्या सौर ऊर्जा प्रकल्पाची प्रत्यक्ष दृश्ये.",
+    "locationEn": "Maharashtra, India",
+    "locationMr": "महाराष्ट्र, भारत",
+    "plantCapacity": "13 MW"
+  },
+  "layoutSections": [
+    {
+      "id": "video",
+      "type": "video",
+      "name": "13 MW Solar Plant Aerial Video",
+      "titleEn": "13 MW Solar Plant Installation",
+      "titleMr": "१३ मेगावॅट सोलर प्लांट प्रकल्प",
+      "enabled": true,
+      "order": 1,
+      "isSystem": true
+    },
+    {
+      "id": "hero",
+      "type": "hero",
+      "name": "Hero Welcome Banner",
+      "titleEn": "Hero Header",
+      "titleMr": "मुख्य हेडर",
+      "enabled": true,
+      "order": 2,
+      "isSystem": true
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About Us & Leadership Gratitude",
+      "titleEn": "About SwayamUrja & MD Message",
+      "titleMr": "आमच्याबद्दल आणि व्यवस्थापकीय संचालक संदेश",
+      "enabled": true,
+      "order": 3,
+      "isSystem": true
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "name": "Solar Services & Solutions",
+      "titleEn": "End-to-End Solar EPC Services",
+      "titleMr": "सौर ऊर्जा सेवा",
+      "enabled": true,
+      "order": 4,
+      "isSystem": true
+    },
+    {
+      "id": "projects",
+      "type": "projects",
+      "name": "Portfolio Projects Gallery",
+      "titleEn": "Flagship Commissioned Plants",
+      "titleMr": "पूर्ण झालेले प्रकल्प",
+      "enabled": true,
+      "order": 7,
+      "isSystem": true
+    },
+    {
+      "id": "map",
+      "type": "map",
+      "name": "Maharashtra Presence Map",
+      "titleEn": "District Footprint & Capacity",
+      "titleMr": "महाराष्ट्र राज्य व्याप्ती",
+      "enabled": true,
+      "order": 8,
+      "isSystem": true
+    },
+    {
+      "id": "schemes",
+      "type": "schemes",
+      "name": "Government Subsidies & Schemes",
+      "titleEn": "PM Surya Ghar & MSME Subsidies",
+      "titleMr": "शासकीय सौर योजना व अनुदान",
+      "enabled": true,
+      "order": 9,
+      "isSystem": true
+    },
+    {
+      "id": "calculator",
+      "type": "calculator",
+      "name": "Solar Savings ROI Calculator",
+      "titleEn": "Net Metering & Solar Savings Calculator",
+      "titleMr": "सौर बचत कॅल्क्युलेटर",
+      "enabled": true,
+      "order": 10,
+      "isSystem": true
+    },
+    {
+      "id": "clients",
+      "type": "clients",
+      "name": "Our Clients Logo Slideshow",
+      "titleEn": "Trusted Clients",
+      "titleMr": "आमचे ग्राहक",
+      "enabled": true,
+      "order": 11,
+      "isSystem": true
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "name": "Client Feedback & Reviews",
+      "titleEn": "Verified Client Reviews",
+      "titleMr": "ग्राहकांचे अभिप्राय",
+      "enabled": true,
+      "order": 12,
+      "isSystem": true
+    },
+    {
+      "id": "careers",
+      "type": "careers",
+      "name": "Careers & Open Vacancies",
+      "titleEn": "Join SwayamUrja Renewable Energy",
+      "titleMr": "करिअर संधी",
+      "enabled": true,
+      "order": 14,
+      "isSystem": true
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact Us & Site Survey Form",
+      "titleEn": "Get In Touch & Site Survey",
+      "titleMr": "संपर्क व साईट सर्वेक्षण",
+      "enabled": true,
+      "order": 15,
+      "isSystem": true
+    }
+  ]
+}

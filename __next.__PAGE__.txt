@@ -1,0 +1,72 @@
+1:"$Sreact.fragment"
+3:"/Swayamurja-Production/_next/static/chunks/3gvnlvicehskl.js"
+4:I[387,["$3"],"ContentProvider"]
+5:I[53945,["$3"],"ThemeApplier"]
+6:"LanguageProvider"
+7:I[83773,["$3"],"$6"]
+8:I[39756,["$3"],"default"]
+9:I[37457,["$3"],"default"]
+d:I[47257,["$3"],"ClientPageRoot"]
+e:"/Swayamurja-Production/_next/static/chunks/1g5a376aen62i.js"
+f:"/Swayamurja-Production/_next/static/chunks/3rx9v7wiwu9ij.js"
+10:"/Swayamurja-Production/_next/static/chunks/2qpro6up6zzkm.js"
+11:I[52683,["$3","$e","$f","$10"],"default"]
+14:I[97367,["$3"],"OutletBoundary"]
+15:"$Sreact.suspense"
+18:"ViewportBoundary"
+19:I[97367,["$3"],"$18"]
+1a:"MetadataBoundary"
+1b:I[97367,["$3"],"$1a"]
+:HL["/Swayamurja-Production/_next/static/chunks/09-cobe6f2cre.css","style"]
+:HL["/Swayamurja-Production/_next/static/chunks/3cdwpuna4dlgt.css","style"]
+2:T4ff,{"@context":"https://schema.org","@type":"LocalBusiness","name":"SwayamUrja Renewable Energy Pvt. Ltd.","alternateName":"स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि.","image":"https://swayamurja.com/images/whatsapp_showcase.jpeg","logo":"https://swayamurja.com/assets/logo.webp","@id":"https://swayamurja.com/#organization","url":"https://swayamurja.com","telephone":"+919272100623","email":"crm@swayamurja.com","priceRange":"₹₹₹","address":{"@type":"PostalAddress","streetAddress":"T9, A-1001, Brahma Business Park, New Kalyani Nagar, Wadgaon Sheri","addressLocality":"Pune","addressRegion":"Maharashtra","postalCode":"411014","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":18.5515,"longitude":73.9218},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:30","closes":"18:30"}],"sameAs":["https://www.linkedin.com/company/swayamurja-renewable-energy-pvt-ltd/"],"areaServed":[{"@type":"City","name":"Pune"},{"@type":"City","name":"Sangli"},{"@type":"City","name":"Satara"},{"@type":"City","name":"Karad"},{"@type":"City","name":"Hyderabad"},{"@type":"AdministrativeArea","name":"Maharashtra"}]}b:X
+c:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$Ld",null,{"Component":"$11","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@12","$@13"]}}],[["$","script","script-0",{"src":"/Swayamurja-Production/_next/static/chunks/1g5a376aen62i.js","async":true}],["$","script","script-1",{"src":"/Swayamurja-Production/_next/static/chunks/3rx9v7wiwu9ij.js","async":true}],["$","script","script-2",{"src":"/Swayamurja-Production/_next/static/chunks/2qpro6up6zzkm.js","async":true}]],["$","$L14",null,{"children":["$","$15",null,{"name":"Next.MetadataOutlet","children":"$@16"}]}]]}],"p":"$@17","v":null,"s":"$b"}}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Swayamurja-Production/_next/static/chunks/09-cobe6f2cre.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"/Swayamurja-Production/_next/static/chunks/3cdwpuna4dlgt.css","precedence":"next"}],["$","script","script-0",{"src":"/Swayamurja-Production/_next/static/chunks/3gvnlvicehskl.js","async":true}]],["$","html",null,{"lang":"en","className":"FvZN3a_variable Sj20lq_variable eGv6Dq_variable","children":[["$","head",null,{"children":["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$2"}}]}],["$","body",null,{"className":"antialiased min-h-screen bg-[#f8faf9] text-[#0f172a]","children":["$","$L4",null,{"children":[["$","$L5",null,{}],["$","$L7",null,{"children":["$","$L8",null,{"parallelRouterKey":"children","template":["$","$L9",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]]}]}]]}]]}],"p":"$@a","v":null,"s":"$b"},"c":"$Qc"},"h":{"r":["$","$1","h",{"children":[null,["$","$L19",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"}],["$","meta","2",{"name":"theme-color","content":"#059669","media":"(prefers-color-scheme: light)"}],["$","meta","3",{"name":"theme-color","content":"#0f172a","media":"(prefers-color-scheme: dark)"}]]}],["$","$L1b",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$15",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"SwayamUrja Renewable Energy | Solar EPC Company Pune, Maharashtra"}],["$","meta","1",{"name":"description","content":"ISO 9001:2015 Certified Solar EPC Company in Pune & Maharashtra. 1,600+ MW advisory, 13 MW utility parks, C&I rooftops & PM Surya Ghar ₹78,000 subsidies."}],"$L1c","$L1d","$L1e","$L1f","$L20","$L21","$L22","$L23","$L24","$L25","$L26","$L27","$L28","$L29","$L2a","$L2b","$L2c","$L2d","$L2e","$L2f","$L30","$L31","$L32","$L33","$L34","$L35","$L36","$L37","$L38","$L39","$L3a","$L3b","$L3c","$L3d","$L3e","$L3f"]}]}],null]}],"$L40"]}],"p":"$@41","v":null,"s":"$b"}},"a":"$@42","u":"$@43","b":"gQwoIqnxV4M3KioP9XGTv"}
+44:I[27201,["$3"],"IconMark"]
+12:{}
+13:"$c:0:1:d:r:props:children:0:props:serverProvidedParams:params"
+16:null
+1c:["$","link","2",{"rel":"author","href":"https://swayamurja.com"}]
+1d:["$","meta","3",{"name":"author","content":"SwayamUrja Renewable Energy Pvt. Ltd."}]
+1e:["$","meta","4",{"name":"keywords","content":"Solar EPC Pune,Commercial Solar Rooftop Pune,Industrial Solar MIDC Chakan,13 MW Utility Solar Plant Sangli Maharashtra,PM Surya Ghar Maharashtra Subsidy,Solar Panel Installation Pune,MSEDCL Net Metering Approval,40% Solar Depreciation Tax Benefit,PM-KUSUM Agri Solar Pump Maharashtra,SwayamUrja Renewable Energy Pvt Ltd,Best Solar Company Maharashtra,Rooftop Solar for Housing Societies Pune"}]
+1f:["$","meta","5",{"name":"creator","content":"SwayamUrja Renewable Energy Pvt. Ltd."}]
+20:["$","meta","6",{"name":"publisher","content":"SwayamUrja Renewable Energy Pvt. Ltd."}]
+21:["$","meta","7",{"name":"robots","content":"index, follow"}]
+22:["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}]
+23:["$","meta","9",{"name":"category","content":"Renewable Energy"}]
+24:["$","meta","10",{"name":"geo.region","content":"IN-MH"}]
+25:["$","meta","11",{"name":"geo.placename","content":"Pune, Maharashtra"}]
+26:["$","meta","12",{"name":"geo.position","content":"18.5515;73.9218"}]
+27:["$","meta","13",{"name":"ICBM","content":"18.5515, 73.9218"}]
+28:["$","link","14",{"rel":"canonical","href":"https://swayamurja.com/"}]
+29:["$","link","15",{"rel":"alternate","hrefLang":"en-IN","href":"https://swayamurja.com/?lang=en"}]
+2a:["$","link","16",{"rel":"alternate","hrefLang":"mr-IN","href":"https://swayamurja.com/?lang=mr"}]
+2b:["$","meta","17",{"property":"og:title","content":"SwayamUrja Renewable Energy Pvt. Ltd. | Premier Solar EPC"}]
+2c:["$","meta","18",{"property":"og:description","content":"Empowering India across 7 states: 1,600+ MW Wind & Solar Advisory, 610+ Completed Projects, 13 MW Utility Solar Parks & ₹78,000 PM Surya Ghar Subsidies."}]
+2d:["$","meta","19",{"property":"og:url","content":"https://swayamurja.com/"}]
+2e:["$","meta","20",{"property":"og:site_name","content":"SwayamUrja Renewable Energy"}]
+2f:["$","meta","21",{"property":"og:locale","content":"en_IN"}]
+30:["$","meta","22",{"property":"og:image","content":"https://swayamurja.com/images/whatsapp_showcase.jpeg"}]
+31:["$","meta","23",{"property":"og:image:width","content":"1200"}]
+32:["$","meta","24",{"property":"og:image:height","content":"630"}]
+33:["$","meta","25",{"property":"og:image:alt","content":"SwayamUrja 13 MW Utility & Industrial Rooftop Solar EPC Commissioning"}]
+34:["$","meta","26",{"property":"og:locale:alternate","content":"mr_IN"}]
+35:["$","meta","27",{"property":"og:type","content":"website"}]
+36:["$","meta","28",{"name":"twitter:card","content":"summary_large_image"}]
+37:["$","meta","29",{"name":"twitter:title","content":"SwayamUrja Renewable Energy | Solar EPC Pune"}]
+38:["$","meta","30",{"name":"twitter:description","content":"1,600+ MW Developed, 610+ Projects across 7 Indian States, 13 MW Utility Parks & PM Surya Ghar ₹78,000 Subsidies."}]
+39:["$","meta","31",{"name":"twitter:image","content":"https://swayamurja.com/images/whatsapp_showcase.jpeg"}]
+3a:["$","link","32",{"rel":"shortcut icon","href":"/favicon.ico"}]
+3b:["$","link","33",{"rel":"icon","href":"/favicon-32x32.png","sizes":"32x32","type":"image/png"}]
+3c:["$","link","34",{"rel":"icon","href":"/favicon-192x192.png","sizes":"192x192","type":"image/png"}]
+3d:["$","link","35",{"rel":"icon","href":"/favicon.ico"}]
+3e:["$","link","36",{"rel":"apple-touch-icon","href":"/apple-touch-icon.png","sizes":"180x180","type":"image/png"}]
+3f:["$","$L44","37",{}]
+40:["$","meta",null,{"name":"next-size-adjust","content":""}]
+b:300
+43:true
+b:C
+42:0
+a:"$undefined"
+17:"$undefined"
+41:"$undefined"

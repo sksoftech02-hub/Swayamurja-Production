@@ -1,0 +1,21 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /super-admin
+Disallow: /super-admin/
+Disallow: /super-admin/*
+Disallow: /api/
+Disallow: /api/*
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /super-admin
+Disallow: /super-admin/*
+Disallow: /api/*
+
+Host: https://swayamurja.com
+Sitemap: https://swayamurja.com/sitemap.xml
