@@ -16,14 +16,34 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [loading, setLoading] = useState(true);
 
   const refreshContent = useCallback(async () => {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     try {
-      const res = await fetch('/api/content', { cache: 'no-store' });
-      const data = await res.json();
-      if (data.success && data.content) {
-        setContent(data.content);
+      const res = await fetch(`${basePath}/api/content`, { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.content) {
+          setContent(data.content);
+          return;
+        }
+      }
+      // Static GitHub Pages fallback when API server is not present
+      const staticRes = await fetch(`${basePath}/static-content.json`);
+      if (staticRes.ok) {
+        const staticData = await staticRes.json();
+        if (staticData) {
+          setContent(staticData);
+        }
       }
     } catch (err) {
-      console.error('Failed to load content from CMS:', err);
+      try {
+        const staticRes = await fetch(`${basePath}/static-content.json`);
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          if (staticData) setContent(staticData);
+        }
+      } catch {
+        console.error('Failed to load content from CMS:', err);
+      }
     } finally {
       setLoading(false);
     }
