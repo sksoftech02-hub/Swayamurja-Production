@@ -1,0 +1,442 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { useLanguage } from '@/context/LanguageContext';
+import { FileText, ChevronRight, Printer, ShieldCheck, ArrowRight } from 'lucide-react';
+
+interface TermsSection {
+  id: string;
+  num: string;
+  titleEn: string;
+  titleMr: string;
+  paragraphsEn?: string[];
+  bulletsEn?: string[];
+  paragraphsMr?: string[];
+  bulletsMr?: string[];
+}
+
+const TERMS_SECTIONS: TermsSection[] = [
+  {
+    id: 'basic-overview',
+    num: '01',
+    titleEn: 'Basic Overview',
+    titleMr: 'मूलभूत ओळख (Basic Overview)',
+    paragraphsEn: [
+      'What do you mean by “SwayamUrja Renewable Energy”? SwayamUrja Renewable Energy (the “SwayamUrja Renewable Energy Pvt. Ltd.” or the “Company”) developed the white labelled mobile app, the “SwayamUrja Renewable Energy” App and the Website (the “Software”) which is developed by the AHAsolar Technologies Limited (the “Developer”) offers solar estimation withapproximate cost, applicable government incentives, finance, across several cities in India. A project management tool for the internal team of the lead management, to carry out feasibilitystudies, site surveys, designing and prepare techno-commercial proposals for their customers.',
+      'What do we mean by `Terms of Use’? Terms of Use (`’our terms ´or` terms´) are clear guidelines espousing to create a fair and transparent trading environment for all our members. As a user, you are responsible for reviewing and understanding the terms, as well as all applicable laws and regulations as outlined in the terms.',
+      'Why read the Terms? The term `You´ refers to the individual or legal entity, as applicable, identified in connection with the market place and is more particularly defined under the section titled as “Acceptance”. By accessing or using the Software, any Access Technology, completing the registration process, and/or merely browsing the Software, you represent that:',
+    ],
+    bulletsEn: [
+      'You have read, understand, and agree to be bound by these Terms of Use;',
+      'You are of legal age to form a binding contract with the Company;',
+      'You have the authority to enter into these terms of use personally or on behalf of the entity you have named as the customer, and to bind yourself and that entity to theseterms with the Company.',
+      'If disagree able to be bound by these terms of use, you may not access or use the Software or any Software Access Technology.',
+    ],
+    paragraphsMr: [
+      '“स्वयम्ऊर्जा रिन्यूएबल एनर्जी” (SwayamUrja Renewable Energy Pvt. Ltd. किंवा “कंपनी”) यांनी AHAsolar Technologies Limited (“डेव्हलपर”) मार्फत विकसित केलेले मोबाईल अ‍ॅप आणि वेबसाईट (“सॉफ्टवेअर”) भारतातील विविध शहरांमध्ये सौर ऊर्जा अंदाज, अंदाजे खर्च, लागू शासकीय अनुदाने आणि वित्तपुरवठा माहिती उपलब्ध करून देते. तसेच प्रकल्प व्यवस्थापन, साईट सर्व्हे, फिजिबिलिटी स्टडी, डिझाईन व तांत्रिक-व्यावसायिक प्रस्ताव तयार करण्यासाठी याचा वापर होतो.',
+      'वापराच्या अटी (Terms of Use) या सर्व वापरकर्त्यांसाठी पारदर्शक व न्याय्य वातावरण निर्माण करण्यासाठी निश्चित केलेल्या मार्गदर्शक तत्त्वांचा संच आहेत. वेबसाईट किंवा सॉफ्टवेअर वापरताना खालील बाबी मान्य केल्याचे समजले जाते:',
+    ],
+    bulletsMr: [
+      'तुम्ही या वापराच्या अटी वाचल्या आहेत, समजून घेतल्या आहेत आणि त्यांचे पालन करण्यास सहमत आहात.',
+      'कंपनीसोबत कायदेशीर करार करण्यासाठी तुमचे वय कायदेशीरदृष्ट्या पात्र (१८+ वर्षे) आहे.',
+      'तुम्ही स्वतः किंवा संबंधित संस्थेच्या वतीने या अटी स्वीकारण्यास अधिकृत आहात.',
+      'तुम्हाला या अटी मान्य नसल्यास कृपया वेबसाईट किंवा सॉफ्टवेअरचा वापर करू नका.',
+    ],
+  },
+  {
+    id: 'coverage-updates',
+    num: '02',
+    titleEn: 'What These Terms Cover & Reviews/Updates',
+    titleMr: 'अटींची व्याप्ती आणि अद्यतने',
+    paragraphsEn: [
+      'What these Terms of Use covers? Any order (including solar system installation services, equipment and other solar products) of product and services using this Software will be subject to the Terms of Use and additional terms referred to as the Supplemental Terms (‘Supplemental Terms’) for products and Services (the term Service is defined herein below) will be presented by the Company to you for your acceptance, when you order products and Services. If these Terms of Use are in consistent with such Supplemental Terms, the Supplemental Terms shall prevail over the Terms of Use to the extent of such inconsistency.',
+      'Reviews/Updates: The Terms of Use and Supplemental Terms may be amended, from time to time, at the sole discretion of the Company. The Terms of Use and Supplemental Terms may be modified for reasons, including but not limited to, changes in Software, community and security issues. The Company shall not be responsible for notifying the user (“You”) for estated amendments and the user (“You”) is advised to regularly check, if any amendments have been introduced by the Company. The user (“You”) should make note of the “last updated date” at the beginning of the Terms of Use. With this information, you should be able to identify if the Terms of Use have been amended recently. The amended copy of Terms of Use and Supplemental Terms shall be made available by the Company upon request from the user (“You”) in this regard. The cost of providing the afore stated amended copy (ies) (if any) shall be borne by the user (“You”).',
+    ],
+    paragraphsMr: [
+      'या सॉफ्टवेअर किंवा वेबसाईटद्वारे सौर ऊर्जा प्रणाली बसविणे, उपकरणे किंवा इतर सेवांची कोणतीही ऑर्डर या वापराच्या अटी आणि अतिरिक्त पूरक अटी (Supplemental Terms) यांच्या अधीन राहील. कोणत्याही विसंगतीच्या बाबतीत पूरक अटी लागू राहतील.',
+      'कंपनी आपल्या स्वेच्छेने वेळोवेळी या अटी व पूरक अटींमध्ये बदल करू शकते. वापरकर्त्यांनी नियमितपणे अद्यतनित अटी तपासाव्यात. विनंती केल्यास अद्यतनित अटींची प्रत कंपनीमार्फत उपलब्ध करून दिली जाईल.',
+    ],
+  },
+  {
+    id: 'software-prohibited',
+    num: '03',
+    titleEn: 'The Software, Materials & Prohibited Use',
+    titleMr: 'सॉफ्टवेअर, साहित्य आणि प्रतिबंधित वापर',
+    paragraphsEn: [
+      'The Software and Materials: The Software Access Technology, including the software, information and contentembodied in, available on, or provided through it (collectively, the Materials) are protected by copyright laws throughout the world. Subject to these Terms of Use, THE COMPANY grants you a limited license to reproduce portions of the Company Materialsfor the sole purpose of using the Software for your personal or non- commercial purposes.',
+      'Updates: You acknowledge and agree that the Developer or may update the Software and THE COMPANY Materials with or without notifying you.',
+      'Prohibited Use: The rights granted to you in these Terms are subject to the following restrictions:',
+    ],
+    bulletsEn: [
+      'You shall not license, sell, rent, lease, transfer, assign, reproduce, distribute, host or otherwise commercially exploit the Materials or any portion thereof',
+      'You shall not frame or utilize framing techniques to enclose any trademark, logo, or other Materials (including images, text, page layout or form) of the Developer or the Company;',
+      'You shall not use any meta tags or other “hidden text” using the Company’s or Developer’s name or trademarks;',
+      'You shall not modify, translate, adapt, merge, make derivative works of, disassemble, decompile, reverse compile or reverse engineer any part of the Materials except to the extent the foregoing restrictions are expressly prohibited by applicable law;',
+      'You shall not use any manual or automated software, devices or other processes (including but not limited to spiders, robots, scrapers, crawlers, avatars, datamining tools or the like) to “scrape” or download data from the Software without the Developer’s prior written permission;',
+      'Sending automated requests for quotes to one or more of the suppliers in our system',
+      'Compiling a list of one or more of the suppliers in our system except in connection with obtaining a quote',
+      'Compiling a list of one or more of the suppliers in our system except in connection with obtaining a quote',
+      'Access the Materials in order to build a similar or competitive Software or service;',
+      'Except as expressly stated here in, no part of the Materials may be copied, reproduced, distributed, republished, downloaded, displayed, posted or transmitted in any form or by any means;',
+      'You shall not remove or destroy any copyright notices or other proprietary markings contained on or in the Materials.',
+      'Any future release, update or other addition to the Materials shall be subject to these Terms. Any unauthorized use of the Software or the Software Access Technology terminates the licenses granted by THE COMPANY pursuant to the Terms.',
+    ],
+    paragraphsMr: [
+      'वेबसाईट व सॉफ्टवेअरमधील सर्व माहिती, आराखडे, मजकूर व साहित्य हे कॉपीराइट कायद्यांतर्गत संरक्षित आहे. केवळ वैयक्तिक व गैर-व्यावसायिक वापरासाठी कंपनी तुम्हाला मर्यादित परवाना देते. डेव्हलपर किंवा कंपनी पूर्वसूचनेशिवाय सॉफ्टवेअर अद्यतनित करू शकते.',
+      'प्रतिबंधित वापर: खालील कृती सक्त मनाई आहेत:',
+    ],
+    bulletsMr: [
+      'साहित्याची व्यावसायिक विक्री, वितरण, भाडेतत्त्वावर देणे किंवा पुनरुत्पादन करणे.',
+      'कंपनी किंवा डेव्हलपरचे ट्रेडमार्क, लोगो किंवा पृष्ठरचना फ्रेमिंग तंत्राने वापरणे.',
+      'रिव्हर्स इंजिनिअरिंग, डिकंपाईल किंवा स्पर्धात्मक सेवा तयार करण्यासाठी साहित्याचा वापर करणे.',
+      'पूर्व लेखी परवानगीशिवाय स्क्रॅपर्स, बॉट्स किंवा क्रॉलर्सद्वारे डेटा संकलित करणे किंवा स्वयंचलित कोटेशन विनंत्या पाठवणे.',
+      'कॉपीराइट किंवा मालकी हक्काच्या सूचना काढून टाकणे.',
+    ],
+  },
+  {
+    id: 'your-information',
+    num: '04',
+    titleEn: 'Your Information, Responsibility & Disclaimer',
+    titleMr: 'तुमची माहिती, जबाबदारी आणि अस्वीकरण',
+    paragraphsEn: [
+      'Address and Account Information: In order to access and use certain features of the Software you may be required to provide your address, email account, or other pertinent information. You agree:',
+    ],
+    bulletsEn: [
+      'To provide true, accurate, current and complete information about your self and your property as requested by the Software, or the Company;',
+      'To maintain and promptly updates the information to keep it true, accurate, current and complete',
+      'Not to use a false identity or provide false or misleading information, including with respect to your identity, address, or the property.',
+      'Your Responsibility: You are solely responsible for all activities that occur under your account and any decisions you make based on the Materials. You may not share your account or password with anyone, and you agree to: Notify the Company or the Developer immediately of any unauthorized use of your password or any other breach of security; and Exit from your account at the end of each session. You agree that you shall monitor your account to restrict unauthorized use.',
+      'Privacy Policy: You undertake to comply with the terms of Our Privacy Policy.',
+      'Disclaimer: The Developer or the Company has no responsibility to validate, maintain, update, or store any of the information you make available to the Developer. The Developer or the Company reserves the right to remove or reclaim any accounts or user names, and all relatedinformation, at any time and for any reason, including but not limited to, claims by a third party that a user name violates the third party’s rights.',
+    ],
+    paragraphsMr: [
+      'सॉफ्टवेअरमधील काही सुविधा वापरण्यासाठी तुमचा पत्ता, ईमेल व मालमत्तेची अचूक, सत्य आणि अद्ययावत माहिती देणे आवश्यक आहे. चुकीची किंवा दिशाभूल करणारी ओळख वापरू नये.',
+      'तुमच्या खात्याद्वारे होणाऱ्या सर्व कृतींची आणि पासवर्डच्या सुरक्षिततेची संपूर्ण जबाबदारी तुमची राहील. अनधिकृत वापराची माहिती त्वरित कंपनीला कळवणे आवश्यक आहे. तसेच तुम्ही आमच्या गोपनीयता धोरणाचे पालन करण्याचे मान्य करता.',
+    ],
+  },
+  {
+    id: 'acceptance',
+    num: '05',
+    titleEn: 'Acceptance',
+    titleMr: 'अटींची स्वीकृती (Acceptance)',
+    paragraphsEn: [
+      'That the Website/ App are owned by The AHAsolar Technologies Limited (Hereinafter, ATL), an Indian Public Limited company that is registered with the Ministry of Corporate Affairs, under Company’s Act 2013 and located at Ahmadabad and is white labelled for the SwayamUrja Renewable Energy (the “SwayamUrja Renewable Energy Pvt. Ltd.”), a company that is registered with the Ministry of Corporate Affairs, under Company’s Act 1956.',
+      'APL and its affiliates and / or branches or its white labelled clients (hereinafter together “Platform Developer”) provides an online platform for managing solar PV project Installation. The platform may include classified advertisements and forums (collectively, the “Service”) on the App and /or website. The Website, App and the Service are provided to you subject to these Terms of Use.',
+      'Should you object to any term or condition of these Terms of Use, Supplemental Terms, any guideline, or any subsequent changes thereto or become unhappy with the Service in any way, your only choice is to immediately discontinue use of the Company’s Software.',
+    ],
+    paragraphsMr: [
+      'ही वेबसाईट/अ‍ॅप The AHAsolar Technologies Limited (ATL, अहमदाबाद) यांच्या मालकीचे असून स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि. साठी व्हाईट-लेबल स्वरूपात उपलब्ध करून दिलेले आहे. या अटींपैकी कोणत्याही अटीवर तुमचा आक्षेप असल्यास तुम्ही तात्काळ या सॉफ्टवेअरचा वापर बंद करावा.',
+    ],
+  },
+  {
+    id: 'service-content-policy',
+    num: '06',
+    titleEn: 'Description of Service and Content Policy',
+    titleMr: 'सेवा वर्णन आणि सामग्री धोरण',
+    paragraphsEn: [
+      'You understand that THE COMPANY does not control, and is not responsible for ads, directory information, business listings/information, messages between users, including without limitation emails sent from outside THE COMPANY’s domain or other means of electronic communication, whether through the Website, the App or another Third Party Website (defined below) or offerings, comments, user postings, files, images, photos, video, sounds, business listings/information and directory information or any other material made available through the Website, the App and the Service (“Content”), and that by using the Website, the App and the Service, you may be exposed to Content that is offensive, indecent, inaccurate, misleading, or otherwise objectionable. You acknowledge and agree that you are responsible for and must evaluate, and bear all risks associated with, the use of any Content, that you may not rely on said Content, and that under no circumstances will THE COMPANY be liable in any way for the Content or for any loss or damage of any kind incurred as a result of the browsing, using or reading any Content listed, emailed or otherwise made available via the Service. You acknowledge and agree that THE COMPANY cannot and does not prescreen or approve any Content, but that THE COMPANY has the right, in its sole and absolute discretion, to refuse, delete or move any Content that is or may be available through the Service, for violating these Terms of Use and such violation being brought to THE COMPANY’s knowledge or for any other reason or no reason at all. Furthermore, the Website, the App and Content available through the Website may contain links to other third party websites which are completely unrelated to THE COMPANY (“Third Party Websites”), If you link to Third Party Websites, you may be subject to those Third Party Websites’ terms and conditions and other policies. THE COMPANY makes no representation or guarantee as to the accuracy or authenticity of the information contained in any such Third Party Website, and your linking to any other websites is completely at your own risk and THE COMPANY disclaims all liability thereto. Many accuracy of the result also depends on the device used by the user.',
+      'You acknowledge and agree that you are solely responsible for your own Content posted on, transmitted through, or linked from the Service and the consequences of posting, transmitting, linking or publishing it. More specifically, you are solely responsible for all Content that you upload, email or otherwise make available via the Service. In connection with such Content posted on, transmitted through, or linked from the Service by you, you affirm, acknowledge, represent, warrant and covenant that: (i) you own or have and shall continue to, for such time the Content is available on the Website and the App, have the necessary licenses, rights, consents, and permissions to use such Content on the Service and Website (including without limitation all patent, trademark, trade secret, copyright or other proprietary rights in and to any and all such Content) and authorize THE COMPANY to use such Content to enable inclusion and use of the Content in the manner contemplated by the Service, the Website and these Terms of Use; and (ii) you have the written consent, release, and/or permission of each and every identifiable individual person or business in the Content to use the name or likeness of each and every such identifiable individual person or business to enable inclusion and use of the Content in the manner contemplated by the Service, the Website and these Terms of Use. For clarity, you retain all of your ownership rights in your Content; however, by submitting any Content on the Website/ App, you hereby grant to THE COMPANY an irrevocable, non-cancellable, perpetual, worldwide, nonexclusive, royalty free, sub-licensable, transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform the Content in connection with the Website/ App and THE COMPANY’s (and its successors’) business, including without limitation for the purpose of promoting and redistributing part or all of the Website/ App and Content therein (and derivative works thereof) in any media formats and through any media channels now or hereafter known. These rights are required by THE COMPANY in order to host and display your Content. Furthermore, by you posting Content to any public area of the Service on the Website/ App, you agree to and do hereby grant to THE COMPANY all rights necessary to prohibit or allow any subsequent aggregation, display, copying, duplication, reproduction, or exploitation of the Content on the Service or Website or App by any party for any purpose. You also hereby grant each user of the Website/ App a nonexclusive license to access your Content through the Website and the App. The foregoing license to each user granted by you terminates once you or THE COMPANY remove or delete such Content from the Website.',
+      'THE COMPANY does not endorse any Content or any opinion, statement, recommendation, or advice expressed therein, and THE COMPANY expressly disclaims any and all liability in connection with user THE COMPANY does not permit copyright infringing activities and infringement of intellectual property rights on the Website, and THE COMPANY may, at its sole discretion, remove any infringing Content if properly notified in accordance with applicable law that such Content infringes on another’s intellectual property rights. THE COMPANY reserves the right to remove any Content without prior notice. THE COMPANY may also terminate a user’s access to the Website/ App, if they are determined to be a repeat infringer or found to be indulging in any act contrary to these Terms of Use. A repeat infringer is a user who has been notified of infringing activity more than twice and/or has had a user submission removed from the Website/ App more than twice. Further, at its sole discretion, THE COMPANY reserves the right to decide whether any Content is appropriate and complies with these Terms.',
+      'THE COMPANY may provide a video service to you if you upload photographs for your ad. By uploading your photographs, you irrevocably consent to the use of your photographs for this service and represent and warrant that you have all right, title and interest necessary to upload and use the photographs on this Service. Under this Service, using a third party application or service, THE COMPANY may, at its discretion, create a video of your photographs, upload the video via youtube.com or another third party service provider, as determined by THE COMPANY at its discretion, and embed the video into your ad on THE COMPANY.',
+      'The data of the users, project created by the user and any other information given by the user may be used for research and development for any research or commercial',
+    ],
+    paragraphsMr: [
+      'वेबसाईट किंवा अ‍ॅपवर तृतीय-पक्ष लिंक किंवा वापरकर्त्यांनी अपलोड केलेल्या सामग्रीच्या अचूकतेची किंवा विश्वासार्हतेची जबाबदारी कंपनी घेत नाही. तृतीय-पक्ष वेबसाईटचा वापर पूर्णपणे तुमच्या स्वतःच्या जोखमीवर राहील. तसेच अंदाजांची अचूकता वापरकर्त्याच्या उपकरणावरही अवलंबून असू शकते.',
+      'तुम्ही अपलोड केलेल्या कोणत्याही सामग्रीचे सर्व कायदेशीर हक्क व परवानग्या तुमच्याकडे असणे आवश्यक आहे. कॉपीराइट किंवा अटींचे उल्लंघन करणारी सामग्री पूर्वसूचनेशिवाय काढून टाकण्याचा तसेच वारंवार उल्लंघन करणाऱ्या वापरकर्त्याचा प्रवेश बंद करण्याचा अधिकार कंपनीकडे राहील.',
+    ],
+  },
+  {
+    id: 'featured-ads-conduct',
+    num: '07',
+    titleEn: 'Featured Ads & User Conduct',
+    titleMr: 'फीचर्ड जाहिराती आणि वापरकर्ता आचारसंहिता',
+    paragraphsEn: [
+      'FEATURED ADS: THE COMPANY may offer a service known as “Featured Ads” where users may pay a non-refundable fee to have their ads posted in selected locations on the Website and on the App, thus potentially increasing an ads’ visibility. In order to purchase a Featured Ad, you may be required to transmit certain information through a third party service provider, which may be governed by its own terms of use and other policies. THE COMPANY makes no representation or guarantee as to the safety or security of the information transmitted to any Third Party service provider, and your linking to any Third Party service is completely at your own risk, and THE COMPANYdisclaims all liability related thereto. Featured Ads are subject to the Terms listed herein.',
+      'CONDUCT: You agree not to post, email, host, display, upload, modify, publish, transmit, update or share any information on the Website / App, or otherwise make available Content:',
+    ],
+    bulletsEn: [
+      'that violates any law or regulation; that is copyrighted or patented, protected by trade secret or trademark, or otherwise subject to third party proprietary rights, including privacy and publicity rights, unless you are the owner of such rights or have permission or a license from their rightful owner to post the material and to grant THE COMPANY all of the license rights granted herein;',
+      'that infringes any of the foregoing intellectual property rights of any party, or is Content that you do not have a right to make available under any law, regulation, contractual or fiduciary relationship(s);',
+      'that is harmful, abusive, unlawful, threatening, harassing, blasphemous, defamatory, obscene, pornographic, paedophilic , libellous, invasive of another’s privacy or other rights, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or illegal gambling or harms or could harm minors in any way or otherwise unlawful in any manner whatsoever;',
+      'that harasses, degrades, intimidates or is hateful towards any individual or group of individuals on the basis of religion, gender, sexual orientation, race, ethnicity, age, or disability;',
+      'that violates any (local) equal employment laws, including but not limited to those prohibiting the stating, in any advertisement for employment, a preference or requirement based on race, color, religion, sex, national origin, age, or disability of the',
+      'that threatens the unity, integrity, defence, security or sovereignty of India, friendly relations with foreign states, or public order or causes incitement to the commission of any cognizable offence or prevents investigation of any offence or is insulting any other nation;',
+      'that includes personal or identifying information about another person without that person’s explicit consent;',
+      'that impersonates any person or entity, including, but not limited to, an THE COMPANY employee, or falsely states or otherwise misrepresents an affiliation with a person or entity;',
+      'deceives or misleads the addressee about the origin of such messages or communicates any information which is grossly offensive or menacing in nature;',
+      'that is false, deceptive, misleading, deceitful, misinformative , or constitutes “bait and switch” offer;',
+      'that constitutes or contains “pyramid schemes,” “affiliate marketing,” “link referral code,” “junkmail ,” “spam,” “chain letters,” or unsolicited advertisements of a commercial nature;',
+      'that constitutes or contains any form of advertising or solicitation if (1) posted in areas or categories of the Website/ App which are not designated for such purposes; or (2) emailed to THE COMPANY users who have requested not to be contacted about other services, products or commercial interests;',
+      'that includes links to commercial services or Third Party Websites, except as specifically allowed by THE COMPANY;',
+      'that advertises any illegal services or the sale of any items the sale of which is prohibited or restricted by applicable law, including without limitation items the sale of which is prohibited or regulated by applicable law;',
+      'that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment or any other computer resource;',
+      'that disrupts the normal flow of dialogue with an excessive number of messages (flooding attack)to the Service, or that otherwise negatively affects other users’ ability to use the Service; or that employs misleading email addresses, or forged headers or otherwise manipulated identifiers in order to disguise the origin of Content transmitted through the Service.',
+      'Additionally, you agree not to: contact anyone who has asked not to be contacted, or make unsolicited contact for commercial purposes; make any libellous or defamatory comments; collect personal data about other users for commercial or unlawful purposes; use automated spiders, robots, crawlers or data mining tools except search engines complying with robots.txt; impose unreasonable loads on our infrastructure; attempt unauthorized access to computer systems owned or controlled by THE COMPANY; or use automated flagging or automated posting devices. Any non-compliant content may be removed and access terminated.',
+    ],
+    paragraphsMr: [
+      'फीचर्ड जाहिरातींसाठी भरलेले शुल्क परत केले जाणार नाही व तृतीय-पक्ष पेमेंट सेवेचा वापर तुमच्या स्वतःच्या जोखमीवर असेल.',
+      'आचारसंहिता: भारताची एकता, अखंडता, सुरक्षा किंवा कोणत्याही कायद्याचे उल्लंघन करणारी, बदनामीकारक, अश्लील, फसवी, स्पॅम, व्हायरसयुक्त किंवा अनधिकृत डेटा संकलन करणारी कोणतीही कृती या वेबसाईट/अ‍ॅपवर सक्त मनाई आहे. उल्लंघन आढळल्यास खाते बंद करण्याचा अधिकार कंपनीकडे राहील.',
+    ],
+  },
+  {
+    id: 'subscription-access-ip',
+    num: '08',
+    titleEn: 'Subscription, Paid Postings, Access & Intellectual Property',
+    titleMr: 'सबस्क्रिप्शन, प्रवेश आणि बौद्धिक संपदा हक्क (IPR)',
+    paragraphsEn: [
+      'SUBSCRIPTION: Month” means calendar month of the Gregorian The subscription starts as soon as the payment is done stay valid for 30 days of the Gregorian calendar.',
+      'PAID POSTINGS: THE COMPANY may charge a fee to post Content in some areas of the Service. The fee permits certain Content to be posted in a designated area of the Website/ App. Each party posting Content to the Service is responsible for said Content and compliance with the Terms of Any such fees paid hereunder are nonrefundable in the event any Content is removed from the Service for violating these Terms of Use.',
+      'ACCESS TO THE SERVICE: THE COMPANY grants you a limited, revocable, nonexclusive license to access and use the Service for personal use. This license granted herein does not include any of the following: (a) access to or use of the Service by Posting Agents; or (b) any collection, aggregation, copying, duplication, display or derivative use of the Service nor any use of data mining, robots, spiders, or similar data gathering and extraction tools for any purpose unless expressly permitted by THE COMPANY or as otherwise set forth in these Terms of Use. Notwithstanding the foregoing, general purpose internet search engines and noncommercial public archives that gather information for the sole purpose of displaying hyperlinks to the Service, provided they each do so from a stable IP address or range of IP addresses using an easily identifiable agent and comply with our robots.txt file, may engage in the activities set forth in (b). For purposes of this exception, a “general purpose internet search engine” does not include a website or search engine or other service that specializes in classified listings including any subset of classifieds listings such as housing, for sale, jobs, services, or personals, or which otherwise provides classified ad listing services. The license set forth in this Section permits you to display on your website, or create a hyperlink thereto, individual postings on the Service so long as such use is for non-commercial and/or news reporting purposes only (e.g., for use in personal blogs or other personal online media). If the total number of such postings displayed on or linked to your website exceeds ninety nine (99) postings, your use will be considered to be in violation of these Terms, unless THE COMPANY expressly grants you permission You are also permitted to create a hyperlink to the home page of the Website so long as the link does not portray THE COMPANY, its employees, affiliates or agents in a false, confusing, misleading, derogatory, or otherwise offensive matter.',
+      'INTELLECTUAL PROPERTY RIGHTS: You acknowledge and agree that the materials on the Website and on the App, other than the user Content that you licensed under the Terms of Use , including without limitation, the text, software, scripts, graphics, photos, sounds, music, videos, interactive features and the like (“Materials”) and the trademarks, service marks and logos contained therein (“Marks”), are owned by or licensed to THE COMPANY, and are subject to copyright and other intellectual property rights under Indian laws, foreign laws and international treaties and/or conventions. In connection with the Services, the Website/ App may display certain Marks belonging to third parties. Use of these Marks may be subject to license granted by third parties to THE COMPANY. You shall, in no event, reverse engineer, decompile, or disassemble such Marks and nothing herein shall be construed to grant you any right in relation to such Marks. Materials on the Website/ the App are provided to you asis for your information and personal use only and may not be used, copied, reproduced, distributed, transmitted, broadcast, displayed, sold, licensed, or otherwise exploited for any other purposes whatsoever without the prior written consent of the respective owners. THE COMPANY reserves all rights not expressly granted herein in relation to the Website, the App and the Materials. You agree to not engage in the use, copying, or distribution of any of the Materials other than as expressly permitted herein, including any use, copying, or distribution of Materials of third parties obtained through the Website/ App for any commercial purposes. If you download or print a copy of the Materials for personal use, you must retain all copyright and other proprietary notices contained therein. You agree not to circumvent, disable or otherwise interfere with security related features of the Website/ App or features that prevent or restrict use or copying of any Materials or enforce limitations on use of the Website/ App or the Materials therein. The Service is protected to the maximum extent permitted by copyright laws, other laws, and international treaties and/or conventions. Content displayed on or through the Service is protected by copyright as a collective work and/or compilation, pursuant to copyrights laws, other laws, and international conventions. Any reproduction, modification, creation of derivative works from or redistribution of the Website, the App, the Materials, or the collective work or compilation is expressly prohibited. Copying or reproducing the Website, the App, the Materials, or any portion thereof to any other server or location for further reproduction or redistribution is expressly prohibited. You further agree not to reproduce, duplicate or copy Content or Materials from the Service, and agree to abide by any and all copyright notices and other notices displayed on the Service. You may not decompile or disassemble, reverse engineer or otherwise attempt to discover any source code contained in the Service. Without limiting the foregoing, you agree not to reproduce, duplicate, copy, sell, resell or exploit for any commercial purposes, any aspect of the Service.',
+    ],
+    paragraphsMr: [
+      'सबस्क्रिप्शन पेमेंट केल्यापासून ३० दिवसांच्या ग्रेगोरियन कॅलेंडर महिन्यासाठी वैध राहील. अटींच्या उल्लंघनामुळे काढलेल्या कोणत्याही पेड पोस्टिंगचे शुल्क परत मिळणार नाही.',
+      'वेबसाईट व अ‍ॅपवरील सर्व मजकूर, सॉफ्टवेअर, स्क्रिप्ट्स, ग्राफिक्स, फोटो, व्हिडिओ आणि ट्रेडमार्क्स (Marks) हे कंपनीच्या मालकीचे किंवा परवानाधारक असून भारतीय व आंतरराष्ट्रीय कॉपीराइट कायद्यांद्वारे संरक्षित आहेत. पूर्व लेखी परवानगीशिवाय त्यांची कॉपी, पुनर्विक्री किंवा व्यावसायिक वापर सक्त मनाई आहे.',
+    ],
+  },
+  {
+    id: 'indemnity-spam-termination',
+    num: '09',
+    titleEn: 'User Submissions, Indemnity, No Spam & Termination',
+    titleMr: 'नुकसानभरपाई (Indemnity), स्पॅम-विरोधी धोरण आणि सेवा समाप्ती',
+    paragraphsEn: [
+      'USER SUBMISSIONS: You understand that when using the Website/ App, you will be exposed to Content from a variety of sources, and that THE COMPANY is not responsible for the accuracy, usefulness, safety, or intellectual property rights of or relating to such Content, and you agree and assume all liability for your use. You further understand and acknowledge that you may be exposed to Content that is inaccurate, offensive, indecent, or objectionable, defamatory or libelous and you agree to waive, and hereby do waive, any legal or equitable rights or remedies you have or may have against THE COMPANY with respect thereto.',
+      'INDEMNITY: You agree to defend, indemnify and hold harmless THE COMPANY, its officers, subsidiaries, affiliates, successors, assigns, directors, officers, agents, service providers, suppliers and employees, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorneys’ fees) arising from: (i) your use of and access to the Website and/or the App and/or the Service; (ii) your violation of any term of these Terms of Use; (iii) your violation of any third party right, including without limitation any copyright, trademark, service mark, trade secret or other property, or privacy right; or (iv) any claim that your Content caused damage to a third party. This defense and indemnification obligation will survive termination, modification or expiration of these Terms of Use and your use of the Service and the Website/App.',
+      'NO SPAM POLICY: You understand and agree that sending unsolicited email advertisements or other unsolicited communications to THE COMPANY email addresses or through THE COMPANY computer systems are expressly prohibited by these Terms of Use. You acknowledge and agree that from time to time THE COMPANY may monitor email usage using human monitors or automated software to flag certain words associated with spam or scams in emails that are sent between one user to another in the THE COMPANY e mail system. Any communication between yourself and any other user utilizing the communication features available on the Service and the Website/ App may be used only in accordance with the Terms of Use. Any unauthorized use of THE COMPANY computer systems is a violation of these Terms of Use and certain applicable laws. Such violations may subject the sender and his or her agents to civil and criminal penalties.',
+      'DEALINGS WITH ORGANIZATIONS AND INDIVIDUALS: You acknowledge and agree that THE COMPANY shall not be liable for your interactions with any organizations and/or individuals on the Website/ App or through the Service. This includes, but is not limited to, payment and delivery of goods and services, and any other terms, conditions, warranties or representations associated with any interaction you may have with other organizations and/or individuals. These dealings are solely between you and such organizations and/or individuals. You agree and acknowledge that THE COMPANY shall not be responsible or liable for any loss or damage of any sort incurred as the result of any such dealings or interactions. If there is a dispute between participants on the Website/ App, or between users and any third party, you understand and agree that THE COMPANY is under no obligation to become involved in such dispute. In the event that you have a dispute with one or more other users, you hereby release THE COMPANY, its officers, employees, agents and successors from any and all claims, demands and damages (actual and consequential) of every kind or nature, known or unknown, suspected and unsuspected, disclosed and undisclosed, arising out of or in any way related to such disputes and/or our Service.',
+      'LIMITATION AND TERMINATION OF SERVICE: You acknowledge and agree that THE COMPANY may establish limits from time to time concerning use of the Service, including among others, the maximum number of days that Content will be maintained or retained by the Service, the maximum number and size of postings, email messages, or other Content that may be transmitted or stored by the Service, and the frequency with which you may access the Service or the Website. You acknowledge and agree that THE COMPANY has no responsibility or liability for the deletion or failure to store any Content maintained or transmitted by the Website or the Service. You acknowledge and agree that THE COMPANY reserves the right at any time to modify or discontinue the Service (or any part thereof) with or without notice, and that THE COMPANY shall not be liable to you or to any third party for any such modification, suspension or discontinuance of the Service. You acknowledge and agree that THE COMPANY, in its sole and absolute discretion, has the right (but not the obligation) to delete or deactivate your account, block your email or IP address, or otherwise terminate your access to or use of the Service (or any part thereof), immediately and without notice, and remove and discard any Content within the Service, for any reason or no reason at all, including, without limitation, if THE COMPANY believes that you have violated these Terms of Use. Further, you agree that THE COMPANY shall not be liable to you or any third party for any termination of your access to the Website/ App or the Service. Further, you agree not to attempt to use the Service after any such termination.',
+    ],
+    paragraphsMr: [
+      'तुमच्या वापरामुळे, अटींच्या उल्लंघनामुळे किंवा तृतीय-पक्षाच्या हक्कांच्या उल्लंघनामुळे उद्भवणाऱ्या कोणत्याही दाव्यांपासून व नुकसानीपासून कंपनी, तिचे संचालक आणि कर्मचाऱ्यांना संरक्षित (Indemnify) ठेवण्याची जबाबदारी तुमची राहील.',
+      'कंपनीच्या ईमेल किंवा संगणकीय प्रणालीद्वारे अनधिकृत स्पॅम संदेश पाठवणे सक्त मनाई आहे. अटींचे उल्लंघन आढळल्यास पूर्वसूचनेशिवाय सेवा मर्यादित करणे, सुधारणा करणे किंवा खाते बंद करण्याचा अधिकार कंपनीकडे राहील.',
+    ],
+  },
+  {
+    id: 'warranties-liability',
+    num: '10',
+    titleEn: 'Disclaimer of Warranties & Limitations of Liability',
+    titleMr: 'हमी अस्वीकरण आणि दायित्व मर्यादा',
+    paragraphsEn: [
+      'DISCLAIMER OF WARRANTIES: You expressly acknowledge and agree that use of the Website/ App and the service is entirely at your own risk and that the Website/ App and the Service are provided on an “as is” or “as available” basis, without any warranties of any kind. All express and implied warranties, including, without limitation, the warranties of merchantability, fitness for a particular purpose, and non-infringement of proprietary rights are expressly disclaimed to the fullest extent permitted by law. To the fullest extent permitted by law THE COMPANY, its officers, directors, employees, and agents disclaim all warranties, express or implied, in connection with the Website and/or App and/or Service and your use thereof. THE COMPANYmakes no warranties or representations about the accuracy or completeness of the Website/ App ‘s content or the content of any third party websites linked to the website and assumes no liability or responsibility for any: (i) errors, mistakes, or inaccuracies of Content, (ii) personal injury or property damage, of any nature whatsoever, resulting from your access to and use of the Website/App and Service, (iii) any unauthorized access to or use of our servers and/or any and all personalinformation and/or financial information stored therein, (iv) any interruption or cessation of transmission to or from the Website/ App, (iv) any bugs, viruses, Trojan Horses, or the like which may be transmitted to or through the Website/ App by any third party, and/or (v) any errors or omissions in any Content or for any loss or damage of any kindincurred as a result of the use of any content posted, emailed, communicated, transmitted, or otherwise made available via the Website/ App or the Service. THE COMPANY does not warrant, endorse, guarantee, or assume responsibility for any product or service advertised oroffered by a third party through the Website/ App or any hyperlinked website or featured in any banner or other advertising, and THE COMPANY will not be a party to or in any way beresponsible for monitoring any transaction between you and/or other users and/or third party providers of products or services. As with the purchase of a product or service through any medium or in any environment, you should use your best judgment and exercise caution whereappropriate.',
+      'LIMITATIONS OF LIABILITY: In no event shall THE COMPANY, its officers, directors, employees, or agents, holding company be liable for direct, indirect, incidental, special, consequential or exemplary damages (even if THE COMPANY has been advised of the possibility of such damages), resulting from any aspect of your use of the Website, App or the Service, including without limitation whether the damages arise from use or misuse of the Website, App or the Service, from inability to use the Website, App or the Service, or the interruption, suspension, modification, alteration, or termination of the Website/App or the Service. Such limitation of liability shall also apply with respect to damages incurred by reason of other services or products received through or advertised in connection with the Website/ App or the Service or any links on the Website/ App, as well as by reason of any information, opinions or advice received through or advertised in connection with the Website/ App or the Service or any links on the COMPANY website. These limitations shall apply to the fullest extent permitted by law. THE COMPANY, its officers, directors, employees, or agents at no point shall be liable in case of any theft, robbery, damages, physical damages, and sexual assault, etc. incurred due to the information provided to the solar PV installer or its employees or any other third party.',
+      'You specifically acknowledge and agree that THE COMPANY shall not be liable for user submissions or the defamatory, offensive, or illegal conduct of any user or third party and that the risk of harm or damage from the foregoing rests entirely with you.',
+      'The Website and the App is controlled and offered by THE COMPANY. THE COMPANY makes no representations or warranties that the Website/ the App is appropriate for use in other locations. Those who access or use the Website and App from other jurisdictions do so at their own volition and risk and are responsible for compliance with local law. The recommendations provided by THE COMPANY through its website and mobile App are based on certain assumptions and THE COMPANY don’t take any responsibility for the accuracy of data and information.',
+    ],
+    paragraphsMr: [
+      'ही वेबसाईट, अ‍ॅप आणि सेवा “जशी आहे तशी” (As-Is) व “उपलब्धतेनुसार” (As-Available) तत्त्वावर प्रदान केली जाते. कायद्याने अनुमत कमाल मर्यादेपर्यंत कंपनी सर्व स्पष्ट किंवा अप्रत्यक्ष हमी नाकारते.',
+      'वेबसाईट किंवा अ‍ॅपद्वारे दिलेले सौर अंदाज व शिफारसी विशिष्ट गृहितकांवर आधारित असतात; त्यांच्या अचूकतेबाबत किंवा सेवेच्या वापरातून उद्भवणाऱ्या कोणत्याही प्रत्यक्ष/अप्रत्यक्ष नुकसानीसाठी कंपनी, तिचे संचालक किंवा कर्मचारी जबाबदार राहणार नाहीत.',
+    ],
+  },
+  {
+    id: 'assignment-age-general',
+    num: '11',
+    titleEn: 'Assignment, Eligibility (18+) & General Information',
+    titleMr: 'हस्तांतरण, वयोमर्यादा (१८+) आणि सामान्य तरतुदी',
+    paragraphsEn: [
+      'ASSIGNMENT: These Terms of Use, and any rights and licenses granted hereunder, may not be transferred or assigned by you, but may be assigned by THE COMPANY without restriction. Any assignment or transfer by you shall be null and void.',
+      'ABILITY TO ACCEPT TERMS OF SERVICE: This Website/ App is intended only for users above the age of 18 and that you are eligible to contract as per applicable laws. If you are using/accessing this Website as a representative of any person/entity, you acknowledge that you are legally authorized to represent that person/entity. You affirm that you are either at least 18 years of age, and are fully able and competent to enter into the terms, conditions, obligations, affirmations, representations, and warranties set forth in these Terms of Use, and to abide by and comply with these Terms. NOTICE TO CHILDREN UNDER THE AGE OF 18 AND THEIR PARENTS OR GUARDIANS. If you are under the age of 18, YOU MUST NOT USE THIS WEBSITE and/or the App. Please do not send us your personal information, including your email addresses, name, and/or contact information. If you want to contact us, you may only do so through your parent or legal guardian.',
+      'GENERAL INFORMATION: These Terms of Use and the other policies posted on the Website constitute the complete and exclusive understanding and agreement between you and THE COMPANY and govern your use of the Service and the Website/ App superseding all prior understandings, proposals, agreements, negotiations, and discussions between the parties, whether written or oral. The Terms of Use and the relationship between you and THE COMPANY shall be governed by the laws of India. Any claim you may have against THE COMPANY must be submitted to the exclusive jurisdiction of the courts of Ahmadabad, India. However, in the event that you are a consumer it may be that consumer law requires that another law is applicable and that a claim may be submitted to another jurisdiction. The failure of THE COMPANY to exercise or enforce any right or provision of the Terms of Use shall not constitute a waiver of such right or provision. If any provision of the Terms of Use is found by a court of competent jurisdiction to be invalid (including, without limitation, because such provision is inconsistent with the laws of another jurisdiction) or inapplicable, the parties nevertheless agree that the court should endeavour to give effect to the parties’ intentions as reflected in the provision. If any provision or provisions of these Terms of Use is held to be invalid, illegal or unenforceable, the validity, legality and enforceability of the remaining provisions of the Terms of Use shall not in any way be affected or be impaired. YOU AGREE THAT ANY CAUSE OF ACTION BROUGHT BY YOU AND ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICE AND/OR THE WEBSITE/ App MUST COMMENCE WITHIN A REASONABLE TIME AND IN ANY EVENT WITHIN ONE (1) YEARAFTER THE CAUSE OF ACTION ACCRUES, EXCEPT THAT THE COMPANY MAY COMMENCE ANY SUCH CAUSE OF ACTION IN ACCORDANCE WITH THE APPLICABLE STATUTE OF LIMITATIONS UNDER INDIAN LAW. OTHERWISE, SUCH CAUSE OF ACTION IS PERMANENTLY BARRED. These Terms of Use shall inure to the benefit of and be binding upon each party’s successors and assigns. As a part of the registration process, THE COMPANY requires its users to agree to the terms and conditions for using THE COMPANY Rooftop Solar Helper APP and the THE COMPANY Rooftop Solar Helper Website (“Appand Website are as defined hereinabove”).',
+      'For the duration of the term of usage, the Website/App shall be maintained by THE COMPANY. The ownership of which shall vest with THE COMPANY.THE COMPANY is committed to make its best efforts to deal with technical issues (if any).THE COMPANY doesn’t warrant the users that the App will be operative at all locations and time. THE COMPANY also deems it fit to be stated here that the calculations done are based on certain assumptions and no claim for their exactness is made, the accuracy resulting from there forth would therefore be subjected to these assumptions, for which THE COMPANY would not be liable.',
+    ],
+    paragraphsMr: [
+      'ही वेबसाईट/अ‍ॅप केवळ १८ वर्षे किंवा त्यावरील वयाच्या वापरकर्त्यांसाठी आहे. १८ वर्षांखालील व्यक्तींनी स्वतःची वैयक्तिक माहिती पाठवू नये; केवळ पालक किंवा कायदेशीर संरक्षकामार्फतच संपर्क साधावा.',
+      'या अटी भारतीय कायद्यांच्या अधीन राहतील. सेवेशी संबंधित कोणताही दावा १ वर्षाच्या आत दाखल करणे आवश्यक राहील. सौर कॅल्क्युलेशन हे गृहितकांवर आधारित असून त्यांच्या अचूकतेबाबत कोणताही कायदेशीर दावा कंपनीवर लागू होणार नाही.',
+    ],
+  },
+  {
+    id: 'privacy-clause',
+    num: '12',
+    titleEn: 'Privacy Policy Terms',
+    titleMr: 'गोपनीयता धोरण तरतुदी',
+    paragraphsEn: [
+      'Type of Information Collected: When you visit the Website/ App, we may collect certain non-personal information such as your Internet Protocol (“IP”) address, operating system, browser type, and Internet service provider. This type of information does not identify you personally. When you register with the Website or respond to advertisements or posts on the Website/ App or post contents on the Website/ App without registering, we may also collect personal information that you provide such as your name, mailing address, email address, phone/mobile number, home country, and zip code (“Registration Information”). You have the option of also providing to us your fax numbers, gender, age, and/or company name if you choose to register with THE COMPANY. If you provide your phone number, it will be displayed in your posting. Further, if you have provided your phone number and posted an advertisement using your account, you agree to receive communications on the provided phone number from our side which may include but not be limited to automated calls or text messages. The communication may require you to confirm and verify that your account has been used to post the relevant advertisement on the Website/ App. We may also collect additional information that our users provide, such as new or deleted postings, new or deleted comments, keyword searches, scam reports and new contact sellers. By using this Website/ App or the Service, you consent to collection, storage, and use of the personal information you provide for any of the services that we offer, and you consent to our collection of any changes or updates that you may provide to any information you provide that is collected by THE COMPANY.',
+      'Cookies: We may use cookies to manage our users’ sessions and to store preferences, tracking information, and language Cookies may be used whether you register with us or not. “Cookies” are small text files transferred by a web server to your hard drive and thereafterstored on your computer. The types of information a cookie collects include the date and timeyou visited, your browsing history, your preferences, and your username. In some instances, our third party service providers may use cookies on the Website. We cannot control or access cookies used by third party service providers. This Privacy Policy covers only Cookies used by us, and not any cookies used by third parties. You have the ability to either accept or decline the use of cookies on your computer, whether you are registered with us or not. Typically, you can configure your browser to not accept cookies. However, declining the use of cookies may limit your access to certain features of the Website. For example, you may have difficulty logging in or using certain interactive features of the Website, such as the THE COMPANY Forum or Comments feature.',
+      'Third Parties: We may use third party service providers to assist us in measuring purchases and sales on our Website/ App and generally improving our Website/ App and to monitor our users’ interests and activities. You hereby authorize THE COMPANY and/or third party service providers engaged by THE COMPANY to collect, use, store, analyse, reproduce, publish, and adapt (either on its own or through third party service provider) the information in relation to your use of the Website/ App for the purpose of data analysis and for improving your experience on the Website/ In addition, the Website/ App may occasionally contain links to third party sites or provide you information in relation to services that you may avail from any third parties. Information about services that you may choose to avail from these third party service providers may be actively provided to you by THE COMPANY in any manner including through its various marketing and communication channels. You acknowledge that this is solely undertaken by THE COMPANY to improve your experience in relation to the use of the Website/ App and the provision of such services shall be subject to such additional terms and conditions of THE COMPANY and/or third party service providers. THE COMPANY may also offer for free or for a fee, deliverables produced by third party service providers in furtherance of any services that you may have availed from these third party service providers in connection with the advertisement posted on the Website/ App, without any obligation (monetary or otherwise) towards you. THE COMPANY shall not be responsible for any service availed by you from such third parties or any payment made by you to such third parties in connection with the services. Any concern or claims in relation to such services should be directed by you to such third parties. If you click on the links to third party websites, you leave the Website/ App. We are not responsible for the content of these third party websites or for the security of your personal information when you use the third party websites. These third party service providers and third party websites may have their own privacy policies governing the storage and retention of your personal information that you may be subject to. They may collect information such as your IP address, browser specification, or operating system. This Privacy Policy does not govern personal information provided to, stored on, or used by these third party providers and third party websites. We recommend that when you enter a third party webite, you review the third party website’s privacy policy as it relates to safeguarding your personal information. We may use third party advertising companies to serve ads when you visit the Website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to the Website and third party websites in order to provide advertisements about goods and services of interest to you.',
+      'How Your Information is Used: We may use information provided by you to: (i) enforce our Terms of Use, monitor user activity, such as keyword searches or new postings, and more effectively manage traffic on the Website ii) provide customer services, create and manage user accounts; and (iii) assist you with technical difficulties. Also, we may share with third party service providers certain information, such as your browser capabilities or operating system, that we have collected in order to better understand which advertisements and services may interest you. We may block users located in certain countries from using the Website. We may retain such information for as long as is required to fulfill our business objective, even after your account is terminated.',
+      'Protecting Your Personal Information: You are a valued customer, and we recognize that protecting your privacy is important to you. For this reason, we are committed to protecting the personal information you provide in a variety of Your Registration Information may be protected by a unique customer password and user ID. You should not disclose your password information to anyone and you should always remember to log off if using a shared computer. Lastly, you may utilize the Website as an anonymous user by not registering. We have taken certain security protections in safeguarding your personal information. However, as with most electronic transactions, no method is 100% safe. While we strive to use a commercially acceptable means to protect the personal information you provide, we cannot guarantee its security. Therefore, you acknowledge and agree that we assume no liability regarding the theft, loss, alteration or misuse of personal or other information or Content, including, without limitation, such information that has been provided to third parties or other users, or with regards to the failure of a third party to abide by the agreement between us and such third party. You agree that you are responsible for maintaining the confidentiality of your username and password, and all uses of your account, whether or not you have authorized such use.',
+      'Disclosures: On rare occasions, we may be required to disclose your personal information due to legal or regulatory In such instances, we reserve the right to disclose your personal information as required in order to comply with our legal obligations, including but not limited to complying with court orders, warrants, subpoenas, service of process requirements, or discovery requests. We may also disclose information about our users to law enforcement officers or others, in the good faith belief that such disclosure is reasonably necessary to enforce these Terms of Use and/or Privacy Policy; respond to claims that any Content violates the rights of third parties; or protect the rights, property, or personal safety of THE COMPANY, our users or the general public. You agree and acknowledge that we may not inform you prior to or after disclosures made according to this section. If substantiallyall of our assets are sold or merged into another company, the acquiring company shall be given access to your personal information without your consent. If we sell only a part of our business, the acquiring entity shall have access to your personal information without your consent and we may send you a notice regarding this sale.',
+      'Notification of Changes & How to Contact Us: As provided for under the Section “What these Terms of Use covers? “ , we reserve the right to change these Terms of Use from time to time, and at our sole discretion. We may send you a notice regarding material changes to these Terms of Use, including the Privacy Policy or the Website/ App. You should make note of the “last updated date” at the beginning of the Terms of Use. With this information, you should be able to identify if the Terms of Use have been amended recently. If you have questions about this Privacy Policy, please contact THE COMPANY via the Legal Issues report form with “Privacy Policy” in the subject line.',
+    ],
+    paragraphsMr: [
+      'वेबसाईट/अ‍ॅप वापरताना तुमचे नाव, पत्ता, ईमेल, मोबाईल नंबर तसेच तांत्रिक माहिती (IP, ब्राउझर, कुकीज) सेवा देण्यासाठी आणि वापरकर्ता अनुभव सुधारण्यासाठी संकलित केली जाऊ शकते. तुम्ही ब्राउझर सेटिंगमधून कुकीज नियंत्रित करू शकता.',
+      'तुमच्या वैयक्तिक माहितीच्या सुरक्षिततेसाठी आवश्यक उपाययोजना केल्या जातात; कायदेशीर आदेश किंवा नियामक गरजेनुसार माहिती सादर करण्याचा अधिकार कंपनीकडे राहील. भारताच्या DPDP कायदा २०२३ अंतर्गत सविस्तर हक्कांसाठी कृपया आमचे समर्पित गोपनीयता धोरण (/privacy-policy) पहा.',
+    ],
+  },
+  {
+    id: 'dispute-force-majeure-notice',
+    num: '13',
+    titleEn: 'Dispute Resolution, Force Majeure, Notice & Waiver',
+    titleMr: 'वाद निवारण, अपरिहार्य कारणे (Force Majeure), नोटीस आणि सूट',
+    paragraphsEn: [
+      'Dispute resolution procedure: Any disputes regarding your privacy are subject to the Terms of Use, including but not limited to any provisions related to indemnification, limitations on damages, and choice of law and forum.In the event of a dispute that parties fail to settle within a period of sixty (60) days, parties reserve the rights to seek redress under the Arbitration & Conciliation Act, 1996. Disputes, if any, will be sorted out within Gandhinagar / Ahmadabad jurisdiction.',
+      'Force Majeure: The term “Force Majeure” shall mean events and circumstances beyond the reasonable control of either party and that affects either party’s performance herein, and is not brought at the instance of the party claiming to be affected by such event/ circumstance and which, could not have been avoided or provided for acting in accordance with a reasonable prudent person.Such events and circumstance of Force Majeure, shall include, but not be limited to: acts of God, acts of Government, riots, war, strikes, lockouts or other causes beyond the reasonable control of such parties. Non-performance or delay in performance of the Terms of Use by a Party, shall not give rise to a claim under the Terms of Use against that Party or result in breach of the Terms of Use, if and to the extent such non-performance or delay in performance is arise from and/ or continues as a result of Force Majeure.',
+      'Notice: The Company may provide you with notices and communications by email, regular mail or postings on the Website or by any other reasonable means. Except as otherwise set forth herein, notice to THE COMPANY must be sent by courier or registered mail to SWAYAMURJA RENEWABLE ENERGY PVT. LTD. S No. 55/67, A/102, Karan Rhea, T9, A-1001, Brahma Business park, New Kalyani Nagar, Digambar Nagar, Wadgaon Sheri, Pune, Maharashtr, 411014',
+      'Waiver: The failure of THE COMPANY to exercise or enforce any rights or provisions of this Terms of Use will not constitute a waiver of such rights or provisions. Any waiver of any provision of this Terms of Use will be effective only if in writing and signed by THE COMPANY.',
+    ],
+    paragraphsMr: [
+      'वाद निवारण प्रक्रिया: कोणताही वाद ६० दिवसांच्या आत परस्पर संवादाने न सुटल्यास Arbitration & Conciliation Act, 1996 अंतर्गत कार्यवाही करता येईल (गांधीनगर / अहमदाबाद न्यायक्षेत्र).',
+      'अपरिहार्य कारणे (Force Majeure): नैसर्गिक आपत्ती, शासकीय आदेश, दंगल, युद्ध, संप किंवा नियंत्रणाबाहेरील कारणांमुळे होणाऱ्या विलंबास कराराचे उल्लंघन मानले जाणार नाही.',
+      'नोटीस पत्ता: SWAYAMURJA RENEWABLE ENERGY PVT. LTD., S No. 55/67, A/102, Karan Rhea, T9, A-1001, Brahma Business Park, New Kalyani Nagar, Digambar Nagar, Wadgaon Sheri, Pune, Maharashtra 411014.',
+      'सूट (Waiver): कंपनीने कोणत्याही हक्काची अंमलबजावणी न केल्यास तो हक्क सोडला असे मानले जाणार नाही; लेखी व स्वाक्षरीकृत सूटच वैध राहील.',
+    ],
+  },
+];
+
+export default function TermsAndConditionsPage() {
+  const { language } = useLanguage();
+  const isMr = language === 'mr';
+
+  return (
+    <main className="min-h-screen flex flex-col bg-[#f8faf9]">
+      <Navbar />
+
+      {/* ── Executive Header Banner ── */}
+      <section className="bg-slate-900 text-white py-12 sm:py-16 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center gap-2 text-xs font-medium text-emerald-400 mb-5" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-emerald-300 transition-colors">
+              {isMr ? 'मुख्यपृष्ठ' : 'Home'}
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+            <span className="text-white">{isMr ? 'अटी व शर्ती' : 'Terms and Conditions'}</span>
+          </nav>
+
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="max-w-3xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-medium">
+                <FileText className="w-3.5 h-3.5" />
+                <span>{isMr ? 'स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि. — कायदेशीर अटी' : 'SwayamUrja Renewable Energy Pvt. Ltd. — Legal Terms'}</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl font-bold tracking-tight font-['Outfit']">
+                {isMr ? 'वापराच्या अटी व शर्ती (Terms & Conditions)' : 'Terms and Conditions'}
+              </h1>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                {isMr
+                  ? 'स्वयम्ऊर्जा रिन्यूएबल एनर्जी प्रा. लि. ची वेबसाईट, सौर अंदाज सॉफ्टवेअर आणि सेवा वापरण्यासाठी लागू होणाऱ्या अधिकृत अटी व शर्ती.'
+                  : 'Official Terms of Use governing access to the SwayamUrja Renewable Energy website, software, solar estimation tools, and related services.'}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-white transition-colors cursor-pointer"
+              >
+                <Printer className="w-4 h-4 text-amber-400" />
+                <span>{isMr ? 'प्रिंट / PDF जतन करा' : 'Print / Save PDF'}</span>
+              </button>
+              <Link
+                href="/privacy-policy"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white transition-colors"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>{isMr ? 'गोपनीयता धोरण (DPDP)' : 'Privacy Policy (DPDP)'}</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Main Content with Sticky Table of Contents ── */}
+      <section className="py-12 sm:py-16 flex-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {isMr && (
+            <div className="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-900">
+              <strong>टीप:</strong> मराठीतील मजकूर हा ग्राहकांच्या सोयीसाठी दिलेला सारांश आहे. कोणत्याही कायदेशीर अर्थ लावणीच्या बाबतीत अधिकृत इंग्रजी आवृत्ती (EN) अंतिम व बंधनकारक राहील.
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Sticky Left Sidebar TOC */}
+            <aside className="lg:col-span-4 lg:sticky lg:top-24">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-3">
+                <div className="text-xs font-semibold text-slate-500 pb-2 border-b border-slate-100">
+                  {isMr ? 'अनुक्रमणिका (विभाग निवडा)' : 'Quick Section Index'}
+                </div>
+                <nav aria-label="Terms sections" className="space-y-1 max-h-[65vh] overflow-y-auto pr-1">
+                  {TERMS_SECTIONS.map((sec) => (
+                    <a
+                      key={sec.id}
+                      href={`#${sec.id}`}
+                      className="flex items-start gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 transition-colors"
+                    >
+                      <span className="font-mono text-[11px] text-emerald-700 font-semibold shrink-0 tabular-nums">
+                        {sec.num}
+                      </span>
+                      <span className="leading-snug">{isMr ? sec.titleMr : sec.titleEn}</span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+
+            {/* Right Legal Clauses Column */}
+            <div className="lg:col-span-8 space-y-6">
+              {TERMS_SECTIONS.map((sec) => {
+                const paras = isMr ? sec.paragraphsMr || sec.paragraphsEn || [] : sec.paragraphsEn || [];
+                const bullets = isMr ? sec.bulletsMr || sec.bulletsEn || [] : sec.bulletsEn || [];
+                return (
+                  <article
+                    key={sec.id}
+                    id={sec.id}
+                    className="scroll-mt-24 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-4"
+                  >
+                    <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                      <span className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-xs font-bold flex items-center justify-center shrink-0 tabular-nums">
+                        {sec.num}
+                      </span>
+                      <h2 className="text-lg sm:text-xl font-bold text-slate-900 font-['Outfit']">
+                        {isMr ? sec.titleMr : sec.titleEn}
+                      </h2>
+                    </div>
+
+                    <div className="space-y-3.5 text-sm text-slate-700 leading-relaxed">
+                      {paras.map((p, idx) => (
+                        <p key={idx}>{p}</p>
+                      ))}
+
+                      {bullets.length > 0 && (
+                        <ul className="list-disc pl-5 space-y-2 text-slate-700">
+                          {bullets.map((b, idx) => (
+                            <li key={idx}>{b}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+
+              {/* Bottom Help CTA */}
+              <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border border-slate-800">
+                <div className="space-y-1">
+                  <h3 className="text-base sm:text-lg font-bold font-['Outfit']">
+                    {isMr ? 'कायदेशीर किंवा गोपनीयतेबाबत प्रश्न आहेत का?' : 'Questions About Our Terms or Privacy Notice?'}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    {isMr
+                      ? 'कृपया crm@swayamurja.com वर संपर्क साधा किंवा आमचे DPDP गोपनीयता धोरण पहा.'
+                      : 'Contact our team at crm@swayamurja.com or review our India DPDP Act 2023 Privacy Notice.'}
+                  </p>
+                </div>
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm shrink-0 transition-colors"
+                >
+                  <span>{isMr ? 'संपर्क साधा' : 'Contact SwayamUrja'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}

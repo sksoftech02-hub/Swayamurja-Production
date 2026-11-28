@@ -43,5 +43,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${baseUrl}/terms-and-conditions`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.5,
+      alternates: {
+        languages: {
+          'en-IN': `${baseUrl}/terms-and-conditions?lang=en`,
+          'mr-IN': `${baseUrl}/terms-and-conditions?lang=mr`,
+        },
+      },
+    },
   ];
 }

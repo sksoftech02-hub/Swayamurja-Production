@@ -91,6 +91,7 @@ export const Footer: React.FC = () => {
               <li><Link href="/#careers" className="hover:text-amber-400 transition-colors">{t('nav_careers')}</Link></li>
               <li><Link href="/#contact" className="hover:text-amber-400 transition-colors">{t('nav_contact')}</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">{isMr ? 'गोपनीयता धोरण (DPDP)' : 'Privacy Policy (DPDP)'}</Link></li>
+              <li><Link href="/terms-and-conditions" className="hover:text-amber-400 transition-colors">{isMr ? 'अटी व शर्ती' : 'Terms & Conditions'}</Link></li>
             </ul>
           </div>
 
@@ -175,6 +176,10 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">
               {isMr ? 'गोपनीयता धोरण' : 'Privacy Policy'}
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link href="/terms-and-conditions" className="hover:text-amber-400 transition-colors">
+              {isMr ? 'अटी व शर्ती' : 'Terms & Conditions'}
             </Link>
             <span className="text-slate-700">|</span>
             <Link href="/privacy-policy#grievance-officer" className="hover:text-amber-400 transition-colors">
